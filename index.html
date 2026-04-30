@@ -24,20 +24,29 @@ body {
 /* ===== BANNER ===== */
 .banner {
     width: 100%;
-    height: 90vh;
-    background: url('banner.jpg') center/cover no-repeat;
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* ===== HEADER ===== */
 .header {
     position: fixed;
     right: 60px;
+    left: auto; /* FORCE right side */
     bottom: 40px;
+
     display: flex;
     align-items: center;
+    justify-content: flex-end; /* IMPORTANT */
+
     gap: 14px;
     z-index: 100;
-    transition: 0.3s;
+
+    text-align: right; /* prevents weird flip */
 }
 
 .header.scrolled {
@@ -45,11 +54,12 @@ body {
     bottom: auto;
 }
 
-.header img {
-    width: 70px;
-    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.9));
+.header span {
+    font-size: 34px;
+    text-shadow: 0 10px 25px rgba(0,0,0,0.9);
+    white-space: nowrap;
 }
-
+    
 .header span {
     font-size: 34px;
     text-shadow: 0 8px 20px rgba(0,0,0,0.9);
