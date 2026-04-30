@@ -1,264 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Brand</title>
 
-<title>Alejandro Mazo | FMX Videographer</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
 
-<style>
+    /* NAVBAR */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 15px;
+      background: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-/* ===== FONT ===== */
-@font-face {
-    font-family: 'Orbitron';
-    src: url('Orbitron.ttf');
-}
+    .navbar .logo {
+      width: 40px;
+    }
 
-body {
-    margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: black;
-    color: white;
-    overflow-x: hidden;
-}
+    .navbar h1 {
+      font-size: 20px;
+      margin: 0;
+    }
 
-/* ===== WRAPPER ===== */
-.container {
-    max-width: 1400px;
-    margin: auto;
-}
-
-/* ===== BANNER (FIXED) ===== */
-.banner {
-    width: 100%;
-    height: 450px;
-    background-image: url('banner.jpg');
-    background-size: cover;       /* fills properly */
-    background-position: center;  /* no weird crop */
-    background-repeat: no-repeat;
-    position: relative;
-    display: flex;
-    align-items: flex-end;
-    padding: 40px 80px;
-    box-sizing: border-box;
-}
-
-/* NAME + LOGO */
-.banner-content {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-/* THIS is the ONLY logo */
-.banner-logo {
-    height: 130px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-/* STICKY STATE */
-.banner-logo.sticky {
-    position: fixed;
-    top: 3px;
-    left: 20px;
-    height: 70px;
-    z-index: 999;
-}
-
-/* NAME */
-.banner h1 {
-    font-size: 48px;
-    letter-spacing: 6px;
-    margin: 0;
-}
-
-/* ===== HERO ===== */
-.hero {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 120px 80px;
-    position: relative;
-}
-
-/* BIG CENTER LOGO (FIXED SIZE) */
-.center-logo {
-    position: absolute;
-    width: 1200px; /* bigger */
-    opacity: 0.06;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-/* TEXT */
-.hero-text {
-    width: 360px;
-}
-
-/* DESCRIPTION (MATCH MOCKUP) */
-.hero-text p {
-    font-size: 26px;
-    line-height: 1.7;
-    font-weight: normal;
-    margin-bottom: 40px;
-}
-
-/* BUTTON */
-.btn {
-    display: block;
-    width: 260px;
-    padding: 14px;
-    border: 2px solid white;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-}
-
-/* VIDEO */
-.hero-video video {
-    width: 260px;
-    border-radius: 12px;
-}
-
-/* BALANCE */
-.hero-text {
-    margin-right: 80px;
-}
-
-.hero-video {
-    margin-left: 80px;
-}
-
-/* ===== GALLERY ===== */
-.gallery {
-    display: flex;
-    gap: 10px;
-    padding: 40px;
-}
-
-.gallery img {
-    width: 33%;
-}
-
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-
+    /* BANNER (FIXED - NO CROP) */
     .banner {
-        height: 260px;
-        padding: 20px;
+      width: 100%;
+      height: 60vh;
+      background-image: url('your-banner.jpg'); /* replace */
+      background-size: contain; /* NO CROPPING */
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #000;
     }
 
-    .banner h1 {
-        font-size: 24px;
-    }
-
-    .banner-logo {
-        height: 60px;
-    }
-
+    /* HERO SECTION */
     .hero {
-        flex-direction: column;
-        padding: 60px 20px;
-        text-align: center;
+      text-align: center;
+      padding: 40px 20px;
     }
 
-    .hero-text {
-        width: 100%;
-        margin: 0;
-    }
-
-    .hero-text p {
-        font-size: 20px;
-    }
-
-    .btn {
-        margin: auto;
-    }
-
-    .hero-video {
-        margin: 40px 0;
-    }
-
+    /* CENTER LOGO (50% BIGGER) */
     .center-logo {
-        width: 400px;
+      width: 180px; /* increased */
+      max-width: 60%;
+      margin-bottom: 20px;
     }
 
-    .gallery {
-        flex-direction: column;
+    /* DESCRIPTION FIX */
+    .description {
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.6;
+      color: #ccc;
     }
 
-    .gallery img {
-        width: 100%;
-    }
-}
-
-</style>
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <!-- NAVBAR (ONLY LOGO USED HERE — NO DUPLICATES) -->
+  <header class="navbar">
+    <img src="logo.png" class="logo"> <!-- replace -->
+    <h1>Your Brand</h1>
+  </header>
 
-<!-- BANNER -->
-<section class="banner">
-    <div class="banner-content">
-        <img src="logo.png" id="logo" class="banner-logo">
-        <h1>ALEJANDRO MAZO</h1>
-    </div>
-</section>
+  <!-- FULL BANNER -->
+  <section class="banner"></section>
 
-<!-- HERO -->
-<section class="hero">
-
-    <div class="hero-text">
-        <p>
-        Action sports & concerts<br>
-        videomaker and photographer
-        </p>
-
-        <a href="#work" class="btn">View Work</a>
-    </div>
-
-    <img src="logo.png" class="center-logo">
-
-    <div class="hero-video">
-        <video autoplay muted loop playsinline>
-            <source src="reel.mp4" type="video/mp4">
-        </video>
-    </div>
-
-</section>
-
-<!-- GALLERY -->
-<section id="work" class="gallery">
-    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
-</section>
-
-</div>
-
-<!-- JS (FIXED FLOAT LOGO) -->
-<script>
-const logo = document.getElementById("logo");
-const banner = document.querySelector(".banner");
-
-window.addEventListener("scroll", () => {
-    const trigger = banner.offsetHeight - 3;
-
-    if (window.scrollY >= trigger) {
-        logo.classList.add("sticky");
-    } else {
-        logo.classList.remove("sticky");
-    }
-});
-
-logo.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-});
-</script>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="logo.png" class="center-logo"> <!-- same logo -->
+    
+    <p class="description">
+      Your description text goes here. This should match your mockup layout,
+      centered, readable, and properly spaced for a clean modern look.
+    </p>
+  </section>
 
 </body>
 </html>
