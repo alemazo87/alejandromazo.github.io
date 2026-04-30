@@ -22,47 +22,48 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== CONTAINER (FIX WIDTH ISSUE) ===== */
+/* ===== CONTAINER ===== */
 .container {
     max-width: 1400px;
     margin: auto;
 }
 
-/* ===== FLOATING LOGO ===== */
-.floating-logo {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 999;
-}
-
-.floating-logo img {
-    height: 80px;
-    cursor: pointer;
-}
-
 /* ===== BANNER ===== */
 .banner {
+    width: 100%;
     height: 450px;
-    background: url('banner.jpg') center/cover no-repeat;
+    background: url('banner.jpg') center center / cover no-repeat;
+    position: relative;
     display: flex;
-    align-items: center;
-    padding: 0 80px;
+    align-items: flex-end;
+    padding: 40px 80px;
 }
 
+/* NAME + LOGO (BOTTOM) */
 .banner-content {
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 20px;
 }
 
 .banner-logo {
-    height: 140px;
+    height: 120px;
+    cursor: pointer;
 }
 
 .banner h1 {
-    font-size: 50px;
+    font-size: 48px;
     letter-spacing: 6px;
+    margin: 0;
+}
+
+/* ===== FLOAT EFFECT ===== */
+.sticky {
+    position: fixed !important;
+    top: 3px;
+    left: 20px;
+    z-index: 999;
+    height: 70px !important;
 }
 
 /* ===== HERO ===== */
@@ -74,11 +75,11 @@ body {
     position: relative;
 }
 
-/* BIG CENTER LOGO */
+/* CENTER LOGO */
 .center-logo {
     position: absolute;
-    width: 600px;
-    opacity: 0.07;
+    width: 800px;
+    opacity: 0.06;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -86,24 +87,25 @@ body {
 
 /* TEXT */
 .hero-text {
-    width: 260px;
+    width: 320px;
 }
 
 .hero-text p {
-    font-size: 22px;
+    font-size: 24px;
+    font-weight: normal;
     line-height: 1.6;
+    margin-bottom: 30px;
 }
 
-/* BUTTON (same width as video) */
+/* BUTTON */
 .btn {
     display: block;
-    margin-top: 20px;
-    padding: 12px;
+    width: 260px;
+    padding: 14px;
     border: 2px solid white;
     text-align: center;
-    width: 260px;
-    color: white;
     text-decoration: none;
+    color: white;
 }
 
 /* VIDEO */
@@ -112,13 +114,13 @@ body {
     border-radius: 12px;
 }
 
-/* SPACING BALANCE */
+/* SYMMETRY */
 .hero-text {
-    margin-right: 40px;
+    margin-right: 60px;
 }
 
 .hero-video {
-    margin-left: 40px;
+    margin-left: 60px;
 }
 
 /* ===== GALLERY ===== */
@@ -132,10 +134,52 @@ body {
     width: 33%;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    text-align: center;
-    padding: 30px;
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+
+    .banner {
+        height: 250px;
+        padding: 20px;
+    }
+
+    .banner h1 {
+        font-size: 24px;
+    }
+
+    .banner-logo {
+        height: 60px;
+    }
+
+    .hero {
+        flex-direction: column;
+        padding: 60px 20px;
+        text-align: center;
+    }
+
+    .hero-text {
+        width: 100%;
+        margin: 0;
+    }
+
+    .btn {
+        margin: auto;
+    }
+
+    .hero-video {
+        margin: 40px 0;
+    }
+
+    .center-logo {
+        width: 300px;
+    }
+
+    .gallery {
+        flex-direction: column;
+    }
+
+    .gallery img {
+        width: 100%;
+    }
 }
 
 </style>
@@ -143,17 +187,12 @@ footer {
 
 <body>
 
-<!-- FLOATING LOGO -->
-<a href="#" class="floating-logo">
-    <img src="logo.png">
-</a>
-
 <div class="container">
 
 <!-- BANNER -->
 <section class="banner">
     <div class="banner-content">
-        <img src="logo.png" class="banner-logo">
+        <img src="logo.png" id="logo" class="banner-logo">
         <h1>ALEJANDRO MAZO</h1>
     </div>
 </section>
@@ -161,11 +200,10 @@ footer {
 <!-- HERO -->
 <section class="hero">
 
-    <!-- LEFT TEXT -->
+    <!-- TEXT -->
     <div class="hero-text">
         <p>
-        Action sports & concerts<br>
-        videomaker and photographer
+        Action sports & concerts videomaker and photographer
         </p>
 
         <a href="#work" class="btn">View Work</a>
@@ -174,7 +212,7 @@ footer {
     <!-- CENTER LOGO -->
     <img src="logo.png" class="center-logo">
 
-    <!-- RIGHT VIDEO -->
+    <!-- VIDEO -->
     <div class="hero-video">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
@@ -190,12 +228,28 @@ footer {
     <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
 </section>
 
-<!-- FOOTER -->
-<footer>
-    © Alejandro Mazo
-</footer>
-
 </div>
+
+<!-- JS: FLOAT LOGO -->
+<script>
+const logo = document.getElementById("logo");
+const banner = document.querySelector(".banner");
+
+window.addEventListener("scroll", () => {
+    const bannerBottom = banner.offsetHeight - 3;
+
+    if (window.scrollY >= bannerBottom) {
+        logo.classList.add("sticky");
+    } else {
+        logo.classList.remove("sticky");
+    }
+});
+
+/* CLICK TO TOP */
+logo.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
 
 </body>
 </html>
