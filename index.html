@@ -167,31 +167,64 @@ img {
     -webkit-user-drag: none;
 }
 
-/* ===== MOBILE FIX (ONLY CHANGES HERE) ===== */
+/* ===== MOBILE FIX ===== */
 @media (max-width: 900px) {
 
     .header span { font-size: 20px; }
     .header img { width: 50px; }
 
-    /* STACK HERO CONTENT */
+    /* HERO STACK */
     .hero {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         height: auto;
         padding-bottom: 40px;
     }
 
-    /* FIX VIDEOS (VISIBLE + STACKED) */
+    /* BANNER IN FLOW (NO OVERLAP) */
+    .banner {
+        position: relative;
+        height: auto;
+        animation: none;
+        z-index: 1;
+    }
+
+    .banner img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* LOGO POSITION */
+    .center-logo {
+        position: relative;
+        transform: none;
+        top: auto;
+        left: auto;
+        width: 80vw;
+        opacity: 0.35;
+        margin-top: -80px;
+        z-index: 2;
+    }
+
+    /* TEXT */
+    .center-text {
+        margin-top: 20px;
+        padding: 0 15px;
+        z-index: 3;
+    }
+
+    /* VIDEOS BELOW CONTENT */
     .side {
         position: relative;
         top: auto;
         transform: none;
         width: 90%;
         max-width: 400px;
-        margin: 15px auto;
-        z-index: 3;
+        margin: 20px auto;
+        z-index: 2;
     }
 
     .left,
@@ -200,19 +233,7 @@ img {
         right: auto;
     }
 
-    /* TEXT SPACING */
-    .center-text {
-        margin-top: 120px;
-        padding: 0 15px;
-    }
-
-    /* LOGO BALANCE */
-    .center-logo {
-        width: 85vw;
-        opacity: 0.35;
-    }
-
-    /* GRID FIX */
+    /* GRID */
     .grid {
         flex-direction: column;
         padding: 60px 20px;
