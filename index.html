@@ -14,7 +14,7 @@
     src: url('Orbitron.ttf');
 }
 
-/* BASE */
+/* ===== BASE ===== */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -98,7 +98,7 @@ body {
 
 video {
     width: 260px;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 /* ===== IMAGE GRID ===== */
@@ -109,11 +109,11 @@ video {
 }
 
 /* left vertical */
-.image-grid .left-img {
+.left-img {
     width: 25%;
 }
 
-/* center stacked */
+/* middle stacked */
 .middle {
     width: 50%;
     display: flex;
@@ -126,8 +126,14 @@ video {
 }
 
 /* right vertical */
-.image-grid .right-img {
+.right-img {
     width: 25%;
+}
+
+/* IMPROVEMENTS */
+.image-grid img {
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 </style>
@@ -175,14 +181,14 @@ video {
 <!-- IMAGE GRID -->
 <section class="image-grid">
 
-    <img src="img1.jpg" class="left-img">
+    <img src="image1.jpg" class="left-img">
 
     <div class="middle">
-        <img src="img2.jpg">
-        <img src="img3.jpg">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
     </div>
 
-    <img src="img4.jpg" class="right-img">
+    <img src="image4.jpg" class="right-img">
 
 </section>
 
