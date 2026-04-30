@@ -27,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     gap: 15px;
-    z-index: 100;
+    z-index: 50;
     cursor: pointer;
 }
 
@@ -48,7 +48,7 @@ body {
     overflow: hidden;
 }
 
-/* ===== BANNER ===== */
+/* ===== BANNER (CLEAN ANIMATION) ===== */
 .banner {
     position: absolute;
     width: 100%;
@@ -60,39 +60,24 @@ body {
     z-index: 1;
     overflow: hidden;
 
-    animation: bannerSlide 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    animation: bannerResize 2s ease forwards;
 }
 
 .banner img {
     width: 100%;
     height: auto;
     object-fit: contain;
-
-    animation: cinematicIntro 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* ===== CINEMATIC EFFECTS ===== */
-
-@keyframes bannerSlide {
+/* CLEAN HEIGHT-ONLY ANIMATION */
+@keyframes bannerResize {
     0% {
-        transform: translateY(0);
+        height: 100vh;
+        filter: brightness(2);
     }
     100% {
-        transform: translateY(-calc(100vh - 160px));
-    }
-}
-
-@keyframes cinematicIntro {
-    0% {
-        transform: scale(1.15);
-        filter: brightness(2.2) blur(8px);
-    }
-    40% {
-        filter: brightness(1.6) blur(2px);
-    }
-    100% {
-        transform: scale(1);
-        filter: brightness(1) blur(0);
+        height: 160px;
+        filter: brightness(1);
     }
 }
 
@@ -105,34 +90,14 @@ body {
     width: 65vw;
     max-width: 900px;
     opacity: 0.5;
-    z-index: 0;
+    z-index: 1;
     pointer-events: none;
-
-    animation: logoPulse 2.5s ease forwards;
-}
-
-/* LOGO GLOW PULSE */
-@keyframes logoPulse {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9);
-        filter: drop-shadow(0 0 0px white);
-    }
-    40% {
-        opacity: 0.7;
-        filter: drop-shadow(0 0 30px rgba(255,255,255,0.4));
-    }
-    100% {
-        opacity: 0.5;
-        transform: translate(-50%, -50%) scale(1);
-        filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
-    }
 }
 
 /* ===== TEXT ===== */
 .center-text {
     position: relative;
-    z-index: 5;
+    z-index: 3;
     text-align: center;
     margin-top: 200px;
 }
@@ -140,9 +105,9 @@ body {
 .center-text p {
     font-size: 22px;
     margin-bottom: 25px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.9);
 }
 
+/* ===== BUTTONS ===== */
 .btn {
     border: 2px solid white;
     padding: 14px 35px;
@@ -167,27 +132,21 @@ body {
     z-index: 2;
 }
 
-.left {
-    left: calc(50% - 550px);
-}
-
-.right {
-    right: calc(50% - 550px);
-}
+.left { left: calc(50% - 550px); }
+.right { right: calc(50% - 550px); }
 
 .side video {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
 }
 
 /* ===== GRID ===== */
 .grid {
+    position: relative;
+    z-index: 4;
     display: flex;
     gap: 50px;
     padding: 120px 80px;
-    position: relative;
-    z-index: 10;
 }
 
 .left-img,
@@ -212,17 +171,10 @@ img {
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
 
-    .header span {
-        font-size: 20px;
-    }
+    .header span { font-size: 20px; }
+    .header img { width: 50px; }
 
-    .header img {
-        width: 50px;
-    }
-
-    .side {
-        display: none;
-    }
+    .side { display: none; }
 
     .grid {
         flex-direction: column;
@@ -258,13 +210,13 @@ img {
     <img src="logo.png" class="center-logo">
 
     <div class="side left">
-        <video autoplay muted loop playsinline controlslist="nodownload">
+        <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="side right">
-        <video autoplay muted loop playsinline controlslist="nodownload">
+        <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
@@ -274,8 +226,9 @@ img {
             action sports and concerts<br>
             videographer and photographer
         </p>
+
         <a href="#work" class="btn">SEE MEDIA</a>
-        <a href="#work" class="btn">CONTACT</a>
+        <a href="#contact" class="btn">CONTACT</a>
     </div>
 
 </section>
@@ -285,4 +238,37 @@ img {
 
     <div class="left-img">
         <img src="image1.jpg">
-    </div
+    </div>
+
+    <div class="middle">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+    </div>
+
+    <div class="right-img">
+        <img src="image4.jpg">
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="text-align:center; padding:80px;">
+    <p>your@email.com</p>
+</section>
+
+<script>
+
+/* DISABLE RIGHT CLICK */
+document.addEventListener("contextmenu", e => e.preventDefault());
+
+/* SAFE DRAG DISABLE */
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("img, video").forEach(el => {
+        el.setAttribute("draggable","false");
+    });
+});
+
+</script>
+
+</body>
+</html>
