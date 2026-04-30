@@ -7,13 +7,13 @@
 
 <style>
 
-/* ===== FONT ===== */
+/* ===== FONT ===== /
 @font-face {
     font-family: 'Orbitron';
     src: url('Orbitron.ttf');
 }
 
-/ ===== RESET ===== /
+/ ===== BASE ===== /
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -21,54 +21,192 @@ body {
     color: white;
 }
 
-/ ===== BANNER ===== /
+/ ===== FULLSCREEN BANNER ===== /
 .banner {
-    position: relative;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    padding-left: 40px;
-    overflow: hidden;
-
+    height: 100vh;
     background: url('banner.jpg') center/cover no-repeat;
+    position: relative;
 }
 
-/ TEXT ON BANNER /
-.banner h1 {
-    font-size: 28px;
-    margin: 0;
+/ HEADER (FLOATING + STATIC SIZE) /
+.header {
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
     display: flex;
     align-items: center;
     gap: 12px;
-    letter-spacing: 2px;
-    z-index: 1;
+    z-index: 1000;
 }
 
-.banner img {
+.header img {
     width: 40px;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+}
+
+.header span {
+    font-size: 22px;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
 }
 
 / ===== HERO ===== /
 .hero {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/ BIG FLOATING LOGO /
+/ CENTER LOGO (STAYS IN PLACE) /
 .center-logo {
-    position: absolute;
-    width: 420px;
-    opacity: 0.08;
+    position: fixed;
+    width: 500px;
+    opacity: 0.5;
     z-index: 0;
+    pointer-events: none;
 }
 
-/ CENTER TEXT /
+/ DESCRIPTION /
 .center-text {
+    position: relative;
     text-align: center;
     z-index: 2;
+    font-weight: normal;
+}
+
+.center-text p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/ BUTTON /
+.btn {
+    border: 2px solid white;
+    padding: 12px 30px;
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.92);
+    background: white;
+    color: black;
+}
+
+/ SIDE VIDEOS /
+.side {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 420px;
+    overflow: hidden;
+}
+
+.left { left: 8%; }
+.right { right: 8%; }
+
+.side video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/ ===== GRID ===== /
+.grid {
+    display: flex;
+    gap: 40px;
+    padding: 100px 120px;
+    align-items: flex-start;
+}
+
+/ LEFT / RIGHT /
+.left-img,
+.right-img {
+    width: 25%;
+    height: 520px;
+    object-fit: cover;
+}
+
+/ CENTER STACK */
+.middle {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.middle img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== BANNER ===== -->
+<section class="banner"></section>
+
+<!-- FLOATING HEADER -->
+<div class="header">
+    <img src="logo.png">
+    <span>Alejandro Mazo</span>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+
+    <!-- CENTER LOGO -->
+    <img src="logo.png" class="center-logo">
+
+    <!-- LEFT VIDEO -->
+    <div class="side left">
+        <video autoplay muted loop playsinline>
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- RIGHT VIDEO -->
+    <div class="side right">
+        <video autoplay muted loop playsinline>
+            <source src="reel.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- TEXT -->
+    <div class="center-text">
+        <p>
+            Action sports and concerts<br>
+            videographer and photographer
+        </p>
+
+        <a href="#work" class="btn">SEE MEDIA</a>
+    </div>
+
+</section>
+
+<!-- ===== GRID ===== -->
+<section class="grid" id="work">
+
+    <img src="image1.jpg" class="left-img">
+
+    <div class="middle">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+    </div>
+
+    <img src="image4.jpg" class="right-img">
+
+</section>
+
+</body>
+</html>    z-index: 2;
 }
 
 .center-text p {
