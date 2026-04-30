@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Alejandro Mazo</title>
+<title>Alejandro Mazo | LET'S MAKE SOMETHING DOPE </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
@@ -19,25 +18,26 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== HEADER (TOP RIGHT ALWAYS) ===== */
+/* ===== HEADER ===== */
 .header {
     position: fixed;
-    top: 20px;
+    top: 25px;
     right: 40px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
     z-index: 100;
+    cursor: pointer;
 }
 
 .header img {
-    width: 60px;
-    filter: drop-shadow(0 8px 25px rgba(0,0,0,0.9));
+    width: 90px;
+    filter: drop-shadow(0 10px 30px rgba(0,0,0,0.9));
 }
 
 .header span {
-    font-size: 32px;
-    text-shadow: 0 8px 25px rgba(0,0,0,0.9);
+    font-size: 42px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.9);
 }
 
 /* ===== HERO ===== */
@@ -47,21 +47,32 @@ body {
     overflow: hidden;
 }
 
-/* BANNER FULLSCREEN → SHRINK */
+/* ===== BANNER (CINEMATIC) ===== */
 .banner {
     position: absolute;
-    inset: 0;
-    background: url('banner.jpg') center/cover no-repeat;
+    width: 100%;
+    height: 100vh;
+    background: url('banner.jpg') center center no-repeat;
+    background-size: cover;
     z-index: 1;
-    animation: shrink 0.6s ease forwards;
+    animation: bannerAnim 1.5s ease forwards;
 }
 
-@keyframes shrink {
-    0% { height: 100vh; }
-    100% { height: 140px; }
+/* CINEMATIC ANIMATION */
+@keyframes bannerAnim {
+    0% {
+        height: 100vh;
+        filter: brightness(2);
+        transform: scale(1.05);
+    }
+    100% {
+        height: 140px;
+        filter: brightness(1);
+        transform: scale(1);
+    }
 }
 
-/* ===== CENTER LOGO (BACKGROUND) ===== */
+/* ===== CENTER LOGO ===== */
 .center-logo {
     position: fixed;
     top: 50%;
@@ -74,25 +85,26 @@ body {
     pointer-events: none;
 }
 
-/* ===== CENTER TEXT ===== */
+/* ===== TEXT ===== */
 .center-text {
     position: relative;
     z-index: 5;
     text-align: center;
-    margin-top: 180px;
+    margin-top: 200px;
 }
 
 .center-text p {
-    font-size: 20px;
-    margin-bottom: 20px;
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.9);
 }
 
 .btn {
     border: 2px solid white;
-    padding: 12px 30px;
+    padding: 14px 35px;
     text-decoration: none;
     color: white;
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .btn:hover {
@@ -100,28 +112,33 @@ body {
     color: black;
 }
 
-/* ===== VIDEOS (NEXT TO LOGO) ===== */
+/* ===== VIDEOS ===== */
 .side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 260px;
-    z-index: 5;
+    width: 320px;
+    z-index: 2;
 }
 
-.left { left: calc(50% - 420px); }
-.right { right: calc(50% - 420px); }
+.left {
+    left: calc(50% - 550px);
+}
+
+.right {
+    right: calc(50% - 550px);
+}
 
 .side video {
     width: 100%;
-    border-radius: 18px;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.8);
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.9);
 }
 
 /* ===== GRID ===== */
 .grid {
     display: flex;
-    gap: 40px;
+    gap: 50px;
     padding: 120px 80px;
 }
 
@@ -140,13 +157,19 @@ body {
 img {
     width: 100%;
     height: auto;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 /* ===== MOBILE ===== */
 @media (max-width: 900px) {
 
     .header span {
-        font-size: 18px;
+        font-size: 20px;
+    }
+
+    .header img {
+        width: 50px;
     }
 
     .side {
@@ -185,13 +208,13 @@ img {
     <img src="logo.png" class="center-logo">
 
     <div class="side left">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline controlslist="nodownload">
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="side right">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline controlslist="nodownload">
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
@@ -223,6 +246,20 @@ img {
     </div>
 
 </section>
+
+<script>
+
+/* ===== DISABLE RIGHT CLICK ===== */
+document.addEventListener("contextmenu", function(e) {
+    e.preventDefault();
+});
+
+/* OPTIONAL: DISABLE IMAGE DRAG */
+document.querySelectorAll("img, video").forEach(el => {
+    el.setAttribute("draggable", "false");
+});
+
+</script>
 
 </body>
 </html>
