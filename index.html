@@ -17,58 +17,178 @@ body {
 
 /* ===== BANNER ===== */
 .banner {
-    width: 100%;
     height: 220px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
 }
+
+.banner h1 {
+    font-size: 28px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
 .banner img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 40px;
 }
 
 /* ===== HERO ===== */
 .hero {
     position: relative;
-    height: 90vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: black;
-    overflow: hidden;
 }
 
-/* BIG LOGO (BACKGROUND FLOATING) */
+/* BIG FLOATING LOGO */
 .center-logo {
     position: absolute;
-    width: 500px;
-    opacity: 0.06;
+    width: 420px;
+    opacity: 0.08;
     z-index: 0;
 }
 
-/* SIDE MEDIA */
-.hero-media {
+/* CENTER TEXT */
+.center-text {
+    text-align: center;
+    z-index: 2;
+}
+
+.center-text p {
+    margin-bottom: 20px;
+    opacity: 0.8;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+/* BUTTON */
+.btn {
+    border: 2px solid white;
+    padding: 12px 30px;
+    text-decoration: none;
+    color: white;
+}
+.btn:hover {
+    background: white;
+    color: black;
+}
+
+/* SIDE VIDEOS */
+.side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 1;
+    width: 260px;
+    height: 380px;
+    overflow: hidden;
 }
-.hero-media.left { left: 5%; }
-.hero-media.right { right: 5%; }
 
-.hero-media img {
-    width: 240px;
-    height: 340px;
+.left { left: 8%; }
+.right { right: 8%; }
+
+.side video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* ===== GRID ===== */
+.grid {
+    display: flex;
+    gap: 30px;
+    padding: 80px 120px;
+}
+
+/* LEFT + RIGHT */
+.left-img,
+.right-img {
+    width: 25%;
+    height: 500px;
     object-fit: cover;
     border-radius: 12px;
 }
 
-/* CENTER TEXT */
-.hero-text {
-    position: relative;
-    z-index: 2;
-    text-align: center;
+/* MIDDLE */
+.middle {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
+
+.middle img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== BANNER ===== -->
+<div class="banner">
+    <h1>
+        <img src="logo.png">
+        ALEJANDRO MAZO
+    </h1>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+
+    <!-- LEFT VIDEO -->
+    <div class="side left">
+        <video autoplay muted loop playsinline>
+            <source src="video2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- RIGHT VIDEO -->
+    <div class="side right">
+        <video autoplay muted loop playsinline>
+            <source src="reel.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- CENTER LOGO -->
+    <img src="logo.png" class="center-logo">
+
+    <!-- CENTER TEXT -->
+    <div class="center-text">
+        <p>
+            Action sports and concerts<br>
+            videographer and photographer
+        </p>
+
+        <a href="#work" class="btn">SEE MEDIA</a>
+    </div>
+
+</section>
+
+<!-- ===== GRID ===== -->
+<section class="grid" id="work">
+
+    <img src="image1.jpg" class="left-img">
+
+    <div class="middle">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+    </div>
+
+    <img src="image4.jpg" class="right-img">
+
+</section>
+
+</body>
+</html>}
 
 /* TITLE + SMALL LOGO */
 .title-row {
