@@ -22,6 +22,18 @@ body {
     overflow-x: hidden;
 }
 
+/* ===== CENTER LOGO (GLOBAL BACKGROUND) ===== */
+.center-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 900px;
+    opacity: 0.08;
+    z-index: -1;
+    pointer-events: none;
+}
+
 /* ===== BANNER ===== */
 .banner {
     width: 100%;
@@ -46,27 +58,24 @@ body {
     to { transform: scale(1.05); }
 }
 
-/* ===== HEADER (FIXED RIGHT) ===== */
+/* ===== HEADER (ALWAYS RIGHT) ===== */
 .header {
     position: absolute;
     bottom: 25px;
     right: 40px;
+    left: auto;
     display: flex;
     align-items: center;
     gap: 12px;
-    z-index: 2;
+    z-index: 10;
 }
 
 .header.fixed {
     position: fixed;
     top: 20px;
-    right: 40px; /* force right alignment */
+    right: 40px;
+    left: auto;
     bottom: auto;
-}
-
-/* force internal alignment */
-.header span {
-    text-align: right;
 }
 
 .header img {
@@ -86,21 +95,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: transparent;
 }
 
-/* CENTER LOGO */
-.center-logo {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 900px;
-    opacity: 0.5;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* TEXT */
+/* ===== CENTER TEXT ===== */
 .center-text {
     position: relative;
     text-align: center;
@@ -110,6 +108,7 @@ body {
 .center-text p {
     font-size: 20px;
     margin-bottom: 25px;
+    line-height: 1.4;
 }
 
 /* BUTTON */
@@ -128,18 +127,18 @@ body {
     color: black;
 }
 
-/* ===== VIDEOS (FIXED SIZE + RADIUS) ===== */
+/* ===== VIDEOS ===== */
 .side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 320px;     /* bigger */
-    height: 520px;    /* taller */
+    width: 320px;
+    height: 520px;
     overflow: hidden;
     z-index: 1;
 }
 
-/* reposition relative to bigger logo */
+/* perfectly symmetric to logo */
 .left {
     left: calc(50% - 450px - 320px - 15px);
 }
@@ -152,7 +151,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 14px; /* smooth corners */
+    border-radius: 14px;
 }
 
 /* ===== GRID ===== */
@@ -161,6 +160,7 @@ body {
     gap: 40px;
     padding: 100px 100px;
     align-items: flex-start;
+    background: transparent;
 }
 
 .left-img,
@@ -188,6 +188,10 @@ body {
 
 <body>
 
+<!-- GLOBAL BACKGROUND LOGO -->
+<img src="logo.png" class="center-logo">
+
+<!-- BANNER -->
 <section class="banner">
     <div class="header" id="header">
         <img src="logo.png">
@@ -195,9 +199,8 @@ body {
     </div>
 </section>
 
+<!-- HERO -->
 <section class="hero">
-
-    <img src="logo.png" class="center-logo">
 
     <div class="side left">
         <video autoplay muted loop playsinline>
@@ -221,18 +224,16 @@ body {
 
 </section>
 
+<!-- GRID -->
 <section class="grid" id="work">
 
-    <!-- LEFT -->
     <img src="image1.jpg" class="left-img">
 
-    <!-- MIDDLE -->
     <div class="middle">
         <img src="image2.jpg">
         <img src="image3.jpg">
     </div>
 
-    <!-- RIGHT -->
     <img src="image4.jpg" class="right-img">
 
 </section>
