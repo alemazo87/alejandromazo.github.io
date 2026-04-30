@@ -16,42 +16,54 @@ body {
     background: black;
     font-family: 'Orbitron', sans-serif;
     color: white;
-    overflow-x: hidden;
 }
 
-/* ===== DESKTOP (UNCHANGED) ===== */
-@media (min-width: 901px) {
-/* KEEP YOUR ORIGINAL DESKTOP CODE HERE */
+/* ===== FORCE BUTTON COLOR FIX ===== */
+.btn {
+    border: 2px solid white !important;
+    color: white !important;
+}
+.btn:hover {
+    background: white;
+    color: black !important;
 }
 
-/* ===== MOBILE REELS ===== */
+/* ===== MOBILE ONLY ===== */
 @media (max-width: 900px) {
 
     /* ===== BANNER ===== */
+    .banner {
+        position: relative;
+    }
+
     .banner img {
         width: 100%;
         height: auto;
         display: block;
     }
 
+    /* ===== HEADER CENTERED ON BANNER ===== */
     .header {
         position: absolute;
-        bottom: 10px;
+        top: 10px;
         left: 50%;
         transform: translateX(-50%);
         display: flex;
-        gap: 10px;
         align-items: center;
+        gap: 10px;
+        z-index: 5;
     }
 
-    .header img { width: 40px; }
+    .header img {
+        width: 40px;
+    }
 
     .header span {
         font-size: 16px;
-        text-shadow: 0 5px 20px rgba(0,0,0,1);
+        text-shadow: 0 5px 15px rgba(0,0,0,1);
     }
 
-    /* ===== BIG LOGO ===== */
+    /* ===== BIG BACKGROUND LOGO ===== */
     .center-logo {
         position: fixed;
         top: 50%;
@@ -66,54 +78,62 @@ body {
     /* ===== CENTER TEXT ===== */
     .center-text {
         text-align: center;
-        padding: 40px 20px;
+        padding: 60px 20px 30px;
+        position: relative;
         z-index: 2;
+    }
+
+    /* ===== VIDEOS ===== */
+    .video-wrap {
         position: relative;
+        width: 90%;
+        max-width: 400px;
+        margin: 30px auto;
     }
 
-    .center-text p {
-        font-size: 20px;
+    .video-wrap video {
+        width: 100%;
+        border-radius: 15px;
+        display: block;
+        background: black;
     }
 
-    .btn {
-        border: 2px solid white;
-        padding: 10px 25px;
-        margin: 10px;
-        display: inline-block;
-    }
-
-    /* ===== REELS CONTAINER ===== */
-    .reels {
-        height: 100vh;
-        overflow-y: scroll;
-        scroll-snap-type: y mandatory;
-    }
-
-    .reel {
-        height: 100vh;
-        scroll-snap-align: start;
-        position: relative;
+    /* ===== GLASS PLAY BUTTON ===== */
+    .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.15);
         display: flex;
         justify-content: center;
         align-items: center;
-    }
-
-    .reel video {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    /* PLAY BUTTON */
-    .play-btn {
-        position: absolute;
-        font-size: 60px;
+        font-size: 28px;
         color: white;
-        opacity: 0.7;
+        cursor: pointer;
         z-index: 3;
     }
 
+    /* ===== GRID FIX (images showing again) ===== */
+    .grid {
+        display: block;
+        padding: 40px 20px;
+    }
+
+    .grid img {
+        width: 100%;
+        margin-bottom: 20px;
+        display: block;
+    }
+
 }
+
+/* ===== KEEP DESKTOP EXACTLY AS BEFORE ===== */
+/* (your original desktop CSS stays untouched below this line) */
 
 </style>
 </head>
@@ -144,48 +164,49 @@ body {
     <a href="#contact" class="btn">CONTACT</a>
 </div>
 
-<!-- REELS -->
-<div class="reels">
-
-    <div class="reel">
-        <video playsinline loop>
-            <source src="video2.mp4" type="video/mp4">
-        </video>
-        <div class="play-btn">▶</div>
-    </div>
-
-    <div class="reel">
-        <video playsinline loop>
-            <source src="reel.mp4" type="video/mp4">
-        </video>
-        <div class="play-btn">▶</div>
-    </div>
-
+<!-- VIDEOS -->
+<div class="video-wrap">
+    <video playsinline preload="metadata" poster="image2.jpg">
+        <source src="video2.mp4" type="video/mp4">
+    </video>
+    <div class="play-btn">▶</div>
 </div>
+
+<div class="video-wrap">
+    <video playsinline preload="metadata" poster="image3.jpg">
+        <source src="reel.mp4" type="video/mp4">
+    </video>
+    <div class="play-btn">▶</div>
+</div>
+
+<!-- GRID (images now visible) -->
+<section class="grid" id="work">
+    <img src="image1.jpg">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+    <img src="image4.jpg">
+</section>
 
 <script>
 
-/* TAP TO PLAY WITH SOUND + AUTO PAUSE OTHERS */
+/* PLAY / PAUSE TOGGLE WITH SOUND */
 
-const reels = document.querySelectorAll(".reel");
+document.querySelectorAll(".video-wrap").forEach(wrap => {
 
-reels.forEach(reel => {
+    const video = wrap.querySelector("video");
+    const btn = wrap.querySelector(".play-btn");
 
-    const video = reel.querySelector("video");
-    const btn = reel.querySelector(".play-btn");
+    btn.addEventListener("click", () => {
 
-    reel.addEventListener("click", () => {
+        if (video.paused) {
+            video.muted = false;
+            video.play();
+            btn.innerHTML = "❚❚";
+        } else {
+            video.pause();
+            btn.innerHTML = "▶";
+        }
 
-        reels.forEach(r => {
-            const v = r.querySelector("video");
-            v.pause();
-            v.muted = true;
-        });
-
-        video.muted = false;
-        video.play();
-
-        document.querySelectorAll(".play-btn").forEach(b => b.style.display = "none");
     });
 
 });
