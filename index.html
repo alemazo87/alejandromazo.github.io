@@ -3,157 +3,202 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Your Brand</title>
+
+<title>Alejandro Mazo | FMX Videographer</title>
 
 <style>
-@font-face {
-  font-family: 'Orbitron';
-  src: url('Orbitron.ttf') format('truetype');
-}
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ===== FONT ===== */
+@font-face {
+    font-family: 'Orbitron';
+    src: url('Orbitron.ttf');
 }
 
 body {
-  background: #000;
-  color: #fff;
-  font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: black;
+    color: white;
+    overflow-x: hidden;
 }
 
-/* BANNER */
+/* ===== FLOATING LOGO ===== */
+.floating-logo {
+    position: fixed;
+    top: 10px;
+    left: 20px;
+    z-index: 999;
+    transition: 0.4s;
+}
+
+.floating-logo img {
+    height: 80px;
+}
+
+/* Scroll animation */
+.scrolled .floating-logo img {
+    transform: scale(0.6);
+    opacity: 0.7;
+}
+
+/* ===== BANNER ===== */
 .banner {
-  position: relative;
-  height: 100vh;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 5% 8%;
 }
 
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+/* TRUE no-crop image */
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('banner.jpg') center center no-repeat;
+    background-size: contain;
+    background-color: black;
 }
 
-/* LOGO + NAME */
+/* Content */
 .banner-content {
-  position: absolute;
-  bottom: 10%;
-  left: 5%;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 2;
 }
 
 .banner-logo {
-  width: 60px;
-  transition: 0.4s;
+    height: 120px;
 }
 
-.banner-logo.scrolled {
-  transform: scale(0.6);
-  opacity: 0.7;
+.banner h1 {
+    font-size: 42px;
+    letter-spacing: 6px;
 }
 
-.banner-title {
-  font-size: 28px;
+/* ===== CENTER BACKGROUND LOGO ===== */
+.center-logo {
+    position: fixed;
+    width: 480px; /* 20% smaller */
+    opacity: 0.5;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
 }
 
-/* CENTER LOGO */
-.bg-logo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 180px;
-  opacity: 0.5;
-}
-
-/* HERO */
+/* ===== HERO (CENTERED TEXT) ===== */
 .hero {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
 }
 
-.description {
-  font-size: 24px;
+.hero-text p {
+    font-size: 26px;
+    line-height: 1.5;
 }
 
-.description span {
-  display: block;
-  font-size: 16px;
-  color: #aaa;
-  margin-top: 6px;
+.hero-text span {
+    display: block;
+    font-size: 16px;
+    color: #aaa;
+    margin-top: 8px;
 }
 
 /* BUTTON */
 .btn {
-  margin-top: 20px;
-  padding: 10px 25px;
-  border: 1px solid #fff;
-  display: inline-block;
-  text-decoration: none;
-  color: #fff;
+    margin-top: 20px;
+    padding: 12px 30px;
+    border: 2px solid white;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.btn:hover {
-  background: #fff;
-  color: #000;
-}
-
-/* VIDEOS */
+/* ===== VIDEO SECTION ===== */
 .video-section {
-  margin-top: 100vh;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 60px 20px;
 }
 
 video {
-  width: 300px;
+    width: 300px;
+    border-radius: 10px;
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .video-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .banner-logo {
+        height: 80px;
+    }
+
+    .center-logo {
+        width: 250px;
+    }
+}
+
 </style>
 </head>
 
 <body>
 
-<img src="logo.png" class="bg-logo">
+<!-- FLOATING LOGO -->
+<a href="#" class="floating-logo">
+    <img src="logo.png" id="logoAnim">
+</a>
 
+<!-- BANNER -->
 <section class="banner">
-  <img src="banner.jpg">
-
-  <div class="banner-content">
-    <img src="logo.png" class="banner-logo" id="logoAnim">
-    <div class="banner-title">Your Brand</div>
-  </div>
+    <div class="banner-content">
+        <img src="logo.png" class="banner-logo">
+        <h1>ALEJANDRO MAZO</h1>
+    </div>
 </section>
 
-<div class="hero">
-  <div class="description">
-    action sports and concerts
-    <span>videomaker and photographer</span>
-  </div>
+<!-- CENTER LOGO -->
+<img src="logo.png" class="center-logo">
 
-  <a href="#" class="btn">View Work</a>
-</div>
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <p>
+        action sports and concerts
+        <span>videomaker and photographer</span>
+        </p>
 
-<section class="video-section">
-  <video src="reel.mp4" autoplay muted loop></video>
-  <video src="video2.mp4" autoplay muted loop></video>
+        <a href="#work" class="btn">View Work</a>
+    </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="work" class="video-section">
+    <video autoplay muted loop playsinline>
+        <source src="reel.mp4" type="video/mp4">
+    </video>
+
+    <video autoplay muted loop playsinline>
+        <source src="video2.mp4" type="video/mp4">
+    </video>
 </section>
 
 <script>
 window.addEventListener("scroll", () => {
-  const logo = document.getElementById("logoAnim");
-  if (window.scrollY > 20) {
-    logo.classList.add("scrolled");
-  } else {
-    logo.classList.remove("scrolled");
-  }
+    document.body.classList.toggle("scrolled", window.scrollY > 30);
 });
 </script>
 
