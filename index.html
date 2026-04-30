@@ -13,12 +13,13 @@
     src: url('Orbitron.ttf');
 }
 
-/ ===== BASE ===== /
+/ ===== RESET ===== /
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
     background: black;
     color: white;
+    overflow-x: hidden;
 }
 
 / ===== FULLSCREEN BANNER ===== /
@@ -28,18 +29,18 @@ body {
     position: relative;
 }
 
-/ HEADER (INSIDE BANNER + FLOATING ON SCROLL) /
+/ HEADER (BOTTOM RIGHT ON BANNER) /
 .header {
     position: absolute;
-    bottom: 20px;
-    right: 30px;
+    bottom: 30px;
+    right: 40px;
     display: flex;
     align-items: center;
     gap: 12px;
     z-index: 10;
 }
 
-/ When scrolling /
+/ HEADER WHEN SCROLL /
 .header.fixed {
     position: fixed;
     top: 20px;
@@ -48,13 +49,13 @@ body {
 
 / HEADER STYLE /
 .header img {
-    width: 40px;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
+    width: 42px;
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.8));
 }
 
 .header span {
     font-size: 22px;
-    text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    text-shadow: 0 6px 20px rgba(0,0,0,0.8);
 }
 
 / ===== HERO ===== /
@@ -66,21 +67,20 @@ body {
     justify-content: center;
 }
 
-/ CENTER LOGO (FIXED CENTER) /
+/ CENTER LOGO (FLOATING) /
 .center-logo {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 420px;
     opacity: 0.5;
     z-index: 0;
     pointer-events: none;
 }
 
-/ DESCRIPTION /
+/ CENTER TEXT /
 .center-text {
-    position: relative;
     text-align: center;
     z-index: 2;
     font-weight: normal;
@@ -88,21 +88,22 @@ body {
 
 .center-text p {
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
+    line-height: 1.4;
 }
 
 / BUTTON /
 .btn {
     border: 2px solid white;
-    padding: 12px 30px;
+    padding: 12px 28px;
     text-decoration: none;
     color: white;
     display: inline-block;
-    transition: transform 0.15s ease, background 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .btn:active {
-    transform: scale(0.92);
+    transform: scale(0.9);
     background: white;
     color: black;
 }
@@ -118,8 +119,8 @@ body {
     z-index: 1;
 }
 
-.left { left: 8%; }
-.right { right: 8%; }
+.left { left: 6%; }
+.right { right: 6%; }
 
 .side video {
     width: 100%;
@@ -127,14 +128,15 @@ body {
     object-fit: cover;
 }
 
-/ ===== GRID ===== */
+/ ===== GRID ===== /
 .grid {
     display: flex;
     gap: 40px;
-    padding: 100px 120px;
+    padding: 100px 100px;
     align-items: flex-start;
 }
 
+/ LEFT / RIGHT IMAGES /
 .left-img,
 .right-img {
     width: 25%;
@@ -142,6 +144,7 @@ body {
     object-fit: cover;
 }
 
+/ MIDDLE STACK */
 .middle {
     width: 50%;
     display: flex;
@@ -162,31 +165,33 @@ body {
 
 <!-- ===== BANNER ===== -->
 <section class="banner">
-
     <div class="header" id="header">
         <img src="logo.png">
         <span>Alejandro Mazo</span>
     </div>
-
 </section>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
 
+    <!-- FLOATING LOGO -->
     <img src="logo.png" class="center-logo">
 
+    <!-- LEFT VIDEO -->
     <div class="side left">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- RIGHT VIDEO -->
     <div class="side right">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- CENTER TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
@@ -215,7 +220,7 @@ body {
 <script>
 window.addEventListener("scroll", function() {
     const header = document.getElementById("header");
-    if (window.scrollY > window.innerHeight - 100) {
+    if (window.scrollY > window.innerHeight - 120) {
         header.classList.add("fixed");
     } else {
         header.classList.remove("fixed");
