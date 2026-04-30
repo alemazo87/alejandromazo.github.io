@@ -47,41 +47,39 @@ body {
     overflow: hidden;
 }
 
-/* ===== BANNER (CINEMATIC) ===== */
+/* ===== BANNER (FIXED) ===== */
 .banner {
     position: absolute;
     width: 100%;
     height: 100vh;
     background: url('banner.jpg') center center no-repeat;
-    background-size: cover;
+    background-size: contain; /* NO CROPPING */
+    background-color: black;
     z-index: 1;
-    animation: bannerAnim 1.5s ease forwards;
+    animation: bannerAnim 2s ease forwards;
 }
 
-/* CINEMATIC ANIMATION */
 @keyframes bannerAnim {
     0% {
         height: 100vh;
         filter: brightness(2);
-        transform: scale(1.05);
     }
     100% {
         height: 140px;
         filter: brightness(1);
-        transform: scale(1);
     }
 }
 
-/* ===== CENTER LOGO ===== */
+/* ===== CENTER LOGO (FIXED BEHAVIOR) ===== */
 .center-logo {
-    position: fixed;
+    position: absolute; /* IMPORTANT FIX */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 65vw;
     max-width: 900px;
     opacity: 0.5;
-    z-index: 0;
+    z-index: 0; /* stays behind */
     pointer-events: none;
 }
 
@@ -194,13 +192,11 @@ img {
 
 <body>
 
-<!-- HEADER -->
 <div class="header" onclick="window.scrollTo({top:0, behavior:'smooth'})">
     <img src="logo.png">
     <span>ALEJANDRO MAZO</span>
 </div>
 
-<!-- HERO -->
 <section class="hero">
 
     <div class="banner"></div>
@@ -229,7 +225,6 @@ img {
 
 </section>
 
-<!-- GRID -->
 <section class="grid" id="work">
 
     <div class="left-img">
@@ -248,17 +243,8 @@ img {
 </section>
 
 <script>
-
-/* ===== DISABLE RIGHT CLICK ===== */
-document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-});
-
-/* OPTIONAL: DISABLE IMAGE DRAG */
-document.querySelectorAll("img, video").forEach(el => {
-    el.setAttribute("draggable", "false");
-});
-
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.querySelectorAll("img, video").forEach(el => el.setAttribute("draggable","false"));
 </script>
 
 </body>
