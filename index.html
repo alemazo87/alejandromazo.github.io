@@ -82,17 +82,17 @@ body {
 
 /* ===== CENTER LOGO (FIXED BACKGROUND) ===== */
 .center-logo {
-    position: absolute;
+    position: fixed;   /* ← THIS fixes everything */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 65vw;
     max-width: 900px;
     opacity: 0.5;
-    z-index: -1; /* FIXED */
+    z-index: 0;        /* important */
     pointer-events: none;
 }
-
+    
 /* ===== TEXT ===== */
 .center-text {
     position: relative;
