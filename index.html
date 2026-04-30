@@ -7,10 +7,16 @@
 
 <style>
 
+/* ===== FONT ===== */
+@font-face {
+    font-family: 'Orbitron';
+    src: url('Orbitron.ttf');
+}
+
 /* ===== RESET ===== */
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Orbitron', sans-serif;
     background: black;
     color: white;
 }
@@ -29,6 +35,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    letter-spacing: 2px;
 }
 
 .banner img {
@@ -63,6 +70,7 @@ body {
     opacity: 0.8;
     font-size: 16px;
     line-height: 1.4;
+    letter-spacing: 1px;
 }
 
 /* BUTTON */
@@ -71,6 +79,7 @@ body {
     padding: 12px 30px;
     text-decoration: none;
     color: white;
+    letter-spacing: 1px;
 }
 .btn:hover {
     background: white;
@@ -171,16 +180,13 @@ body {
 <!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
-    <!-- LEFT -->
     <img src="image1.jpg" class="left-img">
 
-    <!-- MIDDLE -->
     <div class="middle">
         <img src="image2.jpg">
         <img src="image3.jpg">
     </div>
 
-    <!-- RIGHT -->
     <img src="image4.jpg" class="right-img">
 
 </section>
