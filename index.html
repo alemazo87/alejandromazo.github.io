@@ -3,12 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Alejandro Mazo | Videographer & Photographer</title>
 
 <style>
 
-/* ===== RESET ===== /
+/* ===== RESET ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -22,7 +21,6 @@ body {
     height: 220px;
     overflow: hidden;
 }
-
 .banner img {
     width: 100%;
     height: 100%;
@@ -32,38 +30,65 @@ body {
 / ===== HERO ===== /
 .hero {
     position: relative;
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: black;
-    padding: 120px 20px;
-    text-align: center;
     overflow: hidden;
 }
 
-/ BIG CENTER LOGO (BACKGROUND) /
+/ BIG LOGO (BACKGROUND FLOATING) /
 .center-logo {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 420px;
-    opacity: 0.07;
+    width: 500px;
+    opacity: 0.06;
     z-index: 0;
 }
 
-/ TEXT /
+/ SIDE MEDIA /
+.hero-media {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.hero-media.left { left: 5%; }
+.hero-media.right { right: 5%; }
+
+.hero-media img {
+    width: 240px;
+    height: 340px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/ CENTER TEXT /
 .hero-text {
     position: relative;
     z-index: 2;
+    text-align: center;
 }
 
+/ TITLE + SMALL LOGO /
+.title-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.small-logo {
+    width: 45px;
+}
+
+/ TEXT /
 .hero-text h1 {
     font-size: 48px;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    margin: 0;
 }
-
 .hero-text p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    margin: 10px 0 20px;
 }
 
 / BUTTON /
@@ -73,23 +98,21 @@ body {
     text-decoration: none;
     color: white;
     display: inline-block;
-    transition: 0.3s;
 }
-
 .btn:hover {
     background: white;
     color: black;
 }
 
-/ ===== IMAGE GRID ===== /
+/ ===== IMAGE GRID BELOW ===== /
 .image-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    padding: 60px;
+    padding: 80px 120px;
 }
 
-/ LEFT IMAGE /
+/ LEFT /
 .left-img {
     width: 100%;
     height: 500px;
@@ -97,21 +120,20 @@ body {
     border-radius: 12px;
 }
 
-/ MIDDLE STACK /
+/ MIDDLE /
 .middle {
     display: grid;
     grid-template-rows: 1fr 1fr;
     gap: 20px;
 }
-
 .middle img {
     width: 100%;
-    height: 240px;
+    height: 300px;
     object-fit: cover;
     border-radius: 12px;
 }
 
-/ RIGHT IMAGE /
+/ RIGHT */
 .right-img {
     width: 100%;
     height: 500px;
@@ -119,58 +141,59 @@ body {
     border-radius: 12px;
 }
 
-/ ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .image-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .left-img,
-    .right-img,
-    .middle img {
-        height: 300px;
-    }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- ===== TOP BANNER ===== -->
+<!-- ===== BANNER ===== -->
 <div class="banner">
-    <img src="banner.jpg" alt="Banner">
+    <img src="banner.jpg">
 </div>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== HERO ===== -->
 <section class="hero">
 
-    <!-- BACKGROUND LOGO -->
-    <img src="logo.png" class="center-logo" alt="Logo">
+    <!-- BIG BACKGROUND LOGO -->
+    <img src="logo.png" class="center-logo">
 
-    <!-- TEXT -->
+    <!-- LEFT MEDIA -->
+    <div class="hero-media left">
+        <img src="image1.jpg">
+    </div>
+
+    <!-- RIGHT MEDIA -->
+    <div class="hero-media right">
+        <img src="image4.jpg">
+    </div>
+
+    <!-- CENTER TEXT -->
     <div class="hero-text">
-        <h1>ALEJANDRO MAZO</h1>
+
+        <div class="title-row">
+            <img src="logo.png" class="small-logo">
+            <h1>ALEJANDRO MAZO</h1>
+        </div>
+
         <p>Videographer & Photographer</p>
+
         <a href="#work" class="btn">View Work</a>
+
     </div>
 
 </section>
 
-<!-- ===== WORK GRID ===== -->
+<!-- ===== GRID BELOW ===== -->
 <section class="image-grid" id="work">
 
-    <!-- LEFT -->
-    <img src="image1.jpg" class="left-img" alt="Work 1">
+    <img src="image1.jpg" class="left-img">
 
-    <!-- CENTER -->
     <div class="middle">
-        <img src="image2.jpg" alt="Work 2">
-        <img src="image3.jpg" alt="Work 3">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
     </div>
 
-    <!-- RIGHT -->
-    <img src="image4.jpg" class="right-img" alt="Work 4">
+    <img src="image4.jpg" class="right-img">
 
 </section>
 
