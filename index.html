@@ -22,48 +22,55 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== CONTAINER ===== */
+/* ===== WRAPPER ===== */
 .container {
     max-width: 1400px;
     margin: auto;
 }
 
-/* ===== BANNER ===== */
+/* ===== BANNER (FIXED) ===== */
 .banner {
     width: 100%;
     height: 450px;
-    background: url('banner.jpg') center center / cover no-repeat;
+    background-image: url('banner.jpg');
+    background-size: cover;       /* fills properly */
+    background-position: center;  /* no weird crop */
+    background-repeat: no-repeat;
     position: relative;
     display: flex;
     align-items: flex-end;
     padding: 40px 80px;
+    box-sizing: border-box;
 }
 
-/* NAME + LOGO (BOTTOM) */
+/* NAME + LOGO */
 .banner-content {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
+/* THIS is the ONLY logo */
 .banner-logo {
-    height: 120px;
+    height: 130px;
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
+/* STICKY STATE */
+.banner-logo.sticky {
+    position: fixed;
+    top: 3px;
+    left: 20px;
+    height: 70px;
+    z-index: 999;
+}
+
+/* NAME */
 .banner h1 {
     font-size: 48px;
     letter-spacing: 6px;
     margin: 0;
-}
-
-/* ===== FLOAT EFFECT ===== */
-.sticky {
-    position: fixed !important;
-    top: 3px;
-    left: 20px;
-    z-index: 999;
-    height: 70px !important;
 }
 
 /* ===== HERO ===== */
@@ -71,14 +78,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 100px 80px;
+    padding: 120px 80px;
     position: relative;
 }
 
-/* CENTER LOGO */
+/* BIG CENTER LOGO (FIXED SIZE) */
 .center-logo {
     position: absolute;
-    width: 800px;
+    width: 1200px; /* bigger */
     opacity: 0.06;
     left: 50%;
     top: 50%;
@@ -87,14 +94,15 @@ body {
 
 /* TEXT */
 .hero-text {
-    width: 320px;
+    width: 360px;
 }
 
+/* DESCRIPTION (MATCH MOCKUP) */
 .hero-text p {
-    font-size: 24px;
+    font-size: 26px;
+    line-height: 1.7;
     font-weight: normal;
-    line-height: 1.6;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 /* BUTTON */
@@ -114,13 +122,13 @@ body {
     border-radius: 12px;
 }
 
-/* SYMMETRY */
+/* BALANCE */
 .hero-text {
-    margin-right: 60px;
+    margin-right: 80px;
 }
 
 .hero-video {
-    margin-left: 60px;
+    margin-left: 80px;
 }
 
 /* ===== GALLERY ===== */
@@ -138,7 +146,7 @@ body {
 @media (max-width: 768px) {
 
     .banner {
-        height: 250px;
+        height: 260px;
         padding: 20px;
     }
 
@@ -161,6 +169,10 @@ body {
         margin: 0;
     }
 
+    .hero-text p {
+        font-size: 20px;
+    }
+
     .btn {
         margin: auto;
     }
@@ -170,7 +182,7 @@ body {
     }
 
     .center-logo {
-        width: 300px;
+        width: 400px;
     }
 
     .gallery {
@@ -200,19 +212,17 @@ body {
 <!-- HERO -->
 <section class="hero">
 
-    <!-- TEXT -->
     <div class="hero-text">
         <p>
-        Action sports & concerts videomaker and photographer
+        Action sports & concerts<br>
+        videomaker and photographer
         </p>
 
         <a href="#work" class="btn">View Work</a>
     </div>
 
-    <!-- CENTER LOGO -->
     <img src="logo.png" class="center-logo">
 
-    <!-- VIDEO -->
     <div class="hero-video">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
@@ -230,22 +240,21 @@ body {
 
 </div>
 
-<!-- JS: FLOAT LOGO -->
+<!-- JS (FIXED FLOAT LOGO) -->
 <script>
 const logo = document.getElementById("logo");
 const banner = document.querySelector(".banner");
 
 window.addEventListener("scroll", () => {
-    const bannerBottom = banner.offsetHeight - 3;
+    const trigger = banner.offsetHeight - 3;
 
-    if (window.scrollY >= bannerBottom) {
+    if (window.scrollY >= trigger) {
         logo.classList.add("sticky");
     } else {
         logo.classList.remove("sticky");
     }
 });
 
-/* CLICK TO TOP */
 logo.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
 });
