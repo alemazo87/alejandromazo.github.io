@@ -3,431 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alejandro Mazo</title>
+
+<title>Alejandro Mazo | FMX Videographer & Photographer</title>
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 /* FONT */
 @font-face {
-  font-family: 'Orbitron';
-  src: url('./Orbitron.ttf') format('truetype');
+    font-family: 'Orbitron';
+    src: url('Orbitron.ttf');
 }
 
 body {
-  font-family: 'Orbitron', sans-serif;
-  background: black;
-  color: white;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: black;
+    color: white;
 }
 
-/* ========================= */
-/* 🔥 FLOATING LOGO */
-/* ========================= */
-
-.floating-logo {
-  position: fixed;
-  top: 20px;
-  right: 30px;
-  height: 60px;
-  z-index: 999;
-  cursor: pointer;
+/* STICKY LOGO */
+.sticky-logo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 70px;
+    z-index: 1000;
+    cursor: pointer;
 }
 
-/* ========================= */
-/* 🔥 BANNER */
-/* ========================= */
-
+/* BANNER */
 .banner {
-  height: 35vh;
-  display: flex;
-  align-items: center;
-  padding: 0 8%;
-  background: url('banner.jpg') center/cover no-repeat;
-  position: relative;
+    width: 100%;
+    height: 450px;
+    background: url('banner.jpg') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
 }
 
-.banner::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.9));
-}
-
-/* CONTENT */
 .banner-content {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 25px;
+    display: flex;
+    align-items: center;
+    gap: 30px;
 }
 
-/* BIG LOGO */
+/* LOGO LEFT OF NAME */
 .banner-logo {
-  height: 180px;
+    width: 160px; /* bigger */
 }
 
-/* NAME */
-.banner-name {
-  font-size: 2rem;
-  letter-spacing: 6px;
+.banner h1 {
+    font-size: 48px;
+    letter-spacing: 6px;
 }
 
-/* ========================= */
-/* 🔥 HERO */
-/* ========================= */
-
+/* HERO SECTION */
 .hero {
-  position: relative;
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 80px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px;
+    position: relative;
 }
 
 /* BIG BACKGROUND LOGO */
 .hero::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 700px;
-  height: 700px;
-  transform: translate(-50%, -50%);
-  background: url('ALE MAZO white.png') center/contain no-repeat;
-  opacity: 0.04;
-  z-index: 0;
+    content: "";
+    position: absolute;
+    background: url('logo.png') center/contain no-repeat;
+    opacity: 0.05;
+    width: 400px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* TEXT */
 .hero-text {
-  position: relative;
-  z-index: 2;
-  width: 40%;
+    max-width: 400px;
+    z-index: 2;
 }
 
 .hero-text p {
-  font-size: 1.2rem;
-  color: #aaa;
-  margin-bottom: 40px;
+    font-size: 18px;
+    line-height: 1.6;
 }
 
 /* BUTTON */
 .btn {
-  display: inline-block;
-  padding: 14px 40px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: 2px solid white;
+    text-decoration: none;
+    color: white;
 }
 
-.btn:hover {
-  background: white;
-  color: black;
-}
-
-/* VIDEO */
-.hero-video {
-  position: relative;
-  z-index: 2;
-  width: 40%;
-  display: flex;
-  justify-content: center;
-}
-
+/* VIDEO (VERTICAL) */
 .hero-video video {
-  width: 320px;
-  height: 560px;
-  object-fit: cover;
-  border-radius: 14px;
+    width: 260px;
+    border-radius: 15px;
 }
 
-/* ========================= */
 /* GALLERY */
-/* ========================= */
-
 .gallery {
-  padding: 80px 5%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+    display: flex;
+    gap: 20px;
+    padding: 40px;
 }
 
 .gallery img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
+    width: 33%;
 }
 
 /* FOOTER */
 footer {
-  padding: 40px;
-  text-align: center;
-  color: #666;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
     text-align: center;
-  }
-
-  .hero::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .hero-video video {
-    width: 220px;
-    height: 390px;
-  }
-
-  .banner-logo {
-    height: 100px;
-  }
-
-  .banner-name {
-    font-size: 1.2rem;
-  }
+    padding: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 FLOATING LOGO -->
+<!-- STICKY LOGO -->
 <a href="#">
-  <img src="ALE MAZO white.png" class="floating-logo">
+    <img src="logo.png" class="sticky-logo">
 </a>
 
-<!-- 🔥 BANNER -->
+<!-- BANNER -->
 <div class="banner">
-  <div class="banner-content">
-    <img src="ALE MAZO white.png" class="banner-logo">
-    <div class="banner-name">ALEJANDRO MAZO</div>
-  </div>
+    <div class="banner-content">
+        <img src="logo.png" class="banner-logo">
+        <h1>ALEJANDRO MAZO</h1>
+    </div>
 </div>
 
-<!-- 🔥 HERO -->
+<!-- HERO -->
 <section class="hero">
 
-  <div class="hero-text">
-    <p>
-      Action sports & concerts<br>
-      videomaker and photographer
-    </p>
+    <!-- TEXT -->
+    <div class="hero-text">
+        <p>action sports and concerts videomaker and photographer</p>
+        <a href="#work" class="btn">View Work</a>
+    </div>
 
-    <a href="#work" class="btn">View Work</a>
-  </div>
-
-  <div class="hero-video">
-    <video autoplay muted loop playsinline>
-      <source src="reel.mp4" type="video/mp4">
-    </video>
-  </div>
+    <!-- VIDEO -->
+    <div class="hero-video">
+        <video src="reel.mp4" autoplay muted loop playsinline></video>
+    </div>
 
 </section>
 
 <!-- GALLERY -->
 <section id="work" class="gallery">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+    <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
+    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
 </section>
 
 <footer>
-  © Alejandro Mazo
-</footer>
-
-</body>
-</html>  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
-}
-
-/* NAME LEFT */
-.banner-name {
-  position: relative;
-  z-index: 2;
-  font-size: 1.8rem;
-  letter-spacing: 5px;
-}
-
-/* ========================= */
-/* 🔥 HERO */
-/* ========================= */
-
-.hero {
-  position: relative;
-  min-height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 8%;
-  gap: 80px;
-  overflow: hidden;
-}
-
-/* BIG BACKGROUND LOGO */
-.hero::before {
-  content: "";
-  position: absolute;
-  width: 650px;
-  height: 650px;
-  background: url('logo.png') center/contain no-repeat;
-  opacity: 0.04;
-  z-index: 0;
-}
-
-/* TEXT */
-.hero-text {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-/* DESCRIPTION */
-.hero-text p {
-  font-size: 1.2rem;
-  color: #aaa;
-  margin-bottom: 40px;
-  line-height: 1.6;
-}
-
-/* BUTTON */
-.btn {
-  padding: 14px 40px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-  align-self: flex-start;
-}
-
-.btn:hover {
-  background: white;
-  color: black;
-}
-
-/* VIDEO */
-.hero-video {
-  position: relative;
-  z-index: 2;
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.hero-video video {
-  width: 320px;
-  height: 560px;
-  object-fit: cover;
-  border-radius: 12px;
-}
-
-/* ========================= */
-/* GALLERY */
-/* ========================= */
-
-.gallery {
-  padding: 80px 5%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-  transition: 0.4s;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* FOOTER */
-footer {
-  padding: 40px;
-  text-align: center;
-  color: #666;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero::before {
-    width: 300px;
-    height: 300px;
-  }
-
-  .hero-video video {
-    width: 220px;
-    height: 390px;
-  }
-
-  .floating-logo {
-    height: 40px;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<!-- 🔥 FLOATING LOGO (CLICK TO TOP) -->
-<a href="#">
-  <img src="logo.png" class="floating-logo">
-</a>
-
-<!-- 🔥 BANNER -->
-<div class="banner">
-  <div class="banner-name">ALEJANDRO MAZO</div>
-</div>
-
-<!-- 🔥 HERO -->
-<section class="hero">
-
-  <div class="hero-text">
-    <p>
-      Action sports & concerts<br>
-      videomaker and photographer
-    </p>
-
-    <a href="#work" class="btn">View Work</a>
-  </div>
-
-  <div class="hero-video">
-    <video autoplay muted loop playsinline>
-      <source src="reel.mp4" type="video/mp4">
-    </video>
-  </div>
-
-</section>
-
-<!-- GALLERY -->
-<section id="work" class="gallery">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
-</section>
-
-<footer>
-  © Alejandro Mazo
+    © Alejandro Mazo
 </footer>
 
 </body>
