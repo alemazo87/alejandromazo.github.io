@@ -37,6 +37,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    z-index: 10;
 }
 
 .header.fixed {
@@ -64,16 +65,20 @@ body {
     justify-content: center;
 }
 
-/* CENTER LOGO */
+/* ===== CENTER LOGO (FIXED BACKGROUND) ===== */
 .center-logo {
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 60vw;
     max-width: 900px;
-    opacity: 0.5;
+    opacity: 0.15;
     z-index: 0;
+    pointer-events: none;
 }
 
-/* CENTER TEXT */
+/* ===== CENTER TEXT ===== */
 .center-text {
     text-align: center;
     z-index: 2;
@@ -84,7 +89,7 @@ body {
     margin-bottom: 25px;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .btn {
     border: 2px solid white;
     padding: 12px 28px;
@@ -98,17 +103,23 @@ body {
     color: black;
 }
 
-/* VIDEOS */
+/* ===== VIDEOS ===== */
 .side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 20vw;
-    max-width: 320px;
+    width: 18vw;
+    max-width: 300px;
+    z-index: 2;
 }
 
-.left { left: 2vw; }
-.right { right: 2vw; }
+.left {
+    left: calc(50% - 380px);
+}
+
+.right {
+    right: calc(50% - 380px);
+}
 
 .side video {
     width: 100%;
@@ -119,22 +130,22 @@ body {
 
 /* ===== GRID ===== */
 .grid {
+    position: relative;
+    z-index: 2;
     display: flex;
     gap: 2vw;
     padding: 6vw;
     align-items: flex-start;
 }
 
-/* LEFT + RIGHT */
 .left-img,
 .right-img {
     width: 25%;
     height: auto;
-    border-radius: 14px;
     object-fit: contain;
+    border-radius: 14px;
 }
 
-/* MIDDLE */
 .middle {
     width: 50%;
     display: flex;
@@ -145,11 +156,11 @@ body {
 .middle img {
     width: 100%;
     height: auto;
-    border-radius: 14px;
     object-fit: contain;
+    border-radius: 14px;
 }
 
-/* ===== MOBILE FIX ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 900px) {
 
     .grid {
@@ -177,7 +188,7 @@ body {
 
 <body>
 
-<!-- BANNER -->
+<!-- ===== BANNER ===== -->
 <section class="banner">
     <div class="header" id="header">
         <img src="logo.png">
@@ -185,23 +196,27 @@ body {
     </div>
 </section>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
 
+    <!-- FIXED LOGO -->
     <img src="logo.png" class="center-logo">
 
+    <!-- LEFT VIDEO -->
     <div class="side left">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- RIGHT VIDEO -->
     <div class="side right">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
@@ -212,7 +227,7 @@ body {
 
 </section>
 
-<!-- GRID -->
+<!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
     <img src="image1.jpg" class="left-img">
@@ -229,7 +244,7 @@ body {
 <script>
 window.addEventListener("scroll", function() {
     const header = document.getElementById("header");
-    if (window.scrollY > window.innerHeight - 120) {
+    if (window.scrollY > window.innerHeight - 100) {
         header.classList.add("fixed");
     } else {
         header.classList.remove("fixed");
