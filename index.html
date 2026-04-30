@@ -13,7 +13,7 @@
     src: url('Orbitron.ttf');
 }
 
-/* ===== BASE ===== */
+/* ===== RESET ===== */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -22,48 +22,19 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== CENTER LOGO (GLOBAL BACKGROUND) ===== */
-.center-logo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 900px;
-    opacity: 0.08;
-    z-index: -1;
-    pointer-events: none;
-}
-
-/* ===== BANNER ===== */
+/* ===== FULLSCREEN BANNER ===== */
 .banner {
+    height: 100vh;
     width: 100%;
-    height: 45vh;
-    min-height: 280px;
-    max-height: 500px;
+    background: url('banner.jpg') center center / cover no-repeat;
     position: relative;
-    overflow: hidden;
 }
 
-.banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('banner.jpg') center/cover no-repeat;
-    animation: zoomBanner 12s ease-in-out infinite alternate;
-    z-index: 0;
-}
-
-@keyframes zoomBanner {
-    from { transform: scale(1); }
-    to { transform: scale(1.05); }
-}
-
-/* ===== HEADER (ALWAYS RIGHT) ===== */
+/* ===== HEADER ===== */
 .header {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     right: 40px;
-    left: auto;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -74,44 +45,49 @@ body {
     position: fixed;
     top: 20px;
     right: 40px;
-    left: auto;
-    bottom: auto;
 }
 
 .header img {
     width: 42px;
-    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.9));
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.8));
 }
 
 .header span {
     font-size: 22px;
-    text-shadow: 0 6px 20px rgba(0,0,0,0.9);
+    text-shadow: 0 6px 20px rgba(0,0,0,0.8);
 }
 
 /* ===== HERO ===== */
 .hero {
     position: relative;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: transparent;
+}
+
+/* ===== CENTER LOGO (BEHIND) ===== */
+.center-logo {
+    position: absolute;
+    width: 900px;
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* ===== CENTER TEXT ===== */
 .center-text {
-    position: relative;
     text-align: center;
     z-index: 2;
 }
 
 .center-text p {
-    font-size: 20px;
+    font-size: 18px;
     margin-bottom: 25px;
     line-height: 1.4;
 }
 
-/* BUTTON */
+/* ===== BUTTON ===== */
 .btn {
     border: 2px solid white;
     padding: 12px 28px;
@@ -127,31 +103,26 @@ body {
     color: black;
 }
 
-/* ===== VIDEOS ===== */
+/* ===== SIDE VIDEOS ===== */
 .side {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 320px;
-    height: 520px;
+    height: 460px;
     overflow: hidden;
     z-index: 1;
 }
 
-/* perfectly symmetric to logo */
-.left {
-    left: calc(50% - 450px - 320px - 15px);
-}
-
-.right {
-    left: calc(50% + 450px + 15px);
-}
+.left { left: 15px; }
+.right { right: 15px; }
 
 .side video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7);
 }
 
 /* ===== GRID ===== */
@@ -160,16 +131,20 @@ body {
     gap: 40px;
     padding: 100px 100px;
     align-items: flex-start;
-    background: transparent;
 }
 
+/* ===== LEFT + RIGHT ===== */
 .left-img,
 .right-img {
     width: 25%;
-    height: 520px;
-    object-fit: cover;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
+/* ===== MIDDLE ===== */
 .middle {
     width: 50%;
     display: flex;
@@ -179,8 +154,11 @@ body {
 
 .middle img {
     width: 100%;
-    height: 250px;
-    object-fit: cover;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+    border-radius: 14px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
 }
 
 </style>
@@ -188,10 +166,7 @@ body {
 
 <body>
 
-<!-- GLOBAL BACKGROUND LOGO -->
-<img src="logo.png" class="center-logo">
-
-<!-- BANNER -->
+<!-- ===== BANNER ===== -->
 <section class="banner">
     <div class="header" id="header">
         <img src="logo.png">
@@ -199,21 +174,27 @@ body {
     </div>
 </section>
 
-<!-- HERO -->
+<!-- ===== HERO ===== -->
 <section class="hero">
 
+    <!-- BIG LOGO -->
+    <img src="logo.png" class="center-logo">
+
+    <!-- LEFT VIDEO -->
     <div class="side left">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- RIGHT VIDEO -->
     <div class="side right">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
@@ -224,7 +205,7 @@ body {
 
 </section>
 
-<!-- GRID -->
+<!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
     <img src="image1.jpg" class="left-img">
@@ -241,7 +222,7 @@ body {
 <script>
 window.addEventListener("scroll", function() {
     const header = document.getElementById("header");
-    if (window.scrollY > window.innerHeight * 0.4) {
+    if (window.scrollY > window.innerHeight - 120) {
         header.classList.add("fixed");
     } else {
         header.classList.remove("fixed");
