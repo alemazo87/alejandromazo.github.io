@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | FMX Videographer</title>
+<title>Alejandro Mazo | Videographer and Photographer</title>
 
 <style>
 
@@ -25,7 +25,7 @@ body {
 
 /* ===== BANNER ===== */
 .banner {
-    height: 320px;
+    height: 300px;
     background: url('/banner.jpg') center/cover no-repeat;
     display: flex;
     align-items: flex-end;
@@ -51,22 +51,21 @@ body {
 .hero {
     position: relative;
     height: 100vh;
-    z-index: 1;
 }
 
-/* ===== FIXED CENTER LOGO ===== */
+/* ===== BIG BACKGROUND LOGO ===== */
 .center-logo {
     position: fixed;
-    width: 900px;
-    opacity: 0.15;
+    width: 850px;
+    opacity: 0.08;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
     pointer-events: none;
-    z-index: 0;
 }
 
-/* ===== TEXT CENTER ===== */
+/* ===== TEXT ===== */
 .hero-text {
     position: absolute;
     top: 50%;
@@ -83,8 +82,8 @@ body {
 }
 
 .bottom-text {
-    margin-top: 8px;
-    opacity: 0.8;
+    margin-top: 6px;
+    opacity: 0.85;
 }
 
 /* ===== BUTTON ===== */
@@ -98,14 +97,15 @@ body {
 }
 
 /* ===== VIDEOS ===== */
-.video-left, .video-right {
+.video-left,
+.video-right {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.video-left { left: 10%; }
-.video-right { right: 10%; }
+.video-left { left: 8%; }
+.video-right { right: 8%; }
 
 video {
     width: 260px;
@@ -119,7 +119,8 @@ video {
     gap: 20px;
 }
 
-.left-img, .right-img {
+.left-img,
+.right-img {
     width: 25%;
 }
 
@@ -130,11 +131,6 @@ video {
     gap: 20px;
 }
 
-.middle img {
-    width: 100%;
-}
-
-/* IMPROVEMENTS */
 .image-grid img {
     width: 100%;
     height: 100%;
@@ -155,27 +151,24 @@ video {
     </div>
 </section>
 
-<!-- ===== FIXED BACKGROUND LOGO ===== -->
+<!-- ===== BACKGROUND LOGO ===== -->
 <img src="/logo.png" class="center-logo">
 
 <!-- ===== HERO ===== -->
 <section class="hero">
 
-    <!-- LEFT VIDEO -->
     <div class="video-left">
         <video autoplay muted loop playsinline>
             <source src="/reel.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- RIGHT VIDEO -->
     <div class="video-right">
         <video autoplay muted loop playsinline>
             <source src="/video2.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- TEXT -->
     <div class="hero-text">
         <div class="top-text">action sports and concerts</div>
         <div class="bottom-text">videomaker and photographer</div>
