@@ -1,307 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alejandro Mazo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alejandro Mazo</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* 🔥 FONT */
-    @font-face {
-      font-family: 'Orbitron';
-      src: url('Orbitron.ttf') format('truetype');
-    }
+@font-face {
+  font-family: 'Orbitron';
+  src: url('./Orbitron.ttf') format('truetype');
+}
 
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: black;
-      color: white;
-    }
+body {
+  font-family: 'Orbitron', sans-serif;
+  background: black;
+  color: white;
+}
 
-    /* 🔥 BANNER */
-    .banner {
-      position: relative;
-      height: 25vh;
-      background: url('banner.jpg') center center / cover no-repeat;
-    }
+/* ========================= */
+/* 🔥 FIXED LOGO (TOP CENTER) */
+/* ========================= */
 
-    .banner-overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0.2),
-        rgba(0,0,0,0.8)
-      );
-    }
+.floating-logo {
+  position: fixed;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 55px;
+  z-index: 999;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .banner-text {
-      position: absolute;
-      bottom: 20px;
-      left: 8%;
-      font-size: 2rem;
-      letter-spacing: 4px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.3);
-    }
+.floating-logo:hover {
+  transform: translateX(-50%) scale(1.1);
+}
 
-    /* HERO */
-    .hero {
-      min-height: 65vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 60px 8%;
-      gap: 60px;
-    }
+/* ========================= */
+/* 🔥 BANNER */
+/* ========================= */
 
-    .hero-text {
-      flex: 1;
-    }
+.banner {
+  position: relative;
+  height: 28vh;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  background: url('banner.jpg') center/cover no-repeat;
+}
 
-    .hero-text h1 {
-      font-size: 3.5rem;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
+.banner::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.85));
+}
 
-    .hero-text p {
-      font-size: 1.1rem;
-      color: #aaa;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
+/* NAME LEFT */
+.banner-name {
+  position: relative;
+  z-index: 2;
+  font-size: 1.8rem;
+  letter-spacing: 5px;
+}
 
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      border: 1px solid white;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+/* ========================= */
+/* 🔥 HERO */
+/* ========================= */
 
-    .btn:hover {
-      background: white;
-      color: black;
-    }
+.hero {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 8%;
+  gap: 80px;
+  overflow: hidden;
+}
 
-    .hero-video {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
+/* BIG BACKGROUND LOGO */
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  background: url('logo.png') center/contain no-repeat;
+  opacity: 0.04;
+  z-index: 0;
+}
 
-    .hero-video video {
-      width: 300px;
-      height: 533px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
+/* TEXT */
+.hero-text {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 
-    /* GALLERY */
-    .gallery {
-      padding: 80px 5%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
+/* DESCRIPTION */
+.hero-text p {
+  font-size: 1.2rem;
+  color: #aaa;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
 
-    .gallery img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      transition: 0.4s;
-    }
+/* BUTTON */
+.btn {
+  padding: 14px 40px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  align-self: flex-start;
+}
 
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
+.btn:hover {
+  background: white;
+  color: black;
+}
 
-    footer {
-      padding: 40px;
-      text-align: center;
-      color: #666;
-    }
+/* VIDEO */
+.hero-video {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
+.hero-video video {
+  width: 320px;
+  height: 560px;
+  object-fit: cover;
+  border-radius: 12px;
+}
 
-      .hero-video video {
-        width: 220px;
-        height: 390px;
-      }
+/* ========================= */
+/* GALLERY */
+/* ========================= */
 
-      .banner {
-        height: 20vh;
-      }
+.gallery {
+  padding: 80px 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
 
-      .banner-text {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
+.gallery img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* FOOTER */
+footer {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-video video {
+    width: 220px;
+    height: 390px;
+  }
+
+  .floating-logo {
+    height: 40px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-<!-- 🔥 BANNER -->
-<div class="banner">
-  <div class="banner-overlay"></div>
-  <div class="banner-text">ALEJANDRO MAZO</div>
-</div>
-
-<!-- HERO -->
-<section class="hero">
-
-  <div class="hero-text">
-    <h1>ALEJANDRO MAZO</h1>
-
-    <p>
-      Action sports & concerts<br>
-      videomaker and photographer
-    </p>
-
-    <a href="#work" class="btn">View Work</a>
-  </div>
-
-  <div class="hero-video">
-    <video autoplay muted loop playsinline>
-      <source src="reel.mp4" type="video/mp4">
-    </video>
-  </div>
-
-</section>
-
-<!-- GALLERY -->
-<section id="work" class="gallery">
-  <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-  <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
-  <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
-</section>
-
-<footer>
-  © Alejandro Mazo
-</footer>
-
-</body>
-</html>      flex: 1;
-    }
-
-    .hero-text h1 {
-      font-size: 3.5rem;
-      letter-spacing: 4px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-    }
-
-    .hero-text p {
-      font-size: 1.1rem;
-      color: #aaa;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 30px;
-      border: 1px solid white;
-      color: white;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: white;
-      color: black;
-    }
-
-    .hero-video {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-    }
-
-    .hero-video video {
-      width: 300px;
-      height: 533px;
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
-    /* GALLERY */
-    .gallery {
-      padding: 80px 5%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 400px;
-      object-fit: cover;
-      transition: 0.4s;
-    }
-
-    .gallery img:hover {
-      transform: scale(1.05);
-    }
-
-    footer {
-      padding: 40px;
-      text-align: center;
-      color: #666;
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-video video {
-        width: 220px;
-        height: 390px;
-      }
-
-      .banner {
-        height: 20vh;
-      }
-
-      .banner-text {
-        font-size: 1.2rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
+<!-- 🔥 FLOATING LOGO (CLICK TO TOP) -->
+<a href="#">
+  <img src="logo.png" class="floating-logo">
+</a>
 
 <!-- 🔥 BANNER -->
 <div class="banner">
-  <div class="banner-overlay"></div>
-  <div class="banner-text">ALEJANDRO MAZO</div>
+  <div class="banner-name">ALEJANDRO MAZO</div>
 </div>
 
-<!-- HERO -->
+<!-- 🔥 HERO -->
 <section class="hero">
 
   <div class="hero-text">
-    <h1>ALEJANDRO MAZO</h1>
-
     <p>
       Action sports & concerts<br>
       videomaker and photographer
