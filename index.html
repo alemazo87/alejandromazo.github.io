@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | FMX Videographer & Photographer</title>
+<title>Alejandro Mazo | FMX Videographer</title>
 
 <style>
-/* FONT */
+
+/* ===== FONT ===== */
 @font-face {
     font-family: 'Orbitron';
     src: url('Orbitron.ttf');
@@ -18,61 +19,66 @@ body {
     font-family: 'Orbitron', sans-serif;
     background: black;
     color: white;
+    overflow-x: hidden;
 }
 
-/* STICKY LOGO */
-.sticky-logo {
+/* ===== CONTAINER (FIX WIDTH ISSUE) ===== */
+.container {
+    max-width: 1400px;
+    margin: auto;
+}
+
+/* ===== FLOATING LOGO ===== */
+.floating-logo {
     position: fixed;
     top: 20px;
     left: 20px;
-    width: 70px;
-    z-index: 1000;
+    z-index: 999;
+}
+
+.floating-logo img {
+    height: 80px;
     cursor: pointer;
 }
 
-/* BANNER */
+/* ===== BANNER ===== */
 .banner {
-    width: 100%;
     height: 450px;
     background: url('banner.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
-    padding-left: 80px;
+    padding: 0 80px;
 }
 
 .banner-content {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 25px;
 }
 
-/* LOGO LEFT OF NAME */
 .banner-logo {
-    width: 160px; /* bigger */
+    height: 140px;
 }
 
 .banner h1 {
-    font-size: 48px;
+    font-size: 50px;
     letter-spacing: 6px;
 }
 
-/* HERO SECTION */
+/* ===== HERO ===== */
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 80px;
+    padding: 100px 80px;
     position: relative;
 }
 
-/* BIG BACKGROUND LOGO */
-.hero::before {
-    content: "";
+/* BIG CENTER LOGO */
+.center-logo {
     position: absolute;
-    background: url('logo.png') center/contain no-repeat;
-    opacity: 0.05;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    opacity: 0.07;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -80,35 +86,45 @@ body {
 
 /* TEXT */
 .hero-text {
-    max-width: 400px;
-    z-index: 2;
+    width: 260px;
 }
 
 .hero-text p {
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.6;
 }
 
-/* BUTTON */
+/* BUTTON (same width as video) */
 .btn {
-    display: inline-block;
+    display: block;
     margin-top: 20px;
-    padding: 10px 25px;
+    padding: 12px;
     border: 2px solid white;
-    text-decoration: none;
+    text-align: center;
+    width: 260px;
     color: white;
+    text-decoration: none;
 }
 
-/* VIDEO (VERTICAL) */
+/* VIDEO */
 .hero-video video {
     width: 260px;
-    border-radius: 15px;
+    border-radius: 12px;
 }
 
-/* GALLERY */
+/* SPACING BALANCE */
+.hero-text {
+    margin-right: 40px;
+}
+
+.hero-video {
+    margin-left: 40px;
+}
+
+/* ===== GALLERY ===== */
 .gallery {
     display: flex;
-    gap: 20px;
+    gap: 10px;
     padding: 40px;
 }
 
@@ -116,41 +132,53 @@ body {
     width: 33%;
 }
 
-/* FOOTER */
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 30px;
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- STICKY LOGO -->
-<a href="#">
-    <img src="logo.png" class="sticky-logo">
+<!-- FLOATING LOGO -->
+<a href="#" class="floating-logo">
+    <img src="logo.png">
 </a>
 
+<div class="container">
+
 <!-- BANNER -->
-<div class="banner">
+<section class="banner">
     <div class="banner-content">
         <img src="logo.png" class="banner-logo">
         <h1>ALEJANDRO MAZO</h1>
     </div>
-</div>
+</section>
 
 <!-- HERO -->
 <section class="hero">
 
-    <!-- TEXT -->
+    <!-- LEFT TEXT -->
     <div class="hero-text">
-        <p>action sports and concerts videomaker and photographer</p>
+        <p>
+        Action sports & concerts<br>
+        videomaker and photographer
+        </p>
+
         <a href="#work" class="btn">View Work</a>
     </div>
 
-    <!-- VIDEO -->
+    <!-- CENTER LOGO -->
+    <img src="logo.png" class="center-logo">
+
+    <!-- RIGHT VIDEO -->
     <div class="hero-video">
-        <video src="reel.mp4" autoplay muted loop playsinline></video>
+        <video autoplay muted loop playsinline>
+            <source src="reel.mp4" type="video/mp4">
+        </video>
     </div>
 
 </section>
@@ -162,9 +190,12 @@ footer {
     <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
 </section>
 
+<!-- FOOTER -->
 <footer>
     © Alejandro Mazo
 </footer>
+
+</div>
 
 </body>
 </html>
