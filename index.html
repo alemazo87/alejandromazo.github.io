@@ -23,57 +23,31 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== CONTAINER ===== */
-.container {
-    max-width: 1400px;
-    margin: auto;
-}
-
 /* ===== FLOATING LOGO ===== */
 .floating-logo {
     position: fixed;
     top: 15px;
     left: 20px;
     z-index: 999;
-    transition: 0.4s;
 }
 
 .floating-logo img {
     height: 80px;
 }
 
-/* SCROLL ANIMATION */
-.scrolled .floating-logo img {
-    transform: scale(0.6);
-    opacity: 0.7;
-}
-
-/* ===== BANNER (NO CROP) ===== */
+/* ===== BANNER ===== */
 .banner {
     height: 450px;
-    position: relative;
+    background: url('banner.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
     padding: 0 80px;
-    background: black;
 }
 
-.banner::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: url('banner.jpg') center center no-repeat;
-    background-size: contain; /* NO CROP */
-}
-
-/* BANNER CONTENT */
 .banner-content {
-    position: relative;
-    z-index: 2;
     display: flex;
     align-items: center;
     gap: 25px;
-    margin-top: 120px; /* lower position */
 }
 
 .banner-logo {
@@ -87,35 +61,34 @@ body {
 
 /* ===== HERO ===== */
 .hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 120px 80px;
     position: relative;
-    z-index: 2;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* CENTER BACKGROUND LOGO */
+/* CENTER LOGO */
 .center-logo {
-    position: fixed;
-    width: 480px;
+    position: absolute;
+    width: 900px; /* 100% bigger */
     opacity: 0.5;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 0;
-    pointer-events: none;
+    z-index: 1;
 }
 
 /* TEXT */
 .hero-text {
-    width: 260px;
+    position: absolute;
     text-align: center;
+    z-index: 2;
 }
 
 .hero-text p {
-    font-size: 22px;
-    line-height: 1.6;
+    font-size: 26px;
+    line-height: 1.4;
 }
 
 .hero-text span {
@@ -127,26 +100,55 @@ body {
 
 /* BUTTON */
 .btn {
-    display: block;
     margin-top: 20px;
-    padding: 12px;
+    padding: 12px 30px;
     border: 2px solid white;
-    text-align: center;
-    width: 260px;
+    display: inline-block;
     color: white;
     text-decoration: none;
 }
 
-/* VIDEO */
-.hero-video {
-    display: flex;
-    gap: 15px;
-    margin-left: 40px;
+/* VIDEOS SIDES */
+.side-video {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
-.hero-video video {
+.side-video.left {
+    left: 8%;
+}
+
+.side-video.right {
+    right: 8%;
+}
+
+.side-video video {
     width: 260px;
     border-radius: 12px;
+}
+
+/* ===== IMAGE GRID ===== */
+.image-grid {
+    display: flex;
+    gap: 20px;
+    padding: 60px;
+    align-items: center;
+}
+
+.image-grid .vertical {
+    width: 25%;
+}
+
+.stack {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stack img {
+    width: 100%;
 }
 
 /* ===== FOOTER ===== */
@@ -162,10 +164,8 @@ footer {
 
 <!-- FLOATING LOGO -->
 <a href="#" class="floating-logo">
-    <img src="logo.png" id="logoAnim">
+    <img src="logo.png">
 </a>
-
-<div class="container">
 
 <!-- BANNER -->
 <section class="banner">
@@ -175,11 +175,18 @@ footer {
     </div>
 </section>
 
-<!-- CENTER LOGO -->
-<img src="logo.png" class="center-logo">
-
 <!-- HERO -->
 <section class="hero">
+
+    <!-- LEFT VIDEO -->
+    <div class="side-video left">
+        <video autoplay muted loop playsinline>
+            <source src="reel.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- CENTER LOGO -->
+    <img src="logo.png" class="center-logo">
 
     <!-- TEXT -->
     <div class="hero-text">
@@ -191,12 +198,8 @@ footer {
         <a href="#work" class="btn">View Work</a>
     </div>
 
-    <!-- VIDEOS -->
-    <div class="hero-video">
-        <video autoplay muted loop playsinline>
-            <source src="reel.mp4" type="video/mp4">
-        </video>
-
+    <!-- RIGHT VIDEO -->
+    <div class="side-video right">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
@@ -204,22 +207,24 @@ footer {
 
 </section>
 
+<!-- IMAGE GRID -->
+<section id="work" class="image-grid">
+
+    <img src="img1.jpg" class="vertical">
+
+    <div class="stack">
+        <img src="img2.jpg">
+        <img src="img3.jpg">
+    </div>
+
+    <img src="img4.jpg" class="vertical">
+
+</section>
+
 <!-- FOOTER -->
 <footer>
     © Alejandro Mazo
 </footer>
-
-</div>
-
-<script>
-window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-        document.body.classList.add("scrolled");
-    } else {
-        document.body.classList.remove("scrolled");
-    }
-});
-</script>
 
 </body>
 </html>
