@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo</title>
+<!-- ✅ ORIGINAL TITLE RESTORED -->
+<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
@@ -18,7 +19,7 @@ body {
     color: white;
 }
 
-/* ===== FORCE BUTTON COLOR FIX ===== */
+/* ===== BUTTON FIX ===== */
 .btn {
     border: 2px solid white !important;
     color: white !important;
@@ -28,112 +29,128 @@ body {
     color: black !important;
 }
 
-/* ===== MOBILE ONLY ===== */
+/* ===== MOBILE ===== */
 @media (max-width: 900px) {
 
-    /* ===== BANNER ===== */
-    .banner {
-        position: relative;
-    }
-
-    .banner img {
-        width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    /* ===== HEADER CENTERED ON BANNER ===== */
-    .header {
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        z-index: 5;
-    }
-
-    .header img {
-        width: 40px;
-    }
-
-    .header span {
-        font-size: 16px;
-        text-shadow: 0 5px 15px rgba(0,0,0,1);
-    }
-
-    /* ===== BIG BACKGROUND LOGO ===== */
-    .center-logo {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 95vw;
-        opacity: 0.15;
-        z-index: 0;
-        pointer-events: none;
-    }
-
-    /* ===== CENTER TEXT ===== */
-    .center-text {
-        text-align: center;
-        padding: 60px 20px 30px;
-        position: relative;
-        z-index: 2;
-    }
-
-    /* ===== VIDEOS ===== */
-    .video-wrap {
-        position: relative;
-        width: 90%;
-        max-width: 400px;
-        margin: 30px auto;
-    }
-
-    .video-wrap video {
-        width: 100%;
-        border-radius: 15px;
-        display: block;
-        background: black;
-    }
-
-    /* ===== GLASS PLAY BUTTON ===== */
-    .play-btn {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        backdrop-filter: blur(10px);
-        background: rgba(255,255,255,0.15);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 28px;
-        color: white;
-        cursor: pointer;
-        z-index: 3;
-    }
-
-    /* ===== GRID FIX (images showing again) ===== */
-    .grid {
-        display: block;
-        padding: 40px 20px;
-    }
-
-    .grid img {
-        width: 100%;
-        margin-bottom: 20px;
-        display: block;
-    }
-
+/* ===== BANNER ===== */
+.banner {
+    position: relative;
 }
 
-/* ===== KEEP DESKTOP EXACTLY AS BEFORE ===== */
-/* (your original desktop CSS stays untouched below this line) */
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 5;
+    white-space: nowrap;
+}
+
+.header img {
+    width: 42px;
+}
+
+.header span {
+    font-size: 16px;
+    white-space: nowrap;
+    text-shadow:
+        0 2px 6px rgba(0,0,0,1),
+        0 6px 20px rgba(0,0,0,0.9),
+        0 0 10px rgba(0,0,0,0.8);
+}
+
+/* ===== BIG BACKGROUND LOGO ===== */
+.center-logo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95vw;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ===== TEXT ===== */
+.center-text {
+    text-align: center;
+    padding: 60px 20px 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== VIDEOS ===== */
+.video-wrap {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
+}
+
+.video-wrap video {
+    width: 100%;
+    border-radius: 15px;
+    display: block;
+    background: black;
+}
+
+/* PLAY ICON */
+.overlay {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: white;
+    z-index: 3;
+}
+
+/* TEXT */
+.overlay-text {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    letter-spacing: 1px;
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* ===== GRID FIX ===== */
+.grid {
+    display: block;
+    padding: 40px 20px;
+}
+
+.grid img {
+    width: 100%;
+    margin-bottom: 20px;
+    display: block;
+}
+
+}
 
 </style>
 </head>
@@ -169,17 +186,19 @@ body {
     <video playsinline preload="metadata" poster="image2.jpg">
         <source src="video2.mp4" type="video/mp4">
     </video>
-    <div class="play-btn">▶</div>
+    <div class="overlay">▶</div>
+    <div class="overlay-text">tap to play or pause</div>
 </div>
 
 <div class="video-wrap">
     <video playsinline preload="metadata" poster="image3.jpg">
         <source src="reel.mp4" type="video/mp4">
     </video>
-    <div class="play-btn">▶</div>
+    <div class="overlay">▶</div>
+    <div class="overlay-text">tap to play or pause</div>
 </div>
 
-<!-- GRID (images now visible) -->
+<!-- GRID -->
 <section class="grid" id="work">
     <img src="image1.jpg">
     <img src="image2.jpg">
@@ -189,22 +208,20 @@ body {
 
 <script>
 
-/* PLAY / PAUSE TOGGLE WITH SOUND */
-
 document.querySelectorAll(".video-wrap").forEach(wrap => {
 
     const video = wrap.querySelector("video");
-    const btn = wrap.querySelector(".play-btn");
+    const icon = wrap.querySelector(".overlay");
 
-    btn.addEventListener("click", () => {
+    wrap.addEventListener("click", () => {
 
         if (video.paused) {
             video.muted = false;
             video.play();
-            btn.innerHTML = "❚❚";
+            icon.innerHTML = "❚❚";
         } else {
             video.pause();
-            btn.innerHTML = "▶";
+            icon.innerHTML = "▶";
         }
 
     });
