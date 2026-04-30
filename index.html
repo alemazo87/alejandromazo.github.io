@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Alejandro Mazo | Videographer & Photographer</title>
 
 <style>
 
-/* ===== RESET ===== */
+/* ===== RESET ===== /
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -15,7 +16,7 @@ body {
     color: white;
 }
 
-/* ===== BANNER ===== */
+/ ===== BANNER ===== /
 .banner {
     width: 100%;
     height: 220px;
@@ -28,7 +29,7 @@ body {
     object-fit: cover;
 }
 
-/* ===== HERO SECTION ===== */
+/ ===== HERO ===== /
 .hero {
     position: relative;
     background: black;
@@ -37,18 +38,18 @@ body {
     overflow: hidden;
 }
 
-/* BIG CENTER LOGO (BACKGROUND) */
+/ BIG CENTER LOGO (BACKGROUND) /
 .center-logo {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 420px;
-    opacity: 0.08;
-    z-index: 0; /* stays behind everything */
+    opacity: 0.07;
+    z-index: 0;
 }
 
-/* TEXT */
+/ TEXT /
 .hero-text {
     position: relative;
     z-index: 2;
@@ -57,6 +58,7 @@ body {
 .hero-text h1 {
     font-size: 48px;
     margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 .hero-text p {
@@ -64,7 +66,7 @@ body {
     margin-bottom: 20px;
 }
 
-/* BUTTON */
+/ BUTTON /
 .btn {
     border: 2px solid white;
     padding: 10px 25px;
@@ -79,28 +81,26 @@ body {
     color: black;
 }
 
-/* ===== IMAGE GRID ===== */
+/ ===== IMAGE GRID ===== /
 .image-grid {
-    display: flex;
-    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
-    align-items: flex-start;
+    padding: 60px;
 }
 
-/* LEFT + RIGHT */
-.left-img,
-.right-img {
-    width: 25%;
+/ LEFT IMAGE /
+.left-img {
+    width: 100%;
     height: 500px;
     object-fit: cover;
     border-radius: 12px;
 }
 
-/* MIDDLE */
+/ MIDDLE STACK /
 .middle {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
     gap: 20px;
 }
 
@@ -111,20 +111,23 @@ body {
     border-radius: 12px;
 }
 
-/* ===== RESPONSIVE ===== */
+/ RIGHT IMAGE /
+.right-img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/ ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
     .image-grid {
-        flex-direction: column;
+        grid-template-columns: 1fr;
     }
 
     .left-img,
     .right-img,
-    .middle {
-        width: 100%;
-    }
-
-    .left-img,
-    .right-img {
+    .middle img {
         height: 300px;
     }
 }
@@ -134,16 +137,16 @@ body {
 
 <body>
 
-<!-- ===== BANNER ===== -->
+<!-- ===== TOP BANNER ===== -->
 <div class="banner">
-    <img src="banner.jpg">
+    <img src="banner.jpg" alt="Banner">
 </div>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO SECTION ===== -->
 <section class="hero">
 
     <!-- BACKGROUND LOGO -->
-    <img src="logo.png" class="center-logo">
+    <img src="logo.png" class="center-logo" alt="Logo">
 
     <!-- TEXT -->
     <div class="hero-text">
@@ -154,20 +157,20 @@ body {
 
 </section>
 
-<!-- ===== GRID ===== -->
+<!-- ===== WORK GRID ===== -->
 <section class="image-grid" id="work">
 
     <!-- LEFT -->
-    <img src="image1.jpg" class="left-img">
+    <img src="image1.jpg" class="left-img" alt="Work 1">
 
-    <!-- MIDDLE -->
+    <!-- CENTER -->
     <div class="middle">
-        <img src="image2.jpg">
-        <img src="image3.jpg">
+        <img src="image2.jpg" alt="Work 2">
+        <img src="image3.jpg" alt="Work 3">
     </div>
 
     <!-- RIGHT -->
-    <img src="image4.jpg" class="right-img">
+    <img src="image4.jpg" class="right-img" alt="Work 4">
 
 </section>
 
