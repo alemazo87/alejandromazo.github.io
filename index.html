@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alejandro Mazo | Videomaker & Photographer</title>
+<title>Alejandro Mazo | Videographer & Photographer</title>
 
 <style>
 
@@ -22,58 +22,78 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== FULLSCREEN BANNER ===== */
+/* ===== BANNER ===== */
 .banner {
-    height: 100vh;
-    background: url('banner.jpg') center/cover no-repeat;
+    width: 100%;
+    height: 45vh;
+    min-height: 280px;
+    max-height: 500px;
     position: relative;
+    overflow: hidden;
 }
 
-/* HEADER (BOTTOM RIGHT ON BANNER) */
+/* animated image inside banner */
+.banner::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 110%;
+    top: -5%;
+    left: -5%;
+    background: url('banner.jpg') center/cover no-repeat;
+    animation: zoomBanner 12s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+/* subtle cinematic zoom */
+@keyframes zoomBanner {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+/* HEADER */
 .header {
     position: absolute;
-    bottom: 30px;
+    bottom: 25px;
     right: 40px;
     display: flex;
     align-items: center;
     gap: 12px;
-    z-index: 10;
+    z-index: 2;
 }
 
-/* HEADER WHEN SCROLL */
 .header.fixed {
     position: fixed;
     top: 20px;
     bottom: auto;
 }
 
-/* HEADER STYLE */
 .header img {
     width: 42px;
-    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.8));
+    filter: drop-shadow(0 6px 20px rgba(0,0,0,0.9));
 }
 
 .header span {
     font-size: 22px;
-    text-shadow: 0 6px 20px rgba(0,0,0,0.8);
+    text-shadow: 0 6px 20px rgba(0,0,0,0.9);
 }
 
 /* ===== HERO ===== */
 .hero {
     position: relative;
-    height: 100vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* CENTER LOGO (FLOATING) */
+/* CENTER LOGO */
 .center-logo {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 420px;
+    width: 900px; /* 3x bigger */
     opacity: 0.5;
     z-index: 0;
     pointer-events: none;
@@ -81,13 +101,13 @@ body {
 
 /* CENTER TEXT */
 .center-text {
+    position: relative;
     text-align: center;
     z-index: 2;
-    font-weight: normal;
 }
 
 .center-text p {
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 25px;
     line-height: 1.4;
 }
@@ -108,7 +128,7 @@ body {
     color: black;
 }
 
-/* SIDE VIDEOS */
+/* ===== VIDEOS POSITIONED RELATIVE TO CENTER ===== */
 .side {
     position: absolute;
     top: 50%;
@@ -119,8 +139,13 @@ body {
     z-index: 1;
 }
 
-.left { left: 6%; }
-.right { right: 6%; }
+.left {
+    left: calc(50% - 900px/2 - 260px - 15px);
+}
+
+.right {
+    left: calc(50% + 900px/2 + 15px);
+}
 
 .side video {
     width: 100%;
@@ -136,7 +161,6 @@ body {
     align-items: flex-start;
 }
 
-/* LEFT / RIGHT IMAGES */
 .left-img,
 .right-img {
     width: 25%;
@@ -144,7 +168,6 @@ body {
     object-fit: cover;
 }
 
-/* MIDDLE STACK */
 .middle {
     width: 50%;
     display: flex;
@@ -163,6 +186,7 @@ body {
 
 <body>
 
+<!-- BANNER -->
 <section class="banner">
     <div class="header" id="header">
         <img src="logo.png">
@@ -170,33 +194,37 @@ body {
     </div>
 </section>
 
+<!-- HERO -->
 <section class="hero">
 
     <img src="logo.png" class="center-logo">
 
+    <!-- LEFT VIDEO -->
     <div class="side left">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- RIGHT VIDEO -->
     <div class="side right">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
 
+    <!-- CENTER TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
-            videomaker and photographer
+            videographer and photographer
         </p>
-
         <a href="#work" class="btn">SEE MEDIA</a>
     </div>
 
 </section>
 
+<!-- GRID -->
 <section class="grid" id="work">
 
     <img src="image1.jpg" class="left-img">
@@ -213,7 +241,7 @@ body {
 <script>
 window.addEventListener("scroll", function() {
     const header = document.getElementById("header");
-    if (window.scrollY > window.innerHeight - 120) {
+    if (window.scrollY > window.innerHeight * 0.4) {
         header.classList.add("fixed");
     } else {
         header.classList.remove("fixed");
