@@ -10,11 +10,16 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
+    }
+
+    /* CUSTOM FONT */
+    @font-face {
+      font-family: 'Orbitron';
+      src: url('Orbitron.ttf') format('truetype');
     }
 
     body {
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: Arial, sans-serif;
       background: black;
       color: white;
     }
@@ -23,40 +28,29 @@
     .hero {
       height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
-      text-align: center;
-      background: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308') center/cover no-repeat;
-      position: relative;
+      justify-content: center;
+      padding: 0 8%;
+      gap: 60px;
     }
 
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.6);
-      top: 0;
-      left: 0;
+    .hero-text {
+      flex: 1;
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 600px;
-      padding: 20px;
-    }
-
-    h1 {
+    .hero-text h1 {
+      font-family: 'Orbitron', sans-serif;
       font-size: 3.5rem;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
     }
 
-    .subtitle {
-      margin-top: 20px;
-      margin-bottom: 25px;
-      font-size: 1.1rem;
-      color: #ccc;
-      line-height: 1.6;
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #aaa;
+      margin-bottom: 30px;
+      line-height: 1.5;
     }
 
     .btn {
@@ -71,6 +65,19 @@
     .btn:hover {
       background: white;
       color: black;
+    }
+
+    .hero-video {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-video video {
+      width: 300px;
+      height: 533px;
+      object-fit: cover;
+      border-radius: 12px;
     }
 
     /* GALLERY */
@@ -92,29 +99,23 @@
       transform: scale(1.05);
     }
 
-    /* REEL */
-    .video-section {
-      padding: 80px 5%;
-      text-align: center;
-    }
-
-    .reel-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 40px;
-    }
-
-    .reel-container video {
-      width: 300px;
-      height: 533px; /* 9:16 */
-      object-fit: cover;
-      border-radius: 12px;
-    }
-
     footer {
       padding: 40px;
       text-align: center;
       color: #666;
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-video video {
+        width: 220px;
+        height: 390px;
+      }
     }
   </style>
 </head>
@@ -123,15 +124,26 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="overlay"></div>
-  <div class="hero-content">
+
+  <!-- TEXT -->
+  <div class="hero-text">
     <h1>ALEJANDRO MAZO</h1>
-    <p class="subtitle">
-      Cinematic photographer<br>
-      & filmmaker
+
+    <p>
+      Action sports & concerts<br>
+      videomaker and photographer
     </p>
+
     <a href="#work" class="btn">View Work</a>
   </div>
+
+  <!-- VIDEO -->
+  <div class="hero-video">
+    <video autoplay muted loop playsinline>
+      <source src="reel.mp4" type="video/mp4">
+    </video>
+  </div>
+
 </section>
 
 <!-- GALLERY -->
@@ -139,18 +151,6 @@
   <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
   <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7">
   <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
-</section>
-
-<!-- REEL -->
-<section class="video-section">
-  <h2>Reel</h2>
-
-  <div class="reel-container">
-    <video autoplay muted loop playsinline>
-      <source src="reel.mp4" type="video/mp4">
-    </video>
-  </div>
-
 </section>
 
 <footer>
