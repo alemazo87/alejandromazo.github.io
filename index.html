@@ -92,17 +92,23 @@
       transform: scale(1.05);
     }
 
-    /* VIDEO */
+    /* REEL SECTION */
     .video-section {
       padding: 80px 5%;
       text-align: center;
     }
 
-    .video-section iframe {
-      width: 100%;
-      max-width: 900px;
-      height: 500px;
-      border: none;
+    .reel-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+    }
+
+    .reel-container video {
+      width: 300px;
+      height: 533px; /* 9:16 */
+      object-fit: cover;
+      border-radius: 12px;
     }
 
     footer {
@@ -135,10 +141,15 @@
   <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308">
 </section>
 
-<!-- VIDEO -->
+<!-- REEL -->
 <section class="video-section">
-  <h2>Showreel</h2>
-  <iframe src="https://www.youtube.com/embed/ScMzIvxBSi4"></iframe>
+  <h2>Reel</h2>
+
+  <div class="reel-container">
+    <video autoplay muted loop playsinline>
+      <source src="reel.mp4" type="video/mp4">
+    </video>
+  </div>
 </section>
 
 <footer>
