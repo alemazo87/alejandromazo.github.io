@@ -14,147 +14,120 @@
     src: url('Orbitron.ttf');
 }
 
-/* ===== BASE ===== */
+/* BASE */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
     background: black;
     color: white;
-    overflow-x: hidden;
-}
-
-/* ===== FLOATING LOGO ===== */
-.floating-logo {
-    position: fixed;
-    top: 15px;
-    left: 20px;
-    z-index: 999;
-}
-
-.floating-logo img {
-    height: 80px;
 }
 
 /* ===== BANNER ===== */
 .banner {
-    height: 450px;
+    height: 300px;
     background: url('banner.jpg') center/cover no-repeat;
     display: flex;
     align-items: center;
-    padding: 0 80px;
-}
-
-.banner-content {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.banner-logo {
-    height: 120px;
+    padding-left: 80px;
 }
 
 .banner h1 {
-    font-size: 42px;
-    letter-spacing: 6px;
+    font-size: 40px;
 }
 
 /* ===== HERO ===== */
 .hero {
     position: relative;
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 /* CENTER LOGO */
 .center-logo {
     position: absolute;
-    width: 900px; /* 100% bigger */
-    opacity: 0.5;
-    left: 50%;
+    width: 800px;
+    opacity: 0.4;
     top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
 }
 
-/* TEXT */
+/* TEXT CENTER */
 .hero-text {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     z-index: 2;
 }
 
 .hero-text p {
-    font-size: 26px;
-    line-height: 1.4;
+    font-size: 24px;
 }
 
 .hero-text span {
     display: block;
     font-size: 16px;
     color: #aaa;
-    margin-top: 8px;
 }
 
 /* BUTTON */
 .btn {
     margin-top: 20px;
-    padding: 12px 30px;
+    padding: 10px 25px;
     border: 2px solid white;
     display: inline-block;
     color: white;
     text-decoration: none;
 }
 
-/* VIDEOS SIDES */
-.side-video {
+/* VIDEOS */
+.video-left, .video-right {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.side-video.left {
-    left: 8%;
+.video-left {
+    left: 10%;
 }
 
-.side-video.right {
-    right: 8%;
+.video-right {
+    right: 10%;
 }
 
-.side-video video {
+video {
     width: 260px;
-    border-radius: 12px;
+    border-radius: 10px;
 }
 
 /* ===== IMAGE GRID ===== */
 .image-grid {
     display: flex;
-    gap: 20px;
     padding: 60px;
-    align-items: center;
+    gap: 20px;
 }
 
-.image-grid .vertical {
+/* left vertical */
+.image-grid .left-img {
     width: 25%;
 }
 
-.stack {
+/* center stacked */
+.middle {
     width: 50%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.stack img {
+.middle img {
     width: 100%;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    text-align: center;
-    padding: 30px;
+/* right vertical */
+.image-grid .right-img {
+    width: 25%;
 }
 
 </style>
@@ -162,26 +135,25 @@ footer {
 
 <body>
 
-<!-- FLOATING LOGO -->
-<a href="#" class="floating-logo">
-    <img src="logo.png">
-</a>
-
 <!-- BANNER -->
 <section class="banner">
-    <div class="banner-content">
-        <img src="logo.png" class="banner-logo">
-        <h1>ALEJANDRO MAZO</h1>
-    </div>
+    <h1>ALEJANDRO MAZO</h1>
 </section>
 
 <!-- HERO -->
 <section class="hero">
 
     <!-- LEFT VIDEO -->
-    <div class="side-video left">
+    <div class="video-left">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- RIGHT VIDEO -->
+    <div class="video-right">
+        <video autoplay muted loop playsinline>
+            <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -195,36 +167,24 @@ footer {
         <span>videomaker and photographer</span>
         </p>
 
-        <a href="#work" class="btn">View Work</a>
-    </div>
-
-    <!-- RIGHT VIDEO -->
-    <div class="side-video right">
-        <video autoplay muted loop playsinline>
-            <source src="video2.mp4" type="video/mp4">
-        </video>
+        <a href="#" class="btn">View Work</a>
     </div>
 
 </section>
 
 <!-- IMAGE GRID -->
-<section id="work" class="image-grid">
+<section class="image-grid">
 
-    <img src="img1.jpg" class="vertical">
+    <img src="img1.jpg" class="left-img">
 
-    <div class="stack">
+    <div class="middle">
         <img src="img2.jpg">
         <img src="img3.jpg">
     </div>
 
-    <img src="img4.jpg" class="vertical">
+    <img src="img4.jpg" class="right-img">
 
 </section>
-
-<!-- FOOTER -->
-<footer>
-    © Alejandro Mazo
-</footer>
 
 </body>
 </html>
