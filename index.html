@@ -13,7 +13,7 @@
     src: url('Orbitron.ttf');
 }
 
-/ ===== RESET ===== /
+/* ===== RESET ===== */
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -22,14 +22,14 @@ body {
     overflow-x: hidden;
 }
 
-/ ===== FULLSCREEN BANNER ===== /
+/* ===== FULLSCREEN BANNER ===== */
 .banner {
     height: 100vh;
     background: url('banner.jpg') center/cover no-repeat;
     position: relative;
 }
 
-/ HEADER (BOTTOM RIGHT ON BANNER) /
+/* HEADER (BOTTOM RIGHT ON BANNER) */
 .header {
     position: absolute;
     bottom: 30px;
@@ -40,14 +40,14 @@ body {
     z-index: 10;
 }
 
-/ HEADER WHEN SCROLL /
+/* HEADER WHEN SCROLL */
 .header.fixed {
     position: fixed;
     top: 20px;
     bottom: auto;
 }
 
-/ HEADER STYLE /
+/* HEADER STYLE */
 .header img {
     width: 42px;
     filter: drop-shadow(0 6px 20px rgba(0,0,0,0.8));
@@ -58,7 +58,7 @@ body {
     text-shadow: 0 6px 20px rgba(0,0,0,0.8);
 }
 
-/ ===== HERO ===== /
+/* ===== HERO ===== */
 .hero {
     position: relative;
     height: 100vh;
@@ -67,7 +67,7 @@ body {
     justify-content: center;
 }
 
-/ CENTER LOGO (FLOATING) /
+/* CENTER LOGO (FLOATING) */
 .center-logo {
     position: fixed;
     top: 50%;
@@ -79,7 +79,7 @@ body {
     pointer-events: none;
 }
 
-/ CENTER TEXT /
+/* CENTER TEXT */
 .center-text {
     text-align: center;
     z-index: 2;
@@ -92,7 +92,7 @@ body {
     line-height: 1.4;
 }
 
-/ BUTTON /
+/* BUTTON */
 .btn {
     border: 2px solid white;
     padding: 12px 28px;
@@ -108,7 +108,7 @@ body {
     color: black;
 }
 
-/ SIDE VIDEOS /
+/* SIDE VIDEOS */
 .side {
     position: absolute;
     top: 50%;
@@ -128,7 +128,7 @@ body {
     object-fit: cover;
 }
 
-/ ===== GRID ===== /
+/* ===== GRID ===== */
 .grid {
     display: flex;
     gap: 40px;
@@ -136,7 +136,7 @@ body {
     align-items: flex-start;
 }
 
-/ LEFT / RIGHT IMAGES /
+/* LEFT / RIGHT IMAGES */
 .left-img,
 .right-img {
     width: 25%;
@@ -144,7 +144,7 @@ body {
     object-fit: cover;
 }
 
-/ MIDDLE STACK */
+/* MIDDLE STACK */
 .middle {
     width: 50%;
     display: flex;
@@ -163,7 +163,6 @@ body {
 
 <body>
 
-<!-- ===== BANNER ===== -->
 <section class="banner">
     <div class="header" id="header">
         <img src="logo.png">
@@ -171,27 +170,22 @@ body {
     </div>
 </section>
 
-<!-- ===== HERO ===== -->
 <section class="hero">
 
-    <!-- FLOATING LOGO -->
     <img src="logo.png" class="center-logo">
 
-    <!-- LEFT VIDEO -->
     <div class="side left">
         <video autoplay muted loop playsinline>
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- RIGHT VIDEO -->
     <div class="side right">
         <video autoplay muted loop playsinline>
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
 
-    <!-- CENTER TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
@@ -203,7 +197,6 @@ body {
 
 </section>
 
-<!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
     <img src="image1.jpg" class="left-img">
