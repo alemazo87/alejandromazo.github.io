@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- ✅ ORIGINAL TITLE RESTORED -->
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
@@ -43,7 +42,7 @@ body {
     display: block;
 }
 
-/* ===== HEADER ===== */
+/* ===== HEADER (closer spacing) ===== */
 .header {
     position: absolute;
     top: 15px;
@@ -51,18 +50,19 @@ body {
     transform: translateX(-50%);
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 6px; /* tighter spacing */
     z-index: 5;
     white-space: nowrap;
 }
 
 .header img {
-    width: 42px;
+    width: 40px;
 }
 
 .header span {
-    font-size: 16px;
+    font-size: 15px;
     white-space: nowrap;
+    letter-spacing: 1px;
     text-shadow:
         0 2px 6px rgba(0,0,0,1),
         0 6px 20px rgba(0,0,0,0.9),
@@ -104,41 +104,28 @@ body {
     background: black;
 }
 
-/* PLAY ICON */
-.overlay {
-    position: absolute;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    backdrop-filter: blur(12px);
-    background: rgba(255,255,255,0.15);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 28px;
-    color: white;
-    z-index: 3;
-}
-
-/* TEXT */
+/* ===== OVERLAY TEXT (glass, one line, on top) ===== */
 .overlay-text {
     position: absolute;
-    top: 65%;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 12px;
-    letter-spacing: 1px;
-    backdrop-filter: blur(10px);
-    background: rgba(255,255,255,0.1);
-    padding: 6px 12px;
-    border-radius: 20px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
     text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.08);
+    padding: 6px 14px;
+    border-radius: 20px;
+
+    z-index: 3;
+    pointer-events: none; /* allow clicks to pass to video */
 }
 
-/* ===== GRID FIX ===== */
+/* ===== GRID ===== */
 .grid {
     display: block;
     padding: 40px 20px;
@@ -186,7 +173,6 @@ body {
     <video playsinline preload="metadata" poster="image2.jpg">
         <source src="video2.mp4" type="video/mp4">
     </video>
-    <div class="overlay">▶</div>
     <div class="overlay-text">tap to play or pause</div>
 </div>
 
@@ -194,7 +180,6 @@ body {
     <video playsinline preload="metadata" poster="image3.jpg">
         <source src="reel.mp4" type="video/mp4">
     </video>
-    <div class="overlay">▶</div>
     <div class="overlay-text">tap to play or pause</div>
 </div>
 
@@ -208,20 +193,19 @@ body {
 
 <script>
 
+/* PLAY / PAUSE ON TAP */
+
 document.querySelectorAll(".video-wrap").forEach(wrap => {
 
     const video = wrap.querySelector("video");
-    const icon = wrap.querySelector(".overlay");
 
     wrap.addEventListener("click", () => {
 
         if (video.paused) {
             video.muted = false;
             video.play();
-            icon.innerHTML = "❚❚";
         } else {
             video.pause();
-            icon.innerHTML = "▶";
         }
 
     });
