@@ -6,6 +6,13 @@
 <title>Your Brand</title>
 
 <style>
+/* ---------- CUSTOM FONT ---------- */
+@font-face {
+  font-family: 'Orbitron';
+  src: url('Orbitron.ttf') format('truetype');
+}
+
+/* ---------- RESET ---------- */
 * {
   margin: 0;
   padding: 0;
@@ -13,115 +20,96 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
   background: #000;
   color: #fff;
+  font-family: 'Orbitron', sans-serif;
   overflow-x: hidden;
 }
 
-/* Disable basic interactions (deterrent only) */
-body {
-  -webkit-user-select: none;
-  user-select: none;
-}
-img, video {
-  -webkit-user-drag: none;
-  user-select: none;
-}
-
-/* ---------------- BANNER ---------------- */
+/* ---------- BANNER ---------- */
 .banner {
   position: relative;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   background: #000;
 }
 
-/* TRUE no-crop solution */
-.banner img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: auto;
-  height: 100%;
-  transform: translate(-50%, -50%);
-}
-
-/* If image is wider than screen */
-.banner img.wide {
-  width: 100%;
-  height: auto;
-}
-
-/* Banner content */
+/* LOGO + NAME */
 .banner-content {
   position: absolute;
   bottom: 12%;
   left: 5%;
   display: flex;
   align-items: center;
-  gap: 12px;
-  z-index: 2;
+  gap: 14px;
 }
 
 .banner-logo {
-  width: 65px;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  width: 70px;
+  transition: 0.4s ease;
 }
 
-.banner-title {
-  font-size: 26px;
-}
-
-/* Scroll animation */
 .banner-logo.scrolled {
-  transform: scale(0.6) translateY(-25px);
+  transform: scale(0.6) translateY(-20px);
   opacity: 0.7;
 }
 
-/* ---------------- BACKGROUND LOGO ---------------- */
-.background-logo {
+.banner-title {
+  font-size: 30px;
+  letter-spacing: 3px;
+}
+
+/* ---------- CENTER BACKGROUND LOGO ---------- */
+.bg-logo {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140px;
+  width: 200px;
   opacity: 0.5;
   z-index: 0;
   pointer-events: none;
 }
 
-/* ---------------- HERO ---------------- */
+/* ---------- HERO ---------- */
 .hero {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
   z-index: 2;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
 }
 
-/* Description */
 .description {
-  text-align: center;
-  font-size: 24px;
+  font-size: 26px;
+  letter-spacing: 2px;
 }
 
 .description span {
   display: block;
   font-size: 16px;
   color: #aaa;
-  margin-top: 6px;
+  margin-top: 8px;
+  letter-spacing: 3px;
 }
 
-/* Button */
+/* BUTTON */
 .btn {
+  display: inline-block;
   margin-top: 25px;
   padding: 12px 30px;
   border: 1px solid #fff;
   color: #fff;
   text-decoration: none;
+  letter-spacing: 2px;
   transition: 0.3s;
 }
 
@@ -130,37 +118,40 @@ img, video {
   color: #000;
 }
 
-/* ---------------- VIDEO SECTION ---------------- */
+/* ---------- VIDEO SECTION ---------- */
 .video-section {
+  margin-top: 100vh;
   display: flex;
   justify-content: center;
   gap: 20px;
   padding: 60px 20px;
-  flex-wrap: wrap;
 }
 
-.video-section video {
+video {
   width: 320px;
   max-width: 100%;
 }
 
-/* ---------------- MOBILE ---------------- */
+/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
-
   .banner-logo {
     width: 50px;
   }
 
   .banner-title {
-    font-size: 20px;
+    font-size: 22px;
   }
 
-  .background-logo {
-    width: 100px;
+  .bg-logo {
+    width: 140px;
   }
 
   .description {
     font-size: 20px;
+  }
+
+  .video-section {
+    flex-direction: column;
   }
 }
 </style>
@@ -169,11 +160,11 @@ img, video {
 <body oncontextmenu="return false">
 
 <!-- BACKGROUND LOGO -->
-<img src="logo.png" class="background-logo" alt="logo">
+<img src="logo.png" class="bg-logo" alt="logo">
 
 <!-- BANNER -->
 <section class="banner">
-  <img src="your-banner.jpg" id="bannerImg" alt="banner">
+  <img src="your-banner.jpg" alt="banner">
 
   <div class="banner-content">
     <img src="logo.png" class="banner-logo" id="logoAnim" alt="logo">
@@ -181,193 +172,27 @@ img, video {
   </div>
 </section>
 
-<!-- HERO -->
-<section class="hero">
+<!-- HERO TEXT -->
+<div class="hero">
   <div class="description">
     action sports and concerts
     <span>videomaker and photographer</span>
   </div>
 
   <a href="#" class="btn">View Work</a>
-</section>
+</div>
 
 <!-- VIDEOS -->
 <section class="video-section">
-  <video src="video1.mp4" autoplay muted loop playsinline></video>
+  <video src="reel.mp4" autoplay muted loop playsinline></video>
   <video src="video2.mp4" autoplay muted loop playsinline></video>
 </section>
 
 <script>
-// Fix banner ratio dynamically (NO crop ever)
-const img = document.getElementById("bannerImg");
-
-function adjustBanner() {
-  if (!img.complete) return;
-
-  const imgRatio = img.naturalWidth / img.naturalHeight;
-  const screenRatio = window.innerWidth / window.innerHeight;
-
-  if (imgRatio > screenRatio) {
-    img.classList.add("wide");
-  } else {
-    img.classList.remove("wide");
-  }
-}
-
-img.onload = adjustBanner;
-window.addEventListener("resize", adjustBanner);
-
-// Scroll animation trigger EARLIER (near top)
+// Scroll animation (early trigger)
 window.addEventListener("scroll", () => {
   const logo = document.getElementById("logoAnim");
-  if (window.scrollY > 30) {
-    logo.classList.add("scrolled");
-  } else {
-    logo.classList.remove("scrolled");
-  }
-});
-
-// Disable drag
-document.addEventListener("dragstart", e => e.preventDefault());
-</script>
-
-</body>
-</html>  transition: all 0.6s ease;
-}
-
-.banner-title {
-  font-size: 26px;
-  font-weight: 500;
-}
-
-/* LOGO SCROLL ANIMATION */
-.banner-logo.scrolled {
-  transform: scale(0.6) translateY(-20px);
-  opacity: 0.7;
-}
-
-/* BACKGROUND CENTER LOGO */
-.background-logo {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 140px; /* 20% smaller */
-  opacity: 0.5;
-  z-index: 0;
-}
-
-/* HERO */
-.hero {
-  position: relative;
-  z-index: 2;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* DESCRIPTION */
-.description {
-  text-align: center;
-  font-size: 24px;
-  line-height: 1.4;
-}
-
-.description span {
-  display: block;
-  font-size: 16px;
-  color: #aaa;
-  margin-top: 5px;
-}
-
-/* BUTTON */
-.btn {
-  margin-top: 25px;
-  padding: 12px 30px;
-  border: 1px solid #fff;
-  color: #fff;
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: #fff;
-  color: #000;
-}
-
-/* VIDEO SECTION */
-.video-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 60px 20px;
-}
-
-video {
-  width: 320px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .video-section {
-    flex-direction: column;
-  }
-
-  .banner-content {
-    bottom: 10%;
-    left: 5%;
-  }
-
-  .banner-logo {
-    width: 50px;
-  }
-
-  .background-logo {
-    width: 100px;
-  }
-}
-</style>
-</head>
-
-<body oncontextmenu="return false">
-
-<!-- BACKGROUND LOGO -->
-<img src="logo.png" class="background-logo">
-
-<!-- BANNER -->
-<section class="banner">
-  <img src="your-banner.jpg" alt="banner">
-
-  <div class="banner-content">
-    <img src="logo.png" class="banner-logo" id="logoAnim">
-    <div class="banner-title">Your Brand</div>
-  </div>
-</section>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="description">
-    action sports and concerts
-    <span>videomaker and photographer</span>
-  </div>
-
-  <a href="#" class="btn">View Work</a>
-</section>
-
-<!-- VIDEOS -->
-<section class="video-section">
-  <video src="video1.mp4" autoplay muted loop playsinline></video>
-  <video src="video2.mp4" autoplay muted loop playsinline></video>
-</section>
-
-<script>
-// Scroll animation (triggers earlier)
-window.addEventListener("scroll", function () {
-  const logo = document.getElementById("logoAnim");
-  if (window.scrollY > 40) {
+  if (window.scrollY > 20) {
     logo.classList.add("scrolled");
   } else {
     logo.classList.remove("scrolled");
