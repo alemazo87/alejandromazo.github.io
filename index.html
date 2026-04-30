@@ -6,12 +6,8 @@
 <title>Alejandro Mazo | Videographer & Photographer</title>
 
 <style>
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
 
+/* ===== RESET ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -19,6 +15,7 @@ body {
     color: white;
 }
 
+/* ===== BANNER ===== */
 .banner {
     height: 220px;
     display: flex;
@@ -36,247 +33,156 @@ body {
 
 .banner img {
     width: 40px;
-    height: auto;
 }
 
+/* ===== HERO ===== */
 .hero {
     position: relative;
-    min-height: 80vh;
+    height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px 20px;
 }
 
-.side-video {
+/* BIG FLOATING LOGO */
+.center-logo {
     position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 380px;
-    overflow: hidden;
-    border-radius: 10px;
+    width: 420px;
+    opacity: 0.08;
+    z-index: 0;
 }
 
-.side-video video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* CENTER TEXT */
 .center-text {
     text-align: center;
-    max-width: 500px;
     z-index: 2;
 }
 
 .center-text p {
     margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.5;
-    opacity: 0.9;
-}
-
-.btn {
-    display: inline-block;
-    border: 2px solid white;
-    padding: 12px 30px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: white;
-    color: black;
-}
-
-.image-grid {
-    display: flex;
-    gap: 30px;
-    padding: 80px 40px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.grid-img {
-    flex: 1 1 220px;
-    max-width: 280px;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-@media (max-width: 900px) {
-    .side-video {
-        display: none;
-    }
-    .hero {
-        min-height: 60vh;
-    }
-    .image-grid {
-        padding: 50px 20px;
-        gap: 20px;
-    }
-}
-
-@media (max-width: 600px) {
-    .banner {
-        padding-left: 20px;
-    }
-    .banner h1 {
-        font-size: 22px;
-    }
-    .center-text p {
-        font-size: 16px;
-    }
-}
-</style>
-</head>
-<body>
-
-<div class="banner">
-    <h1>
-        <img src="banner.jpg" alt="Alejandro Mazo logo">
-        ALEJANDRO MAZO
-    </h1>
-</div>
-
-<section class="hero">
-    <div class="side-video">
-        <video autoplay muted loop playsinline poster="fallback-video2.jpg">
-            <source src="video2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="center-text">
-        <p>
-            Action sports and concerts<br>
-            videographer and photographer
-        </p>
-        <a href="#work" class="btn">SEE MEDIA</a>
-    </div>
-</section>
-
-<section class="image-grid" id="work">
-    <img src="image1.jpg" alt="Action sports shot 1" class="grid-img">
-    <img src="image2.jpg" alt="Concert photography 2" class="grid-img">
-    <img src="image3.jpg" alt="Action sports shot 3" class="grid-img">
-    <img src="image4.jpg" alt="Concert photography 4" class="grid-img">
-</section>
-
-</body>
-</html>
-.center-text p {
-    margin-bottom: 20px;
-    font-size: 18px;
-    line-height: 1.5;
-    opacity: 0.9;
+    opacity: 0.8;
+    font-size: 16px;
+    line-height: 1.4;
 }
 
 /* BUTTON */
 .btn {
-    display: inline-block;
     border: 2px solid white;
     padding: 12px 30px;
     text-decoration: none;
     color: white;
-    font-weight: bold;
-    transition: 0.3s;
 }
-
 .btn:hover {
     background: white;
     color: black;
 }
 
-/* ===== 4-IMAGE GRID ===== */
-.image-grid {
-    display: flex;
-    gap: 30px;
-    padding: 80px 40px;
-    flex-wrap: wrap;
-    justify-content: center;
+/* SIDE IMAGES */
+.side {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    height: 420px;
+    overflow: hidden;
 }
 
-.grid-img {
-    flex: 1 1 220px;  /* flexible, min width 220px */
-    max-width: 280px;
-    height: auto;
-    aspect-ratio: 4 / 3;
+.left { left: 8%; }
+.right { right: 8%; }
+
+.side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* ===== GRID ===== */
+.grid {
+    display: flex;
+    gap: 30px;
+    padding: 80px 120px;
+}
+
+/* LEFT + RIGHT */
+.left-img,
+.right-img {
+    width: 25%;
+    height: 500px;
     object-fit: cover;
     border-radius: 12px;
 }
 
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-    .side-video {
-        display: none;  /* hide side video on smaller screens */
-    }
-
-    .hero {
-        min-height: 60vh;
-    }
-
-    .image-grid {
-        padding: 50px 20px;
-        gap: 20px;
-    }
+/* MIDDLE */
+.middle {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-@media (max-width: 600px) {
-    .banner {
-        padding-left: 20px;
-    }
-
-    .banner h1 {
-        font-size: 22px;
-    }
-
-    .center-text p {
-        font-size: 16px;
-    }
+.middle img {
+    width: 100%;
+    height: 235px;
+    object-fit: cover;
+    border-radius: 12px;
 }
+
 </style>
 </head>
+
 <body>
 
-<!-- ===== BANNER (text only) ===== -->
+<!-- ===== BANNER ===== -->
 <div class="banner">
-    <h1>ALEJANDRO MAZO</h1>
+    <h1>
+        <img src="logo.png">
+        ALEJANDRO MAZO
+    </h1>
 </div>
 
-<!-- ===== HERO SECTION ===== -->
+<!-- ===== HERO ===== -->
 <section class="hero">
 
-    <!-- LEFT VIDEO (Video 2) -->
-    <div class="side-video">
-        <video autoplay muted loop playsinline poster="fallback-video2.jpg">
-            <source src="video2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
+    <!-- BIG BACKGROUND LOGO -->
+    <img src="logo.png" class="center-logo">
+
+    <!-- LEFT IMAGE -->
+    <div class="side left">
+        <img src="image1.jpg">
+    </div>
+
+    <!-- RIGHT IMAGE -->
+    <div class="side right">
+        <img src="image4.jpg">
     </div>
 
     <!-- CENTER TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
-            videographer and photographer
+            videographer & photographer
         </p>
         <a href="#work" class="btn">SEE MEDIA</a>
     </div>
 
 </section>
 
-<!-- ===== 4-IMAGE GRID (Image 1-4) ===== -->
-<section class="image-grid" id="work">
-    <img src="image1.jpg" alt="Action sports shot 1" class="grid-img">
-    <img src="image2.jpg" alt="Concert photography 2" class="grid-img">
-    <img src="image3.jpg" alt="Action sports shot 3" class="grid-img">
-    <img src="image4.jpg" alt="Concert photography 4" class="grid-img">
+<!-- ===== GRID ===== -->
+<section class="grid" id="work">
+
+    <!-- LEFT -->
+    <img src="image1.jpg" class="left-img">
+
+    <!-- MIDDLE -->
+    <div class="middle">
+        <img src="image2.jpg">
+        <img src="image3.jpg">
+    </div>
+
+    <!-- RIGHT -->
+    <img src="image4.jpg" class="right-img">
+
 </section>
 
 </body>
