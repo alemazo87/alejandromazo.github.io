@@ -7,7 +7,7 @@
 
 <style>
 
-/* ===== FONT ===== /
+/* ===== FONT ===== */
 @font-face {
     font-family: 'Orbitron';
     src: url('Orbitron.ttf');
@@ -28,17 +28,25 @@ body {
     position: relative;
 }
 
-/ HEADER (FLOATING + STATIC SIZE) /
+/ HEADER (INSIDE BANNER + FLOATING ON SCROLL) /
 .header {
-    position: fixed;
+    position: absolute;
     bottom: 20px;
     right: 30px;
     display: flex;
     align-items: center;
     gap: 12px;
-    z-index: 1000;
+    z-index: 10;
 }
 
+/ When scrolling /
+.header.fixed {
+    position: fixed;
+    top: 20px;
+    bottom: auto;
+}
+
+/ HEADER STYLE /
 .header img {
     width: 40px;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.7));
@@ -58,9 +66,12 @@ body {
     justify-content: center;
 }
 
-/ CENTER LOGO (STAYS IN PLACE) /
+/ CENTER LOGO (FIXED CENTER) /
 .center-logo {
     position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 500px;
     opacity: 0.5;
     z-index: 0;
@@ -104,6 +115,7 @@ body {
     width: 260px;
     height: 420px;
     overflow: hidden;
+    z-index: 1;
 }
 
 .left { left: 8%; }
@@ -115,7 +127,7 @@ body {
     object-fit: cover;
 }
 
-/ ===== GRID ===== /
+/ ===== GRID ===== */
 .grid {
     display: flex;
     gap: 40px;
@@ -123,7 +135,6 @@ body {
     align-items: flex-start;
 }
 
-/ LEFT / RIGHT /
 .left-img,
 .right-img {
     width: 25%;
@@ -131,7 +142,6 @@ body {
     object-fit: cover;
 }
 
-/ CENTER STACK */
 .middle {
     width: 50%;
     display: flex;
@@ -151,309 +161,38 @@ body {
 <body>
 
 <!-- ===== BANNER ===== -->
-<section class="banner"></section>
+<section class="banner">
 
-<!-- FLOATING HEADER -->
-<div class="header">
-    <img src="logo.png">
-    <span>Alejandro Mazo</span>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-
-    <!-- CENTER LOGO -->
-    <img src="logo.png" class="center-logo">
-
-    <!-- LEFT VIDEO -->
-    <div class="side left">
-        <video autoplay muted loop playsinline>
-            <source src="video2.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- RIGHT VIDEO -->
-    <div class="side right">
-        <video autoplay muted loop playsinline>
-            <source src="reel.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- TEXT -->
-    <div class="center-text">
-        <p>
-            Action sports and concerts<br>
-            videographer and photographer
-        </p>
-
-        <a href="#work" class="btn">SEE MEDIA</a>
-    </div>
-
-</section>
-
-<!-- ===== GRID ===== -->
-<section class="grid" id="work">
-
-    <img src="image1.jpg" class="left-img">
-
-    <div class="middle">
-        <img src="image2.jpg">
-        <img src="image3.jpg">
-    </div>
-
-    <img src="image4.jpg" class="right-img">
-
-</section>
-
-</body>
-</html>.center-text {
-    position: relative;
-    text-align: center;
-    z-index: 2;
-    font-weight: normal;
-}
-
-.center-text p {
-    font-size: 18px;
-    margin-bottom: 20px;
-}
-
-/ BUTTON /
-.btn {
-    border: 2px solid white;
-    padding: 12px 30px;
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    transition: transform 0.15s ease, background 0.2s ease;
-}
-
-.btn:active {
-    transform: scale(0.92);
-    background: white;
-    color: black;
-}
-
-/ SIDE VIDEOS /
-.side {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 420px;
-    overflow: hidden;
-}
-
-.left { left: 8%; }
-.right { right: 8%; }
-
-.side video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/ ===== GRID ===== /
-.grid {
-    display: flex;
-    gap: 40px;
-    padding: 100px 120px;
-    align-items: flex-start;
-}
-
-/ LEFT / RIGHT /
-.left-img,
-.right-img {
-    width: 25%;
-    height: 520px;
-    object-fit: cover;
-}
-
-/ CENTER STACK */
-.middle {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.middle img {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- ===== BANNER ===== -->
-<section class="banner"></section>
-
-<!-- FLOATING HEADER -->
-<div class="header">
-    <img src="logo.png">
-    <span>Alejandro Mazo</span>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero">
-
-    <!-- CENTER LOGO -->
-    <img src="logo.png" class="center-logo">
-
-    <!-- LEFT VIDEO -->
-    <div class="side left">
-        <video autoplay muted loop playsinline>
-            <source src="video2.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- RIGHT VIDEO -->
-    <div class="side right">
-        <video autoplay muted loop playsinline>
-            <source src="reel.mp4" type="video/mp4">
-        </video>
-    </div>
-
-    <!-- TEXT -->
-    <div class="center-text">
-        <p>
-            Action sports and concerts<br>
-            videographer and photographer
-        </p>
-
-        <a href="#work" class="btn">SEE MEDIA</a>
-    </div>
-
-</section>
-
-<!-- ===== GRID ===== -->
-<section class="grid" id="work">
-
-    <img src="image1.jpg" class="left-img">
-
-    <div class="middle">
-        <img src="image2.jpg">
-        <img src="image3.jpg">
-    </div>
-
-    <img src="image4.jpg" class="right-img">
-
-</section>
-
-</body>
-</html>    z-index: 2;
-}
-
-.center-text p {
-    margin-bottom: 20px;
-    opacity: 0.8;
-    font-size: 16px;
-    line-height: 1.4;
-    letter-spacing: 1px;
-}
-
-/ BUTTON /
-.btn {
-    border: 2px solid white;
-    padding: 12px 30px;
-    text-decoration: none;
-    color: white;
-    letter-spacing: 1px;
-}
-.btn:hover {
-    background: white;
-    color: black;
-}
-
-/ SIDE IMAGES /
-.side {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 260px;
-    height: 420px;
-    overflow: hidden;
-}
-
-.left { left: 8%; }
-.right { right: 8%; }
-
-.side img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/ ===== GRID ===== /
-.grid {
-    display: flex;
-    gap: 30px;
-    padding: 80px 120px;
-}
-
-/ LEFT + RIGHT /
-.left-img,
-.right-img {
-    width: 25%;
-    height: 500px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-/ MIDDLE */
-.middle {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-.middle img {
-    width: 100%;
-    height: 235px;
-    object-fit: cover;
-    border-radius: 12px;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- ===== BANNER ===== -->
-<div class="banner">
-    <h1>
+    <div class="header" id="header">
         <img src="logo.png">
-        ALEJANDRO MAZO
-    </h1>
-</div>
+        <span>Alejandro Mazo</span>
+    </div>
+
+</section>
 
 <!-- ===== HERO ===== -->
 <section class="hero">
 
-    <!-- BIG BACKGROUND LOGO -->
     <img src="logo.png" class="center-logo">
 
-    <!-- LEFT IMAGE -->
     <div class="side left">
-        <img src="image1.jpg">
+        <video autoplay muted loop playsinline>
+            <source src="video2.mp4" type="video/mp4">
+        </video>
     </div>
 
-    <!-- RIGHT IMAGE -->
     <div class="side right">
-        <img src="image4.jpg">
+        <video autoplay muted loop playsinline>
+            <source src="reel.mp4" type="video/mp4">
+        </video>
     </div>
 
-    <!-- CENTER TEXT -->
     <div class="center-text">
         <p>
             Action sports and concerts<br>
-            videographer & photographer
+            videographer and photographer
         </p>
+
         <a href="#work" class="btn">SEE MEDIA</a>
     </div>
 
@@ -462,19 +201,27 @@ body {
 <!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
-    <!-- LEFT -->
     <img src="image1.jpg" class="left-img">
 
-    <!-- MIDDLE -->
     <div class="middle">
         <img src="image2.jpg">
         <img src="image3.jpg">
     </div>
 
-    <!-- RIGHT -->
     <img src="image4.jpg" class="right-img">
 
 </section>
+
+<script>
+window.addEventListener("scroll", function() {
+    const header = document.getElementById("header");
+    if (window.scrollY > window.innerHeight - 100) {
+        header.classList.add("fixed");
+    } else {
+        header.classList.remove("fixed");
+    }
+});
+</script>
 
 </body>
 </html>
