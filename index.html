@@ -13,7 +13,7 @@
     src: url('Orbitron.ttf');
 }
 
-/* ===== RESET ===== */
+/ ===== RESET ===== /
 body {
     margin: 0;
     font-family: 'Orbitron', sans-serif;
@@ -21,14 +21,19 @@ body {
     color: white;
 }
 
-/* ===== BANNER ===== */
+/ ===== BANNER ===== /
 .banner {
+    position: relative;
     height: 220px;
     display: flex;
     align-items: center;
     padding-left: 40px;
+    overflow: hidden;
+
+    background: url('banner.jpg') center/cover no-repeat;
 }
 
+/ TEXT ON BANNER /
 .banner h1 {
     font-size: 28px;
     margin: 0;
@@ -36,13 +41,14 @@ body {
     align-items: center;
     gap: 12px;
     letter-spacing: 2px;
+    z-index: 1;
 }
 
 .banner img {
     width: 40px;
 }
 
-/* ===== HERO ===== */
+/ ===== HERO ===== /
 .hero {
     position: relative;
     height: 80vh;
@@ -51,7 +57,7 @@ body {
     justify-content: center;
 }
 
-/* BIG FLOATING LOGO */
+/ BIG FLOATING LOGO /
 .center-logo {
     position: absolute;
     width: 420px;
@@ -59,7 +65,7 @@ body {
     z-index: 0;
 }
 
-/* CENTER TEXT */
+/ CENTER TEXT /
 .center-text {
     text-align: center;
     z-index: 2;
@@ -73,7 +79,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* BUTTON */
+/ BUTTON /
 .btn {
     border: 2px solid white;
     padding: 12px 30px;
@@ -86,7 +92,7 @@ body {
     color: black;
 }
 
-/* SIDE IMAGES */
+/ SIDE IMAGES /
 .side {
     position: absolute;
     top: 50%;
@@ -106,14 +112,14 @@ body {
     border-radius: 10px;
 }
 
-/* ===== GRID ===== */
+/ ===== GRID ===== /
 .grid {
     display: flex;
     gap: 30px;
     padding: 80px 120px;
 }
 
-/* LEFT + RIGHT */
+/ LEFT + RIGHT /
 .left-img,
 .right-img {
     width: 25%;
@@ -122,7 +128,7 @@ body {
     border-radius: 12px;
 }
 
-/* MIDDLE */
+/ MIDDLE */
 .middle {
     width: 50%;
     display: flex;
@@ -180,13 +186,16 @@ body {
 <!-- ===== GRID ===== -->
 <section class="grid" id="work">
 
+    <!-- LEFT -->
     <img src="image1.jpg" class="left-img">
 
+    <!-- MIDDLE -->
     <div class="middle">
         <img src="image2.jpg">
         <img src="image3.jpg">
     </div>
 
+    <!-- RIGHT -->
     <img src="image4.jpg" class="right-img">
 
 </section>
