@@ -48,7 +48,7 @@ body {
     overflow: hidden;
 }
 
-/* ===== BANNER (CLEAN ANIMATION) ===== */
+/* ===== BANNER ===== */
 .banner {
     position: absolute;
     width: 100%;
@@ -69,7 +69,6 @@ body {
     object-fit: contain;
 }
 
-/* CLEAN HEIGHT-ONLY ANIMATION */
 @keyframes bannerResize {
     0% {
         height: 100vh;
@@ -168,14 +167,52 @@ img {
     -webkit-user-drag: none;
 }
 
-/* ===== MOBILE ===== */
+/* ===== MOBILE FIX (ONLY CHANGES HERE) ===== */
 @media (max-width: 900px) {
 
     .header span { font-size: 20px; }
     .header img { width: 50px; }
 
-    .side { display: none; }
+    /* STACK HERO CONTENT */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        padding-bottom: 40px;
+    }
 
+    /* FIX VIDEOS (VISIBLE + STACKED) */
+    .side {
+        position: relative;
+        top: auto;
+        transform: none;
+        width: 90%;
+        max-width: 400px;
+        margin: 15px auto;
+        z-index: 3;
+    }
+
+    .left,
+    .right {
+        left: auto;
+        right: auto;
+    }
+
+    /* TEXT SPACING */
+    .center-text {
+        margin-top: 120px;
+        padding: 0 15px;
+    }
+
+    /* LOGO BALANCE */
+    .center-logo {
+        width: 85vw;
+        opacity: 0.35;
+    }
+
+    /* GRID FIX */
     .grid {
         flex-direction: column;
         padding: 60px 20px;
@@ -210,13 +247,13 @@ img {
     <img src="logo.png" class="center-logo">
 
     <div class="side left">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="auto">
             <source src="video2.mp4" type="video/mp4">
         </video>
     </div>
 
     <div class="side right">
-        <video autoplay muted loop playsinline>
+        <video autoplay muted loop playsinline preload="auto">
             <source src="reel.mp4" type="video/mp4">
         </video>
     </div>
