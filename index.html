@@ -21,88 +21,66 @@
 body{
   background:#000;
   color:white;
-  overflow-x:hidden;
 }
 
 /* ===== BANNER ===== */
 .banner{
   position:relative;
   width:100%;
-  max-width:1080px;
-  margin:0 auto;
 }
 
-.banner picture,
 .banner img{
   width:100%;
+  height:auto;
   display:block;
 }
 
-/* ===== BANNER LOGO ===== */
+/* LOGO */
 .banner-logo{
   position:absolute;
-  left:40px;
+  left:30px;
   top:50%;
   transform:translateY(-50%);
-  width:140px;
-  cursor:pointer;
-}
-
-/* ===== LOCKED CONTENT ===== */
-.locked{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events:none; /* prevents blocking */
+  width:100px;
 }
 
 /* ===== TITLE ===== */
 .title{
-  position:absolute;
-  top:200px;
-  width:100%;
+  margin-top:40px;
   text-align:center;
   opacity:0.3;
 }
 
 .title img{
   width:658px;
-  max-width:80%;
+  max-width:90%;
 }
 
 /* ===== MAIN LOGO ===== */
 .main-logo{
-  position:absolute;
-  top:260px;
-  width:100%;
+  margin-top:20px;
   text-align:center;
   opacity:0.3;
 }
 
 .main-logo img{
-  width:300px;
+  width:250px;
 }
 
-/* ===== DESCRIPTION ===== */
-.description{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
+/* ===== CENTER CONTENT ===== */
+.center{
   text-align:center;
+  margin-top:40px;
 }
 
-.description img{
+.center img{
   width:443px;
-  max-width:80%;
+  max-width:90%;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .buttons{
   margin-top:20px;
-  pointer-events:auto;
 }
 
 .btn{
@@ -120,80 +98,67 @@ body{
 }
 
 /* ===== VIDEOS ===== */
-.video-left,
-.video-right{
-  position:fixed;
-  top:50%;
-  transform:translateY(-50%);
-  width:280px;
-  pointer-events:auto;
+.videos{
+  display:flex;
+  justify-content:space-between;
+  margin:60px 5%;
+  gap:20px;
 }
 
-.video-left{ left:5%; }
-.video-right{ right:5%; }
+.video-box{
+  position:relative;
+  width:48%;
+}
 
-video{
+.video-box video{
   width:100%;
-  cursor:pointer;
+  border-radius:12px;
 }
 
 .video-text{
   position:absolute;
   top:50%;
-  width:100%;
-  text-align:center;
-  transform:translateY(-50%);
+  left:50%;
+  transform:translate(-50%,-50%);
   opacity:0.6;
-  pointer-events:none;
 }
 
 /* ===== IMAGES ===== */
 .images{
-  margin-top:120vh;
-  display:flex;
-  justify-content:space-between;
-  padding:0 5%;
-}
-
-.images-left,
-.images-center,
-.images-right{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-}
-
-.images-center img{
-  margin:10px 0;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  padding:40px 5%;
 }
 
 .images img{
-  width:250px;
+  width:100%;
+  border-radius:10px;
 }
 
 /* ===== MOBILE ===== */
 @media(max-width:768px){
 
-  .video-left,
-  .video-right{
-    display:none;
-  }
-
-  .images{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .images img{
-    width:90%;
-    margin:10px 0;
+  .banner img{
+    content:url("bannerMOBILE.jpg");
   }
 
   .banner-logo{
     left:50%;
-    top:50%;
     transform:translate(-50%,-50%);
-    width:120px;
+    width:90px;
+  }
+
+  .videos{
+    flex-direction:column;
+  }
+
+  .video-box{
+    width:100%;
+  }
+
+  .images{
+    grid-template-columns:1fr;
   }
 }
 </style>
@@ -203,67 +168,55 @@ video{
 
 <!-- BANNER -->
 <div class="banner">
-  <picture>
-    <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
-    <img src="banner.png" alt="">
-  </picture>
-
-  <a href="index.html">
-    <img src="bannerlogo.png" class="banner-logo" alt="">
-  </a>
+  <img src="banner.png">
+  <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- LOCKED UI -->
-<div class="locked">
+<!-- TITLE -->
+<div class="title">
+  <img src="title.png">
+</div>
 
-  <div class="title">
-    <img src="title.png" alt="">
+<!-- LOGO -->
+<div class="main-logo">
+  <img src="logo.png">
+</div>
+
+<!-- DESCRIPTION -->
+<div class="center">
+  <img src="description.png">
+
+  <div class="buttons">
+    <div class="btn" onclick="goPage('work.html')">MY WORK</div>
+    <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
   </div>
-
-  <div class="main-logo">
-    <img src="logo.png" alt="">
-  </div>
-
-  <div class="description">
-    <img src="description.png" alt="">
-
-    <div class="buttons">
-      <div class="btn" onclick="goPage('work.html')">MY WORK</div>
-      <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
-    </div>
-  </div>
-
 </div>
 
 <!-- VIDEOS -->
-<div class="video-left">
-  <video id="reel" loop muted playsinline>
-    <source src="reel.mp4">
-  </video>
-  <div class="video-text" id="reelText">tap for sound</div>
-</div>
+<div class="videos">
 
-<div class="video-right">
-  <video id="video2" loop muted playsinline>
-    <source src="video2.mp4">
-  </video>
-  <div class="video-text" id="video2Text">tap for sound</div>
+  <div class="video-box">
+    <video id="reel" loop muted>
+      <source src="reel.mp4">
+    </video>
+    <div class="video-text" id="reelText">tap for sound</div>
+  </div>
+
+  <div class="video-box">
+    <video id="video2" loop muted>
+      <source src="video2.mp4">
+    </video>
+    <div class="video-text" id="video2Text">tap for sound</div>
+  </div>
+
 </div>
 
 <!-- IMAGES -->
 <div class="images">
-  <div class="images-left">
-    <img src="image4.jpg" alt="">
-  </div>
-
-  <div class="images-center">
-    <img src="image2.jpg" alt="">
-    <img src="image3.jpg" alt="">
-  </div>
-
-  <div class="images-right">
-    <img src="image1.jpg" alt="">
-  </div>
+  <img src="image1.jpg">
+  <img src="image2.jpg">
+  <img src="image3.jpg">
+  <img src="image4.jpg">
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
