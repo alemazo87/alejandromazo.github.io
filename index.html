@@ -34,51 +34,48 @@ body{
   display:block;
 }
 
-/* FIXED: LOGO NOT STRETCHED */
+/* FIXED SIZE (NOT STRETCHED) */
 .banner-logo{
   position:absolute;
-  left:40px;
+  left:30px;
   top:50%;
   transform:translateY(-50%);
-  height:50px; /* controls size cleanly */
+  height:40px;   /* smaller now */
   width:auto;
 }
 
-/* ===== LOCKED BACKGROUND (TITLE + LOGO) ===== */
-.bg-layer{
-  position:fixed;
-  top:120px;
-  width:100%;
+/* ===== TITLE + LOGO SECTION ===== */
+.hero{
+  margin-top:30px;
   text-align:center;
-  z-index:0;
-  pointer-events:none;
 }
 
-.bg-layer .title img{
+/* TITLE */
+.title img{
   width:600px;
+  max-width:80%;
   opacity:0.3;
 }
 
-.bg-layer .logo img{
-  width:280px;
-  opacity:0.3;
+/* LOGO under title */
+.logo img{
+  width:260px;
   margin-top:20px;
+  opacity:0.3;
 }
 
-/* ===== MAIN ===== */
+/* ===== MAIN SECTION ===== */
 .main{
-  margin-top:220px;
+  margin-top:60px;
   display:flex;
   justify-content:center;
   align-items:center;
   gap:60px;
-  position:relative;
-  z-index:2;
 }
 
 /* VIDEOS */
 .side{
-  width:280px;
+  width:300px;
   position:relative;
 }
 
@@ -93,6 +90,7 @@ body{
   left:50%;
   transform:translate(-50%,-50%);
   opacity:0.6;
+  text-align:center;
 }
 
 /* CENTER */
@@ -134,29 +132,21 @@ body{
   align-items:center;
 }
 
-/* LEFT */
-.images .left{
+.left, .right{
   display:flex;
   justify-content:center;
 }
 
-/* CENTER STACK */
-.images .center-stack{
+.center-stack{
   display:flex;
   flex-direction:column;
   gap:25px;
   align-items:center;
 }
 
-/* RIGHT */
-.images .right{
-  display:flex;
-  justify-content:center;
-}
-
 .images img{
   width:100%;
-  max-width:420px; /* BIGGER */
+  max-width:420px;
   border-radius:12px;
 }
 
@@ -171,11 +161,12 @@ body{
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- LOCKED TITLE + LOGO -->
-<div class="bg-layer">
+<!-- TITLE + LOGO (NOW CORRECT POSITION) -->
+<div class="hero">
   <div class="title">
     <img src="title.png">
   </div>
+
   <div class="logo">
     <img src="logo.png">
   </div>
