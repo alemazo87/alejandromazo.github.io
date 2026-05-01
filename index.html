@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
@@ -13,28 +14,49 @@
 * { margin:0; padding:0; box-sizing:border-box; font-family:Orbitron; }
 body { background:black; overflow-x:hidden; user-select:none; }
 
-/* BG PARALLAX */
+/* BACKGROUND (FIXED + CENTERED) */
 .bg {
   position:fixed;
   width:100%;
   height:100%;
   z-index:-1;
 }
+
 .bg img {
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  width:70%;
   opacity:0.3;
 }
-.bg-title { top:10%; z-index:2; }
-.bg-logo { top:30%; z-index:1; }
 
-/* BANNER */
-.banner img {
+.bg-title {
+  top:12%;
+  width:70%;
+  z-index:2;
+}
+
+.bg-logo {
+  top:26%; /* closer to title */
+  width:56%; /* 20% smaller */
+  z-index:1;
+}
+
+/* BANNER FIX */
+.banner {
   width:100%;
   height:100vh;
+  overflow:hidden;
+}
+
+.banner img {
+  width:100%;
+  height:100%;
   object-fit:cover;
+}
+
+/* MOBILE BANNER */
+@media (max-width:768px){
+  .banner img { content:url("banner.jpg"); }
 }
 
 /* FIXED LOGO */
@@ -46,26 +68,18 @@ body { background:black; overflow-x:hidden; user-select:none; }
   z-index:100;
 }
 
-/* CENTER BLOCK */
+/* CENTER SECTION */
 .center-section {
   text-align:center;
-  margin-top:60px;
-  position:relative;
+  margin-top:40px;
 }
 
-.description {
-  width:400px;
-  max-width:90%;
-  margin:auto;
-}
-
-/* VIDEOS */
+/* VIDEOS + DESCRIPTION (FIXED SPACING) */
 .videos {
   display:flex;
   justify-content:center;
-  gap:40px;
-  margin-top:30px;
   align-items:center;
+  gap:20px; /* tighter */
 }
 
 .video-box {
@@ -73,10 +87,17 @@ body { background:black; overflow-x:hidden; user-select:none; }
 }
 
 video {
-  width:250px;
+  width:230px; /* slightly smaller = tighter */
   border-radius:12px;
 }
 
+/* DESCRIPTION */
+.description {
+  width:360px;
+  max-width:90%;
+}
+
+/* GLASS TEXT */
 .glass {
   position:absolute;
   bottom:10px;
@@ -91,7 +112,7 @@ video {
 }
 
 /* BUTTONS */
-.buttons { margin-top:30px; }
+.buttons { margin-top:25px; }
 
 .btn {
   margin:10px;
@@ -101,30 +122,33 @@ video {
   text-decoration:none;
   transition:0.3s;
 }
-.btn:hover { background:white; color:black; transform:scale(1.08); }
+
+.btn:hover {
+  background:white;
+  color:black;
+  transform:scale(1.08);
+}
 
 /* GALLERY */
 .gallery {
   display:flex;
   justify-content:center;
-  gap:30px;
+  gap:25px;
   margin:80px 0;
 }
 
-.left, .right { width:250px; }
+.left,.right { width:250px; }
 .middle {
   display:flex;
   flex-direction:column;
   gap:20px;
-  width:400px;
+  width:380px;
 }
 
 .gallery img { width:100%; }
 
-/* MOBILE */
+/* MOBILE FIX */
 @media (max-width:768px){
-
-  .banner img { content:url("banner.jpg"); }
 
   .videos { flex-direction:column; }
   video { display:none; }
@@ -134,8 +158,9 @@ video {
     height:400px;
     background-size:cover;
   }
+
   .video-box:nth-child(1){ background-image:url("reelminiature.png"); }
-  .video-box:nth-child(2){ background-image:url("video2miniature.png"); }
+  .video-box:nth-child(3){ background-image:url("video2miniature.png"); }
 
   .gallery { flex-direction:column; align-items:center; }
 }
@@ -145,19 +170,23 @@ video {
 
 <body>
 
+<!-- BG -->
 <div class="bg">
   <img src="logo.png" class="bg-logo">
   <img src="title.png" class="bg-title">
 </div>
 
+<!-- FIXED LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
+<!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
 </div>
 
+<!-- CENTER -->
 <div class="center-section">
 
   <div class="videos">
@@ -187,6 +216,7 @@ video {
 
 </div>
 
+<!-- GALLERY -->
 <div class="gallery">
 
   <div class="left">
@@ -208,19 +238,19 @@ video {
 
 <script>
 
-/* DISABLE */
+/* DISABLE RIGHT CLICK */
 document.addEventListener("contextmenu", e=>e.preventDefault());
 
 /* PARALLAX */
 window.addEventListener("scroll",()=>{
   let y=window.scrollY;
-  document.querySelector(".bg-title").style.transform=
-    "translate(-50%,"+y*0.2+"px)";
-  document.querySelector(".bg-logo").style.transform=
-    "translate(-50%,"+y*0.1+"px)";
+  document.querySelector(".bg-title").style.transform =
+    "translate(-50%,"+y*0.15+"px)";
+  document.querySelector(".bg-logo").style.transform =
+    "translate(-50%,"+y*0.08+"px)";
 });
 
-/* VIDEO */
+/* VIDEO TOGGLE */
 function toggleSound(id,el){
   let v=document.getElementById(id);
   if(v.muted){
@@ -232,7 +262,7 @@ function toggleSound(id,el){
   }
 }
 
-/* SOUND */
+/* CLICK SOUND */
 function clickSound(){
   let s=document.getElementById("clickSound");
   s.currentTime=0;
