@@ -22,28 +22,39 @@ body {
   background: #000;
 }
 
-/* Banner container */
+/* Banner */
 .banner {
   position: relative;
   width: 100%;
 }
 
-/* Banner image */
 .banner img {
   width: 100%;
   height: auto;
   display: block;
 }
 
-/* Logo inside banner */
+/* LOGO — controlled properly */
 .banner-logo {
   position: absolute;
   left: 5%;
   top: 50%;
   transform: translateY(-50%);
-  height: 20%;   /* scales relative to banner */
-  width: auto;   /* keeps proportions */
+
+  height: 6vw;        /* responsive size */
+  max-height: 60px;   /* prevents it from being huge */
+  min-height: 30px;   /* prevents it from being tiny */
+
+  width: auto;
   cursor: pointer;
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+  .banner-logo {
+    height: 10vw;
+    max-height: 50px;
+  }
 }
 </style>
 </head>
