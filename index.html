@@ -22,15 +22,27 @@ body {
   background: #000;
 }
 
-/* REAL banner */
+/* Banner container */
 .banner {
+  position: relative;
   width: 100%;
 }
 
+/* Banner image */
 .banner img {
   width: 100%;
-  height: auto; /* keeps correct proportions */
+  height: auto;
   display: block;
+}
+
+/* Logo inside banner */
+.banner-logo {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px; /* adjust size if needed */
+  cursor: pointer;
 }
 </style>
 </head>
@@ -39,6 +51,10 @@ body {
 
 <div class="banner">
   <img src="banner.png" alt="banner">
+
+  <a href="index.html">
+    <img src="bannerlogo.png" class="banner-logo" alt="logo">
+  </a>
 </div>
 
 </body>
