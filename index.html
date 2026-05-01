@@ -31,57 +31,64 @@ body{
 
 .banner img{
   width:100%;
-  height:auto;
   display:block;
 }
 
+/* FIXED SIZE LOGO */
 .banner-logo{
   position:absolute;
   left:40px;
   top:50%;
   transform:translateY(-50%);
-  width:100px;
-  z-index:10;
+  height:60px; /* controlled */
+  width:auto;
 }
 
-/* ===== FIXED BACKGROUND FEEL ===== */
-.fixed-bg{
+/* ===== BACKGROUND LOGO ===== */
+.bg-logo{
   position:fixed;
-  top:120px;
-  width:100%;
+  top:180px;
+  left:50%;
+  transform:translateX(-50%);
+  opacity:0.15;
+  z-index:0;
+}
+
+.bg-logo img{
+  width:400px;
+}
+
+/* ===== TITLE ===== */
+.title{
   text-align:center;
-  pointer-events:none;
+  margin-top:30px;
+  opacity:0.3;
 }
 
-.fixed-bg .title img{
+.title img{
   width:600px;
-  opacity:0.3;
 }
 
-.fixed-bg .logo img{
-  width:300px;
-  opacity:0.3;
-  margin-top:20px;
-}
-
-/* ===== MAIN CONTENT ===== */
+/* ===== MAIN SECTION ===== */
 .main{
-  margin-top:200px;
+  margin-top:60px;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:40px;
+  gap:50px;
+  position:relative;
+  z-index:2;
 }
 
-/* SIDE VIDEOS */
+/* VIDEOS */
 .side{
-  width:220px;
+  width:260px;
   position:relative;
 }
 
 .side video{
   width:100%;
-  border-radius:12px;
+  border-radius:14px;
 }
 
 .video-text{
@@ -90,6 +97,7 @@ body{
   left:50%;
   transform:translate(-50%,-50%);
   opacity:0.6;
+  text-align:center;
 }
 
 /* CENTER */
@@ -98,7 +106,7 @@ body{
 }
 
 .center img{
-  width:600px;
+  width:650px;
   max-width:90%;
 }
 
@@ -121,60 +129,42 @@ body{
   color:black;
 }
 
-/* ===== IMAGE SECTION ===== */
+/* ===== IMAGES ===== */
 .images{
   margin-top:120px;
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  align-items:center;
   padding:0 5%;
+  gap:30px;
 }
 
-.col{
+/* LEFT */
+.images .left{
+  display:flex;
+  justify-content:center;
+}
+
+/* CENTER STACK */
+.images .center-stack{
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:20px;
   align-items:center;
 }
 
+/* RIGHT */
+.images .right{
+  display:flex;
+  justify-content:center;
+}
+
 .images img{
-  width:220px;
-  border-radius:10px;
+  width:100%;
+  max-width:320px;
+  border-radius:12px;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-
-  .banner img{
-    content:url("bannerMOBILE.jpg");
-  }
-
-  .banner-logo{
-    left:50%;
-    transform:translate(-50%,-50%);
-  }
-
-  .fixed-bg{
-    position:static;
-  }
-
-  .main{
-    flex-direction:column;
-    margin-top:40px;
-  }
-
-  .side{
-    display:none;
-  }
-
-  .images{
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .images img{
-    width:90%;
-  }
-}
 </style>
 </head>
 
@@ -186,14 +176,14 @@ body{
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- FIXED BACKGROUND -->
-<div class="fixed-bg">
-  <div class="title">
-    <img src="title.png">
-  </div>
-  <div class="logo">
-    <img src="logo.png">
-  </div>
+<!-- BACKGROUND LOGO -->
+<div class="bg-logo">
+  <img src="logo.png">
+</div>
+
+<!-- TITLE -->
+<div class="title">
+  <img src="title.png">
 </div>
 
 <!-- MAIN -->
@@ -226,18 +216,20 @@ body{
 
 <!-- IMAGES -->
 <div class="images">
-  <div class="col">
+
+  <div class="left">
     <img src="image4.jpg">
   </div>
 
-  <div class="col">
+  <div class="center-stack">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
 
-  <div class="col">
+  <div class="right">
     <img src="image1.jpg">
   </div>
+
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
