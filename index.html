@@ -22,39 +22,33 @@ body {
   background: #000;
 }
 
-/* ===== Banner wrapper (controls size) ===== */
+/* ===== Banner ===== */
 .banner {
   position: relative;
   width: 100%;
-  max-width: 1400px;   /* prevents huge banner on desktop */
-  margin: 0 auto;      /* centers it */
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-/* ===== Banner image (keeps proportions) ===== */
 .banner img {
   width: 100%;
-  height: auto;        /* prevents stretching */
+  height: auto;
   display: block;
 }
 
-/* ===== Logo inside banner ===== */
+/* ===== Logo (exact 2x size) ===== */
 .banner-logo {
   position: absolute;
   left: 5%;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-50%) scale(2); /* 2x size */
 
-  height: 8%;          /* relative to banner */
-  min-height: 30px;
-  max-height: 60px;
-
-  width: auto;
+  transform-origin: left center; /* keeps position correct */
   cursor: pointer;
 }
 
-/* ===== Mobile adjustments ===== */
+/* ===== Mobile ===== */
 @media (max-width: 768px) {
-
   .banner {
     max-width: 100%;
   }
@@ -62,12 +56,10 @@ body {
   .banner-logo {
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
-    height: 12%;
-    max-height: 50px;
+    transform: translate(-50%, -50%) scale(2);
+    transform-origin: center;
   }
 }
-
 </style>
 </head>
 
