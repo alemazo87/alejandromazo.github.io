@@ -25,38 +25,10 @@ body {
   user-select:none;
 }
 
-/* BACKGROUND */
-.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:-1;
-}
-
-.bg img {
-  position:absolute;
-  left:50%;
-  transform:translateX(-50%);
-  opacity:0.3;
-}
-
-.bg-title {
-  top:12%;
-  width:70%;
-  z-index:2;
-}
-
-.bg-logo {
-  top:26%;
-  width:56%;
-  z-index:1;
-}
-
-/* FIXED BANNER */
+/* BANNER */
 .banner {
-  width:100vw;
-  max-width:100%;
-  overflow:hidden;
+  width:100%;
+  position:relative;
 }
 
 .banner img {
@@ -72,19 +44,28 @@ body {
   }
 }
 
-/* FIXED LOGO */
+/* BANNER LOGO (FIXED TO BANNER) */
 .bannerlogo {
-  position:fixed;
+  position:absolute;
   bottom:20px;
   left:20px;
   width:120px;
-  z-index:100;
 }
 
-/* CENTER */
-.center-section {
-  text-align:center;
-  margin-top:40px;
+/* TITLE AFTER BANNER */
+.title-img {
+  display:block;
+  margin:50px auto 20px auto;
+  width:60%;
+  opacity:0.3;
+}
+
+/* LOGO BETWEEN VIDEOS */
+.center-logo {
+  display:block;
+  margin:20px auto;
+  width:40%;
+  opacity:0.3;
 }
 
 /* VIDEOS */
@@ -93,6 +74,7 @@ body {
   justify-content:center;
   align-items:center;
   gap:20px;
+  flex-wrap:wrap;
 }
 
 .video-box {
@@ -102,16 +84,15 @@ body {
 video {
   width:230px;
   border-radius:12px;
-  display:block;
 }
 
 /* DESCRIPTION */
 .description {
-  width:360px;
+  width:320px;
   max-width:90%;
 }
 
-/* GLASS */
+/* GLASS TEXT */
 .glass {
   position:absolute;
   bottom:10px;
@@ -127,6 +108,7 @@ video {
 
 /* BUTTONS */
 .buttons {
+  text-align:center;
   margin-top:25px;
 }
 
@@ -151,10 +133,12 @@ video {
   justify-content:center;
   gap:25px;
   margin:80px 0;
+  flex-wrap:wrap;
 }
 
 .left,.right {
   width:250px;
+  max-width:100%;
 }
 
 .middle {
@@ -162,10 +146,13 @@ video {
   flex-direction:column;
   gap:20px;
   width:380px;
+  max-width:100%;
 }
 
 .gallery img {
   width:100%;
+  height:auto;
+  display:block;
 }
 
 /* MOBILE */
@@ -198,6 +185,9 @@ video {
     flex-direction:column;
     align-items:center;
   }
+
+  .title-img { width:80%; }
+  .center-logo { width:60%; }
 }
 
 </style>
@@ -205,48 +195,46 @@ video {
 
 <body>
 
-<div class="bg">
-  <img src="logo.png" class="bg-logo">
-  <img src="title.png" class="bg-title">
-</div>
-
-<a href="index.html">
-  <img src="bannerlogo.png" class="bannerlogo">
-</a>
-
+<!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
+  <img src="bannerlogo.png" class="bannerlogo">
 </div>
 
-<div class="center-section">
+<!-- TITLE -->
+<img src="title.png" class="title-img">
 
-  <div class="videos">
+<!-- LOGO -->
+<img src="logo.png" class="center-logo">
 
-    <div class="video-box">
-      <video id="v1" muted loop autoplay playsinline>
-        <source src="reel.mp4" type="video/mp4">
-      </video>
-      <div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
-    </div>
+<!-- VIDEOS + DESCRIPTION -->
+<div class="videos">
 
-    <img src="description.png" class="description">
-
-    <div class="video-box">
-      <video id="v2" muted loop autoplay playsinline>
-        <source src="video2.mp4" type="video/mp4">
-      </video>
-      <div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
-    </div>
-
+  <div class="video-box">
+    <video id="v1" muted loop autoplay playsinline>
+      <source src="reel.mp4" type="video/mp4">
+    </video>
+    <div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
   </div>
 
-  <div class="buttons">
-    <a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
-    <a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
+  <img src="description.png" class="description">
+
+  <div class="video-box">
+    <video id="v2" muted loop autoplay playsinline>
+      <source src="video2.mp4" type="video/mp4">
+    </video>
+    <div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
   </div>
 
 </div>
 
+<!-- BUTTONS -->
+<div class="buttons">
+  <a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
+  <a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
+</div>
+
+<!-- GALLERY -->
 <div class="gallery">
 
   <div class="left">
@@ -269,14 +257,6 @@ video {
 <script>
 
 document.addEventListener("contextmenu", e=>e.preventDefault());
-
-window.addEventListener("scroll",()=>{
-  let y=window.scrollY;
-  document.querySelector(".bg-title").style.transform =
-    "translate(-50%,"+y*0.15+"px)";
-  document.querySelector(".bg-logo").style.transform =
-    "translate(-50%,"+y*0.08+"px)";
-});
 
 function toggleSound(id,el){
   let v=document.getElementById(id);
