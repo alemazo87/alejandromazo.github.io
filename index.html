@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo</title>
+<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
 @font-face {
@@ -17,76 +17,87 @@
   padding:0;
   box-sizing:border-box;
   font-family:Orbitron;
+  -webkit-tap-highlight-color:transparent;
 }
 
 body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
+  user-select:none;
+}
+
+/* DISABLE DRAG */
+img{
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
 /* ===== BANNER ===== */
 .banner{
   position:relative;
+  width:100%;
 }
 
 .banner img{
   width:100%;
-  height:auto;
   display:block;
 }
 
-/* FIXED SIZE LOGO (NO STRETCH) */
 .banner-logo{
   position:absolute;
   left:20px;
   top:50%;
   transform:translateY(-50%);
-  height:20px;
+  height:clamp(14px,2vw,20px);
   width:auto;
+  z-index:10;
+  cursor:pointer;
 }
 
-/* ===== FIXED BACKGROUND LAYER ===== */
+/* ================= DESKTOP ================= */
+@media(min-width:769px){
+
 .bg{
   position:fixed;
   top:0;
   left:0;
   width:100%;
-  pointer-events:none;
   text-align:center;
+  pointer-events:none;
+  z-index:1;
 }
 
-/* OFFSET UNDER BANNER */
 .bg-inner{
-  margin-top:140px;
+  margin-top:130px;
 }
 
 .title img{
   width:600px;
-  max-width:90%;
   opacity:.3;
 }
 
 .logo img{
-  width:400px;
-  max-width:70%;
-  opacity:.3;
+  width:300px;
   margin-top:20px;
+  opacity:.3;
 }
 
-/* ===== MAIN CONTENT ===== */
-.content{
-  margin-top:420px;
+.center{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
   text-align:center;
-  padding:40px 20px;
+  z-index:5;
+  animation:fade 1s ease;
 }
 
-.description img{
-  width:600px;
-  max-width:90%;
+.center img{
+  width:900px;
+  max-width:90vw;
 }
 
-/* BUTTONS */
 .buttons{
   margin-top:20px;
 }
@@ -94,52 +105,52 @@ body{
 .btn{
   display:inline-block;
   margin:10px;
-  padding:12px 24px;
-  border:1px solid white;
+  padding:12px 26px;
+  border:1px solid #fff;
   cursor:pointer;
-  transition:.2s;
+  transition:.25s;
 }
 
 .btn:hover{
-  background:white;
-  color:black;
+  background:#fff;
+  color:#000;
 }
 
-/* ===== VIDEOS ===== */
-.videos{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  margin:80px 0;
-  flex-wrap:wrap;
+/* VIDEOS */
+.side{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  width:260px;
 }
+
+.left{ left:5%; }
+.right{ right:5%; }
 
 .video-wrap{
   position:relative;
 }
 
-.videos video{
-  width:300px;
+.side video{
+  width:100%;
   border-radius:12px;
-  cursor:pointer;
 }
 
-/* TEXT CENTERED */
 .video-text{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
   opacity:.6;
-  pointer-events:none;
+  font-size:12px;
 }
 
-/* ===== IMAGES ===== */
+/* IMAGES */
 .images{
+  margin-top:120vh;
   display:flex;
   justify-content:space-between;
-  padding:40px;
-  gap:20px;
+  padding:0 5%;
 }
 
 .col{
@@ -150,62 +161,114 @@ body{
 }
 
 .images img{
-  width:300px;
+  width:320px;
 }
 
-/* ===== MOBILE ===== */
+/* ANIMATION */
+@keyframes fade{
+  from{opacity:0; transform:translate(-50%,-45%);}
+  to{opacity:1; transform:translate(-50%,-50%);}
+}
+
+}
+
+/* ================= MOBILE ================= */
 @media(max-width:768px){
 
-.bg{
-  position:static;
+.banner img{
+  height:140px;
+  object-fit:cover;
 }
 
-.bg-inner{
-  margin-top:20px;
-}
-
-.content{
-  margin-top:40px;
-}
-
-.videos{
-  flex-direction:column;
-  align-items:center;
-}
-
-.images{
-  flex-direction:column;
-  align-items:center;
-}
-
-.images img{
-  width:90%;
-}
-
+/* floating logo when scrolling */
 .banner-logo{
+  position:fixed;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
   height:16px;
 }
 
+.hero{
+  text-align:center;
+  margin-top:20px;
 }
 
-/* DISABLE DRAG */
-img{
-  user-select:none;
-  -webkit-user-drag:none;
+.hero .title img{
+  width:90%;
+  opacity:.5;
 }
 
+.hero .logo img{
+  width:60%;
+  margin-top:15px;
+  opacity:.3;
+}
+
+.center-mobile{
+  text-align:center;
+  margin-top:30px;
+}
+
+.center-mobile img{
+  width:95%;
+}
+
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:15px;
+}
+
+.videos{
+  margin-top:30px;
+}
+
+.video-wrap{
+  position:relative;
+  width:92%;
+  margin:20px auto;
+}
+
+.video-wrap video{
+  width:100%;
+  border-radius:12px;
+}
+
+.images{
+  padding:0 10px;
+  margin-top:20px;
+}
+
+.images img{
+  width:100%;
+  margin:12px 0;
+  border-radius:10px;
+}
+
+}
+
+/* disable right click */
+body{
+  -webkit-user-select:none;
+}
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
 <!-- BANNER -->
 <div class="banner">
-  <img src="banner.png">
-  <img src="bannerlogo.png" class="banner-logo">
+  <picture>
+    <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
+    <img src="banner.png">
+  </picture>
+
+  <img src="bannerlogo.png" class="banner-logo" onclick="go('index.html')">
 </div>
 
-<!-- FIXED TITLE + LOGO -->
+<!-- DESKTOP BACKGROUND -->
 <div class="bg">
   <div class="bg-inner">
     <div class="title"><img src="title.png"></div>
@@ -213,82 +276,98 @@ img{
   </div>
 </div>
 
-<!-- CONTENT -->
-<div class="content">
-
-  <div class="description">
-    <img src="description.png">
-  </div>
+<!-- CENTER -->
+<div class="center">
+  <img src="description.png">
 
   <div class="buttons">
     <div class="btn" onclick="go('work.html')">MY WORK</div>
     <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
+</div>
 
-  <!-- VIDEOS -->
-  <div class="videos">
+<!-- VIDEOS DESKTOP -->
+<div class="side left">
+  <div class="video-wrap">
+    <video id="v1" src="reel.mp4" muted loop autoplay playsinline></video>
+    <div class="video-text" id="t1">tap for sound</div>
+  </div>
+</div>
 
-    <div class="video-wrap">
-      <video id="reel" src="reel.mp4" muted loop autoplay playsinline></video>
-      <div class="video-text" id="text1">tap for sound</div>
-    </div>
+<div class="side right">
+  <div class="video-wrap">
+    <video id="v2" src="video2.mp4" muted loop autoplay playsinline></video>
+    <div class="video-text" id="t2">tap for sound</div>
+  </div>
+</div>
 
-    <div class="video-wrap">
-      <video id="video2" src="video2.mp4" muted loop autoplay playsinline></video>
-      <div class="video-text" id="text2">tap for sound</div>
-    </div>
+<!-- MOBILE -->
+<div class="hero">
+  <div class="title"><img src="title.png"></div>
+  <div class="logo"><img src="logo.png"></div>
+</div>
 
+<div class="center-mobile">
+  <img src="description.png">
+
+  <div class="buttons">
+    <div class="btn" onclick="go('work.html')">MY WORK</div>
+    <div class="btn" onclick="go('contact.html')">CONTACT</div>
+  </div>
+</div>
+
+<div class="videos">
+  <div class="video-wrap">
+    <video id="mv1" src="reel.mp4" muted loop autoplay playsinline></video>
+    <div class="video-text" id="mt1">tap for sound</div>
   </div>
 
+  <div class="video-wrap">
+    <video id="mv2" src="video2.mp4" muted loop autoplay playsinline></video>
+    <div class="video-text" id="mt2">tap for sound</div>
+  </div>
 </div>
 
 <!-- IMAGES -->
 <div class="images">
-
-  <div class="col">
-    <img src="image4.jpg">
-  </div>
-
+  <div class="col"><img src="image4.jpg"></div>
   <div class="col">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
-
-  <div class="col">
-    <img src="image1.jpg">
-  </div>
-
+  <div class="col"><img src="image1.jpg"></div>
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
 
-/* NAV */
+/* BUTTON SOUND */
 function go(page){
   const s=document.getElementById("clickSound");
   s.currentTime=0;
   s.play().catch(()=>{});
-  setTimeout(()=>{window.location.href=page;},120);
+  setTimeout(()=>location.href=page,120);
 }
 
-/* VIDEO TOGGLE SOUND */
-function setup(id,textId){
+/* VIDEO TOGGLE */
+function setup(videoId,textId){
+  const v=document.getElementById(videoId);
+  const t=document.getElementById(textId);
 
-  const vid = document.getElementById(id);
-  const txt = document.getElementById(textId);
-
-  vid.muted = true;
-  vid.play().catch(()=>{});
-
-  vid.onclick = ()=>{
-    vid.muted = !vid.muted;
-    txt.innerText = vid.muted ? "tap for sound" : "tap to mute";
-  };
+  v.onclick=()=>{
+    v.muted=!v.muted;
+    t.innerText = v.muted ? "tap for sound" : "tap to mute";
+  }
 }
 
-setup("reel","text1");
-setup("video2","text2");
+/* DESKTOP */
+setup("v1","t1");
+setup("v2","t2");
+
+/* MOBILE */
+setup("mv1","mt1");
+setup("mv2","mt2");
 
 </script>
 
