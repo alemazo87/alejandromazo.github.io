@@ -3,208 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
 
+/* FONT */
 @font-face {
-  font-family: Orbitron;
-  src: url("Orbitron.ttf");
+  font-family: 'Orbitron';
+  src: url('Orbitron.ttf') format('truetype');
 }
 
 * {
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Orbitron;
+  font-family:'Orbitron', sans-serif;
 }
 
 body {
   background:black;
+  color:white;
   overflow-x:hidden;
-  user-select:none;
+  text-align:center;
 }
 
-/* BANNER */
-.banner {
-  width:100%;
-  position:relative;
-}
-
-.banner img:first-child {
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* MOBILE BANNER */
-@media (max-width:768px){
-  .banner img:first-child {
-    content:url("banner.jpg");
-  }
-}
-
-/* BANNER LOGO (TRUE SIZE) */
-.bannerlogo {
-  position:absolute;
-  bottom:20px;
-  left:20px;
-  height:auto;
-  width:auto;
-  max-width:140px;
-}
-
-/* BACKGROUND LOCK (TITLE + LOGO) */
-.bg-lock {
+/* BACKGROUND */
+.bg {
   position:fixed;
   width:100%;
   height:100%;
   top:0;
   left:0;
-  z-index:-1;
-  pointer-events:none;
+  z-index:-2;
 }
 
-.bg-title {
-  position:absolute;
-  top:80px;
+.bg img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* LOGO OVERLAY */
+.bg-logo {
+  position:fixed;
+  top:50%;
   left:50%;
-  transform:translateX(-50%);
+  transform:translate(-50%, -50%);
   width:60%;
   opacity:0.3;
+  z-index:-1;
 }
 
-.bg-logo {
-  position:absolute;
-  top:140px; /* closer to title */
-  left:50%;
-  transform:translateX(-50%);
-  width:48%; /* slightly smaller */
-  opacity:0.3;
+/* NAV LOGO (300% BIGGER + PARALLAX) */
+.bannerlogo {
+  position:fixed;
+  top:20px;
+  left:20px;
+  max-width:360px;
+  z-index:10;
 }
 
-/* VIDEOS */
-.videos {
+/* CENTER MEDIA */
+.center-media {
+  margin-top:140px;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:20px;
+  gap:30px;
   flex-wrap:wrap;
-  margin-top:120px;
-}
-
-.video-box {
-  position:relative;
 }
 
 video {
-  width:230px;
+  width:260px;
   border-radius:12px;
 }
 
-/* DESCRIPTION */
-.description {
-  width:320px;
-  max-width:90%;
-}
-
-/* GLASS TEXT */
-.glass {
-  position:absolute;
-  bottom:10px;
-  left:50%;
-  transform:translateX(-50%);
-  backdrop-filter:blur(10px);
-  background:rgba(255,255,255,0.1);
-  padding:6px 12px;
-  border-radius:10px;
-  font-size:12px;
-  cursor:pointer;
-}
-
-/* BUTTONS */
-.buttons {
-  text-align:center;
-  margin-top:25px;
-}
-
-.btn {
-  margin:10px;
-  padding:14px 28px;
-  border:1px solid white;
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-}
-
-.btn:hover {
-  background:white;
-  color:black;
-  transform:scale(1.08);
-}
-
-/* GALLERY */
-.gallery {
-  display:flex;
-  justify-content:center;
-  gap:25px;
-  margin:80px 0;
-  flex-wrap:wrap;
-}
-
-.left,.right {
-  width:250px;
-  max-width:100%;
-}
-
-.middle {
-  display:flex;
-  flex-direction:column;
+/* GRID */
+.grid {
+  margin:80px auto;
+  width:90%;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
   gap:20px;
-  width:380px;
-  max-width:100%;
 }
 
-.gallery img {
+.grid img {
   width:100%;
   height:auto;
   display:block;
+  border-radius:10px;
 }
 
 /* MOBILE */
 @media (max-width:768px){
 
-  .videos {
+  .center-media {
     flex-direction:column;
-    margin-top:140px;
   }
 
   video {
-    display:none;
+    width:90%;
   }
 
-  .video-box {
-    width:250px;
-    height:400px;
-    background-size:cover;
-    background-position:center;
+  .grid {
+    grid-template-columns:1fr;
   }
 
-  .video-box:nth-child(1){
-    background-image:url("reelminiature.png");
+  .bannerlogo {
+    max-width:200px;
   }
-
-  .video-box:nth-child(3){
-    background-image:url("video2miniature.png");
-  }
-
-  .gallery {
-    flex-direction:column;
-    align-items:center;
-  }
-
-  .bg-title { width:80%; }
-  .bg-logo { width:65%; top:120px; }
 }
 
 </style>
@@ -212,85 +120,50 @@ video {
 
 <body>
 
-<!-- LOCKED BACKGROUND -->
-<div class="bg-lock">
-  <img src="title.png" class="bg-title">
-  <img src="logo.png" class="bg-logo">
+<!-- BACKGROUND -->
+<div class="bg">
+  <img src="video2miniature.png">
 </div>
 
-<!-- BANNER -->
-<div class="banner">
-  <img src="banner.png">
-  <img src="bannerlogo.png" class="bannerlogo">
-</div>
+<!-- LOGO OVERLAY -->
+<img src="logo.png" class="bg-logo">
 
-<!-- VIDEOS + DESCRIPTION -->
-<div class="videos">
+<!-- NAV -->
+<a href="index.html">
+  <img src="bannerlogo.png" class="bannerlogo" id="navLogo">
+</a>
 
-  <div class="video-box">
-    <video id="v1" muted loop autoplay playsinline>
-      <source src="reel.mp4" type="video/mp4">
-    </video>
-    <div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
-  </div>
+<!-- CENTER MEDIA -->
+<div class="center-media">
 
-  <img src="description.png" class="description">
+  <video muted loop autoplay playsinline>
+    <source src="reel.mp4" type="video/mp4">
+  </video>
 
-  <div class="video-box">
-    <video id="v2" muted loop autoplay playsinline>
-      <source src="video2.mp4" type="video/mp4">
-    </video>
-    <div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
-  </div>
+  <img src="logo.png" style="width:300px; opacity:0.3;">
+
+  <video muted loop autoplay playsinline>
+    <source src="video2.mp4" type="video/mp4">
+  </video>
 
 </div>
 
-<!-- BUTTONS -->
-<div class="buttons">
-  <a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
-  <a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
+<!-- GRID -->
+<div class="grid">
+  <img src="image1.jpg">
+  <img src="image2.jpg">
+  <img src="image3.jpg">
+  <img src="image4.jpg">
 </div>
-
-<!-- GALLERY -->
-<div class="gallery">
-
-  <div class="left">
-    <img src="image4.jpg">
-  </div>
-
-  <div class="middle">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
-  </div>
-
-  <div class="right">
-    <img src="image1.jpg">
-  </div>
-
-</div>
-
-<audio id="clickSound" src="click.mp3"></audio>
 
 <script>
 
-document.addEventListener("contextmenu", e=>e.preventDefault());
-
-function toggleSound(id,el){
-  let v=document.getElementById(id);
-  if(v.muted){
-    v.muted=false;
-    el.innerText="tap to mute";
-  } else {
-    v.muted=true;
-    el.innerText="tap for sound";
-  }
-}
-
-function clickSound(){
-  let s=document.getElementById("clickSound");
-  s.currentTime=0;
-  s.play();
-}
+/* PARALLAX NAV LOGO */
+window.addEventListener("scroll",()=>{
+  let y = window.scrollY;
+  document.getElementById("navLogo").style.transform =
+    "translateY(" + (y * 0.3) + "px)";
+});
 
 </script>
 
