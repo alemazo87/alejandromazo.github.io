@@ -31,20 +31,20 @@ body{
 
 .banner img{
   width:100%;
+  height:auto;
   display:block;
 }
 
-/* FIXED SIZE LOGO */
 .banner-logo{
   position:absolute;
   left:25px;
   top:50%;
   transform:translateY(-50%);
-  height:28px; /* smaller */
+  height:28px;
   width:auto;
 }
 
-/* ===== BACKGROUND TITLE + LOGO ===== */
+/* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
   top:120px;
@@ -76,7 +76,6 @@ body{
   z-index:2;
 }
 
-/* VIDEOS */
 .side{
   width:280px;
   position:relative;
@@ -95,7 +94,6 @@ body{
   opacity:0.6;
 }
 
-/* CENTER */
 .center{
   text-align:center;
 }
@@ -105,7 +103,6 @@ body{
   max-width:90%;
 }
 
-/* BUTTONS */
 .buttons{
   margin-top:20px;
 }
@@ -118,86 +115,33 @@ body{
   cursor:pointer;
 }
 
-.btn:hover{
-  background:white;
-  color:black;
-}
-
 /* ===== IMAGES ===== */
 .images{
   margin-top:140px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  align-items:stretch;
   padding:0 6%;
 }
 
-/* LEFT */
-.left{
+.left, .right{
   width:32%;
-  display:flex;
-  justify-content:center;
 }
 
-/* CENTER STACK */
 .center-stack{
   width:32%;
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
-  height:100%;
+  gap:10px;
 }
 
-/* RIGHT */
-.right{
-  width:32%;
-  display:flex;
-  justify-content:center;
-}
-
-/* IMAGES SIZE */
-.left img,
-.right img{
+.images img{
   width:100%;
-  max-width:420px;
-}
-
-.center-stack img{
-  width:100%;
-}
-
-/* MATCH HEIGHT LOGIC */
-.center-stack{
-  height:420px;
-}
-
-.center-stack img{
-  height:48%;
-  object-fit:cover;
+  border-radius:10px;
 }
 
 /* ===== MOBILE ===== */
 @media(max-width:768px){
-
-  .banner picture img{
-    content:none;
-  }
-
-  .banner-logo{
-    height:28px;
-  }
-
-  .bg-layer{
-    top:100px;
-  }
-
-  .bg-layer .title img{
-    width:90%;
-  }
-
-  .bg-layer .logo img{
-    width:70%;
-  }
 
   .main{
     flex-direction:column;
@@ -208,20 +152,17 @@ body{
     display:none;
   }
 
-  /* DESCRIPTION */
   .center img{
     width:100%;
     transform:scale(1.5);
   }
 
-  /* BUTTONS SIDE BY SIDE */
   .buttons{
     display:flex;
     justify-content:center;
     gap:10px;
   }
 
-  /* VIDEO THUMBS */
   .video-thumb{
     width:90%;
     margin:20px auto;
@@ -240,13 +181,11 @@ body{
     opacity:0.6;
   }
 
-  /* IMAGES STACK */
   .images{
     flex-direction:column;
   }
 
   .images img{
-    width:100%;
     margin:15px 0;
   }
 }
@@ -260,19 +199,19 @@ body{
 <div class="banner">
   <picture>
     <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
-    <img src="banner.png">
+    <img src="banner.png" alt="">
   </picture>
 
-  <img src="bannerlogo.png" class="banner-logo">
+  <img src="bannerlogo.png" class="banner-logo" alt="">
 </div>
 
 <!-- BACKGROUND -->
 <div class="bg-layer">
   <div class="title">
-    <img src="title.png">
+    <img src="title.png" alt="">
   </div>
   <div class="logo">
-    <img src="logo.png">
+    <img src="logo.png" alt="">
   </div>
 </div>
 
@@ -280,14 +219,14 @@ body{
 <div class="main">
 
   <div class="side">
-    <video id="reel" loop muted>
+    <video id="reel" loop muted playsinline>
       <source src="reel.mp4">
     </video>
     <div class="video-text" id="reelText">tap for sound</div>
   </div>
 
   <div class="center">
-    <img src="description.png">
+    <img src="description.png" alt="">
 
     <div class="buttons">
       <div class="btn" onclick="goPage('work.html')">MY WORK</div>
@@ -296,7 +235,7 @@ body{
   </div>
 
   <div class="side">
-    <video id="video2" loop muted>
+    <video id="video2" loop muted playsinline>
       <source src="video2.mp4">
     </video>
     <div class="video-text" id="video2Text">tap for sound</div>
@@ -304,33 +243,25 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEO THUMBNAILS -->
-<div class="video-thumb">
-  <img src="reelminiature.png">
+<!-- MOBILE VIDEO -->
+<div class="video-thumb" onclick="openVideo('reel.mp4')">
+  <img src="reelminiature.png" alt="">
   <span>tap to play</span>
 </div>
 
-<div class="video-thumb">
-  <img src="video2miniature.png">
+<div class="video-thumb" onclick="openVideo('video2.mp4')">
+  <img src="video2miniature.png" alt="">
   <span>tap to play</span>
 </div>
 
 <!-- IMAGES -->
 <div class="images">
-
-  <div class="left">
-    <img src="image4.jpg">
-  </div>
-
+  <div class="left"><img src="image4.jpg" alt=""></div>
   <div class="center-stack">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
+    <img src="image2.jpg" alt="">
+    <img src="image3.jpg" alt="">
   </div>
-
-  <div class="right">
-    <img src="image1.jpg">
-  </div>
-
+  <div class="right"><img src="image1.jpg" alt=""></div>
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
@@ -347,6 +278,7 @@ function setup(v,t){
   let vid=document.getElementById(v);
   let txt=document.getElementById(t);
 
+  vid.muted = true;
   vid.play().catch(()=>{});
 
   vid.onclick=()=>{
@@ -362,6 +294,25 @@ function setup(v,t){
 
 setup("reel","reelText");
 setup("video2","video2Text");
+
+/* MOBILE VIDEO */
+function openVideo(src){
+  let v=document.createElement("video");
+  v.src=src;
+  v.controls=true;
+  v.autoplay=true;
+
+  v.style.position="fixed";
+  v.style.top=0;
+  v.style.left=0;
+  v.style.width="100%";
+  v.style.height="100%";
+  v.style.zIndex=999;
+
+  document.body.appendChild(v);
+
+  v.onclick = () => v.remove();
+}
 </script>
 
 </body>
