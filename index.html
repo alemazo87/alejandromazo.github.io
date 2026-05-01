@@ -28,7 +28,7 @@ body {
   user-select: none;
 }
 
-/* BACKGROUND LOCK */
+/* LOCKED BACKGROUND */
 .bg {
   position: fixed;
   width: 100%;
@@ -36,31 +36,43 @@ body {
   z-index: -1;
 }
 
-.bg-title, .bg-logo {
+.bg img {
   position: absolute;
   width: 100%;
   opacity: 0.3;
+  pointer-events: none;
 }
 
-.bg-title { top: 10%; }
-.bg-logo { bottom: 5%; }
+.bg-title {
+  top: 5%;
+}
 
-/* BANNER */
+.bg-logo {
+  top: 20%;
+}
+
+/* BANNER (FIXED) */
 .banner {
-  height: 100vh;
+  width: 100%;
   overflow: hidden;
 }
 
 .banner img {
   width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  animation: bannerAnim 2.5s ease forwards;
+  height: auto;
+  display: block;
+  animation: bannerAnim 2s ease forwards;
 }
 
 @keyframes bannerAnim {
-  0% { filter: brightness(2); height: 100vh; }
-  100% { filter: brightness(1); height: auto; }
+  0% {
+    filter: brightness(2);
+    transform: scale(1.2);
+  }
+  100% {
+    filter: brightness(1);
+    transform: scale(1);
+  }
 }
 
 /* FIXED LOGO */
@@ -69,43 +81,43 @@ body {
   bottom: 20px;
   left: 20px;
   width: 120px;
-  z-index: 10;
+  z-index: 100;
 }
 
 /* TITLE */
 .main-title {
   text-align: center;
-  font-size: 60px;
-  margin: 80px 0 40px;
-  letter-spacing: 5px;
+  font-size: 55px;
+  margin-top: 60px;
+  letter-spacing: 6px;
   opacity: 0.8;
 }
 
-/* HERO SECTION */
+/* HERO LAYOUT */
 .hero {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  grid-template-columns: 1fr 1.4fr 1fr;
   align-items: center;
   gap: 40px;
-  padding: 0 5%;
+  padding: 60px 5%;
 }
 
 /* SIDE IMAGES */
 .side-img {
   width: 100%;
-  max-height: 500px;
+  height: 420px;
   object-fit: cover;
 }
 
-/* CENTER */
+/* CENTER BLOCK */
 .center {
-  text-align: center;
   position: relative;
+  text-align: center;
 }
 
-.center img.logo-big {
+.center-logo {
   width: 100%;
-  opacity: 0.2;
+  opacity: 0.15;
 }
 
 .description {
@@ -116,7 +128,7 @@ body {
   width: 70%;
 }
 
-/* VIDEOS */
+/* VIDEOS (ALIGNED WITH CENTER) */
 .videos {
   margin-top: 40px;
   display: flex;
@@ -130,7 +142,7 @@ body {
 
 video {
   width: 260px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
 /* GLASS TEXT */
@@ -150,17 +162,17 @@ video {
 /* BUTTONS */
 .buttons {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-block;
   margin: 10px;
-  padding: 14px 30px;
+  padding: 14px 28px;
   border: 1px solid white;
   text-decoration: none;
   color: white;
-  transition: all 0.4s ease;
+  transition: 0.3s ease;
 }
 
 .btn:hover {
@@ -169,26 +181,27 @@ video {
   transform: scale(1.1);
 }
 
-/* BOTTOM GRID */
+/* BOTTOM SECTION (MATCH MOCK) */
 .bottom {
-  margin: 80px 5%;
   display: grid;
   grid-template-columns: 1fr 1.5fr 1fr;
   gap: 20px;
+  margin: 80px 5%;
+  align-items: center;
 }
 
 .bottom img {
   width: 100%;
-  border-radius: 10px;
+  height: auto;
 }
 
-.middle-stack {
+.middle {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* MOBILE */
+/* MOBILE FIX */
 @media (max-width: 768px) {
 
   .banner img {
@@ -197,7 +210,11 @@ video {
 
   .hero {
     grid-template-columns: 1fr;
-    text-align: center;
+    gap: 20px;
+  }
+
+  .side-img {
+    height: auto;
   }
 
   .videos {
@@ -212,6 +229,7 @@ video {
     width: 250px;
     height: 400px;
     background-size: cover;
+    background-position: center;
   }
 
   .video-box:nth-child(1) {
@@ -258,14 +276,14 @@ video {
 <!-- HERO -->
 <section class="hero">
 
-  <img src="image4.jpg" class="side-img">
+  <img src="image1.jpg" class="side-img">
 
   <div class="center">
-    <img src="logo.png" class="logo-big">
+    <img src="logo.png" class="center-logo">
     <img src="description.png" class="description">
   </div>
 
-  <img src="image1.jpg" class="side-img">
+  <img src="image4.jpg" class="side-img">
 
 </section>
 
@@ -276,18 +294,14 @@ video {
     <video id="v1" muted loop autoplay>
       <source src="reel.mp4">
     </video>
-    <div class="glass" onclick="toggleSound('v1', this)">
-      tap for sound
-    </div>
+    <div class="glass" onclick="toggleSound('v1', this)">tap for sound</div>
   </div>
 
   <div class="video-box">
     <video id="v2" muted loop autoplay>
       <source src="video2.mp4">
     </video>
-    <div class="glass" onclick="toggleSound('v2', this)">
-      tap for sound
-    </div>
+    <div class="glass" onclick="toggleSound('v2', this)">tap for sound</div>
   </div>
 
 </div>
@@ -298,12 +312,12 @@ video {
   <a href="contact.html" class="btn">CONTACT</a>
 </div>
 
-<!-- BOTTOM SECTION -->
+<!-- BOTTOM -->
 <section class="bottom">
 
   <img src="image1.jpg">
 
-  <div class="middle-stack">
+  <div class="middle">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
@@ -314,251 +328,10 @@ video {
 
 <script>
 
-/* RIGHT CLICK DISABLE */
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-/* DEVTOOLS BLOCK */
-document.onkeydown = function(e) {
-  if (e.keyCode == 123) return false;
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
-};
-
-/* VIDEO TOGGLE */
-function toggleSound(id, el) {
-  let v = document.getElementById(id);
-
-  if (v.muted) {
-    v.muted = false;
-    el.innerText = "tap to mute";
-  } else {
-    v.muted = true;
-    el.innerText = "tap for sound";
-  }
-}
-
-</script>
-
-</body>
-</html>  100% {
-    filter: brightness(1);
-    height: auto;
-  }
-}
-
-/* FIXED LOGO */
-.bannerlogo {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 120px;
-  z-index: 10;
-}
-
-/* CONTENT */
-.content {
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.title-spacer {
-  margin-top: 50px;
-}
-
-/* DESCRIPTION CENTER */
-.description {
-  width: 500px;
-  max-width: 90%;
-  margin: 40px auto;
-}
-
-/* VIDEOS */
-.video-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-
-.video-box {
-  position: relative;
-}
-
-video {
-  width: 280px;
-  border-radius: 12px;
-}
-
-/* GLASS TEXT */
-.glass {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(12px);
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-/* BUTTONS */
-.buttons {
-  margin-top: 30px;
-}
-
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 14px 30px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  transition: all 0.4s ease;
-}
-
-.btn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.08);
-}
-
-/* IMAGE GRID SECTION */
-.gallery {
-  margin-top: 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  gap: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* CENTER STACK */
-.center-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-  .banner img {
-    content: url("banner.jpg");
-  }
-
-  .video-row {
-    flex-direction: column;
-  }
-
-  video {
-    display: none;
-  }
-
-  .video-box {
-    width: 250px;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .video-box:nth-child(1) {
-    background-image: url("reelminiature.png");
-  }
-
-  .video-box:nth-child(2) {
-    background-image: url("video2miniature.png");
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- BACKGROUND -->
-<div class="bg">
-  <img src="title.png" class="bg-title">
-  <img src="logo.png" class="bg-logo">
-</div>
-
-<!-- FIXED LOGO -->
-<a href="index.html">
-  <img src="bannerlogo.png" class="bannerlogo">
-</a>
-
-<!-- BANNER -->
-<section class="banner">
-  <img src="banner.png">
-</section>
-
-<!-- CONTENT -->
-<section class="content">
-
-  <div class="title-spacer"></div>
-
-  <!-- VIDEOS + DESCRIPTION -->
-  <div class="video-row">
-
-    <div class="video-box">
-      <video id="v1" loop muted autoplay>
-        <source src="reel.mp4">
-      </video>
-      <div class="glass" onclick="toggleSound('v1', this)">
-        tap for sound
-      </div>
-    </div>
-
-    <img src="description.png" class="description">
-
-    <div class="video-box">
-      <video id="v2" loop muted autoplay>
-        <source src="video2.mp4">
-      </video>
-      <div class="glass" onclick="toggleSound('v2', this)">
-        tap for sound
-      </div>
-    </div>
-
-  </div>
-
-  <!-- BUTTONS -->
-  <div class="buttons">
-    <a href="work.html" class="btn">MY WORK</a>
-    <a href="contact.html" class="btn">CONTACT</a>
-  </div>
-
-  <!-- IMAGE SECTION -->
-  <div class="gallery">
-
-    <img src="image4.jpg">
-
-    <div class="center-stack">
-      <img src="image2.jpg">
-      <img src="image3.jpg">
-    </div>
-
-    <img src="image1.jpg">
-
-  </div>
-
-</section>
-
-<script>
-
 /* DISABLE RIGHT CLICK */
 document.addEventListener("contextmenu", e => e.preventDefault());
 
-/* DISABLE DEVTOOLS */
+/* DEVTOOLS */
 document.onkeydown = function(e) {
   if (e.keyCode == 123) return false;
   if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
