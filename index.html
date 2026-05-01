@@ -31,7 +31,7 @@ body {
   position:relative;
 }
 
-.banner img {
+.banner img:first-child {
   width:100%;
   height:auto;
   display:block;
@@ -39,32 +39,47 @@ body {
 
 /* MOBILE BANNER */
 @media (max-width:768px){
-  .banner img {
+  .banner img:first-child {
     content:url("banner.jpg");
   }
 }
 
-/* BANNER LOGO (FIXED TO BANNER) */
+/* BANNER LOGO (TRUE SIZE) */
 .bannerlogo {
   position:absolute;
   bottom:20px;
   left:20px;
-  width:120px;
+  height:auto;
+  width:auto;
+  max-width:140px;
 }
 
-/* TITLE AFTER BANNER */
-.title-img {
-  display:block;
-  margin:50px auto 20px auto;
+/* BACKGROUND LOCK (TITLE + LOGO) */
+.bg-lock {
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+  pointer-events:none;
+}
+
+.bg-title {
+  position:absolute;
+  top:80px;
+  left:50%;
+  transform:translateX(-50%);
   width:60%;
   opacity:0.3;
 }
 
-/* LOGO BETWEEN VIDEOS */
-.center-logo {
-  display:block;
-  margin:20px auto;
-  width:40%;
+.bg-logo {
+  position:absolute;
+  top:140px; /* closer to title */
+  left:50%;
+  transform:translateX(-50%);
+  width:48%; /* slightly smaller */
   opacity:0.3;
 }
 
@@ -75,6 +90,7 @@ body {
   align-items:center;
   gap:20px;
   flex-wrap:wrap;
+  margin-top:120px;
 }
 
 .video-box {
@@ -160,6 +176,7 @@ video {
 
   .videos {
     flex-direction:column;
+    margin-top:140px;
   }
 
   video {
@@ -186,8 +203,8 @@ video {
     align-items:center;
   }
 
-  .title-img { width:80%; }
-  .center-logo { width:60%; }
+  .bg-title { width:80%; }
+  .bg-logo { width:65%; top:120px; }
 }
 
 </style>
@@ -195,17 +212,17 @@ video {
 
 <body>
 
+<!-- LOCKED BACKGROUND -->
+<div class="bg-lock">
+  <img src="title.png" class="bg-title">
+  <img src="logo.png" class="bg-logo">
+</div>
+
 <!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
   <img src="bannerlogo.png" class="bannerlogo">
 </div>
-
-<!-- TITLE -->
-<img src="title.png" class="title-img">
-
-<!-- LOGO -->
-<img src="logo.png" class="center-logo">
 
 <!-- VIDEOS + DESCRIPTION -->
 <div class="videos">
