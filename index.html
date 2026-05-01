@@ -4,139 +4,182 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE</title>
 
 <style>
 
-/* ===== BASE ===== */
+/* FONT */
+@font-face {
+  font-family: Orbitron;
+  src: url("Orbitron.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Orbitron;
+}
+
 body {
-    margin: 0;
-    background: black;
-    font-family: 'Orbitron', sans-serif;
-    color: white;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+  user-select: none;
 }
 
-/* ===== BUTTON FIX ===== */
-.btn {
-    border: 2px solid white !important;
-    color: white !important;
-}
-.btn:hover {
-    background: white;
-    color: black !important;
+/* BACKGROUND LOCK */
+.bg-lock {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 900px) {
+.bg-title {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  opacity: 0.3;
+}
 
-/* ===== BANNER ===== */
+.bg-logo {
+  position: absolute;
+  bottom: 10%;
+  width: 100%;
+  opacity: 0.3;
+}
+
+/* FIXED BANNER LOGO */
+.bannerlogo-fixed {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 120px;
+  z-index: 10;
+}
+
+/* BANNER */
 .banner {
-    position: relative;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.banner img {
-    width: 100%;
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: bannerAnim 2s ease forwards;
+}
+
+@keyframes bannerAnim {
+  0% {
+    filter: brightness(2);
+    height: 100vh;
+  }
+  100% {
+    filter: brightness(1);
     height: auto;
-    display: block;
+  }
 }
 
-/* ===== HEADER (closer spacing) ===== */
-.header {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 6px; /* tighter spacing */
-    z-index: 5;
-    white-space: nowrap;
+/* CONTENT */
+.content {
+  text-align: center;
+  padding: 50px 20px;
 }
 
-.header img {
-    width: 40px;
+.title-img {
+  margin-top: 50px;
+  width: 60%;
 }
 
-.header span {
-    font-size: 15px;
-    white-space: nowrap;
-    letter-spacing: 1px;
-    text-shadow:
-        0 2px 6px rgba(0,0,0,1),
-        0 6px 20px rgba(0,0,0,0.9),
-        0 0 10px rgba(0,0,0,0.8);
+.description {
+  margin: 40px auto;
+  width: 50%;
 }
 
-/* ===== BIG BACKGROUND LOGO ===== */
-.center-logo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 95vw;
-    opacity: 0.15;
-    z-index: 0;
-    pointer-events: none;
+/* VIDEOS */
+.videos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-/* ===== TEXT ===== */
-.center-text {
-    text-align: center;
-    padding: 60px 20px 30px;
-    position: relative;
-    z-index: 2;
+.video-box {
+  position: relative;
 }
 
-/* ===== VIDEOS ===== */
-.video-wrap {
-    position: relative;
-    width: 90%;
-    max-width: 400px;
-    margin: 30px auto;
+video {
+  width: 300px;
+  border-radius: 10px;
 }
 
-.video-wrap video {
-    width: 100%;
-    border-radius: 15px;
-    display: block;
-    background: black;
+/* GLASS TEXT */
+.glass-text {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+  padding: 6px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-/* ===== OVERLAY TEXT (glass, one line, on top) ===== */
-.overlay-text {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    white-space: nowrap;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-
-    backdrop-filter: blur(8px);
-    background: rgba(255,255,255,0.08);
-    padding: 6px 14px;
-    border-radius: 20px;
-
-    z-index: 3;
-    pointer-events: none; /* allow clicks to pass to video */
+/* BUTTONS */
+.buttons {
+  margin-top: 40px;
 }
 
-/* ===== GRID ===== */
-.grid {
-    display: block;
-    padding: 40px 20px;
+.btn {
+  margin: 10px;
+  padding: 12px 30px;
+  border: 1px solid white;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+  display: inline-block;
 }
 
-.grid img {
-    width: 100%;
-    margin-bottom: 20px;
-    display: block;
+.btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.05);
 }
 
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .banner-img {
+    content: url("banner.jpg");
+  }
+
+  video {
+    display: none;
+  }
+
+  .video-box {
+    width: 250px;
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .video-box:nth-child(1) {
+    background-image: url("reelminiature.png");
+  }
+
+  .video-box:nth-child(2) {
+    background-image: url("video2miniature.png");
+  }
+
+  .glass-text {
+    font-size: 12px;
+  }
 }
 
 </style>
@@ -144,73 +187,83 @@ body {
 
 <body>
 
+<!-- BACKGROUND -->
+<div class="bg-lock">
+  <img src="title.png" class="bg-title">
+  <img src="logo.png" class="bg-logo">
+</div>
+
+<!-- FIXED LOGO -->
+<a href="#">
+  <img src="bannerlogo.png" class="bannerlogo-fixed">
+</a>
+
 <!-- BANNER -->
-<div class="banner">
-    <img src="banner.jpg">
+<section class="banner">
+  <img src="banner.png" class="banner-img">
+</section>
 
-    <div class="header">
-        <img src="logo.png">
-        <span>ALEJANDRO MAZO</span>
+<!-- CONTENT -->
+<section class="content">
+
+  <img src="title.png" class="title-img">
+
+  <img src="description.png" class="description">
+
+  <!-- VIDEOS -->
+  <div class="videos">
+
+    <div class="video-box">
+      <video id="video1" loop muted autoplay>
+        <source src="reel.mp4">
+      </video>
+      <div class="glass-text" onclick="toggleSound('video1', this)">
+        tap for sound
+      </div>
     </div>
-</div>
 
-<!-- BIG LOGO -->
-<img src="logo.png" class="center-logo">
+    <div class="video-box">
+      <video id="video2" loop muted autoplay>
+        <source src="video2.mp4">
+      </video>
+      <div class="glass-text" onclick="toggleSound('video2', this)">
+        tap for sound
+      </div>
+    </div>
 
-<!-- TEXT -->
-<div class="center-text">
-    <p>
-        action sports and concerts<br>
-        videographer and photographer
-    </p>
+  </div>
 
-    <a href="#work" class="btn">SEE MEDIA</a>
-    <a href="#contact" class="btn">CONTACT</a>
-</div>
+  <!-- BUTTONS -->
+  <div class="buttons">
+    <a href="work.html" class="btn">MY WORK</a>
+    <a href="contact.html" class="btn">CONTACT</a>
+  </div>
 
-<!-- VIDEOS -->
-<div class="video-wrap">
-    <video playsinline preload="metadata" poster="image2.jpg">
-        <source src="video2.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-text">tap to play or pause</div>
-</div>
-
-<div class="video-wrap">
-    <video playsinline preload="metadata" poster="image3.jpg">
-        <source src="reel.mp4" type="video/mp4">
-    </video>
-    <div class="overlay-text">tap to play or pause</div>
-</div>
-
-<!-- GRID -->
-<section class="grid" id="work">
-    <img src="image1.jpg">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
-    <img src="image4.jpg">
 </section>
 
 <script>
 
-/* PLAY / PAUSE ON TAP */
+/* DISABLE RIGHT CLICK */
+document.addEventListener("contextmenu", e => e.preventDefault());
 
-document.querySelectorAll(".video-wrap").forEach(wrap => {
+/* DISABLE DEVTOOLS BASIC */
+document.onkeydown = function(e) {
+  if (e.keyCode == 123) return false;
+  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
+};
 
-    const video = wrap.querySelector("video");
+/* VIDEO SOUND TOGGLE */
+function toggleSound(id, el) {
+  let vid = document.getElementById(id);
 
-    wrap.addEventListener("click", () => {
-
-        if (video.paused) {
-            video.muted = false;
-            video.play();
-        } else {
-            video.pause();
-        }
-
-    });
-
-});
+  if (vid.muted) {
+    vid.muted = false;
+    el.innerText = "tap to mute";
+  } else {
+    vid.muted = true;
+    el.innerText = "tap for sound";
+  }
+}
 
 </script>
 
