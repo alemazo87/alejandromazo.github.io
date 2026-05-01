@@ -16,6 +16,7 @@
   padding:0;
   box-sizing:border-box;
   font-family:Orbitron;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -24,23 +25,24 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= GLOBAL ================= */
+/* ===== BANNER ===== */
 .banner{
   position:relative;
-  width:100%;
 }
 
 .banner img{
   width:100%;
   display:block;
+  user-select:none;
+  pointer-events:none;
 }
 
 .banner-logo{
   position:absolute;
   left:20px;
   top:50%;
-  transform:translateY(-50%);
-  height:22px;
+  margin-top:-10px;
+  height:clamp(14px,2vw,20px);
   width:auto;
   z-index:20;
 }
@@ -48,7 +50,6 @@ body{
 /* ================= DESKTOP ================= */
 @media(min-width:769px){
 
-/* HERO BACKGROUND */
 .bg-layer{
   position:fixed;
   top:0;
@@ -59,28 +60,24 @@ body{
   z-index:1;
 }
 
-.title{
-  margin-top:140px;
-  opacity:0.3;
+.bg-layer-inner{
+  margin-top:0;
 }
 
 .title img{
   width:600px;
-}
-
-.logo{
-  margin-top:20px;
-  opacity:0.3;
+  opacity:.3;
 }
 
 .logo img{
   width:320px;
+  margin-top:20px;
+  opacity:.3;
 }
 
-/* CENTER CONTENT */
 .center{
   position:fixed;
-  top:50%;
+  top:55%;
   left:50%;
   transform:translate(-50%,-50%);
   text-align:center;
@@ -101,9 +98,21 @@ body{
   padding:12px 24px;
   border:1px solid white;
   cursor:pointer;
+  transition:all .25s ease;
 }
 
-/* SIDE VIDEOS */
+.btn:hover{
+  background:white;
+  color:black;
+  transform:translateY(-2px);
+}
+
+.btn:active{
+  transform:translateY(0);
+  opacity:.8;
+}
+
+/* VIDEOS */
 .side{
   position:fixed;
   top:50%;
@@ -117,17 +126,10 @@ body{
 .side video{
   width:100%;
   border-radius:14px;
+  cursor:pointer;
 }
 
-.video-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  opacity:0.6;
-}
-
-/* SCROLL IMAGES */
+/* IMAGES */
 .images{
   margin-top:120vh;
   display:flex;
@@ -151,6 +153,12 @@ body{
 /* ================= MOBILE ================= */
 @media(max-width:768px){
 
+.bg-layer,
+.center,
+.side{
+  display:none;
+}
+
 .banner{
   height:140px;
   overflow:hidden;
@@ -161,33 +169,31 @@ body{
   object-fit:cover;
 }
 
-/* LOGO */
 .banner-logo{
-  height:18px;
+  height:clamp(12px,4vw,18px);
   left:14px;
+  margin-top:-9px;
 }
 
-/* HERO FLOW */
 .hero{
-  padding:30px 20px;
+  padding:40px 20px 20px;
   text-align:center;
 }
 
-.title img{
+.hero .title img{
   width:90%;
-  opacity:0.3;
+  opacity:.3;
 }
 
-.logo img{
+.hero .logo img{
   width:65%;
-  margin-top:10px;
-  opacity:0.25;
+  margin-top:12px;
+  opacity:.25;
 }
 
-/* CONTENT */
 .container{
   max-width:360px;
-  margin:0 auto;
+  margin:auto;
   text-align:center;
 }
 
@@ -207,13 +213,14 @@ body{
   border:1px solid white;
 }
 
-/* VIDEO THUMBS */
+/* VIDEO */
 .video-thumb{
   width:92%;
   margin:20px auto;
   position:relative;
   border-radius:12px;
   overflow:hidden;
+  cursor:pointer;
 }
 
 .video-thumb img{
@@ -225,7 +232,7 @@ body{
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  opacity:0.7;
+  opacity:.7;
 }
 
 /* IMAGES */
@@ -241,16 +248,16 @@ body{
 
 }
 
-/* ================= VIDEO OVERLAY ================= */
+/* ===== VIDEO OVERLAY ===== */
 .video-overlay{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
+  inset:0;
   background:black;
   display:none;
+  justify-content:center;
+  align-items:center;
   z-index:9999;
+  touch-action:none;
 }
 
 .video-overlay video{
@@ -262,75 +269,56 @@ body{
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<!-- BANNER -->
-<div class="banner">
+<div class="banner" id="banner">
   <picture>
     <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
-    <img src="banner.png">
+    <img src="banner.png" id="bannerImg">
   </picture>
-
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- DESKTOP BACKGROUND -->
 <div class="bg-layer">
-  <div class="title">
-    <img src="title.png">
-  </div>
-  <div class="logo">
-    <img src="logo.png">
+  <div class="bg-layer-inner" id="bgOffset">
+    <div class="title"><img src="title.png"></div>
+    <div class="logo"><img src="logo.png"></div>
   </div>
 </div>
 
-<!-- DESKTOP CENTER -->
 <div class="center">
   <img src="description.png">
-
   <div class="buttons">
     <div class="btn" onclick="goPage('work.html')">MY WORK</div>
     <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
   </div>
 </div>
 
-<!-- DESKTOP VIDEOS -->
 <div class="side left">
   <video id="reel" loop muted autoplay playsinline>
     <source src="reel.mp4">
   </video>
-  <div class="video-text" id="reelText">tap for sound</div>
 </div>
 
 <div class="side right">
   <video id="video2" loop muted autoplay playsinline>
     <source src="video2.mp4">
   </video>
-  <div class="video-text" id="video2Text">tap for sound</div>
 </div>
 
-<!-- MOBILE HERO -->
 <div class="hero">
-  <div class="title">
-    <img src="title.png">
-  </div>
-  <div class="logo">
-    <img src="logo.png">
-  </div>
+  <div class="title"><img src="title.png"></div>
+  <div class="logo"><img src="logo.png"></div>
 </div>
 
 <div class="container">
-  <div class="description">
-    <img src="description.png">
-  </div>
-
+  <div class="description"><img src="description.png"></div>
   <div class="buttons">
     <div class="btn" onclick="goPage('work.html')">MY WORK</div>
     <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
   </div>
 </div>
 
-<!-- MOBILE VIDEOS -->
 <div class="video-thumb" onclick="openVideo('reel.mp4')">
   <img src="reelminiature.png">
   <span>tap to play</span>
@@ -341,91 +329,94 @@ body{
   <span>tap to play</span>
 </div>
 
-<!-- IMAGES -->
 <div class="images">
-
-  <div class="col">
-    <img src="image4.jpg">
-  </div>
-
+  <div class="col"><img src="image4.jpg"></div>
   <div class="col">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
-
-  <div class="col">
-    <img src="image1.jpg">
-  </div>
-
+  <div class="col"><img src="image1.jpg"></div>
 </div>
 
-<!-- VIDEO OVERLAY -->
 <div id="overlay" class="video-overlay">
   <video id="overlayVideo" controls playsinline></video>
 </div>
 
-<audio id="clickSound" src="click.mp3"></audio>
+<audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
 <script>
+
+/* OFFSET AFTER IMAGE LOAD */
+function updateOffset(){
+  const banner = document.getElementById("banner");
+  const offset = document.getElementById("bgOffset");
+  offset.style.marginTop = banner.offsetHeight + "px";
+}
+
+window.addEventListener("resize", updateOffset);
+document.getElementById("bannerImg").addEventListener("load", updateOffset);
 
 /* BUTTON SOUND */
 function goPage(page){
   const s=document.getElementById("clickSound");
   s.currentTime=0;
   s.play().catch(()=>{});
-  setTimeout(()=>{window.location.href=page;},150);
+  setTimeout(()=>{window.location.href=page;},120);
 }
 
-/* VIDEO TOGGLE DESKTOP */
-function setup(v,t){
-  const vid=document.getElementById(v);
-  const txt=document.getElementById(t);
+/* DESKTOP VIDEO TOGGLE */
+["reel","video2"].forEach(id=>{
+  const vid=document.getElementById(id);
+  vid.addEventListener("click",()=>{
+    vid.muted=!vid.muted;
+  });
+});
 
-  vid.onclick=()=>{
-    if(vid.muted){
-      vid.muted=false;
-      txt.innerText="tap to mute";
-    }else{
-      vid.muted=true;
-      txt.innerText="tap for sound";
-    }
-  }
-}
-
-setup("reel","reelText");
-setup("video2","video2Text");
-
-/* MOBILE VIDEO PLAYER */
-const overlay = document.getElementById("overlay");
-const video = document.getElementById("overlayVideo");
+/* VIDEO OVERLAY */
+const overlay=document.getElementById("overlay");
+const video=document.getElementById("overlayVideo");
 
 function openVideo(src){
-  video.src = src;
-  overlay.style.display="block";
+  video.src=src;
+  overlay.style.display="flex";
+  document.body.style.overflow="hidden";
   video.play().catch(()=>{});
 }
 
-overlay.addEventListener("click", closeVideo);
+/* CLOSE */
+overlay.addEventListener("click",(e)=>{
+  if(e.target===overlay) closeVideo();
+});
 
+document.addEventListener("keydown",(e)=>{
+  if(e.key==="Escape") closeVideo();
+});
+
+/* SWIPE CLOSE */
 let startY=0;
-overlay.addEventListener("touchstart", e=>{
-  startY = e.touches[0].clientY;
-});
+overlay.addEventListener("touchstart",e=>{
+  startY=e.touches[0].clientY;
+},{passive:true});
 
-overlay.addEventListener("touchmove", e=>{
-  if(e.touches[0].clientY - startY > 80){
-    closeVideo();
-  }
-});
+overlay.addEventListener("touchmove",e=>{
+  if(e.touches[0].clientY-startY>80) closeVideo();
+},{passive:true});
 
 function closeVideo(){
   video.pause();
   video.src="";
   overlay.style.display="none";
+  document.body.style.overflow="";
 }
 
-document.addEventListener("visibilitychange", ()=>{
+/* CLEAN EXIT */
+document.addEventListener("visibilitychange",()=>{
   if(document.hidden) closeVideo();
+});
+
+/* DISABLE DRAG */
+document.querySelectorAll("img").forEach(img=>{
+  img.addEventListener("dragstart", e=>e.preventDefault());
 });
 
 </script>
