@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
@@ -15,241 +14,151 @@
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
   font-family: Orbitron;
 }
 
 body {
-  background: black;
-  overflow-x: hidden;
-  user-select: none;
+  background:black;
+  overflow-x:hidden;
 }
 
-/* PARALLAX BG */
+/* BACKGROUND LOCK */
 .bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  transform: translateZ(0);
+  position:fixed;
+  width:100%;
+  height:100%;
+  z-index:-1;
 }
 
 .bg img {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120%;
-  opacity: 0.3;
-  pointer-events: none;
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  width:120%;
+  opacity:0.3;
 }
 
-.bg-title {
-  top: 5%;
-  z-index: 2;
-}
-
-.bg-logo {
-  top: 20%;
-  z-index: 1;
-}
+.bg-title { top:5%; z-index:2; }
+.bg-logo { top:20%; z-index:1; }
 
 /* BANNER */
-.banner {
-  height: 100vh;
-  overflow: hidden;
-}
-
 .banner img {
-  width: 100%;
-  height: 100vh;
-  object-fit: cover;
-  animation: bannerIntro 2s ease forwards;
+  width:100%;
+  height:100vh;
+  object-fit:cover;
+  animation:zoom 2s ease forwards;
 }
 
-@keyframes bannerIntro {
-  0% {
-    filter: brightness(2);
-    transform: scale(1.2);
-  }
-  100% {
-    filter: brightness(1);
-    transform: scale(1);
-  }
+@keyframes zoom {
+  0% { transform:scale(1.2); filter:brightness(2); }
+  100% { transform:scale(1); filter:brightness(1); }
 }
 
 /* FIXED LOGO */
 .bannerlogo {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 120px;
-  z-index: 100;
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:120px;
+  z-index:100;
 }
 
-/* TITLE TEXT */
-.main-title {
-  text-align: center;
-  font-size: 50px;
-  margin: 60px 0;
-  letter-spacing: 6px;
-  opacity: 0.8;
+/* TITLE */
+.title {
+  text-align:center;
+  font-size:60px;
+  margin:60px 0;
+  color:#888;
+  letter-spacing:6px;
 }
 
-/* HERO */
-.hero {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr 1fr;
-  gap: 40px;
-  padding: 0 5%;
-  align-items: center;
+/* TOP ROW */
+.top-row {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:60px;
+  padding:0 5%;
 }
 
-.side-img {
-  width: 100%;
-  height: 420px;
-  object-fit: cover;
+.side {
+  width:260px;
+  height:420px;
+  object-fit:cover;
 }
 
 /* CENTER */
 .center {
-  position: relative;
-  text-align: center;
+  position:relative;
+  width:420px;
+  text-align:center;
 }
 
 .center-logo {
-  width: 100%;
-  opacity: 0.2;
+  width:100%;
+  opacity:0.2;
 }
 
 .description {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:85%;
 }
 
-/* VIDEOS */
-.videos {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 40px;
+/* BOTTOM ROW */
+.bottom-row {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:40px;
+  margin:80px 0;
+  padding:0 5%;
 }
 
-.video-box {
-  position: relative;
+/* LEFT / RIGHT BIG */
+.tall {
+  width:300px;
+  height:420px;
+  object-fit:cover;
 }
 
-video {
-  width: 260px;
-  border-radius: 12px;
+/* CENTER STACK */
+.stack {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
 }
 
-/* GLASS TEXT */
-.glass {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  backdrop-filter: blur(12px);
-  background: rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 12px;
-  font-size: 12px;
-  cursor: pointer;
-}
-
-/* BUTTONS */
-.buttons {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.btn {
-  display: inline-block;
-  margin: 10px;
-  padding: 14px 30px;
-  border: 1px solid white;
-  color: white;
-  text-decoration: none;
-  position: relative;
-  overflow: hidden;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: white;
-  color: black;
-  transform: scale(1.08);
-}
-
-/* CLICK ANIMATION */
-.btn:active {
-  transform: scale(0.95);
-}
-
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
-  gap: 20px;
-  margin: 80px 5%;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.middle {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.stack img {
+  width:500px;
 }
 
 /* MOBILE */
-@media (max-width: 768px) {
+@media (max-width:768px){
 
   .banner img {
-    content: url("banner.jpg");
+    content:url("banner.jpg");
   }
 
-  .hero {
-    grid-template-columns: 1fr;
+  .top-row,
+  .bottom-row {
+    flex-direction:column;
   }
 
-  .videos {
-    flex-direction: column;
+  .stack img,
+  .tall,
+  .side {
+    width:100%;
+    height:auto;
   }
 
-  video {
-    display: none;
-  }
-
-  .video-box {
-    width: 250px;
-    height: 400px;
-    background-size: cover;
-    background-position: center;
-  }
-
-  .video-box:nth-child(1) {
-    background-image: url("reelminiature.png");
-  }
-
-  .video-box:nth-child(2) {
-    background-image: url("video2miniature.png");
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .main-title {
-    font-size: 32px;
+  .title {
+    font-size:32px;
   }
 }
 
@@ -258,8 +167,8 @@ video {
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg" id="bg">
+<!-- BG -->
+<div class="bg">
   <img src="logo.png" class="bg-logo">
   <img src="title.png" class="bg-title">
 </div>
@@ -270,109 +179,40 @@ video {
 </a>
 
 <!-- BANNER -->
-<section class="banner">
+<div class="banner">
   <img src="banner.png">
-</section>
+</div>
 
 <!-- TITLE -->
-<div class="main-title">ALEJANDRO MAZO</div>
+<div class="title">ALEJANDRO MAZO</div>
 
-<!-- HERO -->
-<section class="hero">
+<!-- TOP ROW -->
+<div class="top-row">
 
-  <img src="image4.jpg" class="side-img">
+  <img src="image4.jpg" class="side">
 
   <div class="center">
     <img src="logo.png" class="center-logo">
     <img src="description.png" class="description">
   </div>
 
-  <img src="image1.jpg" class="side-img">
-
-</section>
-
-<!-- VIDEOS -->
-<div class="videos">
-
-  <div class="video-box">
-    <video id="v1" muted loop autoplay>
-      <source src="reel.mp4">
-    </video>
-    <div class="glass" onclick="toggleSound('v1', this)">tap for sound</div>
-  </div>
-
-  <div class="video-box">
-    <video id="v2" muted loop autoplay>
-      <source src="video2.mp4">
-    </video>
-    <div class="glass" onclick="toggleSound('v2', this)">tap for sound</div>
-  </div>
+  <img src="image1.jpg" class="side">
 
 </div>
 
-<!-- BUTTONS -->
-<div class="buttons">
-  <a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
-  <a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
-</div>
+<!-- BOTTOM ROW -->
+<div class="bottom-row">
 
-<!-- GALLERY -->
-<section class="gallery">
+  <img src="image2.jpg" class="tall">
 
-  <img src="image4.jpg">
-
-  <div class="middle">
-    <img src="image2.jpg">
+  <div class="stack">
     <img src="image3.jpg">
+    <img src="image2.jpg">
   </div>
 
-  <img src="image1.jpg">
+  <img src="image1.jpg" class="tall">
 
-</section>
-
-<audio id="clickSound" src="click.mp3"></audio>
-
-<script>
-
-/* RIGHT CLICK BLOCK */
-document.addEventListener("contextmenu", e => e.preventDefault());
-
-/* DEVTOOLS BLOCK */
-document.onkeydown = function(e) {
-  if (e.keyCode == 123) return false;
-  if (e.ctrlKey && e.shiftKey && e.keyCode == 73) return false;
-};
-
-/* PARALLAX */
-window.addEventListener("scroll", () => {
-  let scroll = window.scrollY;
-  document.querySelector(".bg-title").style.transform =
-    "translate(-50%, " + scroll * 0.2 + "px)";
-  document.querySelector(".bg-logo").style.transform =
-    "translate(-50%, " + scroll * 0.1 + "px)";
-});
-
-/* VIDEO SOUND */
-function toggleSound(id, el) {
-  let v = document.getElementById(id);
-
-  if (v.muted) {
-    v.muted = false;
-    el.innerText = "tap to mute";
-  } else {
-    v.muted = true;
-    el.innerText = "tap for sound";
-  }
-}
-
-/* CLICK SOUND */
-function clickSound() {
-  let s = document.getElementById("clickSound");
-  s.currentTime = 0;
-  s.play();
-}
-
-</script>
+</div>
 
 </body>
 </html>
