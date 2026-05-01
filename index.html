@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
+<title>Alejandro Mazo</title>
 
 <style>
 @font-face {
@@ -17,7 +17,6 @@
   padding:0;
   box-sizing:border-box;
   font-family:Orbitron;
-  -webkit-tap-highlight-color: transparent;
 }
 
 body{
@@ -33,22 +32,33 @@ body{
 
 .banner img{
   width:100%;
+  height:auto;
   display:block;
-  user-select:none;
 }
 
+/* FIXED SIZE LOGO (NO STRETCH) */
 .banner-logo{
   position:absolute;
   left:20px;
   top:50%;
   transform:translateY(-50%);
-  height:18px;
+  height:20px;
+  width:auto;
 }
 
-/* ===== CONTENT ===== */
-.section{
+/* ===== FIXED BACKGROUND LAYER ===== */
+.bg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  pointer-events:none;
   text-align:center;
-  padding:40px 20px;
+}
+
+/* OFFSET UNDER BANNER */
+.bg-inner{
+  margin-top:140px;
 }
 
 .title img{
@@ -58,19 +68,25 @@ body{
 }
 
 .logo img{
-  width:320px;
+  width:400px;
   max-width:70%;
   opacity:.3;
   margin-top:20px;
 }
 
+/* ===== MAIN CONTENT ===== */
+.content{
+  margin-top:420px;
+  text-align:center;
+  padding:40px 20px;
+}
+
 .description img{
   width:600px;
   max-width:90%;
-  margin-top:40px;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .buttons{
   margin-top:20px;
 }
@@ -94,7 +110,7 @@ body{
   display:flex;
   justify-content:center;
   gap:40px;
-  margin:60px 0;
+  margin:80px 0;
   flex-wrap:wrap;
 }
 
@@ -106,15 +122,9 @@ body{
   width:300px;
   border-radius:12px;
   cursor:pointer;
-  transition:.2s;
-  touch-action:manipulation;
 }
 
-.videos video:active{
-  transform:scale(.98);
-  opacity:.8;
-}
-
+/* TEXT CENTERED */
 .video-text{
   position:absolute;
   top:50%;
@@ -146,6 +156,18 @@ body{
 /* ===== MOBILE ===== */
 @media(max-width:768px){
 
+.bg{
+  position:static;
+}
+
+.bg-inner{
+  margin-top:20px;
+}
+
+.content{
+  margin-top:40px;
+}
+
 .videos{
   flex-direction:column;
   align-items:center;
@@ -160,61 +182,69 @@ body{
   width:90%;
 }
 
+.banner-logo{
+  height:16px;
 }
 
-/* ===== OVERLAY ===== */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:black;
-  display:none;
-  justify-content:center;
-  align-items:center;
-  z-index:999;
-  touch-action:none;
 }
 
-.overlay video{
-  width:100%;
-  height:100%;
-  object-fit:contain;
+/* DISABLE DRAG */
+img{
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
 </style>
 </head>
 
-<body oncontextmenu="return false">
+<body>
 
+<!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<div class="section">
-  <div class="title"><img src="title.png"></div>
-  <div class="logo"><img src="logo.png"></div>
+<!-- FIXED TITLE + LOGO -->
+<div class="bg">
+  <div class="bg-inner">
+    <div class="title"><img src="title.png"></div>
+    <div class="logo"><img src="logo.png"></div>
+  </div>
+</div>
 
-  <div class="description"><img src="description.png"></div>
+<!-- CONTENT -->
+<div class="content">
+
+  <div class="description">
+    <img src="description.png">
+  </div>
 
   <div class="buttons">
     <div class="btn" onclick="go('work.html')">MY WORK</div>
     <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
-</div>
 
-<div class="videos">
-  <div class="video-wrap">
-    <video id="reel" src="reel.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
-    <div class="video-text" id="text1">tap for sound</div>
+  <!-- VIDEOS -->
+  <div class="videos">
+
+    <div class="video-wrap">
+      <video id="reel" src="reel.mp4" muted loop autoplay playsinline></video>
+      <div class="video-text" id="text1">tap for sound</div>
+    </div>
+
+    <div class="video-wrap">
+      <video id="video2" src="video2.mp4" muted loop autoplay playsinline></video>
+      <div class="video-text" id="text2">tap for sound</div>
+    </div>
+
   </div>
 
-  <div class="video-wrap">
-    <video id="video2" src="video2.mp4" muted loop playsinline webkit-playsinline preload="metadata"></video>
-    <div class="video-text" id="text2">tap for sound</div>
-  </div>
 </div>
 
+<!-- IMAGES -->
 <div class="images">
+
   <div class="col">
     <img src="image4.jpg">
   </div>
@@ -227,17 +257,14 @@ body{
   <div class="col">
     <img src="image1.jpg">
   </div>
+
 </div>
 
-<div class="overlay" id="overlay">
-  <video id="overlayVideo" controls playsinline webkit-playsinline></video>
-</div>
-
-<audio id="clickSound" src="click.mp3" preload="auto"></audio>
+<audio id="clickSound" src="click.mp3"></audio>
 
 <script>
 
-/* NAVIGATION */
+/* NAV */
 function go(page){
   const s=document.getElementById("clickSound");
   s.currentTime=0;
@@ -245,135 +272,23 @@ function go(page){
   setTimeout(()=>{window.location.href=page;},120);
 }
 
-/* DEVICE */
-function isMobile(){
-  return window.matchMedia("(max-width:768px)").matches;
-}
+/* VIDEO TOGGLE SOUND */
+function setup(id,textId){
 
-/* ELEMENTS */
-const reel = document.getElementById("reel");
-const video2 = document.getElementById("video2");
-const text1 = document.getElementById("text1");
-const text2 = document.getElementById("text2");
+  const vid = document.getElementById(id);
+  const txt = document.getElementById(textId);
 
-/* DEBOUNCE */
-function debounce(fn, delay){
-  let t;
-  return ()=>{
-    clearTimeout(t);
-    t=setTimeout(fn, delay);
+  vid.muted = true;
+  vid.play().catch(()=>{});
+
+  vid.onclick = ()=>{
+    vid.muted = !vid.muted;
+    txt.innerText = vid.muted ? "tap for sound" : "tap to mute";
   };
 }
 
-/* VIDEO BEHAVIOR */
-function applyBehavior(){
-
-  const mobile = isMobile();
-
-  [[reel,text1],[video2,text2]].forEach(([vid,txt])=>{
-
-    if(mobile){
-      vid.onclick = () => openVideo(vid);
-      vid.ondblclick = null;
-    }else{
-      vid.onclick = () => {
-        vid.muted = !vid.muted;
-        txt.innerText = vid.muted ? "tap for sound" : "tap to mute";
-      };
-      vid.ondblclick = () => openVideo(vid);
-    }
-
-  });
-
-}
-
-/* INIT */
-window.addEventListener("DOMContentLoaded",()=>{
-
-  document.querySelectorAll(".videos video").forEach(v=>{
-    v.muted=true;
-    v.play().catch(()=>{});
-  });
-
-  applyBehavior();
-
-});
-
-/* RESIZE */
-window.addEventListener("resize", debounce(applyBehavior,150));
-
-/* OVERLAY */
-const overlay=document.getElementById("overlay");
-const player=document.getElementById("overlayVideo");
-
-let scrollY=0;
-
-function openVideo(v){
-
-  document.querySelectorAll(".videos video").forEach(vid=>vid.pause());
-
-  scrollY = window.scrollY;
-
-  player.src = v.src;
-  overlay.style.display="flex";
-
-  document.body.style.position="fixed";
-  document.body.style.top = `-${scrollY}px`;
-  document.body.style.width="100%";
-
-  player.currentTime = 0;
-  player.play().catch(()=>{});
-}
-
-function closeVideo(){
-
-  player.pause();
-  player.src="";
-  overlay.style.display="none";
-
-  document.body.style.position="";
-  document.body.style.top="";
-  document.body.style.width="";
-
-  window.scrollTo(0, scrollY);
-
-  document.querySelectorAll(".videos video").forEach(v=>{
-    v.muted=true;
-    v.play().catch(()=>{});
-  });
-
-  text1.innerText="tap for sound";
-  text2.innerText="tap for sound";
-}
-
-/* CLOSE EVENTS */
-overlay.onclick=e=>{ if(e.target===overlay) closeVideo(); };
-
-document.addEventListener("keydown",e=>{
-  if(e.key==="Escape") closeVideo();
-});
-
-/* SAFETY UNLOCK */
-window.addEventListener("pagehide", closeVideo);
-
-/* SWIPE */
-let startY=0;
-overlay.addEventListener("touchstart",e=>startY=e.touches[0].clientY,{passive:true});
-overlay.addEventListener("touchmove",e=>{
-  if(e.touches[0].clientY-startY>80) closeVideo();
-},{passive:true});
-
-/* VISIBILITY */
-document.addEventListener("visibilitychange",()=>{
-  document.querySelectorAll("video").forEach(v=>{
-    document.hidden ? v.pause() : v.play().catch(()=>{});
-  });
-});
-
-/* DISABLE DRAG */
-document.querySelectorAll("img").forEach(img=>{
-  img.addEventListener("dragstart",e=>e.preventDefault());
-});
+setup("reel","text1");
+setup("video2","text2");
 
 </script>
 
