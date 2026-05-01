@@ -8,53 +8,33 @@
 <style>
 
 /* FONT */
-@font-face {
-  font-family: Orbitron;
-  src: url("Orbitron.ttf");
-}
+@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Orbitron;
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:Orbitron; }
+body { background:black; overflow-x:hidden; user-select:none; }
 
-body {
-  background:black;
-  overflow-x:hidden;
-}
-
-/* BACKGROUND LOCK */
+/* BG PARALLAX */
 .bg {
   position:fixed;
   width:100%;
   height:100%;
   z-index:-1;
 }
-
 .bg img {
   position:absolute;
   left:50%;
   transform:translateX(-50%);
-  width:120%;
+  width:70%;
   opacity:0.3;
 }
-
-.bg-title { top:5%; z-index:2; }
-.bg-logo { top:20%; z-index:1; }
+.bg-title { top:10%; z-index:2; }
+.bg-logo { top:30%; z-index:1; }
 
 /* BANNER */
 .banner img {
   width:100%;
   height:100vh;
   object-fit:cover;
-  animation:zoom 2s ease forwards;
-}
-
-@keyframes zoom {
-  0% { transform:scale(1.2); filter:brightness(2); }
-  100% { transform:scale(1); filter:brightness(1); }
 }
 
 /* FIXED LOGO */
@@ -66,100 +46,98 @@ body {
   z-index:100;
 }
 
-/* TITLE */
-.title {
+/* CENTER BLOCK */
+.center-section {
   text-align:center;
-  font-size:60px;
-  margin:60px 0;
-  color:#888;
-  letter-spacing:6px;
-}
-
-/* TOP ROW */
-.top-row {
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:60px;
-  padding:0 5%;
-}
-
-.side {
-  width:260px;
-  height:420px;
-  object-fit:cover;
-}
-
-/* CENTER */
-.center {
+  margin-top:60px;
   position:relative;
-  width:420px;
-  text-align:center;
-}
-
-.center-logo {
-  width:100%;
-  opacity:0.2;
 }
 
 .description {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:85%;
+  width:400px;
+  max-width:90%;
+  margin:auto;
 }
 
-/* BOTTOM ROW */
-.bottom-row {
+/* VIDEOS */
+.videos {
   display:flex;
   justify-content:center;
-  align-items:center;
   gap:40px;
+  margin-top:30px;
+  align-items:center;
+}
+
+.video-box {
+  position:relative;
+}
+
+video {
+  width:250px;
+  border-radius:12px;
+}
+
+.glass {
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,0.1);
+  padding:6px 12px;
+  border-radius:10px;
+  font-size:12px;
+  cursor:pointer;
+}
+
+/* BUTTONS */
+.buttons { margin-top:30px; }
+
+.btn {
+  margin:10px;
+  padding:14px 28px;
+  border:1px solid white;
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+.btn:hover { background:white; color:black; transform:scale(1.08); }
+
+/* GALLERY */
+.gallery {
+  display:flex;
+  justify-content:center;
+  gap:30px;
   margin:80px 0;
-  padding:0 5%;
 }
 
-/* LEFT / RIGHT BIG */
-.tall {
-  width:300px;
-  height:420px;
-  object-fit:cover;
-}
-
-/* CENTER STACK */
-.stack {
+.left, .right { width:250px; }
+.middle {
   display:flex;
   flex-direction:column;
   gap:20px;
+  width:400px;
 }
 
-.stack img {
-  width:500px;
-}
+.gallery img { width:100%; }
 
 /* MOBILE */
 @media (max-width:768px){
 
-  .banner img {
-    content:url("banner.jpg");
-  }
+  .banner img { content:url("banner.jpg"); }
 
-  .top-row,
-  .bottom-row {
-    flex-direction:column;
-  }
+  .videos { flex-direction:column; }
+  video { display:none; }
 
-  .stack img,
-  .tall,
-  .side {
-    width:100%;
-    height:auto;
+  .video-box {
+    width:250px;
+    height:400px;
+    background-size:cover;
   }
+  .video-box:nth-child(1){ background-image:url("reelminiature.png"); }
+  .video-box:nth-child(2){ background-image:url("video2miniature.png"); }
 
-  .title {
-    font-size:32px;
-  }
+  .gallery { flex-direction:column; align-items:center; }
 }
 
 </style>
@@ -167,52 +145,101 @@ body {
 
 <body>
 
-<!-- BG -->
 <div class="bg">
   <img src="logo.png" class="bg-logo">
   <img src="title.png" class="bg-title">
 </div>
 
-<!-- FIXED LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
 </div>
 
-<!-- TITLE -->
-<div class="title">ALEJANDRO MAZO</div>
+<div class="center-section">
 
-<!-- TOP ROW -->
-<div class="top-row">
+  <div class="videos">
 
-  <img src="image4.jpg" class="side">
+    <div class="video-box">
+      <video id="v1" muted loop autoplay>
+        <source src="reel.mp4">
+      </video>
+      <div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
+    </div>
 
-  <div class="center">
-    <img src="logo.png" class="center-logo">
     <img src="description.png" class="description">
+
+    <div class="video-box">
+      <video id="v2" muted loop autoplay>
+        <source src="video2.mp4">
+      </video>
+      <div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
+    </div>
+
   </div>
 
-  <img src="image1.jpg" class="side">
+  <div class="buttons">
+    <a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
+    <a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
+  </div>
 
 </div>
 
-<!-- BOTTOM ROW -->
-<div class="bottom-row">
+<div class="gallery">
 
-  <img src="image2.jpg" class="tall">
+  <div class="left">
+    <img src="image4.jpg">
+  </div>
 
-  <div class="stack">
-    <img src="image3.jpg">
+  <div class="middle">
     <img src="image2.jpg">
+    <img src="image3.jpg">
   </div>
 
-  <img src="image1.jpg" class="tall">
+  <div class="right">
+    <img src="image1.jpg">
+  </div>
 
 </div>
+
+<audio id="clickSound" src="click.mp3"></audio>
+
+<script>
+
+/* DISABLE */
+document.addEventListener("contextmenu", e=>e.preventDefault());
+
+/* PARALLAX */
+window.addEventListener("scroll",()=>{
+  let y=window.scrollY;
+  document.querySelector(".bg-title").style.transform=
+    "translate(-50%,"+y*0.2+"px)";
+  document.querySelector(".bg-logo").style.transform=
+    "translate(-50%,"+y*0.1+"px)";
+});
+
+/* VIDEO */
+function toggleSound(id,el){
+  let v=document.getElementById(id);
+  if(v.muted){
+    v.muted=false;
+    el.innerText="tap to mute";
+  } else {
+    v.muted=true;
+    el.innerText="tap for sound";
+  }
+}
+
+/* SOUND */
+function clickSound(){
+  let s=document.getElementById("clickSound");
+  s.currentTime=0;
+  s.play();
+}
+
+</script>
 
 </body>
 </html>
