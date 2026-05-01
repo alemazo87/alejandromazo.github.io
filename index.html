@@ -24,78 +24,107 @@ body{
   overflow-x:hidden;
 }
 
+/* ===== FADE IN ===== */
+body{
+  animation:fadeIn 1.2s ease forwards;
+  opacity:0;
+}
+@keyframes fadeIn{
+  to{opacity:1;}
+}
+
 /* ===== BANNER ===== */
 .banner{
   position:relative;
+  z-index:3;
 }
-
 .banner img{
   width:100%;
-  height:auto;
   display:block;
 }
 
+/* LOGO */
 .banner-logo{
   position:absolute;
   left:25px;
   top:50%;
   transform:translateY(-50%);
-  height:28px;
-  width:auto;
+  height:26px;
 }
 
 /* ===== BACKGROUND ===== */
 .bg-layer{
   position:fixed;
-  top:120px;
   width:100%;
   text-align:center;
-  z-index:0;
   pointer-events:none;
+  z-index:0;
 }
 
-.bg-layer .title img{
+.title img{
   width:600px;
-  opacity:0.3;
+  opacity:0.25;
+  filter:blur(0.2px);
 }
 
-.bg-layer .logo img{
+.logo img{
   width:520px;
   margin-top:20px;
-  opacity:0.25;
+  opacity:0.2;
 }
 
 /* ===== MAIN ===== */
 .main{
-  margin-top:200px;
+  margin-top:220px;
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:60px;
+  gap:70px;
   position:relative;
   z-index:2;
 }
 
+/* VIDEOS */
 .side{
   width:280px;
   position:relative;
+  transition:0.4s;
 }
 
 .side video{
   width:100%;
   border-radius:14px;
+  transition:0.4s;
 }
 
+/* subtle hover */
+.side:hover video{
+  transform:scale(1.02);
+}
+
+/* video text */
 .video-text{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  opacity:0.6;
+  opacity:0.5;
+  transition:0.3s;
 }
 
+.side:hover .video-text{
+  opacity:0.9;
+}
+
+/* CENTER */
 .center{
   text-align:center;
+  animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+  from{transform:translateY(20px);opacity:0;}
+  to{transform:translateY(0);opacity:1;}
 }
 
 .center img{
@@ -103,41 +132,53 @@ body{
   max-width:90%;
 }
 
+/* BUTTONS */
 .buttons{
-  margin-top:20px;
+  margin-top:25px;
 }
 
 .btn{
   display:inline-block;
   margin:10px;
   padding:12px 28px;
-  border:1px solid white;
+  border:1px solid rgba(255,255,255,0.6);
   cursor:pointer;
+  transition:0.3s;
+  backdrop-filter:blur(4px);
+}
+
+.btn:hover{
+  background:white;
+  color:black;
+  transform:translateY(-2px);
 }
 
 /* ===== IMAGES ===== */
 .images{
-  margin-top:140px;
-  display:flex;
-  justify-content:space-between;
-  align-items:stretch;
+  margin-top:160px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:35px;
   padding:0 6%;
 }
 
-.left, .right{
-  width:32%;
-}
-
 .center-stack{
-  width:32%;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  gap:12px;
 }
 
 .images img{
   width:100%;
-  border-radius:10px;
+  height:100%;
+  object-fit:cover;
+  border-radius:12px;
+  transition:0.4s;
+}
+
+/* hover polish */
+.images img:hover{
+  transform:scale(1.02);
 }
 
 /* ===== MOBILE ===== */
@@ -145,6 +186,7 @@ body{
 
   .main{
     flex-direction:column;
+    gap:30px;
     margin-top:180px;
   }
 
@@ -153,7 +195,6 @@ body{
   }
 
   .center img{
-    width:100%;
     transform:scale(1.5);
   }
 
@@ -165,7 +206,7 @@ body{
 
   .video-thumb{
     width:90%;
-    margin:20px auto;
+    margin:25px auto;
     position:relative;
   }
 
@@ -182,51 +223,51 @@ body{
   }
 
   .images{
-    flex-direction:column;
+    display:block;
   }
 
   .images img{
     margin:15px 0;
   }
-}
 
+  .banner-logo{
+    height:24px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<!-- BANNER -->
 <div class="banner">
   <picture>
     <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
-    <img src="banner.png" alt="">
+    <img src="banner.png">
   </picture>
 
-  <img src="bannerlogo.png" class="banner-logo" alt="">
+  <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- BACKGROUND -->
-<div class="bg-layer">
+<div class="bg-layer" id="bg">
   <div class="title">
-    <img src="title.png" alt="">
+    <img src="title.png">
   </div>
   <div class="logo">
-    <img src="logo.png" alt="">
+    <img src="logo.png">
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
 
   <div class="side">
-    <video id="reel" loop muted playsinline>
+    <video id="reel" loop muted autoplay playsinline preload="metadata">
       <source src="reel.mp4">
     </video>
     <div class="video-text" id="reelText">tap for sound</div>
   </div>
 
   <div class="center">
-    <img src="description.png" alt="">
+    <img src="description.png">
 
     <div class="buttons">
       <div class="btn" onclick="goPage('work.html')">MY WORK</div>
@@ -235,7 +276,7 @@ body{
   </div>
 
   <div class="side">
-    <video id="video2" loop muted playsinline>
+    <video id="video2" loop muted autoplay playsinline preload="metadata">
       <source src="video2.mp4">
     </video>
     <div class="video-text" id="video2Text">tap for sound</div>
@@ -243,30 +284,31 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEO -->
-<div class="video-thumb" onclick="openVideo('reel.mp4')">
-  <img src="reelminiature.png" alt="">
-  <span>tap to play</span>
-</div>
-
-<div class="video-thumb" onclick="openVideo('video2.mp4')">
-  <img src="video2miniature.png" alt="">
-  <span>tap to play</span>
-</div>
-
-<!-- IMAGES -->
 <div class="images">
-  <div class="left"><img src="image4.jpg" alt=""></div>
+  <div><img src="image4.jpg"></div>
+
   <div class="center-stack">
-    <img src="image2.jpg" alt="">
-    <img src="image3.jpg" alt="">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
   </div>
-  <div class="right"><img src="image1.jpg" alt=""></div>
+
+  <div><img src="image1.jpg"></div>
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
+/* POSITION BACKGROUND */
+const banner = document.querySelector(".banner");
+const bg = document.getElementById("bg");
+
+function updateOffset(){
+  bg.style.top = banner.offsetHeight + "px";
+}
+window.addEventListener("load", updateOffset);
+window.addEventListener("resize", updateOffset);
+
+/* BUTTON SOUND */
 function goPage(page){
   let s=document.getElementById("clickSound");
   s.currentTime=0;
@@ -274,12 +316,10 @@ function goPage(page){
   setTimeout(()=>{window.location.href=page;},200);
 }
 
+/* VIDEO SOUND */
 function setup(v,t){
   let vid=document.getElementById(v);
   let txt=document.getElementById(t);
-
-  vid.muted = true;
-  vid.play().catch(()=>{});
 
   vid.onclick=()=>{
     if(vid.muted){
@@ -294,25 +334,6 @@ function setup(v,t){
 
 setup("reel","reelText");
 setup("video2","video2Text");
-
-/* MOBILE VIDEO */
-function openVideo(src){
-  let v=document.createElement("video");
-  v.src=src;
-  v.controls=true;
-  v.autoplay=true;
-
-  v.style.position="fixed";
-  v.style.top=0;
-  v.style.left=0;
-  v.style.width="100%";
-  v.style.height="100%";
-  v.style.zIndex=999;
-
-  document.body.appendChild(v);
-
-  v.onclick = () => v.remove();
-}
 </script>
 
 </body>
