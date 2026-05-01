@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
 
-/* FONT */
 @font-face {
   font-family: Orbitron;
   src: url("Orbitron.ttf");
@@ -54,9 +52,10 @@ body {
   z-index:1;
 }
 
-/* BANNER */
+/* FIXED BANNER */
 .banner {
-  width:100%;
+  width:100vw;
+  max-width:100%;
   overflow:hidden;
 }
 
@@ -64,7 +63,6 @@ body {
   width:100%;
   height:auto;
   display:block;
-  object-fit:contain;
 }
 
 /* MOBILE BANNER */
@@ -270,10 +268,8 @@ video {
 
 <script>
 
-/* DISABLE RIGHT CLICK */
 document.addEventListener("contextmenu", e=>e.preventDefault());
 
-/* PARALLAX */
 window.addEventListener("scroll",()=>{
   let y=window.scrollY;
   document.querySelector(".bg-title").style.transform =
@@ -282,7 +278,6 @@ window.addEventListener("scroll",()=>{
     "translate(-50%,"+y*0.08+"px)";
 });
 
-/* VIDEO TOGGLE */
 function toggleSound(id,el){
   let v=document.getElementById(id);
   if(v.muted){
@@ -294,7 +289,6 @@ function toggleSound(id,el){
   }
 }
 
-/* CLICK SOUND */
 function clickSound(){
   let s=document.getElementById("clickSound");
   s.currentTime=0;
