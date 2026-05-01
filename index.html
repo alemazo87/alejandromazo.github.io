@@ -22,40 +22,52 @@ body {
   background: #000;
 }
 
-/* Banner */
+/* ===== Banner wrapper (controls size) ===== */
 .banner {
   position: relative;
   width: 100%;
+  max-width: 1400px;   /* prevents huge banner on desktop */
+  margin: 0 auto;      /* centers it */
 }
 
+/* ===== Banner image (keeps proportions) ===== */
 .banner img {
   width: 100%;
-  height: auto;
+  height: auto;        /* prevents stretching */
   display: block;
 }
 
-/* LOGO — controlled properly */
+/* ===== Logo inside banner ===== */
 .banner-logo {
   position: absolute;
   left: 5%;
   top: 50%;
   transform: translateY(-50%);
 
-  height: 6vw;        /* responsive size */
-  max-height: 60px;   /* prevents it from being huge */
-  min-height: 30px;   /* prevents it from being tiny */
+  height: 8%;          /* relative to banner */
+  min-height: 30px;
+  max-height: 60px;
 
   width: auto;
   cursor: pointer;
 }
 
-/* Mobile adjustment */
+/* ===== Mobile adjustments ===== */
 @media (max-width: 768px) {
+
+  .banner {
+    max-width: 100%;
+  }
+
   .banner-logo {
-    height: 10vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 12%;
     max-height: 50px;
   }
 }
+
 </style>
 </head>
 
