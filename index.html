@@ -9,12 +9,25 @@
 <style>
 
 /* FONT */
-@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
+@font-face {
+  font-family: Orbitron;
+  src: url("Orbitron.ttf");
+}
 
-* { margin:0; padding:0; box-sizing:border-box; font-family:Orbitron; }
-body { background:black; overflow-x:hidden; user-select:none; }
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Orbitron;
+}
 
-/* BACKGROUND (FIXED + CENTERED) */
+body {
+  background:black;
+  overflow-x:hidden;
+  user-select:none;
+}
+
+/* BACKGROUND */
 .bg {
   position:fixed;
   width:100%;
@@ -36,27 +49,29 @@ body { background:black; overflow-x:hidden; user-select:none; }
 }
 
 .bg-logo {
-  top:26%; /* closer to title */
-  width:56%; /* 20% smaller */
+  top:26%;
+  width:56%;
   z-index:1;
 }
 
-/* BANNER FIX */
+/* BANNER (FIXED) */
 .banner {
   width:100%;
-  height:100vh;
   overflow:hidden;
 }
 
 .banner img {
   width:100%;
-  height:100%;
-  object-fit:cover;
+  height:auto;
+  display:block;
+  object-fit:contain;
 }
 
 /* MOBILE BANNER */
 @media (max-width:768px){
-  .banner img { content:url("banner.jpg"); }
+  .banner img {
+    content:url("banner.jpg");
+  }
 }
 
 /* FIXED LOGO */
@@ -68,18 +83,18 @@ body { background:black; overflow-x:hidden; user-select:none; }
   z-index:100;
 }
 
-/* CENTER SECTION */
+/* CENTER */
 .center-section {
   text-align:center;
   margin-top:40px;
 }
 
-/* VIDEOS + DESCRIPTION (FIXED SPACING) */
+/* VIDEOS */
 .videos {
   display:flex;
   justify-content:center;
   align-items:center;
-  gap:20px; /* tighter */
+  gap:20px;
 }
 
 .video-box {
@@ -87,8 +102,9 @@ body { background:black; overflow-x:hidden; user-select:none; }
 }
 
 video {
-  width:230px; /* slightly smaller = tighter */
+  width:230px;
   border-radius:12px;
+  display:block;
 }
 
 /* DESCRIPTION */
@@ -97,7 +113,7 @@ video {
   max-width:90%;
 }
 
-/* GLASS TEXT */
+/* GLASS */
 .glass {
   position:absolute;
   bottom:10px;
@@ -112,7 +128,9 @@ video {
 }
 
 /* BUTTONS */
-.buttons { margin-top:25px; }
+.buttons {
+  margin-top:25px;
+}
 
 .btn {
   margin:10px;
@@ -137,7 +155,10 @@ video {
   margin:80px 0;
 }
 
-.left,.right { width:250px; }
+.left,.right {
+  width:250px;
+}
+
 .middle {
   display:flex;
   flex-direction:column;
@@ -145,13 +166,20 @@ video {
   width:380px;
 }
 
-.gallery img { width:100%; }
+.gallery img {
+  width:100%;
+}
 
-/* MOBILE FIX */
+/* MOBILE */
 @media (max-width:768px){
 
-  .videos { flex-direction:column; }
-  video { display:none; }
+  .videos {
+    flex-direction:column;
+  }
+
+  video {
+    display:none;
+  }
 
   .video-box {
     width:250px;
@@ -159,10 +187,18 @@ video {
     background-size:cover;
   }
 
-  .video-box:nth-child(1){ background-image:url("reelminiature.png"); }
-  .video-box:nth-child(3){ background-image:url("video2miniature.png"); }
+  .video-box:nth-child(1){
+    background-image:url("reelminiature.png");
+  }
 
-  .gallery { flex-direction:column; align-items:center; }
+  .video-box:nth-child(3){
+    background-image:url("video2miniature.png");
+  }
+
+  .gallery {
+    flex-direction:column;
+    align-items:center;
+  }
 }
 
 </style>
@@ -170,7 +206,7 @@ video {
 
 <body>
 
-<!-- BG -->
+<!-- BACKGROUND -->
 <div class="bg">
   <img src="logo.png" class="bg-logo">
   <img src="title.png" class="bg-title">
@@ -192,8 +228,8 @@ video {
   <div class="videos">
 
     <div class="video-box">
-      <video id="v1" muted loop autoplay>
-        <source src="reel.mp4">
+      <video id="v1" muted loop autoplay playsinline>
+        <source src="reel.mp4" type="video/mp4">
       </video>
       <div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
     </div>
@@ -201,8 +237,8 @@ video {
     <img src="description.png" class="description">
 
     <div class="video-box">
-      <video id="v2" muted loop autoplay>
-        <source src="video2.mp4">
+      <video id="v2" muted loop autoplay playsinline>
+        <source src="video2.mp4" type="video/mp4">
       </video>
       <div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
     </div>
