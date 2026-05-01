@@ -6,252 +6,340 @@
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
-@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
+@font-face {
+  font-family: Orbitron;
+  src: url("Orbitron.ttf");
+}
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Orbitron;}
-body{background:black;color:white;overflow-x:hidden;}
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Orbitron;
+}
 
-/* ===== BANNER ===== */
-.banner{position:relative;width:100%;}
-.banner img{width:100%;display:block;}
+body {
+  background:black;
+  overflow-x:hidden;
+  user-select:none;
+  transition: opacity 0.6s ease;
+}
+
+/* PAGE TRANSITION */
+body.fade-out {
+  opacity:0;
+}
+
+/* Disable right click */
+body { -webkit-touch-callout:none; }
+html { -webkit-user-select:none; }
+
+/* Banner */
+.banner {
+  width:100%;
+  height:100vh;
+  background:url("banner.png") center/cover no-repeat;
+  position:relative;
+  will-change: transform;
+}
+
 @media(max-width:768px){
-.banner img{content:url("banner.jpg");}
+  .banner {
+    background:url("bannerMOBILE.jpg") center/cover no-repeat;
+  }
 }
 
-/* ===== BANNER LOGO ===== */
-.bannerlogo{
-position:absolute;
-left:15px;
-top:50%;
-transform:translateY(-50%);
-width:200%;
-max-width:280px;
+/* Banner Logo */
+.banner-logo {
+  position:absolute;
+  left:5%;
+  top:50%;
+  transform:translateY(-50%);
+  width:120px;
+  z-index:10;
+  cursor:pointer;
+  transition: transform 0.4s ease;
 }
 
-/* ===== FIXED LOGO ===== */
-.fixedlogo{
-position:fixed;
-top:10px;
-left:50%;
-transform:translateX(-50%);
-width:100px;
-display:none;
-z-index:100;
+.banner-logo:hover {
+  transform:translateY(-50%) scale(1.05);
 }
 
-/* ===== LOCKED BG ===== */
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-z-index:-1;
-pointer-events:none;
-}
-.bg img{
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-opacity:.3;
-}
-.bg-title{top:120px;width:70%;}
-.bg-logo{top:200px;width:50%;}
-
-/* ===== CENTER ===== */
-.center{text-align:center;margin-top:120px;}
-.description{width:320px;max-width:90%;}
-
-/* ===== VIDEOS ===== */
-.videos{
-display:flex;
-justify-content:center;
-gap:20px;
-margin-top:30px;
-flex-wrap:wrap;
+/* Sticky mobile */
+@media(max-width:768px){
+  .banner-logo {
+    position:fixed;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+  }
 }
 
-video{
-width:240px;
-border-radius:12px;
+/* Title */
+.title {
+  position:fixed;
+  top:calc(100vh + 30px);
+  width:100%;
+  text-align:center;
+  opacity:0.3;
+  will-change: transform;
 }
 
-.video-box{position:relative;}
+.title img { width:300px; }
 
-.glass{
-position:absolute;
-bottom:10px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(10px);
-padding:6px 12px;
-border-radius:10px;
-font-size:12px;
-cursor:pointer;
+/* Logo */
+.logo {
+  position:fixed;
+  top:calc(100vh + 100px);
+  width:100%;
+  text-align:center;
+  opacity:0.3;
+  will-change: transform;
 }
 
-/* ===== BUTTONS ===== */
-.buttons{margin-top:20px;}
+.logo img { width:200px; }
 
-.btn{
-display:inline-block;
-margin:10px;
-padding:12px 22px;
-border:1px solid white;
-color:white;
-text-decoration:none;
-transition:.3s;
-}
-.btn:hover{background:white;color:black;transform:scale(1.08);}
-
-/* ===== GRID ===== */
-.gallery{
-margin:80px auto;
-width:90%;
-display:flex;
-justify-content:center;
-gap:30px;
-flex-wrap:wrap;
+/* Description */
+.description {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%) scale(1.5);
+  z-index:5;
+  animation: float 6s ease-in-out infinite;
 }
 
-.side{width:260px;}
-.stack{display:flex;flex-direction:column;gap:20px;width:320px;}
-
-.gallery img{
-width:100%;
-border-radius:10px;
+/* FLOATING EFFECT */
+@keyframes float {
+  0% { transform:translate(-50%,-50%) scale(1.5) translateY(0px);}
+  50% { transform:translate(-50%,-50%) scale(1.5) translateY(-10px);}
+  100% { transform:translate(-50%,-50%) scale(1.5) translateY(0px);}
 }
 
-/* ===== MOBILE VIDEO ===== */
+/* Buttons */
+.buttons { margin-top:20px; }
+
+.btn {
+  display:inline-block;
+  margin:10px;
+  padding:12px 30px;
+  border:1px solid white;
+  color:white;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background:white;
+  color:black;
+  transform:scale(1.05);
+}
+
+.btn:active {
+  transform:scale(0.95);
+}
+
+/* Videos */
+.video-left, .video-right {
+  position:fixed;
+  top:50%;
+  width:20%;
+  transform:translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.video-left { left:5%; }
+.video-right { right:5%; }
+
+video {
+  width:100%;
+}
+
+.video-text {
+  position:absolute;
+  width:100%;
+  top:50%;
+  text-align:center;
+  transform:translateY(-50%);
+  color:white;
+  opacity:0.5;
+}
+
+/* Gallery */
+.gallery {
+  margin-top:120vh;
+  display:flex;
+  justify-content:space-around;
+  flex-wrap:wrap;
+}
+
+.gallery img {
+  width:22%;
+  margin:10px;
+  transition: transform 0.4s ease;
+}
+
+.gallery img:hover {
+  transform:scale(1.05);
+}
+
+/* MOBILE */
 @media(max-width:768px){
 
-video{display:none;}
+  .video-left, .video-right { display:none; }
 
-.thumb{
-width:130px;
-height:220px;
-border-radius:12px;
-background-size:cover;
-background-position:center;
-margin:10px;
+  .gallery img { width:90%; }
+
+  .video-thumb {
+    width:90%;
+    margin:20px auto;
+    position:relative;
+  }
+
+  .video-thumb img { width:100%; }
+
+  .video-thumb span {
+    position:absolute;
+    top:50%;
+    width:100%;
+    text-align:center;
+    transform:translateY(-50%);
+    color:white;
+    opacity:0.6;
+  }
 }
 
-.videos{flex-direction:row;flex-wrap:wrap;justify-content:center;}
-.gallery{flex-direction:column;align-items:center;}
-}
-
-/* ===== FULLSCREEN VIDEO ===== */
-.fullscreen{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-display:none;
-justify-content:center;
-align-items:center;
-z-index:999;
-}
-
-.fullscreen video{
-width:100%;
-height:100%;
-object-fit:contain;
-}
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<div class="bg">
-<img src="title.png" class="bg-title">
-<img src="logo.png" class="bg-logo">
+<a href="index.html">
+<img src="bannerlogo.png" class="banner-logo">
+</a>
+
+<div class="banner"></div>
+
+<div class="title">
+<img src="title.png">
 </div>
 
-<div class="banner">
-<img src="banner.png">
-<img src="bannerlogo.png" class="bannerlogo">
+<div class="logo">
+<img src="logo.png">
 </div>
 
-<img src="bannerlogo.png" class="fixedlogo" id="fixedLogo">
-
-<div class="center">
-
-<img src="description.png" class="description">
-
-<div class="videos">
-
-<div class="video-box">
-<video id="v1" muted autoplay loop playsinline>
-<source src="reel.mp4">
-</video>
-<div class="glass" onclick="toggleSound('v1',this)">tap for sound</div>
-</div>
-
-<div class="video-box">
-<video id="v2" muted autoplay loop playsinline>
-<source src="video2.mp4">
-</video>
-<div class="glass" onclick="toggleSound('v2',this)">tap for sound</div>
-</div>
-
-<div class="thumb" style="background-image:url('reelminiature.png')" onclick="openVideo('reel.mp4')"></div>
-<div class="thumb" style="background-image:url('video2miniature.png')" onclick="openVideo('video2.mp4')"></div>
-
-</div>
-
+<div class="description">
+<img src="description.png">
 <div class="buttons">
-<a href="work.html" class="btn" onclick="clickSound()">MY WORK</a>
-<a href="contact.html" class="btn" onclick="clickSound()">CONTACT</a>
+  <div class="btn" onclick="goPage('work.html')">MY WORK</div>
+  <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
+</div>
 </div>
 
+<div class="video-left">
+  <video id="reel" loop muted>
+    <source src="reel.mp4">
+  </video>
+  <div class="video-text" id="reelText">tap for sound</div>
+</div>
+
+<div class="video-right">
+  <video id="video2" loop muted>
+    <source src="video2.mp4">
+  </video>
+  <div class="video-text" id="video2Text">tap for sound</div>
+</div>
+
+<div class="video-thumb" onclick="openVideo('reel.mp4')">
+  <img src="reelminiature.png">
+  <span>tap to play</span>
+</div>
+
+<div class="video-thumb" onclick="openVideo('video2.mp4')">
+  <img src="video2miniature.png">
+  <span>tap to play</span>
 </div>
 
 <div class="gallery">
-<div class="side"><img src="image4.jpg"></div>
-<div class="stack">
-<img src="image2.jpg">
-<img src="image3.jpg">
-</div>
-<div class="side"><img src="image1.jpg"></div>
-</div>
-
-<div class="fullscreen" id="fullscreen" onclick="closeVideo()">
-<video id="fullVideo" controls autoplay></video>
+  <img src="image1.jpg">
+  <img src="image2.jpg">
+  <img src="image3.jpg">
+  <img src="image4.jpg">
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
-document.addEventListener("contextmenu",e=>e.preventDefault());
 
-window.addEventListener("scroll",()=>{
-document.getElementById("fixedLogo").style.display="block";
+/* PAGE TRANSITION */
+function goPage(page){
+  let sound = document.getElementById("clickSound");
+  sound.currentTime = 0;
+  sound.play();
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+    window.location.href = page;
+  },500);
+}
+
+/* VIDEO SOUND TOGGLE */
+function setupVideo(videoId, textId){
+  const video = document.getElementById(videoId);
+  const text = document.getElementById(textId);
+
+  video.play();
+
+  video.addEventListener("click", () => {
+    if(video.muted){
+      video.muted = false;
+      text.innerText = "tap to mute";
+    } else {
+      video.muted = true;
+      text.innerText = "tap for sound";
+    }
+  });
+}
+
+setupVideo("reel","reelText");
+setupVideo("video2","video2Text");
+
+/* PARALLAX */
+window.addEventListener("scroll", ()=>{
+  let scroll = window.scrollY;
+
+  document.querySelector(".banner").style.transform =
+    "translateY(" + scroll * 0.2 + "px)";
+
+  document.querySelector(".title").style.transform =
+    "translateY(" + scroll * 0.1 + "px)";
+
+  document.querySelector(".logo").style.transform =
+    "translateY(" + scroll * 0.05 + "px)";
 });
 
-function toggleSound(id,el){
-let v=document.getElementById(id);
-if(v.muted){v.muted=false;el.innerText="tap to mute";}
-else{v.muted=true;el.innerText="tap for sound";}
-}
-
-function clickSound(){
-let s=document.getElementById("clickSound");
-s.currentTime=0;s.play();
-}
-
+/* MOBILE FULLSCREEN VIDEO */
 function openVideo(src){
-let v=document.getElementById("fullVideo");
-v.src=src;
-document.getElementById("fullscreen").style.display="flex";
+  const vid = document.createElement("video");
+  vid.src = src;
+  vid.autoplay = true;
+  vid.controls = true;
+
+  vid.style.position="fixed";
+  vid.style.top=0;
+  vid.style.left=0;
+  vid.style.width="100%";
+  vid.style.height="100%";
+  vid.style.zIndex=999;
+
+  document.body.appendChild(vid);
+
+  vid.addEventListener("touchstart", ()=>{
+    vid.remove();
+  });
 }
 
-function closeVideo(){
-let v=document.getElementById("fullVideo");
-v.pause();
-v.src="";
-document.getElementById("fullscreen").style.display="none";
-}
 </script>
 
 </body>
