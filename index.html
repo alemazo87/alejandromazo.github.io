@@ -18,23 +18,28 @@
   font-family: Orbitron;
 }
 
-/* Black background */
 body {
   background: #000;
 }
 
-/* Banner */
+/* REAL banner */
 .banner {
   width: 100%;
-  height: 100vh; /* full screen height */
-  background: url("banner.png") center center / cover no-repeat;
+}
+
+.banner img {
+  width: 100%;
+  height: auto; /* keeps correct proportions */
+  display: block;
 }
 </style>
 </head>
 
 <body>
 
-<div class="banner"></div>
+<div class="banner">
+  <img src="banner.png" alt="banner">
+</div>
 
 </body>
 </html>
