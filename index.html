@@ -27,46 +27,56 @@ body{
 /* ===== BANNER ===== */
 .banner{
   position:relative;
+  width:100%;
 }
 
 .banner img{
   width:100%;
+  height:auto;
   display:block;
 }
 
-/* FIXED SIZE LOGO (NO STRETCH) */
+/* FIX: LOGO NOT STRETCHED */
 .banner-logo{
   position:absolute;
-  left:25px;
+  left:30px;
   top:50%;
   transform:translateY(-50%);
-  height:35px;
+  height:40px;
   width:auto;
 }
 
-/* ===== FIXED HERO ===== */
-.hero-fixed{
-  position:fixed;
-  top:140px;
-  width:100%;
+/* ===== HERO (LOCKED AFTER BANNER) ===== */
+.hero{
+  position:relative;
   text-align:center;
+  margin-top:30px;
+}
+
+.hero.fixed{
+  position:fixed;
+  top:0;
+  width:100%;
   pointer-events:none;
 }
 
-.hero-fixed .title img{
+/* TITLE */
+.title img{
   width:600px;
+  max-width:80%;
   opacity:0.3;
 }
 
-.hero-fixed .logo img{
-  width:520px; /* 2x bigger */
+/* LOGO */
+.logo img{
+  width:520px; /* 2x */
   margin-top:20px;
   opacity:0.3;
 }
 
 /* ===== MAIN ===== */
 .main{
-  margin-top:260px;
+  margin-top:220px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -75,7 +85,7 @@ body{
 
 /* VIDEOS */
 .side{
-  width:300px;
+  width:280px;
   position:relative;
 }
 
@@ -98,7 +108,7 @@ body{
 }
 
 .center img{
-  width:665px;
+  width:650px;
   max-width:90%;
 }
 
@@ -113,7 +123,6 @@ body{
   padding:12px 28px;
   border:1px solid white;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .btn:hover{
@@ -145,83 +154,49 @@ body{
 .images img{
   width:100%;
   max-width:420px;
-  border-radius:12px;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
+/* ===== MOBILE ONLY ===== */
+@media (max-width:768px){
 
-  .banner img{
-    content:url("bannerMOBILE.jpg");
+  /* SAFE IMAGE SWITCH */
+  .banner picture img{
+    content: none;
   }
 
-  .banner-logo{
-    height:30px;
-    left:20px;
-  }
-
-  .hero-fixed{
-    top:120px;
-  }
-
-  .hero-fixed .title img{
-    width:90%;
-  }
-
-  .hero-fixed .logo img{
-    width:80%;
+  .banner picture source{
+    display:block;
   }
 
   .main{
     flex-direction:column;
-    margin-top:220px;
   }
 
   .side{
     display:none;
   }
 
-  /* DESCRIPTION BIGGER */
   .center img{
-    width:100%;
     transform:scale(1.5);
   }
 
-  /* BUTTONS SIDE BY SIDE */
   .buttons{
     display:flex;
     justify-content:center;
     gap:10px;
   }
 
-  /* VIDEO THUMBNAILS */
-  .video-thumb{
-    width:90%;
-    margin:20px auto;
-    position:relative;
-  }
-
-  .video-thumb img{
-    width:100%;
-  }
-
-  .video-thumb span{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    opacity:0.6;
-  }
-
-  /* IMAGES STACK */
   .images{
     display:block;
-    padding:0 5%;
   }
 
   .images img{
     width:100%;
     margin:15px 0;
+  }
+
+  .banner-logo{
+    height:30px;
   }
 }
 
@@ -232,12 +207,16 @@ body{
 
 <!-- BANNER -->
 <div class="banner">
-  <img src="banner.png">
+  <picture>
+    <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
+    <img src="banner.png" alt="">
+  </picture>
+
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- FIXED HERO -->
-<div class="hero-fixed">
+<!-- HERO -->
+<div class="hero" id="hero">
   <div class="title">
     <img src="title.png">
   </div>
@@ -274,17 +253,6 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEO THUMBS -->
-<div class="video-thumb">
-  <img src="reelminiature.png">
-  <span>tap to play</span>
-</div>
-
-<div class="video-thumb">
-  <img src="video2miniature.png">
-  <span>tap to play</span>
-</div>
-
 <!-- IMAGES -->
 <div class="images">
   <div class="left"><img src="image4.jpg"></div>
@@ -298,6 +266,20 @@ body{
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
+
+/* FIX: LOCK HERO AFTER SCROLL */
+const hero = document.getElementById("hero");
+const bannerHeight = document.querySelector(".banner").offsetHeight;
+
+window.addEventListener("scroll", () => {
+  if(window.scrollY > bannerHeight){
+    hero.classList.add("fixed");
+  } else {
+    hero.classList.remove("fixed");
+  }
+});
+
+/* SOUND NAV */
 function goPage(page){
   let s=document.getElementById("clickSound");
   s.currentTime=0;
@@ -305,6 +287,7 @@ function goPage(page){
   setTimeout(()=>{window.location.href=page;},200);
 }
 
+/* VIDEO TOGGLE */
 function setup(v,t){
   let vid=document.getElementById(v);
   let txt=document.getElementById(t);
@@ -324,6 +307,7 @@ function setup(v,t){
 
 setup("reel","reelText");
 setup("video2","video2Text");
+
 </script>
 
 </body>
