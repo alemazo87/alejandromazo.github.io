@@ -1,75 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
+@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
 
-@font-face {
-  font-family: Orbitron;
-  src: url("Orbitron.ttf");
+body{
+background:black;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+text-align:center;
+font-family:Orbitron;
 }
 
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Orbitron;
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:url("image1.jpg") center/cover no-repeat;
+opacity:.2;
+z-index:-1;
 }
 
-body {
-  background:black;
-  color:white;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
+.bannerlogo{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+width:120px;
 }
 
-/* BACKGROUND */
-.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  z-index:-1;
-  background:url("image1.jpg") center/cover no-repeat;
-  opacity:.2;
+.contact{
+display:flex;
+flex-direction:column;
+gap:25px;
+align-items:center;
 }
 
-/* NAV LOGO */
-.bannerlogo {
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-  width:120px;
-}
+.item img{width:45px;margin-bottom:8px;}
 
-/* CONTACT WRAPPER */
-.contact {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:25px;
-}
+a{color:white;text-decoration:none;}
 
-/* EACH ITEM */
-.item {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-  cursor:pointer;
-}
+</style>
+</head>
 
-.item img {
-  width:45px;
-}
+<body>
 
-a {
+<div class="bg"></div>
+
+<a href="index.html">
+<img src="bannerlogo.png" class="bannerlogo">
+</a>
+
+<div class="contact">
+
+<div onclick="phoneOptions()">
+<img src="phone.png">
+<div>+7 (927) 846 87 24</div>
+</div>
+
+<a href="https://t.me/Ale_mazo">
+<img src="telegram.png">@Ale_mazo
+</a>
+
+<a href="https://wa.me/79278468724">
+<img src="whatsapp.png">+7 (927) 846 87 24
+</a>
+
+<a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr">
+<img src="instagram.png">ale_mazo
+</a>
+
+</div>
+
+<script>
+function phoneOptions(){
+if(confirm("Call number?")) window.location="tel:+79278468724";
+else{
+navigator.clipboard.writeText("+79278468724");
+alert("Copied");
+}
+}
+</script>
+
+</body>
+</html>a {
   color:white;
   text-decoration:none;
 }
