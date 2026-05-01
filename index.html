@@ -24,13 +24,12 @@ body{
   overflow-x:hidden;
 }
 
-/* ================= BANNER ================= */
+/* ===== BANNER ===== */
 .banner{
   position:relative;
   width:100%;
-  height:130px; /* controlled height */
+  height:130px;
   overflow:hidden;
-  z-index:10;
 }
 
 .banner img{
@@ -39,57 +38,46 @@ body{
   object-fit:cover;
 }
 
-/* LOGO FIXED SIZE */
+/* FIXED LOGO */
 .banner-logo{
   position:absolute;
-  left:14px;
+  left:12px;
   top:50%;
   transform:translateY(-50%);
-  height:18px; /* SMALLER */
+  height:16px;
   width:auto;
 }
 
-/* ================= HERO (TITLE + LOGO) ================= */
+/* ===== HERO ===== */
 .hero{
-  position:relative;
-  height:260px; /* defines spacing system */
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  gap:14px;
-}
-
-/* TITLE */
-.title img{
-  width:80%;
-  max-width:420px;
-  opacity:0.25;
-}
-
-/* LOGO */
-.logo img{
-  width:55%;
-  max-width:280px;
-  opacity:0.2;
-}
-
-/* ================= MAIN ================= */
-.main{
+  padding:40px 20px 20px;
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:24px;
-}
-
-/* DESCRIPTION */
-.center{
-  max-width:340px;
-  width:100%;
   text-align:center;
 }
 
-.center img{
+.title img{
+  width:85%;
+  max-width:360px;
+  opacity:0.25;
+}
+
+.logo img{
+  width:60%;
+  max-width:260px;
+  margin-top:12px;
+  opacity:0.2;
+}
+
+/* ===== MAIN CONTENT ===== */
+.container{
+  max-width:360px;
+  margin:0 auto;
+  text-align:center;
+}
+
+.description img{
   width:100%;
 }
 
@@ -102,15 +90,21 @@ body{
 }
 
 .btn{
-  padding:10px 16px;
+  padding:10px 14px;
   border:1px solid white;
   cursor:pointer;
+  transition:0.2s;
 }
 
-/* ================= VIDEO ================= */
+.btn:hover{
+  background:white;
+  color:black;
+}
+
+/* ===== VIDEO THUMB ===== */
 .video-thumb{
   width:92%;
-  margin:20px auto;
+  margin:24px auto;
   position:relative;
   border-radius:12px;
   overflow:hidden;
@@ -126,10 +120,9 @@ body{
   left:50%;
   transform:translate(-50%,-50%);
   opacity:0.7;
-  font-size:12px;
 }
 
-/* ================= IMAGES ================= */
+/* ===== IMAGES ===== */
 .images{
   padding:0 4%;
 }
@@ -140,63 +133,24 @@ body{
   border-radius:12px;
 }
 
-/* ================= DESKTOP ================= */
-@media(min-width:769px){
+/* ===== VIDEO OVERLAY ===== */
+.video-overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:9999;
+}
 
-  .banner{
-    height:auto;
-  }
-
-  .hero{
-    height:320px;
-  }
-
-  .main{
-    flex-direction:row;
-    justify-content:center;
-    gap:60px;
-  }
-
-  .center{
-    max-width:520px;
-  }
-
-  .video-thumb{
-    display:none;
-  }
-
-  .side{
-    display:block;
-    width:280px;
-    position:relative;
-  }
-
-  .side video{
-    width:100%;
-    border-radius:14px;
-  }
-
-  .video-text{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    opacity:0.6;
-  }
-
-  .images{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:30px;
-    padding:0 6%;
-    margin-top:160px;
-  }
-
-  .center-stack{
-    display:grid;
-    grid-template-rows:1fr 1fr;
-    gap:10px;
-  }
+.video-overlay video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 
 </style>
@@ -206,11 +160,7 @@ body{
 
 <!-- BANNER -->
 <div class="banner">
-  <picture>
-    <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
-    <img src="banner.png">
-  </picture>
-
+  <img src="bannerMOBILE.jpg">
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
@@ -219,22 +169,21 @@ body{
   <div class="title">
     <img src="title.png">
   </div>
-
   <div class="logo">
     <img src="logo.png">
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="main">
+<!-- CONTENT -->
+<div class="container">
 
-  <div class="center">
+  <div class="description">
     <img src="description.png">
+  </div>
 
-    <div class="buttons">
-      <div class="btn" onclick="goPage('work.html')">MY WORK</div>
-      <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
-    </div>
+  <div class="buttons">
+    <div class="btn" onclick="goPage('work.html')">MY WORK</div>
+    <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
   </div>
 
 </div>
@@ -258,34 +207,49 @@ body{
   <img src="image4.jpg">
 </div>
 
+<!-- VIDEO PLAYER -->
+<div id="videoOverlay" class="video-overlay">
+  <video id="overlayVideo" controls playsinline></video>
+</div>
+
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
+
+/* BUTTON SOUND */
 function goPage(page){
-  let s=document.getElementById("clickSound");
+  const s=document.getElementById("clickSound");
   s.currentTime=0;
   s.play().catch(()=>{});
-  setTimeout(()=>{window.location.href=page;},180);
+  setTimeout(()=>{window.location.href=page;},150);
 }
+
+/* VIDEO PLAYER (CROSS PLATFORM SAFE) */
+const overlay = document.getElementById("videoOverlay");
+const video = document.getElementById("overlayVideo");
 
 function openVideo(src){
-  let v=document.createElement("video");
-  v.src=src;
-  v.controls=true;
-  v.autoplay=true;
-
-  v.style.position="fixed";
-  v.style.top=0;
-  v.style.left=0;
-  v.style.width="100%";
-  v.style.height="100%";
-  v.style.background="#000";
-  v.style.zIndex=9999;
-
-  document.body.appendChild(v);
-
-  v.addEventListener("click", ()=>v.remove());
+  video.src = src;
+  overlay.style.display = "flex";
+  video.play().catch(()=>{});
 }
+
+/* CLOSE VIDEO */
+overlay.addEventListener("click", ()=>{
+  video.pause();
+  video.src = "";
+  overlay.style.display = "none";
+});
+
+/* CLEANUP IF USER SWITCHES APPS */
+document.addEventListener("visibilitychange", ()=>{
+  if(document.hidden){
+    video.pause();
+    overlay.style.display = "none";
+    video.src = "";
+  }
+});
+
 </script>
 
 </body>
