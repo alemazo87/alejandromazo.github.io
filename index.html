@@ -7,9 +7,9 @@
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
-@font-face {
-  font-family: Orbitron;
-  src: url("Orbitron.ttf");
+@font-face{
+  font-family:Orbitron;
+  src:url("Orbitron.ttf");
 }
 
 *{
@@ -24,13 +24,16 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  user-select:none;
 }
 
-/* DISABLE DRAG */
+/* ===== GLOBAL ===== */
 img{
   user-select:none;
   -webkit-user-drag:none;
+}
+
+body{
+  user-select:none;
 }
 
 /* ===== BANNER ===== */
@@ -58,18 +61,17 @@ img{
 /* ================= DESKTOP ================= */
 @media(min-width:769px){
 
+/* BACKGROUND LOCK */
 .bg{
   position:fixed;
-  top:0;
-  left:0;
-  width:100%;
+  inset:0;
   text-align:center;
   pointer-events:none;
   z-index:1;
 }
 
 .bg-inner{
-  margin-top:130px;
+  margin-top:30px;
 }
 
 .title img{
@@ -83,6 +85,7 @@ img{
   opacity:.3;
 }
 
+/* CENTER */
 .center{
   position:fixed;
   top:50%;
@@ -90,7 +93,6 @@ img{
   transform:translate(-50%,-50%);
   text-align:center;
   z-index:5;
-  animation:fade 1s ease;
 }
 
 .center img{
@@ -108,7 +110,7 @@ img{
   padding:12px 26px;
   border:1px solid #fff;
   cursor:pointer;
-  transition:.25s;
+  transition:.25s ease;
 }
 
 .btn:hover{
@@ -164,12 +166,6 @@ img{
   width:320px;
 }
 
-/* ANIMATION */
-@keyframes fade{
-  from{opacity:0; transform:translate(-50%,-45%);}
-  to{opacity:1; transform:translate(-50%,-50%);}
-}
-
 }
 
 /* ================= MOBILE ================= */
@@ -180,8 +176,12 @@ img{
   object-fit:cover;
 }
 
-/* floating logo when scrolling */
+/* LOGO SCROLL BEHAVIOR */
 .banner-logo{
+  transition:.3s;
+}
+
+.banner-logo.fixed{
   position:fixed;
   top:10px;
   left:50%;
@@ -189,6 +189,7 @@ img{
   height:16px;
 }
 
+/* HERO */
 .hero{
   text-align:center;
   margin-top:20px;
@@ -221,10 +222,7 @@ img{
   margin-top:15px;
 }
 
-.videos{
-  margin-top:30px;
-}
-
+/* VIDEOS */
 .video-wrap{
   position:relative;
   width:92%;
@@ -236,6 +234,15 @@ img{
   border-radius:12px;
 }
 
+.video-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  opacity:.6;
+}
+
+/* IMAGES */
 .images{
   padding:0 10px;
   margin-top:20px;
@@ -249,9 +256,21 @@ img{
 
 }
 
-/* disable right click */
-body{
-  -webkit-user-select:none;
+/* OVERLAY */
+.overlay{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.overlay video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
 }
 </style>
 </head>
@@ -259,16 +278,16 @@ body{
 <body oncontextmenu="return false">
 
 <!-- BANNER -->
-<div class="banner">
+<div class="banner" id="banner">
   <picture>
     <source media="(max-width:768px)" srcset="bannerMOBILE.jpg">
     <img src="banner.png">
   </picture>
 
-  <img src="bannerlogo.png" class="banner-logo" onclick="go('index.html')">
+  <img src="bannerlogo.png" class="banner-logo" id="logoBtn" onclick="go('index.html')">
 </div>
 
-<!-- DESKTOP BACKGROUND -->
+<!-- DESKTOP BG -->
 <div class="bg">
   <div class="bg-inner">
     <div class="title"><img src="title.png"></div>
@@ -279,14 +298,13 @@ body{
 <!-- CENTER -->
 <div class="center">
   <img src="description.png">
-
   <div class="buttons">
     <div class="btn" onclick="go('work.html')">MY WORK</div>
     <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
 </div>
 
-<!-- VIDEOS DESKTOP -->
+<!-- DESKTOP VIDEOS -->
 <div class="side left">
   <div class="video-wrap">
     <video id="v1" src="reel.mp4" muted loop autoplay playsinline></video>
@@ -309,23 +327,20 @@ body{
 
 <div class="center-mobile">
   <img src="description.png">
-
   <div class="buttons">
     <div class="btn" onclick="go('work.html')">MY WORK</div>
     <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
 </div>
 
-<div class="videos">
-  <div class="video-wrap">
-    <video id="mv1" src="reel.mp4" muted loop autoplay playsinline></video>
-    <div class="video-text" id="mt1">tap for sound</div>
-  </div>
+<div class="video-wrap">
+  <video id="mv1" src="reel.mp4" muted loop autoplay playsinline></video>
+  <div class="video-text" id="mt1">tap for sound</div>
+</div>
 
-  <div class="video-wrap">
-    <video id="mv2" src="video2.mp4" muted loop autoplay playsinline></video>
-    <div class="video-text" id="mt2">tap for sound</div>
-  </div>
+<div class="video-wrap">
+  <video id="mv2" src="video2.mp4" muted loop autoplay playsinline></video>
+  <div class="video-text" id="mt2">tap for sound</div>
 </div>
 
 <!-- IMAGES -->
@@ -342,7 +357,7 @@ body{
 
 <script>
 
-/* BUTTON SOUND */
+/* NAV */
 function go(page){
   const s=document.getElementById("clickSound");
   s.currentTime=0;
@@ -351,23 +366,31 @@ function go(page){
 }
 
 /* VIDEO TOGGLE */
-function setup(videoId,textId){
-  const v=document.getElementById(videoId);
-  const t=document.getElementById(textId);
-
+function setup(v,t){
   v.onclick=()=>{
     v.muted=!v.muted;
     t.innerText = v.muted ? "tap for sound" : "tap to mute";
   }
 }
 
-/* DESKTOP */
-setup("v1","t1");
-setup("v2","t2");
+setup(v1,t1);
+setup(v2,t2);
+setup(mv1,mt1);
+setup(mv2,mt2);
 
-/* MOBILE */
-setup("mv1","mt1");
-setup("mv2","mt2");
+/* MOBILE LOGO SCROLL */
+const logo=document.getElementById("logoBtn");
+const banner=document.getElementById("banner");
+
+window.addEventListener("scroll",()=>{
+  if(window.innerWidth<769){
+    if(window.scrollY > banner.offsetHeight){
+      logo.classList.add("fixed");
+    }else{
+      logo.classList.remove("fixed");
+    }
+  }
+});
 
 </script>
 
