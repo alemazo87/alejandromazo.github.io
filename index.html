@@ -21,6 +21,7 @@
 body{
   background:#000;
   color:white;
+  overflow-x:hidden;
 }
 
 /* ===== BANNER ===== */
@@ -35,28 +36,36 @@ body{
   display:block;
 }
 
-/* LOGO */
+/* LOGO INSIDE BANNER */
 .banner-logo{
   position:absolute;
-  left:30px;
+  left:40px;
   top:50%;
   transform:translateY(-50%);
-  width:100px;
+  width:120px;
+  cursor:pointer;
+  z-index:10;
 }
 
-/* ===== TITLE ===== */
+/* ===== TITLE + LOGO LOCKED ===== */
+.locked{
+  position:fixed;
+  width:100%;
+  top:0;
+  pointer-events:none;
+}
+
 .title{
-  margin-top:40px;
+  margin-top:30px;
   text-align:center;
   opacity:0.3;
 }
 
 .title img{
   width:658px;
-  max-width:90%;
+  max-width:80%;
 }
 
-/* ===== MAIN LOGO ===== */
 .main-logo{
   margin-top:20px;
   text-align:center;
@@ -64,23 +73,28 @@ body{
 }
 
 .main-logo img{
-  width:250px;
+  width:380px;
+  max-width:70%;
 }
 
-/* ===== CENTER CONTENT ===== */
+/* ===== CENTER DESCRIPTION ===== */
 .center{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
   text-align:center;
-  margin-top:40px;
 }
 
 .center img{
-  width:443px;
+  width:665px; /* 150% of original */
   max-width:90%;
 }
 
 /* BUTTONS */
 .buttons{
   margin-top:20px;
+  pointer-events:auto;
 }
 
 .btn{
@@ -97,22 +111,21 @@ body{
   color:black;
 }
 
-/* ===== VIDEOS ===== */
-.videos{
-  display:flex;
-  justify-content:space-between;
-  margin:60px 5%;
-  gap:20px;
+/* ===== VIDEOS (DESKTOP) ===== */
+.side-video{
+  position:fixed;
+  top:50%;
+  transform:translateY(-50%);
+  width:280px;
 }
 
-.video-box{
-  position:relative;
-  width:48%;
-}
+.left{ left:5%; }
+.right{ right:5%; }
 
-.video-box video{
+.side-video video{
   width:100%;
   border-radius:12px;
+  cursor:pointer;
 }
 
 .video-text{
@@ -123,17 +136,29 @@ body{
   opacity:0.6;
 }
 
-/* ===== IMAGES ===== */
+/* ===== IMAGE SECTION ===== */
 .images{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-  padding:40px 5%;
+  margin-top:120vh;
+  display:flex;
+  justify-content:space-between;
+  padding:0 5%;
+  align-items:center;
+}
+
+.images-left,
+.images-center,
+.images-right{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.images-center img{
+  margin:10px 0;
 }
 
 .images img{
-  width:100%;
-  border-radius:10px;
+  width:220px;
 }
 
 /* ===== MOBILE ===== */
@@ -144,21 +169,53 @@ body{
   }
 
   .banner-logo{
-    left:50%;
-    transform:translate(-50%,-50%);
+    left:20px;
     width:90px;
   }
 
-  .videos{
-    flex-direction:column;
+  .locked{
+    position:static;
+    pointer-events:auto;
   }
 
-  .video-box{
+  .center{
+    position:static;
+    transform:none;
+    margin-top:20px;
+  }
+
+  .side-video{
+    display:none;
+  }
+
+  /* VIDEO THUMBNAILS */
+  .video-thumb{
+    width:90%;
+    margin:20px auto;
+    position:relative;
+  }
+
+  .video-thumb img{
     width:100%;
   }
 
+  .video-thumb span{
+    position:absolute;
+    top:50%;
+    width:100%;
+    text-align:center;
+    transform:translateY(-50%);
+    opacity:0.6;
+  }
+
+  /* IMAGE GRID */
   .images{
-    grid-template-columns:1fr;
+    flex-direction:column;
+  }
+
+  .images img{
+    width:90%;
+    margin:10px 0;
   }
 }
 </style>
@@ -169,20 +226,24 @@ body{
 <!-- BANNER -->
 <div class="banner">
   <img src="banner.png">
-  <img src="bannerlogo.png" class="banner-logo">
+
+  <a href="index.html">
+    <img src="bannerlogo.png" class="banner-logo">
+  </a>
 </div>
 
-<!-- TITLE -->
-<div class="title">
-  <img src="title.png">
+<!-- LOCKED TITLE + LOGO -->
+<div class="locked">
+  <div class="title">
+    <img src="title.png">
+  </div>
+
+  <div class="main-logo">
+    <img src="logo.png">
+  </div>
 </div>
 
-<!-- LOGO -->
-<div class="main-logo">
-  <img src="logo.png">
-</div>
-
-<!-- DESCRIPTION -->
+<!-- CENTER DESCRIPTION -->
 <div class="center">
   <img src="description.png">
 
@@ -192,36 +253,53 @@ body{
   </div>
 </div>
 
-<!-- VIDEOS -->
-<div class="videos">
+<!-- SIDE VIDEOS -->
+<div class="side-video left">
+  <video id="reel" loop muted>
+    <source src="reel.mp4">
+  </video>
+  <div class="video-text" id="reelText">tap for sound</div>
+</div>
 
-  <div class="video-box">
-    <video id="reel" loop muted>
-      <source src="reel.mp4">
-    </video>
-    <div class="video-text" id="reelText">tap for sound</div>
-  </div>
+<div class="side-video right">
+  <video id="video2" loop muted>
+    <source src="video2.mp4">
+  </video>
+  <div class="video-text" id="video2Text">tap for sound</div>
+</div>
 
-  <div class="video-box">
-    <video id="video2" loop muted>
-      <source src="video2.mp4">
-    </video>
-    <div class="video-text" id="video2Text">tap for sound</div>
-  </div>
+<!-- MOBILE VIDEO THUMBNAILS -->
+<div class="video-thumb" onclick="openVideo('reel.mp4')">
+  <img src="reelminiature.png">
+  <span>tap to play</span>
+</div>
 
+<div class="video-thumb" onclick="openVideo('video2.mp4')">
+  <img src="video2miniature.png">
+  <span>tap to play</span>
 </div>
 
 <!-- IMAGES -->
 <div class="images">
-  <img src="image1.jpg">
-  <img src="image2.jpg">
-  <img src="image3.jpg">
-  <img src="image4.jpg">
+  <div class="images-left">
+    <img src="image4.jpg">
+  </div>
+
+  <div class="images-center">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+  </div>
+
+  <div class="images-right">
+    <img src="image1.jpg">
+  </div>
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
+
+/* BUTTON SOUND */
 function goPage(page){
   let s=document.getElementById("clickSound");
   s.currentTime=0;
@@ -229,6 +307,7 @@ function goPage(page){
   setTimeout(()=>{window.location.href=page;},200);
 }
 
+/* VIDEO TOGGLE */
 function setup(v,t){
   let vid=document.getElementById(v);
   let txt=document.getElementById(t);
@@ -248,6 +327,28 @@ function setup(v,t){
 
 setup("reel","reelText");
 setup("video2","video2Text");
+
+/* MOBILE FULLSCREEN */
+function openVideo(src){
+  let v=document.createElement("video");
+  v.src=src;
+  v.autoplay=true;
+  v.controls=true;
+
+  v.style.position="fixed";
+  v.style.top=0;
+  v.style.left=0;
+  v.style.width="100%";
+  v.style.height="100%";
+  v.style.zIndex=999;
+
+  document.body.appendChild(v);
+
+  v.addEventListener("touchstart",()=>{
+    v.remove();
+  });
+}
+
 </script>
 
 </body>
