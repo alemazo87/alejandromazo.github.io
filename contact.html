@@ -1,172 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width">
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
+@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
 
-/* FONT */
-@font-face {
-  font-family: 'Orbitron';
-  src: url('Orbitron.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+body{background:black;color:white;text-align:center;font-family:Orbitron;}
+
+.bg{
+position:fixed;width:100%;height:100%;z-index:-1;
+background:url("image1.jpg") center/cover no-repeat;
+opacity:.2;
 }
 
-/* APPLY FONT EVERYWHERE */
-* {
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Orbitron', sans-serif !important;
+.bannerlogo{
+position:fixed;top:20px;left:50%;transform:translateX(-50%);
+width:120px;
 }
 
-body {
-  background:black;
-  color:white;
-  text-align:center;
-  overflow-x:hidden;
-}
+.contact{margin-top:150px}
 
-/* PARALLAX BACKGROUND */
-.bg {
-  position:fixed;
-  width:100%;
-  height:100%;
-  top:0;
-  left:0;
-  z-index:-1;
-}
+img{width:40px;margin:10px}
 
-.bg img {
-  position:absolute;
-  top:20%;
-  left:50%;
-  transform:translateX(-50%);
-  width:60%;
-  opacity:0.3;
-}
-
-/* FIXED LOGO */
-.bannerlogo {
-  position:fixed;
-  top:20px;
-  left:20px;
-  width:auto;
-  max-width:120px;
-}
-
-/* CONTACT */
-.contact {
-  margin-top:120px;
-}
-
-.contact div {
-  margin:25px 0;
-}
-
-.contact img {
-  width:40px;
-  display:block;
-  margin:0 auto 10px auto;
-  cursor:pointer;
-}
-
-/* LINKS */
-a {
-  color:white;
-  text-decoration:none;
-  font-family:'Orbitron', sans-serif !important;
-}
-
-/* BUTTON STYLE */
-.action-btn {
-  display:inline-block;
-  margin-top:8px;
-  padding:8px 14px;
-  border:1px solid white;
-  font-size:12px;
-  cursor:pointer;
-  font-family:'Orbitron', sans-serif !important;
-}
-
+a{color:white;text-decoration:none}
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg">
-  <img src="logo.png" id="bgLogo">
-</div>
+<div class="bg"></div>
 
-<!-- FIXED NAV LOGO -->
 <a href="index.html">
-  <img src="bannerlogo.png" class="bannerlogo">
+<img src="bannerlogo.png" class="bannerlogo">
 </a>
 
 <div class="contact">
 
-  <!-- PHONE -->
-  <div>
-    <img src="phone.png" onclick="showPhoneOptions()">
-    <div>+7 (927) 846 87 24</div>
-    <div id="phoneActions" style="display:none;">
-      <a href="tel:+79278468724" class="action-btn">Call</a>
-      <div class="action-btn" onclick="copyNumber()">Copy</div>
-    </div>
-  </div>
+<div onclick="phoneOptions()">
+<img src="phone.png">
+<div>+7 (927) 846 87 24</div>
+</div>
 
-  <!-- TELEGRAM -->
-  <div>
-    <a href="https://t.me/Ale_mazo">
-      <img src="telegram.png">
-      @Ale_mazo
-    </a>
-  </div>
+<a href="https://t.me/Ale_mazo">
+<img src="telegram.png">@Ale_mazo
+</a>
 
-  <!-- WHATSAPP -->
-  <div>
-    <a href="https://wa.me/79278468724">
-      <img src="whatsapp.png">
-      +7 (927) 846 87 24
-    </a>
-  </div>
+<a href="https://wa.me/79278468724">
+<img src="whatsapp.png">+7 (927) 846 87 24
+</a>
 
-  <!-- INSTAGRAM -->
-  <div>
-    <a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr">
-      <img src="instagram.png">
-      ale_mazo
-    </a>
-  </div>
+<a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr">
+<img src="instagram.png">ale_mazo
+</a>
 
 </div>
 
 <script>
-
-/* PARALLAX */
-window.addEventListener("scroll",()=>{
-  let y = window.scrollY;
-  document.getElementById("bgLogo").style.transform =
-    "translate(-50%," + (y * 0.15) + "px)";
-});
-
-/* PHONE OPTIONS */
-function showPhoneOptions(){
-  let el = document.getElementById("phoneActions");
-  el.style.display = el.style.display === "none" ? "block" : "none";
+function phoneOptions(){
+if(confirm("Call number?")){
+window.location="tel:+79278468724";
+}else{
+navigator.clipboard.writeText("+79278468724");
+alert("Copied");
 }
-
-/* COPY NUMBER */
-function copyNumber(){
-  navigator.clipboard.writeText("+79278468724");
-  alert("Number copied");
 }
-
 </script>
 
 </body>
