@@ -21,12 +21,12 @@
 body{
   background:#000;
   color:white;
+  overflow-x:hidden;
 }
 
 /* ===== BANNER ===== */
 .banner{
   position:relative;
-  width:100%;
 }
 
 .banner img{
@@ -34,39 +34,39 @@ body{
   display:block;
 }
 
-/* FIXED SIZE (NOT STRETCHED) */
+/* FIXED SIZE LOGO (NO STRETCH) */
 .banner-logo{
   position:absolute;
-  left:30px;
+  left:25px;
   top:50%;
   transform:translateY(-50%);
-  height:40px;   /* smaller now */
+  height:35px;
   width:auto;
 }
 
-/* ===== TITLE + LOGO SECTION ===== */
-.hero{
-  margin-top:30px;
+/* ===== FIXED HERO ===== */
+.hero-fixed{
+  position:fixed;
+  top:140px;
+  width:100%;
   text-align:center;
+  pointer-events:none;
 }
 
-/* TITLE */
-.title img{
+.hero-fixed .title img{
   width:600px;
-  max-width:80%;
   opacity:0.3;
 }
 
-/* LOGO under title */
-.logo img{
-  width:260px;
+.hero-fixed .logo img{
+  width:520px; /* 2x bigger */
   margin-top:20px;
   opacity:0.3;
 }
 
-/* ===== MAIN SECTION ===== */
+/* ===== MAIN ===== */
 .main{
-  margin-top:60px;
+  margin-top:260px;
   display:flex;
   justify-content:center;
   align-items:center;
@@ -90,7 +90,6 @@ body{
   left:50%;
   transform:translate(-50%,-50%);
   opacity:0.6;
-  text-align:center;
 }
 
 /* CENTER */
@@ -99,7 +98,7 @@ body{
 }
 
 .center img{
-  width:650px;
+  width:665px;
   max-width:90%;
 }
 
@@ -129,7 +128,6 @@ body{
   grid-template-columns:1fr 1fr 1fr;
   gap:40px;
   padding:0 8%;
-  align-items:center;
 }
 
 .left, .right{
@@ -150,6 +148,83 @@ body{
   border-radius:12px;
 }
 
+/* ===== MOBILE ===== */
+@media(max-width:768px){
+
+  .banner img{
+    content:url("bannerMOBILE.jpg");
+  }
+
+  .banner-logo{
+    height:30px;
+    left:20px;
+  }
+
+  .hero-fixed{
+    top:120px;
+  }
+
+  .hero-fixed .title img{
+    width:90%;
+  }
+
+  .hero-fixed .logo img{
+    width:80%;
+  }
+
+  .main{
+    flex-direction:column;
+    margin-top:220px;
+  }
+
+  .side{
+    display:none;
+  }
+
+  /* DESCRIPTION BIGGER */
+  .center img{
+    width:100%;
+    transform:scale(1.5);
+  }
+
+  /* BUTTONS SIDE BY SIDE */
+  .buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+  }
+
+  /* VIDEO THUMBNAILS */
+  .video-thumb{
+    width:90%;
+    margin:20px auto;
+    position:relative;
+  }
+
+  .video-thumb img{
+    width:100%;
+  }
+
+  .video-thumb span{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    opacity:0.6;
+  }
+
+  /* IMAGES STACK */
+  .images{
+    display:block;
+    padding:0 5%;
+  }
+
+  .images img{
+    width:100%;
+    margin:15px 0;
+  }
+}
+
 </style>
 </head>
 
@@ -161,12 +236,11 @@ body{
   <img src="bannerlogo.png" class="banner-logo">
 </div>
 
-<!-- TITLE + LOGO (NOW CORRECT POSITION) -->
-<div class="hero">
+<!-- FIXED HERO -->
+<div class="hero-fixed">
   <div class="title">
     <img src="title.png">
   </div>
-
   <div class="logo">
     <img src="logo.png">
   </div>
@@ -200,22 +274,25 @@ body{
 
 </div>
 
+<!-- MOBILE VIDEO THUMBS -->
+<div class="video-thumb">
+  <img src="reelminiature.png">
+  <span>tap to play</span>
+</div>
+
+<div class="video-thumb">
+  <img src="video2miniature.png">
+  <span>tap to play</span>
+</div>
+
 <!-- IMAGES -->
 <div class="images">
-
-  <div class="left">
-    <img src="image4.jpg">
-  </div>
-
+  <div class="left"><img src="image4.jpg"></div>
   <div class="center-stack">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
-
-  <div class="right">
-    <img src="image1.jpg">
-  </div>
-
+  <div class="right"><img src="image1.jpg"></div>
 </div>
 
 <audio id="clickSound" src="click.mp3"></audio>
