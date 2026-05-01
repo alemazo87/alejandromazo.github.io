@@ -1,91 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
-@font-face { font-family: Orbitron; src: url("Orbitron.ttf"); }
-
-body{
-background:black;
-color:white;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-text-align:center;
-font-family:Orbitron;
+@font-face {
+  font-family: Orbitron;
+  src: url("Orbitron.ttf");
 }
 
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-background:url("image1.jpg") center/cover no-repeat;
-opacity:.2;
-z-index:-1;
+* {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Orbitron;
 }
 
-.bannerlogo{
-position:fixed;
-top:20px;
-left:50%;
-transform:translateX(-50%);
-width:120px;
+body {
+  background:black;
+  overflow-x:hidden;
+  color:white;
+  user-select:none;
 }
 
-.contact{
-display:flex;
-flex-direction:column;
-gap:25px;
-align-items:center;
+/* Disable right click */
+body { -webkit-touch-callout:none; }
+html { -webkit-user-select:none; }
+
+/* PAGE TRANSITION */
+body.fade-out {
+  opacity:0;
+  transition:0.5s;
 }
 
-.contact img{width:40px;}
+/* Banner */
+.banner {
+  width:100%;
+  height:100vh;
+  background:url("banner.png") center/cover no-repeat;
+  position:relative;
+}
 
-a{color:white;text-decoration:none;}
+/* Banner logo */
+.banner-logo {
+  position:absolute;
+  left:5%;
+  top:50%;
+  transform:translateY(-50%);
+  width:120px;
+  z-index:10;
+  cursor:pointer;
+}
+
+/* Title */
+.title {
+  position:fixed;
+  top:calc(100vh + 30px);
+  width:100%;
+  text-align:center;
+  opacity:0.3;
+}
+
+.title img { width:300px; }
+
+/* Logo */
+.logo {
+  position:fixed;
+  top:calc(100vh + 100px);
+  width:100%;
+  text-align:center;
+  opacity:0.3;
+}
+
+.logo img { width:400px; }
+
+/* CONTACT CENTER */
+.contact-container {
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+}
+
+/* Contact item */
+.contact-item {
+  margin:20px 0;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.contact-item:hover {
+  transform:scale(1.05);
+}
+
+/* Icons */
+.contact-item img {
+  width:40px;
+  display:block;
+  margin:0 auto 10px;
+}
+
+/* MOBILE VERSION */
+@media(max-width:768px){
+
+  body {
+    background:
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url("image1.jpg") center/cover no-repeat;
+  }
+
+  .banner { display:none; }
+
+  .banner-logo {
+    position:fixed;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+  }
+
+  .title, .logo { display:none; }
+
+  .contact-container {
+    top:55%;
+  }
+}
 
 </style>
 </head>
 
-<body>
-
-<div class="bg"></div>
+<body oncontextmenu="return false">
 
 <a href="index.html">
-<img src="bannerlogo.png" class="bannerlogo">
+<img src="bannerlogo.png" class="banner-logo">
 </a>
 
-<div class="contact">
+<div class="banner"></div>
 
-<div onclick="phoneOptions()">
-<img src="phone.png">
-<div>+7 (927) 846 87 24</div>
+<div class="title">
+<img src="title.png">
 </div>
 
-<a href="https://t.me/Ale_mazo">
-<img src="telegram.png">@Ale_mazo
-</a>
+<div class="logo">
+<img src="logo.png">
+</div>
 
-<a href="https://wa.me/79278468724">
-<img src="whatsapp.png">+7 (927) 846 87 24
-</a>
+<div class="contact-container">
 
-<a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr">
-<img src="instagram.png">ale_mazo
-</a>
+  <div class="contact-item" onclick="openLink('tel:+79278468724')">
+    <img src="phone.png">
+    <div>+7 (927) 846 87 24</div>
+  </div>
+
+  <div class="contact-item" onclick="openLink('https://t.me/Ale_mazo')">
+    <img src="telegram.png">
+    <div>@Ale_mazo</div>
+  </div>
+
+  <div class="contact-item" onclick="openLink('https://wa.me/79278468724')">
+    <img src="whatsapp.png">
+    <div>+7 (927) 846 87 24</div>
+  </div>
+
+  <div class="contact-item" onclick="openLink('https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr')">
+    <img src="instagram.png">
+    <div>ale_mazo</div>
+  </div>
 
 </div>
+
+<audio id="clickSound" src="click.mp3"></audio>
 
 <script>
-function phoneOptions(){
-if(confirm("Call number?")) window.location="tel:+79278468724";
-else{
-navigator.clipboard.writeText("+79278468724");
-alert("Copied");
+
+/* CLICK SOUND + LINK HANDLER */
+function openLink(url){
+  let sound = document.getElementById("clickSound");
+  sound.currentTime = 0;
+  sound.play();
+
+  document.body.classList.add("fade-out");
+
+  setTimeout(()=>{
+    window.open(url, "_blank");
+  },400);
 }
-}
+
 </script>
 
 </body>
