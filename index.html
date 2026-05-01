@@ -27,7 +27,7 @@ body{
 /* ===== BANNER ===== */
 .banner{
   position:relative;
-  z-index:3;
+  z-index:10;
 }
 
 .banner img{
@@ -35,13 +35,15 @@ body{
   display:block;
 }
 
+/* FIXED LOGO (NO STRETCH EVER) */
 .banner-logo{
   position:absolute;
-  left:20px;
+  left:18px;
   top:50%;
   transform:translateY(-50%);
-  height:26px;
+  height:22px;
   width:auto;
+  object-fit:contain;
 }
 
 /* ===== BACKGROUND LAYER ===== */
@@ -50,29 +52,33 @@ body{
   width:100%;
   text-align:center;
   pointer-events:none;
-  z-index:0;
+  z-index:1;
 }
 
+/* TITLE */
 .title img{
   width:600px;
+  max-width:90%;
   opacity:0.25;
 }
 
+/* LOGO */
 .logo img{
   width:520px;
-  margin-top:20px;
+  max-width:85%;
+  margin-top:18px;
   opacity:0.2;
 }
 
 /* ===== MAIN ===== */
 .main{
-  margin-top:220px;
+  margin-top:260px;
   display:flex;
   justify-content:center;
   align-items:center;
   gap:60px;
   position:relative;
-  z-index:2;
+  z-index:5;
 }
 
 /* VIDEOS */
@@ -84,37 +90,51 @@ body{
 .side video{
   width:100%;
   border-radius:14px;
+  object-fit:cover;
 }
 
+/* TEXT OVER VIDEO */
 .video-text{
   position:absolute;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
   opacity:0.6;
+  pointer-events:none;
 }
 
-/* CENTER */
+/* CENTER BLOCK */
+.center-wrap{
+  display:flex;
+  justify-content:center;
+  width:100%;
+}
+
 .center{
+  max-width:520px;
+  width:100%;
   text-align:center;
 }
 
+/* DESCRIPTION */
 .center img{
-  width:650px;
-  max-width:90%;
+  width:100%;
+  max-width:520px;
 }
 
 /* BUTTONS */
 .buttons{
-  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  margin-top:18px;
 }
 
 .btn{
-  display:inline-block;
-  margin:10px;
-  padding:12px 28px;
+  padding:12px 24px;
   border:1px solid white;
   cursor:pointer;
+  transition:0.25s ease;
 }
 
 .btn:hover{
@@ -124,7 +144,7 @@ body{
 
 /* ===== IMAGES ===== */
 .images{
-  margin-top:140px;
+  margin-top:160px;
   display:grid;
   grid-template-columns:1fr 1fr 1fr;
   gap:30px;
@@ -144,7 +164,7 @@ body{
   border-radius:12px;
 }
 
-/* ===== VIDEO THUMB (hidden on desktop) ===== */
+/* ===== MOBILE VIDEO THUMB ===== */
 .video-thumb{
   display:none;
 }
@@ -153,12 +173,22 @@ body{
 @media(max-width:768px){
 
   .banner-logo{
-    height:22px;
-    left:15px;
+    height:20px;
+    left:14px;
+  }
+
+  .main{
+    flex-direction:column;
+    margin-top:160px;
+    gap:25px;
+  }
+
+  .side{
+    display:none;
   }
 
   .bg-layer{
-    top:80px;
+    position:absolute; /* prevents weird scroll behavior */
   }
 
   .title img{
@@ -167,36 +197,27 @@ body{
 
   .logo img{
     width:65%;
-    margin-top:10px;
+    margin-top:12px;
   }
 
-  .main{
-    flex-direction:column;
-    margin-top:140px;
-    gap:25px;
-  }
-
-  .side{
-    display:none;
+  .center{
+    max-width:340px;
   }
 
   .center img{
-    width:90%;
-    max-width:400px;
+    max-width:340px;
   }
 
   .buttons{
-    display:flex;
-    justify-content:center;
     gap:10px;
   }
 
   .btn{
-    padding:10px 18px;
+    padding:10px 16px;
     font-size:12px;
   }
 
-  /* SHOW VIDEO THUMBNAILS */
+  /* VIDEO THUMBNAILS */
   .video-thumb{
     display:block;
     width:92%;
@@ -258,23 +279,25 @@ body{
 <div class="main">
 
   <div class="side">
-    <video id="reel" loop muted autoplay playsinline>
+    <video id="reel" loop muted autoplay playsinline preload="metadata">
       <source src="reel.mp4">
     </video>
     <div class="video-text" id="reelText">tap for sound</div>
   </div>
 
-  <div class="center">
-    <img src="description.png" alt="">
+  <div class="center-wrap">
+    <div class="center">
+      <img src="description.png" alt="">
 
-    <div class="buttons">
-      <div class="btn" onclick="goPage('work.html')">MY WORK</div>
-      <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
+      <div class="buttons">
+        <div class="btn" onclick="goPage('work.html')">MY WORK</div>
+        <div class="btn" onclick="goPage('contact.html')">CONTACT</div>
+      </div>
     </div>
   </div>
 
   <div class="side">
-    <video id="video2" loop muted autoplay playsinline>
+    <video id="video2" loop muted autoplay playsinline preload="metadata">
       <source src="video2.mp4">
     </video>
     <div class="video-text" id="video2Text">tap for sound</div>
@@ -282,7 +305,7 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEO -->
+<!-- MOBILE VIDEOS -->
 <div class="video-thumb" onclick="openVideo('reel.mp4')">
   <img src="reelminiature.png" alt="">
   <span>tap to play</span>
@@ -308,31 +331,31 @@ body{
 <audio id="clickSound" src="click.mp3"></audio>
 
 <script>
-
-/* KEEP BG UNDER BANNER */
+/* DYNAMIC BACKGROUND OFFSET */
 const banner = document.querySelector(".banner");
 const bg = document.getElementById("bg");
 
 function updateOffset(){
   bg.style.top = banner.offsetHeight + "px";
 }
+
 window.addEventListener("load", updateOffset);
 window.addEventListener("resize", updateOffset);
 
 /* BUTTON SOUND */
 function goPage(page){
-  let s=document.getElementById("clickSound");
+  const s=document.getElementById("clickSound");
   s.currentTime=0;
   s.play().catch(()=>{});
-  setTimeout(()=>{window.location.href=page;},200);
+  setTimeout(()=>{window.location.href=page;},180);
 }
 
 /* VIDEO SOUND TOGGLE */
 function setup(v,t){
-  let vid=document.getElementById(v);
-  let txt=document.getElementById(t);
+  const vid=document.getElementById(v);
+  const txt=document.getElementById(t);
 
-  vid.onclick=()=>{
+  vid.addEventListener("click", ()=>{
     if(vid.muted){
       vid.muted=false;
       txt.innerText="tap to mute";
@@ -340,7 +363,7 @@ function setup(v,t){
       vid.muted=true;
       txt.innerText="tap for sound";
     }
-  }
+  });
 }
 
 setup("reel","reelText");
@@ -348,26 +371,25 @@ setup("video2","video2Text");
 
 /* MOBILE VIDEO PLAYER */
 function openVideo(src){
-  let v=document.createElement("video");
+  const v=document.createElement("video");
   v.src=src;
   v.controls=true;
   v.autoplay=true;
 
-  v.style.position="fixed";
-  v.style.top=0;
-  v.style.left=0;
-  v.style.width="100%";
-  v.style.height="100%";
-  v.style.background="#000";
-  v.style.zIndex=9999;
+  Object.assign(v.style,{
+    position:"fixed",
+    top:0,
+    left:0,
+    width:"100%",
+    height:"100%",
+    background:"#000",
+    zIndex:9999
+  });
 
   document.body.appendChild(v);
 
-  v.addEventListener("touchstart", (e)=>{
-    if(e.target===v) v.remove();
-  });
+  v.addEventListener("click", ()=>v.remove());
 }
-
 </script>
 
 </body>
