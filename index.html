@@ -49,6 +49,11 @@ body{
   transform:translateX(-50%);
   width:140px;
   z-index:1000;
+  transition:transform 0.3s ease;
+}
+
+.bannerlogo:hover{
+  transform:translateX(-50%) scale(1.05);
 }
 
 @media(min-width:768px){
@@ -59,27 +64,33 @@ body{
   }
 }
 
-/* ===== GLOBAL VISUAL LAYER ===== */
+/* ===== VISUAL LAYER ===== */
 .visual{
   position:fixed;
-  top:50%;
+  top:120px;
   left:50%;
-  transform:translate(-50%,-50%);
+  transform:translateX(-50%);
   z-index:0;
   pointer-events:none;
   text-align:center;
+  opacity:0;
+  animation:fadeIn 1.2s ease forwards;
 }
 
 .title{
-  width:70vw;
-  max-width:750px;
+  width:60vw;
+  max-width:700px;
   opacity:0.3;
 }
 
 .logo{
-  width:260px;
-  margin-top:15px;
+  width:240px;
+  margin-top:10px;
   opacity:0.3;
+}
+
+@keyframes fadeIn{
+  to{opacity:1;}
 }
 
 /* ===== CONTENT ===== */
@@ -88,7 +99,7 @@ body{
   z-index:2;
 }
 
-/* ===== CENTER BLOCK ===== */
+/* ===== CENTER ===== */
 .center{
   display:flex;
   flex-direction:column;
@@ -96,10 +107,13 @@ body{
   gap:16px;
   max-width:520px;
   margin:auto;
+  text-align:center;
+  animation:fadeUp 1.2s ease;
 }
 
 .description{
   width:100%;
+  max-width:500px;
 }
 
 /* BUTTONS */
@@ -113,29 +127,36 @@ body{
   border:1px solid #fff;
   cursor:pointer;
   transition:0.3s;
+  background:transparent;
 }
 
 .btn:hover{
   background:#fff;
   color:#000;
+  transform:translateY(-2px);
 }
 
 /* ===== VIDEO ===== */
 .video{
   width:100%;
-  aspect-ratio:16/9;
   display:flex;
   justify-content:center;
   align-items:center;
   position:relative;
   background:#000;
-  border-radius:22px;
+  border-radius:24px;
   overflow:hidden;
+  padding:10px;
+  transition:transform 0.4s ease;
+}
+
+.video:hover{
+  transform:scale(1.02);
 }
 
 .video video{
-  max-width:100%;
-  max-height:100%;
+  width:100%;
+  height:auto;
   object-fit:contain;
 }
 
@@ -154,10 +175,7 @@ body{
   flex-direction:column;
   gap:30px;
   padding:40px 20px;
-
-  /* CRITICAL FIX: prevents overlap with fixed logo/title */
-  padding-top:calc(50vh + 140px);
-
+  margin-top:-120px;
   align-items:center;
 }
 
@@ -194,9 +212,14 @@ body{
 .gallery img{
   width:100%;
   max-width:650px;
+  transition:transform 0.4s ease;
 }
 
-/* DESKTOP GALLERY */
+.gallery img:hover{
+  transform:scale(1.03);
+}
+
+/* DESKTOP */
 @media(min-width:1024px){
 
   .gallery{
@@ -217,10 +240,20 @@ body{
     gap:12px;
   }
 
-  /* VISUAL PRIORITY */
   .center-img{
     transform:scale(1.1);
-    z-index:2;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(40px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 </style>
@@ -233,12 +266,12 @@ body{
 <!-- BANNER -->
 <div class="banner"></div>
 
-<!-- NAV LOGO -->
+<!-- NAV -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- FIXED BACKGROUND VISUAL -->
+<!-- VISUAL -->
 <div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
@@ -257,12 +290,12 @@ body{
   </div>
 
   <div class="video">
-    <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <video src="reel.mp4" autoplay muted loop playsinline></video>
     <span class="label">tap for sound</span>
   </div>
 
   <div class="video">
-    <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <video src="video2.mp4" autoplay muted loop playsinline></video>
     <span class="label">tap for sound</span>
   </div>
 
@@ -272,7 +305,7 @@ body{
 <div class="desktop">
 
   <div class="video">
-    <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <video src="reel.mp4" autoplay muted loop playsinline></video>
     <span class="label">tap for sound</span>
   </div>
 
@@ -286,7 +319,7 @@ body{
   </div>
 
   <div class="video">
-    <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <video src="video2.mp4" autoplay muted loop playsinline></video>
     <span class="label">tap for sound</span>
   </div>
 
@@ -295,17 +328,14 @@ body{
 <!-- GALLERY -->
 <div class="gallery">
 
-  <!-- LEFT -->
   <img src="image4.jpg">
 
-  <!-- CENTER STACK -->
   <div class="stack">
     <img src="image5.jpg">
     <img src="image2.jpg" class="center-img">
     <img src="image3.jpg">
   </div>
 
-  <!-- RIGHT -->
   <img src="image1.jpg">
 
 </div>
