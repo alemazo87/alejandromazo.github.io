@@ -41,7 +41,7 @@ body{
   }
 }
 
-/* ===== FIXED NAV LOGO ===== */
+/* ===== NAV LOGO ===== */
 .bannerlogo{
   position:fixed;
   top:15px;
@@ -59,7 +59,7 @@ body{
   }
 }
 
-/* ===== GLOBAL VISUAL LAYER ===== */
+/* ===== VISUAL LAYER ===== */
 .visual{
   position:fixed;
   top:50%;
@@ -68,11 +68,6 @@ body{
   z-index:0;
   pointer-events:none;
   text-align:center;
-}
-
-.visual img{
-  display:block;
-  margin:auto;
 }
 
 .title{
@@ -87,7 +82,7 @@ body{
   opacity:0.3;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== CONTENT ===== */
 .content{
   position:relative;
   z-index:2;
@@ -97,18 +92,17 @@ body{
   padding:40px 20px;
 }
 
-/* CENTER */
 .center{
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:15px;
+  max-width:500px;
 }
 
 /* DESCRIPTION */
 .description{
-  width:85%;
-  max-width:500px;
+  width:100%;
 }
 
 /* BUTTONS */
@@ -138,7 +132,7 @@ body{
   align-items:center;
   position:relative;
   background:#000;
-  border-radius:12px;
+  border-radius:14px;
 }
 
 .video video{
@@ -155,35 +149,34 @@ body{
   transform:translate(-50%,-50%);
   font-size:12px;
   opacity:0.6;
-  pointer-events:none;
 }
 
-/* ===== MOBILE VIDEO ORDER ===== */
-.mobile-videos{
+/* ===== MOBILE FLOW ===== */
+.mobile{
   display:flex;
   flex-direction:column;
+  align-items:center;
   gap:30px;
-  width:100%;
   padding:40px 20px;
 }
 
-/* ===== DESKTOP LAYOUT ===== */
-.desktop-layout{
+/* ===== DESKTOP ===== */
+.desktop{
   display:none;
 }
 
 @media(min-width:1024px){
 
-  .desktop-layout{
+  .mobile{
+    display:none;
+  }
+
+  .desktop{
     display:flex;
     width:100%;
     justify-content:space-between;
     align-items:center;
     padding:60px;
-  }
-
-  .mobile-videos{
-    display:none;
   }
 
   .video{
@@ -216,13 +209,14 @@ body{
   .gallery{
     flex-direction:row;
     justify-content:center;
-    align-items:flex-start;
+    align-items:stretch;
     gap:30px;
   }
 
   .stack{
     display:flex;
     flex-direction:column;
+    justify-content:space-between;
     gap:20px;
   }
 
@@ -237,51 +231,28 @@ body{
 
 <audio id="clickSound" src="click.mp3"></audio>
 
-<!-- BANNER -->
 <div class="banner"></div>
 
-<!-- NAV LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- VISUAL LAYER -->
 <div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
 </div>
 
-<!-- CONTENT -->
-<div class="content">
+<!-- MOBILE -->
+<div class="mobile">
 
-  <!-- DESKTOP -->
-  <div class="desktop-layout">
+  <div class="center">
+    <img src="description.png" class="description">
 
-    <div class="video">
-      <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
-      <span class="label">tap for sound</span>
+    <div class="buttons">
+      <div class="btn" onclick="go('work.html')">MY WORK</div>
+      <div class="btn" onclick="go('contact.html')">CONTACT</div>
     </div>
-
-    <div class="center">
-      <img src="description.png" class="description">
-
-      <div class="buttons">
-        <div class="btn" onclick="go('work.html')">MY WORK</div>
-        <div class="btn" onclick="go('contact.html')">CONTACT</div>
-      </div>
-    </div>
-
-    <div class="video">
-      <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
-      <span class="label">tap for sound</span>
-    </div>
-
   </div>
-
-</div>
-
-<!-- MOBILE FLOW -->
-<div class="mobile-videos">
 
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
@@ -295,38 +266,56 @@ body{
 
 </div>
 
+<!-- DESKTOP -->
+<div class="desktop">
+
+  <div class="video">
+    <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <span class="label">tap for sound</span>
+  </div>
+
+  <div class="center">
+    <img src="description.png" class="description">
+
+    <div class="buttons">
+      <div class="btn" onclick="go('work.html')">MY WORK</div>
+      <div class="btn" onclick="go('contact.html')">CONTACT</div>
+    </div>
+  </div>
+
+  <div class="video">
+    <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
+    <span class="label">tap for sound</span>
+  </div>
+
+</div>
+
 <!-- GALLERY -->
 <div class="gallery">
 
-  <!-- LEFT -->
   <img src="image4.jpg">
 
-  <!-- CENTER STACK -->
   <div class="stack">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
 
-  <!-- RIGHT -->
   <img src="image1.jpg">
 
 </div>
 
 <script>
-// CLICK SOUND
 function go(page){
   document.getElementById("clickSound").play();
   setTimeout(()=>{ window.location.href = page; },150);
 }
 
-// VIDEO SOUND
 document.querySelectorAll(".video").forEach(v=>{
   const video = v.querySelector("video");
   const label = v.querySelector(".label");
 
   v.addEventListener("click",()=>{
     video.muted = !video.muted;
-
     label.innerText = video.muted ? "tap for sound" : "tap to mute";
   });
 });
