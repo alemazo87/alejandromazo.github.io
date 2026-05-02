@@ -41,7 +41,7 @@ body{
   }
 }
 
-/* ===== FIXED LOGO ===== */
+/* ===== FIXED NAV LOGO ===== */
 .bannerlogo{
   position:fixed;
   top:15px;
@@ -59,8 +59,8 @@ body{
   }
 }
 
-/* ===== BACKGROUND VISUAL ===== */
-.visual-layer{
+/* ===== GLOBAL VISUAL LAYER ===== */
+.visual{
   position:fixed;
   top:50%;
   left:50%;
@@ -70,19 +70,24 @@ body{
   text-align:center;
 }
 
-.visual-layer .title{
-  width:70vw;
-  max-width:600px;
+.visual img{
+  display:block;
+  margin:auto;
+}
+
+.title{
+  width:65vw;
+  max-width:650px;
   opacity:0.3;
 }
 
-.visual-layer .logo{
-  width:200px;
-  margin-top:20px;
+.logo{
+  width:220px;
+  margin-top:15px;
   opacity:0.3;
 }
 
-/* ===== CONTENT ===== */
+/* ===== MAIN CONTENT ===== */
 .content{
   position:relative;
   z-index:2;
@@ -92,8 +97,8 @@ body{
   padding:40px 20px;
 }
 
-/* CENTER BLOCK */
-.center-block{
+/* CENTER */
+.center{
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -129,11 +134,11 @@ body{
   width:100%;
   aspect-ratio:16/9;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   position:relative;
   background:#000;
-  border-radius:6px;
+  border-radius:12px;
 }
 
 .video video{
@@ -153,31 +158,31 @@ body{
   pointer-events:none;
 }
 
-/* ===== MOBILE VIDEO ===== */
-.video-section{
-  width:100%;
+/* ===== MOBILE VIDEO ORDER ===== */
+.mobile-videos{
   display:flex;
   flex-direction:column;
   gap:30px;
+  width:100%;
   padding:40px 20px;
 }
 
 /* ===== DESKTOP LAYOUT ===== */
-.layout{
+.desktop-layout{
   display:none;
 }
 
 @media(min-width:1024px){
 
-  .layout{
+  .desktop-layout{
     display:flex;
-    align-items:center;
-    justify-content:space-between;
     width:100%;
+    justify-content:space-between;
+    align-items:center;
     padding:60px;
   }
 
-  .video-section{
+  .mobile-videos{
     display:none;
   }
 
@@ -185,7 +190,7 @@ body{
     width:30%;
   }
 
-  .center-block{
+  .center{
     width:30%;
   }
 }
@@ -205,7 +210,9 @@ body{
   max-width:500px;
 }
 
+/* DESKTOP GALLERY */
 @media(min-width:1024px){
+
   .gallery{
     flex-direction:row;
     justify-content:center;
@@ -233,13 +240,13 @@ body{
 <!-- BANNER -->
 <div class="banner"></div>
 
-<!-- LOGO -->
+<!-- NAV LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- BACKGROUND VISUAL -->
-<div class="visual-layer">
+<!-- VISUAL LAYER -->
+<div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
 </div>
@@ -247,16 +254,15 @@ body{
 <!-- CONTENT -->
 <div class="content">
 
-  <div class="layout">
+  <!-- DESKTOP -->
+  <div class="desktop-layout">
 
-    <!-- LEFT VIDEO -->
     <div class="video">
       <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
       <span class="label">tap for sound</span>
     </div>
 
-    <!-- CENTER -->
-    <div class="center-block">
+    <div class="center">
       <img src="description.png" class="description">
 
       <div class="buttons">
@@ -265,7 +271,6 @@ body{
       </div>
     </div>
 
-    <!-- RIGHT VIDEO -->
     <div class="video">
       <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
       <span class="label">tap for sound</span>
@@ -275,8 +280,8 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEOS -->
-<div class="video-section">
+<!-- MOBILE FLOW -->
+<div class="mobile-videos">
 
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
@@ -293,13 +298,16 @@ body{
 <!-- GALLERY -->
 <div class="gallery">
 
+  <!-- LEFT -->
   <img src="image4.jpg">
 
+  <!-- CENTER STACK -->
   <div class="stack">
     <img src="image2.jpg">
     <img src="image3.jpg">
   </div>
 
+  <!-- RIGHT -->
   <img src="image1.jpg">
 
 </div>
@@ -319,11 +327,7 @@ document.querySelectorAll(".video").forEach(v=>{
   v.addEventListener("click",()=>{
     video.muted = !video.muted;
 
-    if(video.muted){
-      label.innerText = "tap for sound";
-    } else {
-      label.innerText = "tap to mute";
-    }
+    label.innerText = video.muted ? "tap for sound" : "tap to mute";
   });
 });
 </script>
