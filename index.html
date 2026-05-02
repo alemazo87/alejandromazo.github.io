@@ -72,12 +72,12 @@ body{
 
 .title{
   width:65vw;
-  max-width:700px;
+  max-width:720px;
   opacity:0.3;
 }
 
 .logo{
-  width:240px;
+  width:260px;
   margin-top:15px;
   opacity:0.3;
 }
@@ -129,7 +129,8 @@ body{
   align-items:center;
   position:relative;
   background:#000;
-  border-radius:18px;
+  border-radius:22px;
+  overflow:hidden;
 }
 
 .video video{
@@ -153,6 +154,7 @@ body{
   flex-direction:column;
   gap:30px;
   padding:40px 20px;
+  padding-top:calc(50vh + 140px);
   align-items:center;
 }
 
@@ -188,7 +190,7 @@ body{
 
 .gallery img{
   width:100%;
-  max-width:550px;
+  max-width:600px;
 }
 
 /* DESKTOP GALLERY */
@@ -202,13 +204,18 @@ body{
   }
 
   .gallery img{
-    max-width:340px;
+    max-width:360px;
   }
 
   .stack{
     display:flex;
     flex-direction:column;
+    align-items:center;
     gap:12px;
+  }
+
+  .center-img{
+    transform:scale(1.08);
   }
 }
 </style>
@@ -218,12 +225,15 @@ body{
 
 <audio id="clickSound" src="click.mp3"></audio>
 
+<!-- BANNER -->
 <div class="banner"></div>
 
+<!-- NAV LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
+<!-- VISUAL LAYER -->
 <div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
@@ -280,14 +290,17 @@ body{
 <!-- GALLERY -->
 <div class="gallery">
 
+  <!-- LEFT -->
   <img src="image4.jpg">
 
+  <!-- CENTER STACK -->
   <div class="stack">
-    <img src="image2.jpg">
     <img src="image5.jpg">
+    <img src="image2.jpg" class="center-img">
     <img src="image3.jpg">
   </div>
 
+  <!-- RIGHT -->
   <img src="image1.jpg">
 
 </div>
@@ -297,7 +310,7 @@ function go(page){
   const s = document.getElementById("clickSound");
   s.currentTime = 0;
   s.play();
-  setTimeout(()=>{ window.location.href = page; },150);
+  setTimeout(()=>{ window.location.href = page; },100);
 }
 
 document.querySelectorAll(".video").forEach(v=>{
