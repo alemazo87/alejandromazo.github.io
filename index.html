@@ -77,7 +77,7 @@ audio{ display:none; }
 .title-img{
   width:60vw;
   max-width:700px;
-  opacity:0.8; /* 🔥 UPDATED */
+  opacity:0.9; /* 🔥 UPDATED */
 }
 
 .logo-img{
@@ -94,11 +94,11 @@ audio{ display:none; }
   z-index:2;
 }
 
-/* description shifted up */
+/* description + buttons moved up safely */
 .description{
   display:flex;
   justify-content:center;
-  margin-top:calc(60vh - 150px); /* 🔥 SHIFT */
+  margin-top:calc(60vh - 300px); /* 🔥 SHIFT UP */
 }
 
 .description img{
@@ -128,7 +128,7 @@ audio{ display:none; }
   transform:translateY(-2px);
 }
 
-/* ========= VIDEO ========= */
+/* ========= VIDEO SECTION ========= */
 
 .video-section{
   margin-top:200px;
@@ -203,7 +203,7 @@ video{
   }
 
   .description{
-    margin-top:calc(50vh - 120px);
+    margin-top:calc(50vh - 200px); /* adjusted for mobile */
   }
 
   .description img{
