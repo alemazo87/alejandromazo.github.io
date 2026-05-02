@@ -37,7 +37,6 @@ audio{ display:none; }
 .header{
   width:100%;
   height:auto;
-  overflow:hidden;
 }
 
 .header img{
@@ -59,7 +58,6 @@ audio{ display:none; }
 
 .banner-logo img{
   width:100%;
-  object-fit:contain;
 }
 
 /* ========= FIXED BACKGROUND ========= */
@@ -94,24 +92,24 @@ audio{ display:none; }
   z-index:2;
 }
 
-/* description + buttons moved up safely */
-.description{
+/* 🔥 CLEAN OFFSET SYSTEM */
+.center-block{
+  transform:translateY(-350px);
   display:flex;
-  justify-content:center;
-  margin-top:calc(60vh - 300px); /* 🔥 SHIFT UP */
+  flex-direction:column;
+  align-items:center;
 }
 
+/* description */
 .description img{
   width:65vw;
   max-width:700px;
   object-fit:contain;
 }
 
-/* ========= BUTTONS ========= */
-
+/* buttons */
 .buttons{
   display:flex;
-  justify-content:center;
   gap:20px;
   margin-top:30px;
 }
@@ -120,7 +118,7 @@ audio{ display:none; }
   padding:12px 30px;
   border:1px solid rgba(255,255,255,0.3);
   cursor:pointer;
-  transition:0.25s ease;
+  transition:0.25s;
 }
 
 .btn:hover{
@@ -128,7 +126,7 @@ audio{ display:none; }
   transform:translateY(-2px);
 }
 
-/* ========= VIDEO SECTION ========= */
+/* ========= VIDEO ========= */
 
 .video-section{
   margin-top:200px;
@@ -160,9 +158,9 @@ video{
   font-size:11px;
   letter-spacing:2px;
   opacity:0.7;
+  text-shadow:0 0 10px rgba(0,0,0,0.8);
   white-space:nowrap;
   pointer-events:none;
-  text-shadow:0 0 10px rgba(0,0,0,0.8);
 }
 
 /* ========= GALLERY ========= */
@@ -202,8 +200,8 @@ video{
     width:60vw;
   }
 
-  .description{
-    margin-top:calc(50vh - 200px); /* adjusted for mobile */
+  .center-block{
+    transform:translateY(-200px); /* scaled for mobile */
   }
 
   .description img{
@@ -249,16 +247,20 @@ video{
 <!-- CONTENT -->
 <div class="content">
 
-  <div class="description">
-    <img src="description.png">
+  <div class="center-block">
+
+    <div class="description">
+      <img src="description.png">
+    </div>
+
+    <div class="buttons">
+      <div class="btn" onclick="navigate('work.html')">MY WORK</div>
+      <div class="btn" onclick="navigate('contact.html')">CONTACT</div>
+    </div>
+
   </div>
 
-  <div class="buttons">
-    <div class="btn" onclick="navigate('work.html')">MY WORK</div>
-    <div class="btn" onclick="navigate('contact.html')">CONTACT</div>
-  </div>
-
-  <!-- VIDEOS -->
+  <!-- VIDEO -->
   <div class="video-section">
 
     <div class="video-box">
@@ -286,7 +288,6 @@ video{
 
 <script>
 
-/* SOUND */
 const clickSound = document.getElementById("clickSound");
 
 function playClick(){
@@ -304,7 +305,6 @@ function goHome(){
   setTimeout(()=>{ window.location.href = "index.html"; },150);
 }
 
-/* VIDEO TOGGLE */
 document.querySelectorAll(".video-box").forEach(box=>{
   const video = box.querySelector("video");
   const text = box.querySelector(".video-text");
