@@ -23,7 +23,6 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  position:relative;
 }
 
 /* ===== BANNER ===== */
@@ -62,66 +61,62 @@ body{
 /* ===== VISUAL LAYER ===== */
 .visual{
   position:fixed;
+  top:300px; /* fallback mobile */
   left:50%;
-  transform:translate(-50%,-50%);
+  transform:translateX(-50%);
   z-index:0;
   pointer-events:none;
   text-align:center;
 }
 
-/* DESKTOP POSITION */
+/* DESKTOP precise positioning */
 @media(min-width:1024px){
   .visual{
-    top:calc(50% - 130px);
-  }
-}
-
-/* MOBILE POSITION */
-@media(max-width:1023px){
-  .visual{
-    top:50%;
+    top:calc(140px + 160px); /* banner + 160px */
   }
 }
 
 .title{
   width:70vw;
-  max-width:750px;
+  max-width:700px;
   opacity:0.25;
 }
 
-/* controlled large logo */
 .logo{
-  width:38vw;
-  max-width:520px;
+  width:28vw;
+  max-width:360px;
   margin-top:10px;
   opacity:0.25;
 }
 
 /* ===== CENTER CONTENT ===== */
 .center{
-  position:absolute;
-  top:58%;
-  left:50%;
-  transform:translate(-50%,-50%);
+  position:relative;
   z-index:2;
-
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:20px;
-
+  text-align:center;
   width:90%;
   max-width:520px;
-  text-align:center;
+  margin:0 auto;
 }
 
-/* MOBILE overlap fix */
+/* MOBILE overlap */
 @media(max-width:1023px){
   .center{
-    position:relative;
-    top:auto;
-    transform:none;
-    margin-top:-120px;
+    margin-top:-140px;
+  }
+}
+
+/* DESKTOP center positioning */
+@media(min-width:1024px){
+  .center{
+    position:absolute;
+    top:calc(140px + 300px);
+    left:50%;
+    transform:translateX(-50%);
   }
 }
 
@@ -147,10 +142,8 @@ body{
   color:#000;
 }
 
-/* ===== VIDEO ===== */
+/* ===== VIDEOS ===== */
 .video{
-  position:relative;
-  z-index:1;
   border-radius:26px;
   overflow:hidden;
   background:#000;
@@ -161,11 +154,10 @@ body{
 
 .video video{
   width:100%;
-  height:auto;
   object-fit:contain;
 }
 
-/* ===== MOBILE VIDEOS ===== */
+/* MOBILE videos */
 .mobile-videos{
   display:flex;
   flex-direction:column;
@@ -174,7 +166,7 @@ body{
   margin-top:300px;
 }
 
-/* ===== DESKTOP LAYOUT ===== */
+/* DESKTOP layout */
 .desktop-layout{
   display:none;
 }
@@ -187,9 +179,9 @@ body{
 
   .desktop-layout{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:120px 80px;
+    align-items:center;
+    padding:200px 80px 0;
   }
 
   .desktop-layout .video{
@@ -217,13 +209,11 @@ body{
   max-width:700px;
 }
 
-/* DESKTOP */
 @media(min-width:1024px){
 
   .gallery{
     flex-direction:row;
     justify-content:center;
-    align-items:flex-start;
     gap:60px;
   }
 
@@ -271,15 +261,12 @@ body{
 </div>
 
 <div class="mobile-videos">
-
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline></video>
   </div>
-
   <div class="video">
     <video src="video2.mp4" autoplay muted loop playsinline></video>
   </div>
-
 </div>
 
 <!-- DESKTOP -->
