@@ -59,7 +59,7 @@ body{
   }
 }
 
-/* ===== VISUAL LAYER ===== */
+/* ===== GLOBAL VISUAL LAYER ===== */
 .visual{
   position:fixed;
   top:50%;
@@ -71,8 +71,8 @@ body{
 }
 
 .title{
-  width:65vw;
-  max-width:720px;
+  width:70vw;
+  max-width:750px;
   opacity:0.3;
 }
 
@@ -88,12 +88,12 @@ body{
   z-index:2;
 }
 
-/* ===== CENTER ===== */
+/* ===== CENTER BLOCK ===== */
 .center{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:15px;
+  gap:16px;
   max-width:520px;
   margin:auto;
 }
@@ -154,7 +154,10 @@ body{
   flex-direction:column;
   gap:30px;
   padding:40px 20px;
+
+  /* CRITICAL FIX: prevents overlap with fixed logo/title */
   padding-top:calc(50vh + 140px);
+
   align-items:center;
 }
 
@@ -171,7 +174,7 @@ body{
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:60px;
+    padding:80px;
   }
 
   .video{ width:32%; }
@@ -185,12 +188,12 @@ body{
   flex-direction:column;
   align-items:center;
   gap:20px;
-  padding:40px 20px;
+  padding:60px 20px;
 }
 
 .gallery img{
   width:100%;
-  max-width:600px;
+  max-width:650px;
 }
 
 /* DESKTOP GALLERY */
@@ -200,11 +203,11 @@ body{
     flex-direction:row;
     justify-content:center;
     align-items:flex-start;
-    gap:40px;
+    gap:50px;
   }
 
   .gallery img{
-    max-width:360px;
+    max-width:380px;
   }
 
   .stack{
@@ -214,8 +217,10 @@ body{
     gap:12px;
   }
 
+  /* VISUAL PRIORITY */
   .center-img{
-    transform:scale(1.08);
+    transform:scale(1.1);
+    z-index:2;
   }
 }
 </style>
@@ -233,7 +238,7 @@ body{
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- VISUAL LAYER -->
+<!-- FIXED BACKGROUND VISUAL -->
 <div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
@@ -310,7 +315,7 @@ function go(page){
   const s = document.getElementById("clickSound");
   s.currentTime = 0;
   s.play();
-  setTimeout(()=>{ window.location.href = page; },100);
+  setTimeout(()=>{ window.location.href = page; },120);
 }
 
 document.querySelectorAll(".video").forEach(v=>{
