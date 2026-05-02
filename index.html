@@ -49,7 +49,7 @@ audio{ display:none; }
 /* banner logo */
 .banner-logo{
   position:fixed;
-  top:100px; /* 🔥 moved up 10px (was 110px) */
+  top:100px;
   left:40px;
   width:140px;
   z-index:1000;
@@ -90,7 +90,7 @@ audio{ display:none; }
 .content{
   position:relative;
   z-index:2;
-  margin-top:200px; /* 🔥 increased 50px (was 150px) */
+  margin-top:200px;
 }
 
 /* description */
@@ -129,7 +129,7 @@ audio{ display:none; }
 /* ========= VIDEO ========= */
 
 .video-section{
-  margin-top:150px; /* 🔥 updated */
+  margin-top:150px;
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -261,12 +261,12 @@ video{
   <div class="video-section">
 
     <div class="video-box">
-      <video src="reel.mp4" autoplay muted loop playsinline></video>
+      <video src="reel.mp4" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-text">TAP FOR SOUND</div>
     </div>
 
     <div class="video-box">
-      <video src="video2.mp4" autoplay muted loop playsinline></video>
+      <video src="video2.mp4" autoplay loop muted playsinline preload="auto"></video>
       <div class="video-text">TAP FOR SOUND</div>
     </div>
 
@@ -302,6 +302,23 @@ function goHome(){
   setTimeout(()=>{ window.location.href = "index.html"; },150);
 }
 
+// 🔥 FORCE AUTOPLAY FIX (iOS + Safari)
+window.addEventListener("load", () => {
+  document.querySelectorAll("video").forEach(video => {
+    video.muted = true;
+    video.setAttribute("playsinline", "");
+
+    const playPromise = video.play();
+
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        video.play();
+      });
+    }
+  });
+});
+
+// 🔊 TAP FOR SOUND
 document.querySelectorAll(".video-box").forEach(box=>{
   const video = box.querySelector("video");
   const text = box.querySelector(".video-text");
