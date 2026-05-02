@@ -23,35 +23,19 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  user-select:none;
 }
 
-/* ===== BANNER ===== */
-.banner{
-  width:100%;
-  height:16vh;
-  min-height:100px;
-  background:url("bannerMOBILE.jpg") center/cover no-repeat;
-}
-
-@media(min-width:768px){
-  .banner{
-    background:url("banner.png") center/cover no-repeat;
-    height:140px;
-  }
-}
-
-/* ===== FIXED LOGO ===== */
+/* ===== NAV LOGO ===== */
 .bannerlogo{
   position:fixed;
-  top:15px;
+  top:20px;
   left:50%;
   transform:translateX(-50%);
   width:140px;
   z-index:1000;
 }
 
-@media(min-width:768px){
+@media(min-width:1024px){
   .bannerlogo{
     left:40px;
     transform:none;
@@ -59,8 +43,8 @@ body{
   }
 }
 
-/* ===== BACKGROUND VISUAL ===== */
-.visual-layer{
+/* ===== GLOBAL VISUAL LAYER ===== */
+.visual{
   position:fixed;
   top:50%;
   left:50%;
@@ -70,54 +54,60 @@ body{
   text-align:center;
 }
 
-.visual-layer .title{
+.title{
   width:70vw;
-  max-width:600px;
-  opacity:0.3;
+  max-width:700px;
+  opacity:0.2;
 }
 
-.visual-layer .logo{
-  width:220px;
+.logo{
+  width:32vw;
+  max-width:420px;
   margin-top:20px;
-  opacity:0.3;
+  opacity:0.2;
 }
 
 /* ===== CONTENT ===== */
-.content{
+.container{
   position:relative;
   z-index:2;
-  min-height:70vh;
+  min-height:100vh;
   display:flex;
   flex-direction:column;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   text-align:center;
   padding:40px 20px;
-  gap:15px;
 }
 
-/* MAIN TEXT */
+/* TEXT */
 .main-text{
-  font-size:18px;
-  letter-spacing:3px;
-}
-
-/* SUB TEXT */
-.sub-text{
-  font-size:13px;
-  opacity:0.6;
+  font-size:clamp(18px, 2vw, 26px);
   letter-spacing:2px;
+  margin-bottom:20px;
 }
 
-/* ===== DESKTOP ===== */
-@media(min-width:1024px){
+.secondary{
+  font-size:clamp(12px, 1.5vw, 18px);
+  opacity:0.7;
+  margin-top:10px;
+}
 
-  .main-text{
-    font-size:22px;
-  }
+/* ===== ANIMATION ===== */
+.fade{
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeUp 1s ease forwards;
+}
 
-  .sub-text{
-    font-size:14px;
+.fade:nth-child(1){ animation-delay:0.2s; }
+.fade:nth-child(2){ animation-delay:0.4s; }
+.fade:nth-child(3){ animation-delay:0.6s; }
+
+@keyframes fadeUp{
+  to{
+    opacity:1;
+    transform:translateY(0);
   }
 }
 </style>
@@ -125,32 +115,44 @@ body{
 
 <body oncontextmenu="return false;">
 
-<!-- BANNER -->
-<div class="banner"></div>
+<audio id="clickSound" src="click.mp3"></audio>
 
-<!-- FIXED LOGO -->
+<!-- NAV -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- BACKGROUND VISUAL -->
-<div class="visual-layer">
+<!-- VISUAL BACKGROUND -->
+<div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
 </div>
 
 <!-- CONTENT -->
-<div class="content">
+<div class="container">
 
-  <div class="main-text">
+  <div class="main-text fade">
     Le†'$ MAK€ $ΩME┬HING ÐØPE
   </div>
 
-  <div class="sub-text">
+  <div class="secondary fade">
+    COMIING SOON
+  </div>
+
+  <div class="secondary fade">
     I AM STILL UPLOADING IT ALL
   </div>
 
 </div>
+
+<script>
+// (optional future interaction support)
+function clickSound(){
+  const s = document.getElementById("clickSound");
+  s.currentTime = 0;
+  s.play();
+}
+</script>
 
 </body>
 </html>
