@@ -4,181 +4,303 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE</title>
+<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
+
+/* ================= GLOBAL ================= */
+
 @font-face {
   font-family: Orbitron;
   src: url("Orbitron.ttf");
 }
 
-* {
+*{
   margin:0;
   padding:0;
   box-sizing:border-box;
   font-family: Orbitron, sans-serif;
 }
 
-body {
+body{
   background:#000;
-  color:#fff;
   overflow-x:hidden;
+  color:#fff;
 }
 
-/* HEADER */
-header {
-  position:fixed;
-  top:0;
-  width:100%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:15px 20px;
-  z-index:1000;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter: blur(10px);
+/* Disable right click */
+body {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
-.header-inner {
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
+/* ================= AUDIO ================= */
 
-.logo-small {
-  width:40px;
-}
+audio{ display:none; }
 
-.title {
-  font-size:14px;
-  letter-spacing:2px;
-}
+/* ================= BANNER ================= */
 
-/* HERO */
-.hero {
-  height:100vh;
-  width:100%;
+.banner{
   position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  width:100%;
+  height:60vh;
   overflow:hidden;
 }
 
-.hero img {
-  position:absolute;
+.banner img{
   width:100%;
   height:100%;
-  object-fit:contain; /* FIXED full image */
-  background:black;
+  object-fit:cover;
 }
 
-/* CENTER LOGO */
-.center-logo {
-  width:180px; /* 50% bigger */
-  z-index:2;
+/* Banner logo (fixed, no duplication) */
+.banner-logo{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  width:140px;
+  z-index:1000;
+  cursor:pointer;
 }
 
-/* DESCRIPTION */
-.description {
-  position:absolute;
-  bottom:80px;
-  text-align:center;
+.banner-logo img{
   width:100%;
-  font-size:12px;
-  letter-spacing:3px;
-  opacity:0.8;
+  object-fit:contain;
 }
 
-/* VIDEOS */
-.section {
-  padding:80px 20px;
-}
+/* ================= FIXED BACKGROUND LAYER ================= */
 
-.video-container {
-  position:relative;
-  margin-bottom:40px;
-}
-
-video {
-  width:100%;
-  height:auto;
-  display:block;
-}
-
-/* OVERLAY TEXT */
-.overlay-text {
-  position:absolute;
+.bg-center{
+  position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%, -50%);
-  font-size:11px;
-  letter-spacing:3px;
-  opacity:0.5;
+  z-index:1;
   pointer-events:none;
+  text-align:center;
 }
 
-/* MOBILE */
-@media (max-width:768px) {
-  .center-logo {
-    width:140px;
+/* title above logo */
+.bg-title{
+  width:60vw;
+  max-width:700px;
+  margin-bottom:20px;
+}
+
+.bg-logo{
+  width:40vw;
+  max-width:420px;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+  position:relative;
+  z-index:2;
+  width:100%;
+}
+
+/* description block */
+.description{
+  display:flex;
+  justify-content:center;
+  margin-top:60vh; /* sits visually inside logo space */
+  margin-bottom:40px;
+}
+
+.description img{
+  width:60vw;
+  max-width:600px;
+  object-fit:contain;
+}
+
+/* buttons */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-bottom:60px;
+}
+
+.btn{
+  padding:12px 28px;
+  border:1px solid rgba(255,255,255,0.3);
+  background:transparent;
+  color:#fff;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.btn:hover{
+  background:rgba(255,255,255,0.1);
+}
+
+/* ================= VIDEO SYSTEM ================= */
+
+.video-section{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 5vw;
+  margin-top:20vh;
+}
+
+.video{
+  width:40%;
+  border-radius:18px;
+  overflow:hidden;
+  position:relative;
+}
+
+video{
+  width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+/* overlay */
+.video-label{
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:10px;
+  letter-spacing:2px;
+  opacity:0.7;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width:900px){
+
+  .banner{
+    height:40vh;
   }
 
-  .title {
-    font-size:11px;
+  .bg-title{
+    width:80vw;
   }
 
-  .description {
-    font-size:10px;
-    bottom:60px;
+  .bg-logo{
+    width:65vw;
+  }
+
+  .description{
+    margin-top:55vh;
+  }
+
+  .buttons{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .video-section{
+    flex-direction:column;
+    gap:30px;
+    margin-top:50vh; /* dynamic spacing after logo space */
+  }
+
+  .video{
+    width:90%;
   }
 }
+
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
 
-<header>
-  <div class="header-inner">
-    <img src="logo.png" class="logo-small">
-    <div class="title">ALEJANDRO MAZO</div>
-  </div>
-</header>
+<audio id="clickSound" src="click.mp3"></audio>
 
-<section class="hero">
-  <img src="banner.jpg">
+<!-- ================= BANNER ================= -->
+<section class="banner">
+  <img src="banner.png" alt="">
+</section>
 
-  <img src="logo.png" class="center-logo">
+<!-- fixed banner logo -->
+<div class="banner-logo" onclick="goHome()">
+  <img src="bannerlogo.png" alt="">
+</div>
 
+<!-- ================= FIXED CENTER LAYER ================= -->
+<div class="bg-center">
+  <img src="title.png" class="bg-title">
+  <img src="logo.png" class="bg-logo">
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div class="content">
+
+  <!-- description -->
   <div class="description">
-    CINEMATIC VISUALS • STORYTELLING • CREATIVE DIRECTION
-  </div>
-</section>
-
-<section class="section">
-
-  <div class="video-container">
-    <video src="video1.mp4" muted loop playsinline></video>
-    <div class="overlay-text">TAP TO PLAY OR PAUSE</div>
+    <img src="description.png">
   </div>
 
-  <div class="video-container">
-    <video src="video2.mp4" muted loop playsinline></video>
-    <div class="overlay-text">TAP TO PLAY OR PAUSE</div>
+  <!-- buttons -->
+  <div class="buttons">
+    <div class="btn" onclick="navigate('work.html')">MY WORK</div>
+    <div class="btn" onclick="navigate('contact.html')">CONTACT</div>
   </div>
 
-</section>
+  <!-- videos -->
+  <div class="video-section">
+
+    <div class="video">
+      <video src="video1.mp4" autoplay muted loop playsinline></video>
+      <div class="video-label">TAP FOR SOUND</div>
+    </div>
+
+    <div class="video">
+      <video src="video2.mp4" autoplay muted loop playsinline></video>
+      <div class="video-label">TAP FOR SOUND</div>
+    </div>
+
+  </div>
+
+</div>
 
 <script>
-document.querySelectorAll("video").forEach(video => {
-  video.addEventListener("click", () => {
-    if (video.paused) {
-      video.play();
+
+/* ================= SOUND ================= */
+
+const clickSound = document.getElementById("clickSound");
+
+function playClick(){
+  clickSound.currentTime = 0;
+  clickSound.play();
+}
+
+/* ================= NAVIGATION ================= */
+
+function navigate(url){
+  playClick();
+  setTimeout(()=>{ window.location.href = url; }, 150);
+}
+
+function goHome(){
+  playClick();
+  setTimeout(()=>{ window.location.href = "index.html"; }, 150);
+}
+
+/* ================= VIDEO INTERACTION ================= */
+
+document.querySelectorAll(".video").forEach(container => {
+  const video = container.querySelector("video");
+  const label = container.querySelector(".video-label");
+
+  container.addEventListener("click", () => {
+    if(video.muted){
+      video.muted = false;
+      label.innerText = "TAP TO MUTE";
     } else {
-      video.pause();
+      video.muted = true;
+      label.innerText = "TAP FOR SOUND";
     }
   });
 });
+
 </script>
 
 </body>
