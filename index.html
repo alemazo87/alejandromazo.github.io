@@ -25,7 +25,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ===== HERO SECTION ===== */
+/* ===== HERO ===== */
 .hero {
   position: relative;
   width: 100%;
@@ -33,28 +33,24 @@ body {
   overflow: hidden;
 }
 
-/* Background banner */
-.banner {
+/* Banner */
+.hero img.banner {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  top: 0;
-  left: 0;
-  z-index: 0;
 }
 
-/* Top small logo */
+/* Top logo */
 .header-logo {
   position: absolute;
   top: 15px;
   left: 15px;
   width: 35px;
-  height: auto;
   z-index: 3;
 }
 
-/* Title image */
+/* Title */
 .title-img {
   position: absolute;
   top: 70px;
@@ -62,7 +58,7 @@ body {
   transform: translateX(-50%);
   width: 80%;
   max-width: 320px;
-  height: auto;
+  opacity: 0.9;
   z-index: 3;
 }
 
@@ -74,7 +70,6 @@ body {
   transform: translate(-50%, -50%);
   width: 60vw;
   max-width: 260px;
-  height: auto;
   z-index: 2;
 }
 
@@ -85,25 +80,22 @@ body {
   width: 100%;
   text-align: center;
   font-size: 12px;
-  letter-spacing: 2px;
   opacity: 0.6;
-  z-index: 3;
+  letter-spacing: 2px;
 }
 
 /* ===== VIDEO SECTION ===== */
 .video-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   overflow: hidden;
 }
 
 .video-section video {
-  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 0;
 }
 
 /* Tap text */
@@ -112,36 +104,27 @@ body {
   top: 50%;
   width: 100%;
   text-align: center;
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 12px;
   opacity: 0.4;
   transform: translateY(-50%);
-  z-index: 2;
 }
 
-/* Project label */
+/* Label */
 .video-overlay {
   position: absolute;
-  bottom: 40px;
+  bottom: 30px;
   width: 100%;
   text-align: center;
-  font-size: 13px;
+  font-size: 12px;
   opacity: 0.5;
-  z-index: 2;
-}
-
-.video-overlay span {
-  background: rgba(0,0,0,0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
 }
 
 /* ===== GALLERY ===== */
 .gallery {
-  padding: 40px 15px;
+  padding: 30px 15px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 }
 
 .gallery img {
@@ -150,19 +133,9 @@ body {
   border-radius: 6px;
 }
 
-/* ===== DESKTOP FIX (optional but clean) ===== */
-@media(min-width: 768px) {
-  .title-img {
-    top: 80px;
-  }
-
-  .center-logo {
-    width: 300px;
-  }
-
-  .hero-text {
-    font-size: 14px;
-  }
+/* ===== FIX FOR MISSING IMAGES ===== */
+img {
+  display: block;
 }
 </style>
 </head>
@@ -189,23 +162,15 @@ body {
 <!-- VIDEO 1 -->
 <section class="video-section">
   <video src="video1.mp4" autoplay muted loop playsinline></video>
-
   <div class="tap-text">TAP TO PLAY OR PAUSE</div>
-
-  <div class="video-overlay">
-    <span>PROJECT 01</span>
-  </div>
+  <div class="video-overlay">PROJECT 01</div>
 </section>
 
 <!-- VIDEO 2 -->
 <section class="video-section">
   <video src="video2.mp4" autoplay muted loop playsinline></video>
-
   <div class="tap-text">TAP TO PLAY OR PAUSE</div>
-
-  <div class="video-overlay">
-    <span>PROJECT 02</span>
-  </div>
+  <div class="video-overlay">PROJECT 02</div>
 </section>
 
 <!-- GALLERY -->
@@ -219,11 +184,7 @@ body {
 <script>
 document.querySelectorAll("video").forEach(video => {
   video.addEventListener("click", () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
+    video.paused ? video.play() : video.pause();
   });
 });
 </script>
