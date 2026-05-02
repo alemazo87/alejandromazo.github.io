@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE</title>
+<title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE </title>
 
 <style>
 @font-face {
@@ -12,179 +12,253 @@
   src: url("Orbitron.ttf");
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Orbitron;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Orbitron;
 }
 
-body {
-  background: black;
-  color: white;
-  overflow-x: hidden;
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
 }
 
-/* ===== HERO ===== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
+/* Disable right click */
+body{
+  user-select:none;
 }
 
-/* Banner */
-.hero img.banner {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* ===== BANNER ===== */
+.banner{
+  width:100%;
+  height:140px;
+  background:url("banner.png") center/cover no-repeat;
+  position:relative;
 }
 
-/* Top logo */
-.header-logo {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  width: 35px;
-  z-index: 3;
+@media(max-width:768px){
+  .banner{
+    background:url("bannerMOBILE.jpg") center/cover no-repeat;
+  }
 }
 
-/* Title */
-.title-img {
-  position: absolute;
-  top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  max-width: 320px;
-  opacity: 0.9;
-  z-index: 3;
+/* ===== LOGO FIXED ===== */
+.bannerlogo{
+  position:fixed;
+  top:20px;
+  left:30px;
+  z-index:1000;
+  width:180px;
+  cursor:pointer;
 }
 
-/* Center logo */
-.center-logo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60vw;
-  max-width: 260px;
-  z-index: 2;
+@media(max-width:768px){
+  .bannerlogo{
+    left:50%;
+    transform:translateX(-50%);
+    width:140px;
+  }
 }
 
-/* Tagline */
-.hero-text {
-  position: absolute;
-  bottom: 60px;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  opacity: 0.6;
-  letter-spacing: 2px;
+/* ===== CENTER SECTION ===== */
+.center{
+  text-align:center;
+  padding-top:40px;
+}
+
+/* TITLE */
+.title{
+  width:60%;
+  max-width:600px;
+  opacity:0.3;
+}
+
+/* LOGO */
+.logo{
+  width:200px;
+  opacity:0.3;
+  margin-top:20px;
+}
+
+/* DESCRIPTION */
+.description{
+  width:70%;
+  max-width:700px;
+  margin:30px auto;
+}
+
+/* BUTTONS */
+.buttons{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin-top:20px;
+}
+
+.btn{
+  padding:12px 30px;
+  border:1px solid white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:white;
+  color:black;
 }
 
 /* ===== VIDEO SECTION ===== */
-.video-section {
-  position: relative;
-  width: 100%;
-  height: 80vh;
-  overflow: hidden;
+.video-row{
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:60px auto;
+  width:90%;
 }
 
-.video-section video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.video{
+  width:45%;
+  position:relative;
 }
 
-/* Tap text */
-.tap-text {
-  position: absolute;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  opacity: 0.4;
-  transform: translateY(-50%);
+.video video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-/* Label */
-.video-overlay {
-  position: absolute;
-  bottom: 30px;
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  opacity: 0.5;
+/* LABEL */
+.label{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  transform:translateY(-50%);
+  font-size:12px;
+  opacity:0.6;
+  pointer-events:none;
 }
 
 /* ===== GALLERY ===== */
-.gallery {
-  padding: 30px 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+.gallery{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:30px;
+  margin:80px auto;
+  width:90%;
 }
 
-.gallery img {
-  width: 100%;
-  height: auto;
-  border-radius: 6px;
+.gallery img{
+  max-width:100%;
+  height:auto;
 }
 
-/* ===== FIX FOR MISSING IMAGES ===== */
-img {
-  display: block;
+/* center stack */
+.center-stack{
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .video-row{
+    flex-direction:column;
+  }
+
+  .video{
+    width:100%;
+  }
+
+  .gallery{
+    flex-direction:column;
+  }
 }
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
-<!-- HERO -->
-<section class="hero">
+<!-- CLICK SOUND -->
+<audio id="clickSound" src="click.mp3"></audio>
 
-  <img src="bannerMOBILE.jpg" class="banner">
+<!-- BANNER -->
+<div class="banner"></div>
 
-  <img src="logo.png" class="header-logo">
+<!-- FIXED LOGO -->
+<a href="index.html">
+  <img src="bannerlogo.png" class="bannerlogo">
+</a>
 
-  <img src="Title.png" class="title-img">
+<!-- CENTER CONTENT -->
+<div class="center">
 
-  <img src="bannerlogo.png" class="center-logo">
+  <img src="title.png" class="title">
+  <img src="logo.png" class="logo">
+  <img src="description.png" class="description">
 
-  <div class="hero-text">
-    Le†'$ MAK€ $ΩME┬HING ÐØPE
+  <div class="buttons">
+    <div class="btn" onclick="go('work.html')">MY WORK</div>
+    <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
 
-</section>
+</div>
 
-<!-- VIDEO 1 -->
-<section class="video-section">
-  <video src="video1.mp4" autoplay muted loop playsinline></video>
-  <div class="tap-text">TAP TO PLAY OR PAUSE</div>
-  <div class="video-overlay">PROJECT 01</div>
-</section>
+<!-- VIDEOS -->
+<div class="video-row">
 
-<!-- VIDEO 2 -->
-<section class="video-section">
-  <video src="video2.mp4" autoplay muted loop playsinline></video>
-  <div class="tap-text">TAP TO PLAY OR PAUSE</div>
-  <div class="video-overlay">PROJECT 02</div>
-</section>
+  <div class="video">
+    <video src="reel.mp4" autoplay muted loop playsinline></video>
+    <span class="label">tap for sound</span>
+  </div>
+
+  <div class="video">
+    <video src="video2.mp4" autoplay muted loop playsinline></video>
+    <span class="label">tap for sound</span>
+  </div>
+
+</div>
 
 <!-- GALLERY -->
-<section class="gallery">
-  <img src="img1.jpg">
-  <img src="img2.jpg">
-  <img src="img3.jpg">
-  <img src="img4.jpg">
-</section>
+<div class="gallery">
+
+  <img src="image4.jpg">
+
+  <div class="center-stack">
+    <img src="image2.jpg">
+    <img src="image3.jpg">
+  </div>
+
+  <img src="image1.jpg">
+
+</div>
 
 <script>
-document.querySelectorAll("video").forEach(video => {
-  video.addEventListener("click", () => {
-    video.paused ? video.play() : video.pause();
+// BUTTON SOUND + NAV
+function go(page){
+  document.getElementById("clickSound").play();
+  setTimeout(()=>{
+    window.location.href = page;
+  },150);
+}
+
+// VIDEO SOUND TOGGLE
+document.querySelectorAll(".video").forEach(container=>{
+  const video = container.querySelector("video");
+  const label = container.querySelector(".label");
+
+  container.addEventListener("click",()=>{
+    video.muted = !video.muted;
+
+    if(video.muted){
+      label.innerText = "tap for sound";
+    } else {
+      label.innerText = "tap to mute";
+    }
   });
 });
 </script>
