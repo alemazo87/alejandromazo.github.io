@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>☠ Alejandro Mazo ☠ | ℂØN†Δℂ†</title>
+<title>Alejandro Mazo | ℂØN†Δℂ†</title>
 
 <style>
 @font-face {
@@ -12,152 +12,193 @@
   src: url("Orbitron.ttf");
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Orbitron;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Orbitron;
 }
 
-body {
-  background: black;
-  color: white;
-  overflow-x: hidden;
+body{
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  user-select:none;
 }
 
-/* ===== BACKGROUND ===== */
-.bg {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.35);
-  top: 0;
-  left: 0;
-  z-index: 0;
+/* ===== BACKGROUND IMAGE (MOBILE) ===== */
+.bg-mobile{
+  position:fixed;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  top:0;
+  left:0;
+  opacity:0.3;
+  z-index:0;
 }
 
-/* ===== MAIN CONTAINER ===== */
-.container {
-  position: relative;
-  z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 70px;
+@media(min-width:768px){
+  .bg-mobile{
+    display:none;
+  }
 }
 
-/* ===== NAME ===== */
-.name {
-  font-size: 18px;
-  letter-spacing: 3px;
-  margin-bottom: 20px;
-  opacity: 0.8;
+/* ===== BANNER ===== */
+.banner{
+  width:100%;
+  height:16vh;
+  min-height:100px;
+  background:url("bannerMOBILE.jpg") center/cover no-repeat;
+  position:relative;
+  z-index:2;
 }
 
-/* ===== LOGO ===== */
-.top-logo {
-  width: 40vw;
-  max-width: 180px;
-  height: auto;
-  margin-bottom: 50px;
+@media(min-width:768px){
+  .banner{
+    background:url("banner.png") center/cover no-repeat;
+    height:140px;
+  }
 }
 
-/* ===== CONTACT LIST ===== */
-.contact-list {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 28px;
-  width: 100%;
+/* ===== FIXED LOGO ===== */
+.bannerlogo{
+  position:fixed;
+  top:15px;
+  left:50%;
+  transform:translateX(-50%);
+  width:140px;
+  z-index:1000;
 }
 
-/* ===== ITEM ===== */
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-size: 14px;
-  letter-spacing: 1.5px;
+@media(min-width:768px){
+  .bannerlogo{
+    left:40px;
+    transform:none;
+    width:180px;
+  }
+}
+
+/* ===== BACKGROUND VISUAL ===== */
+.visual-layer{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:0;
+  pointer-events:none;
+  text-align:center;
+}
+
+.visual-layer .title{
+  width:70vw;
+  max-width:600px;
+  opacity:0.3;
+}
+
+.visual-layer .logo{
+  width:220px;
+  margin-top:20px;
+  opacity:0.3;
+}
+
+/* ===== CONTENT ===== */
+.content{
+  position:relative;
+  z-index:2;
+  min-height:70vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:25px;
+  text-align:center;
+  padding:40px 20px;
+}
+
+/* CONTACT ITEM */
+.contact-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-size:14px;
+  letter-spacing:1.5px;
 }
 
 /* ICON */
-.contact-item img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+.contact-item img{
+  width:26px;
+  height:auto;
 }
 
 /* LINK */
-.contact-item a {
-  color: white;
-  text-decoration: none;
+.contact-item a{
+  color:#fff;
+  text-decoration:none;
 }
 
-/* subtle desktop hover */
-.contact-item a:hover {
-  opacity: 0.7;
+/* HOVER */
+.contact-item a:hover{
+  opacity:0.7;
 }
 
-/* smaller screens */
-@media(max-height: 700px) {
-  .top-logo {
-    margin-bottom: 30px;
-  }
-
-  .contact-list {
-    gap: 20px;
+/* ===== DESKTOP ===== */
+@media(min-width:1024px){
+  .contact-item{
+    font-size:16px;
   }
 }
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
-<!-- BACKGROUND -->
-<img src="image1.jpg" class="bg">
+<!-- MOBILE BACKGROUND -->
+<img src="image1.jpg" class="bg-mobile">
+
+<!-- BANNER -->
+<div class="banner"></div>
+
+<!-- FIXED LOGO -->
+<a href="index.html">
+  <img src="bannerlogo.png" class="bannerlogo">
+</a>
+
+<!-- BACKGROUND VISUAL -->
+<div class="visual-layer">
+  <img src="title.png" class="title">
+  <img src="logo.png" class="logo">
+</div>
 
 <!-- CONTENT -->
-<div class="container">
+<div class="content">
 
-  <!-- NAME -->
-  <div class="name">ALEJANDRO MAZO</div>
+  <!-- PHONE -->
+  <div class="contact-item">
+    <img src="phone.png">
+    <a href="tel:+79278468724">+7 (927) 846 87 24</a>
+  </div>
 
-  <!-- LOGO -->
-  <img src="bannerlogo.png" class="top-logo">
+  <!-- TELEGRAM -->
+  <div class="contact-item">
+    <img src="telegram.png">
+    <a href="https://t.me/Ale_mazo" target="_blank">@Ale_mazo</a>
+  </div>
 
-  <!-- CONTACT -->
-  <div class="contact-list">
+  <!-- WHATSAPP -->
+  <div class="contact-item">
+    <img src="whatsapp.png">
+    <a href="https://wa.me/79278468724" target="_blank">
+      +7 (927) 846 87 24
+    </a>
+  </div>
 
-    <!-- PHONE -->
-    <div class="contact-item">
-      <img src="phone.png">
-      <a href="tel:+79278468724">+7 (927) 846 87 24</a>
-    </div>
-
-    <!-- TELEGRAM -->
-    <div class="contact-item">
-      <img src="telegram.png">
-      <a href="https://t.me/Ale_mazo" target="_blank">@Ale_mazo</a>
-    </div>
-
-    <!-- WHATSAPP -->
-    <div class="contact-item">
-      <img src="whatsapp.png">
-      <a href="https://wa.me/79278468724" target="_blank">
-        +7 (927) 846 87 24
-      </a>
-    </div>
-
-    <!-- INSTAGRAM -->
-    <div class="contact-item">
-      <img src="instagram.png">
-      <a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr" target="_blank">
-        ale_mazo
-      </a>
-    </div>
-
+  <!-- INSTAGRAM -->
+  <div class="contact-item">
+    <img src="instagram.png">
+    <a href="https://www.instagram.com/ale_mazo?igsh=Zmg1Z3BybG9lMTBo&utm_source=qr" target="_blank">
+      ale_mazo
+    </a>
   </div>
 
 </div>
