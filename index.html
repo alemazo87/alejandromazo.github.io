@@ -23,7 +23,6 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
-  user-select:none;
 }
 
 /* ===== BANNER ===== */
@@ -60,51 +59,63 @@ body{
 }
 
 /* ===== VISUAL LAYER ===== */
+
+/* MOBILE → scrolls normally (fix overlap issue) */
 .visual{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  z-index:0;
-  pointer-events:none;
+  position:relative;
+  margin-top:40px;
   text-align:center;
+}
+
+/* DESKTOP → fixed cinematic layer */
+@media(min-width:1024px){
+  .visual{
+    position:fixed;
+    top:42%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:0;
+    pointer-events:none;
+  }
 }
 
 .title{
   width:70vw;
-  max-width:700px;
+  max-width:750px;
   opacity:0.25;
 }
 
 .logo{
-  width:230px;
-  margin-top:12px;
+  width:240px;
+  margin-top:10px;
   opacity:0.25;
 }
 
-/* ===== CENTER CONTENT (FIXED ALIGNMENT) ===== */
+/* ===== CENTER CONTENT ===== */
 .center{
-  position:absolute;
-  top:58%; /* aligned to logo visual center */
-  left:50%;
-  transform:translate(-50%,-50%);
-
-  z-index:2;
-
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:18px;
+  gap:20px;
+  padding:40px 20px;
+  text-align:center;
+}
 
-  width:90%;
-  max-width:520px;
+@media(min-width:1024px){
+  .center{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:420px;
+  }
 }
 
 .description{
   width:100%;
 }
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .buttons{
   display:flex;
   gap:20px;
@@ -122,9 +133,18 @@ body{
   color:#000;
 }
 
-/* ===== VIDEO ===== */
+/* ===== VIDEOS ===== */
+.videos{
+  width:100%;
+  margin-top:300px; /* FIXED */
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  padding:0 20px;
+}
+
 .video{
-  border-radius:28px;
+  border-radius:26px;
   overflow:hidden;
   background:#000;
   display:flex;
@@ -138,39 +158,19 @@ body{
   object-fit:contain;
 }
 
-/* ===== MOBILE VIDEOS ===== */
-.mobile{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:40px 20px;
-  margin-top:-200px;
-}
-
-.videos{
-  width:100%;
-  margin-top:500px;
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-}
-
-/* ===== DESKTOP ===== */
-.desktop{
-  display:none;
-}
-
+/* DESKTOP VIDEO LAYOUT */
 @media(min-width:1024px){
 
-  .desktop{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+  .videos{
+    position:relative;
+    margin-top:0;
     padding:100px 80px;
+    flex-direction:row;
+    justify-content:space-between;
   }
 
   .video{
-    width:32%;
+    width:30%;
   }
 }
 
@@ -180,7 +180,7 @@ body{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:20px;
+  gap:25px;
 }
 
 .gallery img{
@@ -194,6 +194,7 @@ body{
   .gallery{
     flex-direction:row;
     justify-content:center;
+    align-items:flex-start;
     gap:60px;
   }
 
@@ -204,11 +205,11 @@ body{
   .stack{
     display:flex;
     flex-direction:column;
-    gap:14px;
+    gap:20px; /* FIXED spacing */
   }
 
   .center-img{
-    transform:scale(1.12);
+    transform:scale(1.1);
   }
 }
 </style>
@@ -230,7 +231,7 @@ body{
   <img src="logo.png" class="logo">
 </div>
 
-<!-- CENTER CONTENT -->
+<!-- CENTER -->
 <div class="center">
   <img src="description.png" class="description">
 
@@ -240,29 +241,12 @@ body{
   </div>
 </div>
 
-<!-- MOBILE VIDEOS -->
-<div class="mobile">
-  <div class="videos">
-
-    <div class="video">
-      <video src="reel.mp4" autoplay muted loop playsinline></video>
-    </div>
-
-    <div class="video">
-      <video src="video2.mp4" autoplay muted loop playsinline></video>
-    </div>
-
-  </div>
-</div>
-
-<!-- DESKTOP VIDEOS -->
-<div class="desktop">
+<!-- VIDEOS -->
+<div class="videos">
 
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline></video>
   </div>
-
-  <div style="width:30%"></div>
 
   <div class="video">
     <video src="video2.mp4" autoplay muted loop playsinline></video>
