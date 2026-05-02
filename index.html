@@ -59,13 +59,13 @@ body{
   }
 }
 
-/* ===== GLOBAL VISUAL LAYER ===== */
+/* ===== BACKGROUND VISUAL ===== */
 .visual-layer{
   position:fixed;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
-  z-index:1;
+  z-index:0;
   pointer-events:none;
   text-align:center;
 }
@@ -82,7 +82,7 @@ body{
   opacity:0.3;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* ===== CONTENT ===== */
 .content{
   position:relative;
   z-index:2;
@@ -92,11 +92,18 @@ body{
   padding:40px 20px;
 }
 
+/* CENTER BLOCK */
+.center-block{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:15px;
+}
+
 /* DESCRIPTION */
 .description{
   width:85%;
   max-width:500px;
-  margin-bottom:20px;
 }
 
 /* BUTTONS */
@@ -117,16 +124,7 @@ body{
   color:#000;
 }
 
-/* ===== VIDEO SECTION ===== */
-.video-section{
-  width:100%;
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-  padding:40px 20px;
-}
-
-/* VIDEO */
+/* ===== VIDEO ===== */
 .video{
   width:100%;
   aspect-ratio:16/9;
@@ -135,6 +133,7 @@ body{
   justify-content:center;
   position:relative;
   background:#000;
+  border-radius:6px;
 }
 
 .video video{
@@ -154,8 +153,22 @@ body{
   pointer-events:none;
 }
 
-/* ===== DESKTOP VIDEO LAYOUT ===== */
+/* ===== MOBILE VIDEO ===== */
+.video-section{
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  padding:40px 20px;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+.layout{
+  display:none;
+}
+
 @media(min-width:1024px){
+
   .layout{
     display:flex;
     align-items:center;
@@ -164,13 +177,16 @@ body{
     padding:60px;
   }
 
+  .video-section{
+    display:none;
+  }
+
   .video{
     width:30%;
   }
 
   .center-block{
     width:30%;
-    text-align:center;
   }
 }
 
@@ -189,7 +205,6 @@ body{
   max-width:500px;
 }
 
-/* DESKTOP GALLERY */
 @media(min-width:1024px){
   .gallery{
     flex-direction:row;
@@ -218,12 +233,12 @@ body{
 <!-- BANNER -->
 <div class="banner"></div>
 
-<!-- FIXED LOGO -->
+<!-- LOGO -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- FIXED BACKGROUND VISUAL -->
+<!-- BACKGROUND VISUAL -->
 <div class="visual-layer">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
@@ -236,7 +251,7 @@ body{
 
     <!-- LEFT VIDEO -->
     <div class="video">
-      <video src="reel.mp4" autoplay muted loop playsinline></video>
+      <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
       <span class="label">tap for sound</span>
     </div>
 
@@ -252,7 +267,7 @@ body{
 
     <!-- RIGHT VIDEO -->
     <div class="video">
-      <video src="video2.mp4" autoplay muted loop playsinline></video>
+      <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
       <span class="label">tap for sound</span>
     </div>
 
@@ -260,21 +275,24 @@ body{
 
 </div>
 
-<!-- MOBILE VIDEO STACK -->
+<!-- MOBILE VIDEOS -->
 <div class="video-section">
+
   <div class="video">
-    <video src="reel.mp4" autoplay muted loop playsinline></video>
+    <video src="reel.mp4" autoplay muted loop playsinline webkit-playsinline></video>
     <span class="label">tap for sound</span>
   </div>
 
   <div class="video">
-    <video src="video2.mp4" autoplay muted loop playsinline></video>
+    <video src="video2.mp4" autoplay muted loop playsinline webkit-playsinline></video>
     <span class="label">tap for sound</span>
   </div>
+
 </div>
 
 <!-- GALLERY -->
 <div class="gallery">
+
   <img src="image4.jpg">
 
   <div class="stack">
@@ -283,6 +301,7 @@ body{
   </div>
 
   <img src="image1.jpg">
+
 </div>
 
 <script>
