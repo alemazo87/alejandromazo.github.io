@@ -8,7 +8,7 @@
 
 <style>
 
-/* ================= GLOBAL ================= */
+/* ========== GLOBAL ========== */
 
 @font-face {
   font-family: Orbitron;
@@ -19,29 +19,28 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family: Orbitron, sans-serif;
+  font-family:Orbitron, sans-serif;
 }
 
 body{
   background:#000;
-  overflow-x:hidden;
   color:#fff;
-  -webkit-user-select:none;
+  overflow-x:hidden;
   user-select:none;
 }
 
-/* ================= AUDIO ================= */
+/* ========== AUDIO ========== */
 audio{ display:none; }
 
-/* ================= BANNER ================= */
+/* ========== HEADER (BANNER) ========== */
 
-.banner{
+.header{
   position:relative;
   width:100%;
   height:60vh;
 }
 
-.banner img{
+.header img{
   width:100%;
   height:100%;
   object-fit:cover;
@@ -50,11 +49,11 @@ audio{ display:none; }
 /* banner logo */
 .banner-logo{
   position:absolute;
-  left:40px;
   top:50%;
+  left:40px;
   transform:translateY(-50%);
   width:140px;
-  z-index:10;
+  z-index:5;
   cursor:pointer;
 }
 
@@ -63,15 +62,7 @@ audio{ display:none; }
   object-fit:contain;
 }
 
-/* sticky on scroll */
-.banner-logo.fixed{
-  position:fixed;
-  top:20px;
-  left:50%;
-  transform:translateX(-50%);
-}
-
-/* ================= FIXED BACKGROUND ================= */
+/* ========== FIXED BACKGROUND (TITLE + LOGO) ========== */
 
 .bg-layer{
   position:fixed;
@@ -86,7 +77,7 @@ audio{ display:none; }
 .title-img{
   width:60vw;
   max-width:700px;
-  opacity:0.3; /* MATCHED */
+  opacity:0.3;
 }
 
 .logo-img{
@@ -96,18 +87,15 @@ audio{ display:none; }
   opacity:0.3;
 }
 
-/* ================= CENTER CONTENT (OVER LOGO) ================= */
+/* ========== CENTER CONTENT ========== */
 
-.center-ui{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
+.center-content{
+  position:relative;
   z-index:2;
   display:flex;
   flex-direction:column;
   align-items:center;
-  pointer-events:auto;
+  margin-top:-25vh; /* pulls into logo space */
 }
 
 /* description */
@@ -115,7 +103,7 @@ audio{ display:none; }
   width:65vw;
   max-width:700px;
   object-fit:contain;
-  transform:scale(1.5);
+  transform:scale(1.4);
 }
 
 /* buttons */
@@ -129,28 +117,25 @@ audio{ display:none; }
   padding:12px 28px;
   border:1px solid rgba(255,255,255,0.3);
   cursor:pointer;
-  transition:0.25s ease;
+  transition:0.25s;
 }
 
 .btn:hover{
   background:rgba(255,255,255,0.1);
 }
 
-/* ================= VIDEOS ================= */
+/* ========== VIDEO SECTION ========== */
 
-.video-row{
-  position:relative;
-  z-index:2;
+.video-section{
+  margin-top:200px; /* EXACT RULE */
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin-top:80vh;
   padding:0 5vw;
 }
 
 .video-box{
   width:38%;
-  border-radius:20px;
+  border-radius:18px;
   overflow:hidden;
   position:relative;
 }
@@ -161,7 +146,6 @@ video{
   object-fit:contain;
 }
 
-/* overlay */
 .video-text{
   position:absolute;
   top:50%;
@@ -170,56 +154,25 @@ video{
   font-size:10px;
   letter-spacing:2px;
   opacity:0.6;
-  pointer-events:none;
   white-space:nowrap;
+  pointer-events:none;
 }
 
-/* ================= GALLERY ================= */
-
-.gallery{
-  margin-top:120px;
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  padding:0 5vw;
-}
-
-.gallery img{
-  width:100%;
-  object-fit:contain;
-}
-
-.left, .right{
-  width:20%;
-}
-
-.center{
-  width:40%;
-  display:flex;
-  flex-direction:column;
-  gap:20px;
-}
-
-/* ================= MOBILE ================= */
+/* ========== MOBILE ========== */
 
 @media (max-width:900px){
 
-  .banner{
+  .header{
     height:40vh;
   }
 
-  .banner img{
-    object-fit:cover;
-    content:url("bannerMOBILE.jpg"); /* FIXED CORRECTLY */
+  .header img{
+    content:url("bannerMOBILE.jpg");
   }
 
   .banner-logo{
     left:20px;
     width:110px;
-  }
-
-  .banner-logo.fixed{
-    left:50%;
   }
 
   .title-img{
@@ -230,8 +183,8 @@ video{
     width:60vw;
   }
 
-  .center-ui{
-    top:55%;
+  .center-content{
+    margin-top:-15vh;
   }
 
   .description img{
@@ -243,23 +196,13 @@ video{
     flex-direction:column;
   }
 
-  .video-row{
+  .video-section{
     flex-direction:column;
     gap:30px;
-    margin-top:90vh; /* ensures no overlap with logo */
   }
 
   .video-box{
     width:90%;
-  }
-
-  .gallery{
-    flex-direction:column;
-    gap:20px;
-  }
-
-  .left, .right, .center{
-    width:100%;
   }
 }
 
@@ -270,22 +213,22 @@ video{
 
 <audio id="clickSound" src="click.mp3"></audio>
 
-<!-- ================= BANNER ================= -->
-<div class="banner">
+<!-- ========== HEADER ========== -->
+<div class="header">
   <img src="banner.png">
   <div class="banner-logo" onclick="goHome()">
     <img src="bannerlogo.png">
   </div>
 </div>
 
-<!-- ================= BACKGROUND ================= -->
+<!-- ========== FIXED BACKGROUND ========== -->
 <div class="bg-layer">
   <img src="title.png" class="title-img">
   <img src="logo.png" class="logo-img">
 </div>
 
-<!-- ================= CENTER UI ================= -->
-<div class="center-ui">
+<!-- ========== CENTER CONTENT ========== -->
+<div class="center-content">
 
   <div class="description">
     <img src="description.png">
@@ -298,8 +241,8 @@ video{
 
 </div>
 
-<!-- ================= VIDEOS ================= -->
-<div class="video-row">
+<!-- ========== VIDEOS ========== -->
+<div class="video-section">
 
   <div class="video-box">
     <video src="reel.mp4" autoplay muted loop playsinline></video>
@@ -313,27 +256,9 @@ video{
 
 </div>
 
-<!-- ================= GALLERY ================= -->
-<div class="gallery">
-
-  <div class="left">
-    <img src="image4.jpg">
-  </div>
-
-  <div class="center">
-    <img src="image2.jpg">
-    <img src="image3.jpg">
-  </div>
-
-  <div class="right">
-    <img src="image1.jpg">
-  </div>
-
-</div>
-
 <script>
 
-/* CLICK SOUND */
+/* SOUND */
 const clickSound = document.getElementById("clickSound");
 
 function playClick(){
@@ -351,7 +276,7 @@ function goHome(){
   setTimeout(()=>{ window.location.href = "index.html"; },150);
 }
 
-/* VIDEO SOUND */
+/* VIDEO SOUND TOGGLE */
 document.querySelectorAll(".video-box").forEach(box=>{
   const video = box.querySelector("video");
   const text = box.querySelector(".video-text");
@@ -365,17 +290,6 @@ document.querySelectorAll(".video-box").forEach(box=>{
       text.innerText = "TAP FOR SOUND";
     }
   });
-});
-
-/* SCROLL LOGO */
-const logo = document.querySelector(".banner-logo");
-
-window.addEventListener("scroll", ()=>{
-  if(window.scrollY > 100){
-    logo.classList.add("fixed");
-  } else {
-    logo.classList.remove("fixed");
-  }
 });
 
 </script>
