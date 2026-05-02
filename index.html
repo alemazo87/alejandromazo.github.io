@@ -59,7 +59,7 @@ body{
   }
 }
 
-/* ===== VISUAL LAYER (CENTERED AGAIN) ===== */
+/* ===== VISUAL LAYER ===== */
 .visual{
   position:fixed;
   top:50%;
@@ -71,40 +71,40 @@ body{
 }
 
 .title{
-  width:65vw;
+  width:70vw;
   max-width:700px;
-  opacity:0.3;
+  opacity:0.25;
 }
 
 .logo{
-  width:240px;
-  margin-top:10px;
-  opacity:0.3;
+  width:230px;
+  margin-top:12px;
+  opacity:0.25;
 }
 
-/* ===== CONTENT ===== */
-.content{
-  position:relative;
-  z-index:2;
-}
-
-/* ===== CENTER BLOCK ===== */
+/* ===== CENTER CONTENT (FIXED ALIGNMENT) ===== */
 .center{
+  position:absolute;
+  top:58%; /* aligned to logo visual center */
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  z-index:2;
+
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:16px;
+  gap:18px;
+
+  width:90%;
   max-width:520px;
-  margin:auto;
-  text-align:center;
 }
 
 .description{
   width:100%;
-  max-width:500px;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 .buttons{
   display:flex;
   gap:20px;
@@ -124,15 +124,12 @@ body{
 
 /* ===== VIDEO ===== */
 .video{
-  width:100%;
+  border-radius:28px;
+  overflow:hidden;
+  background:#000;
   display:flex;
   justify-content:center;
   align-items:center;
-  position:relative;
-  background:#000;
-  border-radius:24px;
-  overflow:hidden;
-  padding:10px;
 }
 
 .video video{
@@ -141,36 +138,21 @@ body{
   object-fit:contain;
 }
 
-.label{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  font-size:12px;
-  opacity:0.6;
-}
-
-/* ===== MOBILE ===== */
+/* ===== MOBILE VIDEOS ===== */
 .mobile{
   display:flex;
   flex-direction:column;
   align-items:center;
-  gap:30px;
   padding:40px 20px;
-
-  /* OVERLAP LOGO */
-  margin-top:-180px;
+  margin-top:-200px;
 }
 
-/* VIDEO CONTAINER */
 .videos{
+  width:100%;
+  margin-top:500px;
   display:flex;
   flex-direction:column;
   gap:30px;
-  width:100%;
-
-  /* EXACT spacing requested */
-  margin-top:500px;
 }
 
 /* ===== DESKTOP ===== */
@@ -180,57 +162,53 @@ body{
 
 @media(min-width:1024px){
 
-  .mobile{ display:none; }
-
   .desktop{
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:80px;
+    align-items:center;
+    padding:100px 80px;
   }
 
-  .video{ width:32%; }
-
-  .center{ width:30%; }
+  .video{
+    width:32%;
+  }
 }
 
 /* ===== GALLERY ===== */
 .gallery{
+  padding:80px 20px;
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:20px;
-  padding:60px 20px;
 }
 
 .gallery img{
   width:100%;
-  max-width:650px;
+  max-width:700px;
 }
 
-/* DESKTOP */
+/* DESKTOP GALLERY */
 @media(min-width:1024px){
 
   .gallery{
     flex-direction:row;
     justify-content:center;
-    align-items:flex-start;
-    gap:50px;
+    gap:60px;
   }
 
   .gallery img{
-    max-width:380px;
+    max-width:520px;
   }
 
   .stack{
     display:flex;
     flex-direction:column;
-    align-items:center;
-    gap:12px;
+    gap:14px;
   }
 
   .center-img{
-    transform:scale(1.1);
+    transform:scale(1.12);
   }
 }
 </style>
@@ -240,69 +218,54 @@ body{
 
 <audio id="clickSound" src="click.mp3"></audio>
 
-<!-- BANNER -->
 <div class="banner"></div>
 
-<!-- NAV -->
 <a href="index.html">
   <img src="bannerlogo.png" class="bannerlogo">
 </a>
 
-<!-- VISUAL BACKGROUND -->
+<!-- VISUAL -->
 <div class="visual">
   <img src="title.png" class="title">
   <img src="logo.png" class="logo">
 </div>
 
-<!-- MOBILE -->
-<div class="mobile">
+<!-- CENTER CONTENT -->
+<div class="center">
+  <img src="description.png" class="description">
 
-  <div class="center">
-    <img src="description.png" class="description">
-
-    <div class="buttons">
-      <div class="btn" onclick="go('work.html')">MY WORK</div>
-      <div class="btn" onclick="go('contact.html')">CONTACT</div>
-    </div>
+  <div class="buttons">
+    <div class="btn" onclick="go('work.html')">MY WORK</div>
+    <div class="btn" onclick="go('contact.html')">CONTACT</div>
   </div>
+</div>
 
-  <!-- VIDEOS -->
+<!-- MOBILE VIDEOS -->
+<div class="mobile">
   <div class="videos">
 
     <div class="video">
       <video src="reel.mp4" autoplay muted loop playsinline></video>
-      <span class="label">tap for sound</span>
     </div>
 
     <div class="video">
       <video src="video2.mp4" autoplay muted loop playsinline></video>
-      <span class="label">tap for sound</span>
     </div>
 
   </div>
-
 </div>
 
-<!-- DESKTOP -->
+<!-- DESKTOP VIDEOS -->
 <div class="desktop">
 
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline></video>
-    <span class="label">tap for sound</span>
   </div>
 
-  <div class="center">
-    <img src="description.png" class="description">
-
-    <div class="buttons">
-      <div class="btn" onclick="go('work.html')">MY WORK</div>
-      <div class="btn" onclick="go('contact.html')">CONTACT</div>
-    </div>
-  </div>
+  <div style="width:30%"></div>
 
   <div class="video">
     <video src="video2.mp4" autoplay muted loop playsinline></video>
-    <span class="label">tap for sound</span>
   </div>
 
 </div>
@@ -329,16 +292,6 @@ function go(page){
   s.play();
   setTimeout(()=>{ window.location.href = page; },120);
 }
-
-document.querySelectorAll(".video").forEach(v=>{
-  const video = v.querySelector("video");
-  const label = v.querySelector(".label");
-
-  v.addEventListener("click",()=>{
-    video.muted = !video.muted;
-    label.innerText = video.muted ? "tap for sound" : "tap to mute";
-  });
-});
 </script>
 
 </body>
