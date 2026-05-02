@@ -23,6 +23,7 @@ body{
   background:#000;
   color:#fff;
   overflow-x:hidden;
+  position:relative;
 }
 
 /* ===== BANNER ===== */
@@ -58,27 +59,27 @@ body{
   }
 }
 
-/* ===== VISUAL LAYER (NOW FIXED EVERYWHERE) ===== */
+/* ===== VISUAL LAYER ===== */
 .visual{
   position:fixed;
   left:50%;
-  transform:translateX(-50%);
+  transform:translate(-50%,-50%);
   z-index:0;
   pointer-events:none;
   text-align:center;
 }
 
-/* DESKTOP POSITION FIX */
+/* DESKTOP POSITION */
 @media(min-width:1024px){
   .visual{
-    top:calc(42% - 130px); /* moved 130px higher */
+    top:calc(50% - 130px);
   }
 }
 
 /* MOBILE POSITION */
 @media(max-width:1023px){
   .visual{
-    top:45%;
+    top:50%;
   }
 }
 
@@ -88,10 +89,10 @@ body{
   opacity:0.25;
 }
 
-/* LOGO 3X BIGGER */
+/* controlled large logo */
 .logo{
-  width:720px; /* ~3x */
-  max-width:90vw;
+  width:38vw;
+  max-width:520px;
   margin-top:10px;
   opacity:0.25;
 }
@@ -114,11 +115,21 @@ body{
   text-align:center;
 }
 
+/* MOBILE overlap fix */
+@media(max-width:1023px){
+  .center{
+    position:relative;
+    top:auto;
+    transform:none;
+    margin-top:-120px;
+  }
+}
+
 .description{
   width:100%;
 }
 
-/* BUTTONS */
+/* ===== BUTTONS ===== */
 .buttons{
   display:flex;
   gap:20px;
@@ -136,17 +147,10 @@ body{
   color:#000;
 }
 
-/* ===== VIDEOS ===== */
-.videos{
-  width:100%;
-  margin-top:300px; /* REQUIRED */
-  display:flex;
-  flex-direction:column;
-  gap:30px;
-  padding:0 20px;
-}
-
+/* ===== VIDEO ===== */
 .video{
+  position:relative;
+  z-index:1;
   border-radius:26px;
   overflow:hidden;
   background:#000;
@@ -161,17 +165,40 @@ body{
   object-fit:contain;
 }
 
-/* DESKTOP VIDEOS */
+/* ===== MOBILE VIDEOS ===== */
+.mobile-videos{
+  display:flex;
+  flex-direction:column;
+  gap:30px;
+  padding:0 20px;
+  margin-top:300px;
+}
+
+/* ===== DESKTOP LAYOUT ===== */
+.desktop-layout{
+  display:none;
+}
+
 @media(min-width:1024px){
 
-  .videos{
-    flex-direction:row;
-    justify-content:space-between;
-    padding:100px 80px;
-    margin-top:0;
+  .mobile-videos{
+    display:none;
   }
 
-  .video{
+  .desktop-layout{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:120px 80px;
+  }
+
+  .desktop-layout .video{
+    width:30%;
+  }
+
+  .desktop-layout .center{
+    position:static;
+    transform:none;
     width:30%;
   }
 }
@@ -190,6 +217,7 @@ body{
   max-width:700px;
 }
 
+/* DESKTOP */
 @media(min-width:1024px){
 
   .gallery{
@@ -232,7 +260,7 @@ body{
   <img src="logo.png" class="logo">
 </div>
 
-<!-- CENTER -->
+<!-- MOBILE -->
 <div class="center">
   <img src="description.png" class="description">
 
@@ -242,11 +270,32 @@ body{
   </div>
 </div>
 
-<!-- VIDEOS -->
-<div class="videos">
+<div class="mobile-videos">
 
   <div class="video">
     <video src="reel.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="video">
+    <video src="video2.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+</div>
+
+<!-- DESKTOP -->
+<div class="desktop-layout">
+
+  <div class="video">
+    <video src="reel.mp4" autoplay muted loop playsinline></video>
+  </div>
+
+  <div class="center">
+    <img src="description.png" class="description">
+
+    <div class="buttons">
+      <div class="btn" onclick="go('work.html')">MY WORK</div>
+      <div class="btn" onclick="go('contact.html')">CONTACT</div>
+    </div>
   </div>
 
   <div class="video">
