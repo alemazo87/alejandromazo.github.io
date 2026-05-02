@@ -25,6 +25,22 @@ body{
   overflow-x:hidden;
 }
 
+/* ===== AUDIO ===== */
+audio{ display:none; }
+
+/* ===== HEADER ===== */
+.header{
+  width:100%;
+  height:auto;
+}
+
+.header img{
+  width:100%;
+  height:auto;
+  display:block;
+  object-fit:contain;
+}
+
 /* ===== NAV LOGO ===== */
 .bannerlogo{
   position:fixed;
@@ -33,6 +49,7 @@ body{
   transform:translateX(-50%);
   width:140px;
   z-index:1000;
+  cursor:pointer;
 }
 
 @media(min-width:1024px){
@@ -43,7 +60,7 @@ body{
   }
 }
 
-/* ===== GLOBAL VISUAL LAYER ===== */
+/* ===== VISUAL BACKGROUND ===== */
 .visual{
   position:fixed;
   top:50%;
@@ -57,7 +74,7 @@ body{
 .title{
   width:70vw;
   max-width:700px;
-  opacity:0.2;
+  opacity:0.9; /* 🔥 UPDATED */
 }
 
 .logo{
@@ -78,6 +95,7 @@ body{
   align-items:center;
   text-align:center;
   padding:40px 20px;
+  margin-top:-50px; /* 🔥 moved up */
 }
 
 /* TEXT */
@@ -117,10 +135,13 @@ body{
 
 <audio id="clickSound" src="click.mp3"></audio>
 
+<!-- HEADER -->
+<div class="header">
+  <img src="banner.png">
+</div>
+
 <!-- NAV -->
-<a href="index.html">
-  <img src="bannerlogo.png" class="bannerlogo">
-</a>
+<img src="bannerlogo.png" class="bannerlogo" onclick="goHome()">
 
 <!-- VISUAL BACKGROUND -->
 <div class="visual">
@@ -146,12 +167,22 @@ body{
 </div>
 
 <script>
-// (optional future interaction support)
-function clickSound(){
-  const s = document.getElementById("clickSound");
-  s.currentTime = 0;
-  s.play();
+
+/* CLICK SOUND */
+const clickSound = document.getElementById("clickSound");
+
+function playClick(){
+  clickSound.currentTime = 0;
+  clickSound.play();
 }
+
+function goHome(){
+  playClick();
+  setTimeout(()=>{
+    window.location.href = "index.html";
+  },150);
+}
+
 </script>
 
 </body>
