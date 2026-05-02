@@ -58,24 +58,27 @@ body{
   }
 }
 
-/* ===== VISUAL LAYER ===== */
-
-/* MOBILE → scrolls normally (fix overlap issue) */
+/* ===== VISUAL LAYER (NOW FIXED EVERYWHERE) ===== */
 .visual{
-  position:relative;
-  margin-top:40px;
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:0;
+  pointer-events:none;
   text-align:center;
 }
 
-/* DESKTOP → fixed cinematic layer */
+/* DESKTOP POSITION FIX */
 @media(min-width:1024px){
   .visual{
-    position:fixed;
-    top:42%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    z-index:0;
-    pointer-events:none;
+    top:calc(42% - 130px); /* moved 130px higher */
+  }
+}
+
+/* MOBILE POSITION */
+@media(max-width:1023px){
+  .visual{
+    top:45%;
   }
 }
 
@@ -85,30 +88,30 @@ body{
   opacity:0.25;
 }
 
+/* LOGO 3X BIGGER */
 .logo{
-  width:240px;
+  width:720px; /* ~3x */
+  max-width:90vw;
   margin-top:10px;
   opacity:0.25;
 }
 
 /* ===== CENTER CONTENT ===== */
 .center{
+  position:absolute;
+  top:58%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:20px;
-  padding:40px 20px;
-  text-align:center;
-}
 
-@media(min-width:1024px){
-  .center{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:420px;
-  }
+  width:90%;
+  max-width:520px;
+  text-align:center;
 }
 
 .description{
@@ -136,7 +139,7 @@ body{
 /* ===== VIDEOS ===== */
 .videos{
   width:100%;
-  margin-top:300px; /* FIXED */
+  margin-top:300px; /* REQUIRED */
   display:flex;
   flex-direction:column;
   gap:30px;
@@ -158,15 +161,14 @@ body{
   object-fit:contain;
 }
 
-/* DESKTOP VIDEO LAYOUT */
+/* DESKTOP VIDEOS */
 @media(min-width:1024px){
 
   .videos{
-    position:relative;
-    margin-top:0;
-    padding:100px 80px;
     flex-direction:row;
     justify-content:space-between;
+    padding:100px 80px;
+    margin-top:0;
   }
 
   .video{
@@ -188,7 +190,6 @@ body{
   max-width:700px;
 }
 
-/* DESKTOP GALLERY */
 @media(min-width:1024px){
 
   .gallery{
@@ -205,7 +206,7 @@ body{
   .stack{
     display:flex;
     flex-direction:column;
-    gap:20px; /* FIXED spacing */
+    gap:20px;
   }
 
   .center-img{
