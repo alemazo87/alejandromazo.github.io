@@ -86,8 +86,8 @@ LOGO
 
 .banner-logo{
   position:fixed;
-  top:45px;
   left:45px;
+  top:calc(100vw * 0.5625 - 175px);
   width:130px;
   z-index:1000;
   cursor:pointer;
@@ -108,12 +108,17 @@ BACKGROUND
 
 .bg-layer{
   position:fixed;
-  top:50%;
   left:50%;
-  transform:translate(-50%, -50%);
+  top:calc(100vw * 0.5625 + 20px);
+  transform:translateX(-50%);
   z-index:1;
   pointer-events:none;
   text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
   filter:drop-shadow(0 0 40px rgba(255,255,255,0.05));
 }
 
@@ -124,7 +129,7 @@ BACKGROUND
 
 .logo-img{
   width:18vw;
-  margin-top:30px;
+  margin-top:80px;
   opacity:0.18;
 }
 
@@ -274,56 +279,9 @@ DESKTOP
 
 @media (min-width:901px){
 
-  /* HEADER */
-
-  .header{
-    width:100%;
-    height:auto;
-    overflow:hidden;
-    position:relative;
-  }
-
-  .header img{
-    width:100%;
-    height:auto;
-    display:block;
-    object-fit:contain;
-  }
-
-  /* LOGO */
-
-  .banner-logo{
-    position:fixed;
-    top:195px;
-    left:45px;
-    width:auto;
-    z-index:1000;
-    cursor:pointer;
-    transition:0.4s ease;
-  }
-
-  /* HERO */
-
-  .title-img{
-    width:52vw;
-    opacity:0.92;
-    transform:translateY(122px);
-  }
-
-  .logo-img{
-    width:18vw;
-    margin-top:30px;
-    opacity:0.18;
-    transform:translateY(122px);
-  }
-
-  /* CONTENT */
-
   .content{
-    margin-top:240px;
+    margin-top:1050px;
   }
-
-  /* DESCRIPTION */
 
   .description{
     justify-content:center;
@@ -338,8 +296,6 @@ DESKTOP
     height:auto;
   }
 
-  /* BUTTONS */
-
   .buttons{
     justify-content:center;
     align-items:center;
@@ -347,8 +303,6 @@ DESKTOP
     width:100%;
     margin-top:110px;
   }
-
-  /* VIDEOS */
 
   .video-section{
     display:flex;
@@ -370,8 +324,6 @@ DESKTOP
     height:100%;
     object-fit:cover;
   }
-
-  /* GALLERY */
 
   .gallery{
     width:92%;
@@ -416,13 +368,8 @@ MOBILE
 
 @media (max-width:900px){
 
-  .header{
-    height:auto;
-  }
-
   .header img{
     content:url("bannerMOBILE.jpg");
-    height:auto;
     object-fit:contain;
   }
 
@@ -432,12 +379,19 @@ MOBILE
     width:100px;
   }
 
+  .bg-layer{
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%);
+  }
+
   .title-img{
     width:80vw;
   }
 
   .logo-img{
     width:60vw;
+    margin-top:30px;
   }
 
   .content{
@@ -446,7 +400,6 @@ MOBILE
 
   .description{
     justify-content:center;
-    padding-left:0;
   }
 
   .description img{
@@ -472,7 +425,6 @@ MOBILE
     flex-direction:column;
     align-items:center;
     gap:30px;
-    padding:0;
   }
 
   .video-box{
@@ -525,12 +477,12 @@ SCROLLBAR
   <img src="banner.png">
 </div>
 
-<!-- LOGO -->
-<div class="banner-logo" onclick="goHome()">
+<!-- FIXED LOGO -->
+<a href="index.html" class="banner-logo">
   <img src="bannerlogo.png">
-</div>
+</a>
 
-<!-- BG -->
+<!-- FIXED HERO -->
 <div class="bg-layer">
   <img src="title.png" class="title-img">
   <img src="logo.png" class="logo-img">
@@ -595,19 +547,14 @@ SCROLLBAR
   <!-- GALLERY -->
   <div class="gallery fade-in">
 
-    <!-- LEFT -->
     <img src="image1.jpg" loading="lazy">
 
-    <!-- CENTER -->
     <div class="middle-stack">
-
       <img src="image5.jpg" loading="lazy">
       <img src="image2.jpg" loading="lazy">
       <img src="image3.jpg" loading="lazy">
-
     </div>
 
-    <!-- RIGHT -->
     <img src="image4.jpg" loading="lazy">
 
   </div>
@@ -618,21 +565,6 @@ SCROLLBAR
 <div class="grain"></div>
 
 <script>
-
-const clickSound = document.getElementById("clickSound");
-
-function playClick(){
-  clickSound.currentTime = 0;
-  clickSound.play();
-}
-
-function goHome(){
-  playClick();
-
-  setTimeout(()=>{
-    window.location.href = "index.html";
-  },150);
-}
 
 /* AUTOPLAY FIX */
 
@@ -679,17 +611,6 @@ document.querySelectorAll(".video-box").forEach(box=>{
     }
 
   });
-
-});
-
-/* PARALLAX */
-
-window.addEventListener("scroll",()=>{
-
-  const scrollY = window.scrollY;
-
-  document.querySelector(".bg-layer").style.transform =
-  `translate(-50%, calc(-50% + ${scrollY * 0.05}px))`;
 
 });
 
