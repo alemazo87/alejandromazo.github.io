@@ -31,24 +31,26 @@ GLOBAL
 
 html,body{
   width:100%;
-  background:#000;
-  overflow-x:hidden;
-  scroll-behavior:smooth;
+  min-height:100%;
 }
 
 body{
+  background:
+  radial-gradient(circle at top,#111 0%,#000 60%);
   color:#fff;
-  background:#000;
+  overflow-x:hidden;
+  user-select:none;
+  scroll-behavior:smooth;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
 
 img,video{
-  display:block;
-  max-width:100%;
   -webkit-user-drag:none;
 }
 
-a{
-  text-decoration:none;
+audio{
+  display:none;
 }
 
 /* =========================
@@ -58,10 +60,25 @@ HEADER
 .header{
   width:100%;
   position:relative;
+  overflow:hidden;
 }
 
 .header img{
   width:100%;
+  display:block;
+}
+
+.header::after{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+  linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.08),
+    rgba(0,0,0,0.55)
+  );
 }
 
 /* =========================
@@ -74,43 +91,59 @@ BANNER LOGO
   left:45px;
   bottom:45px;
 
-  width:290px;
+  width:130px;
 
-  z-index:20;
+  z-index:1000;
 
-  transition:0.35s ease;
+  transition:0.4s ease;
 }
 
 .banner-logo:hover{
-  opacity:0.75;
+  opacity:0.7;
+}
+
+.banner-logo img{
+  width:100%;
+  display:block;
 }
 
 /* =========================
-TITLE + LOGO
+HERO
 ========================= */
 
-.hero{
+.bg-layer{
+  position:relative;
+
   width:100%;
 
   display:flex;
   flex-direction:column;
   align-items:center;
 
-  margin-top:26px;
+  margin-top:20px;
+
+  z-index:2;
+
+  pointer-events:none;
+
+  text-align:center;
+
+  filter:
+  drop-shadow(
+    0 0 40px
+    rgba(255,255,255,0.05)
+  );
 }
 
 .title-img{
-  width:78vw;
-  max-width:1600px;
+  width:52vw;
+  opacity:0.92;
 }
 
 .logo-img{
-  width:33vw;
-  max-width:760px;
-
+  width:18vw;
   margin-top:80px;
-
-  opacity:0.95;
+  opacity:0.18;
 }
 
 /* =========================
@@ -118,65 +151,33 @@ CONTENT
 ========================= */
 
 .content{
-  width:100%;
-  margin-top:120px;
+  position:relative;
+  z-index:3;
 }
 
 /* =========================
-VIDEOS + CENTER
+DESCRIPTION
 ========================= */
 
-.top-section{
-  width:100%;
-
+.description{
   display:flex;
-  justify-content:center;
-  align-items:flex-start;
-
-  gap:120px;
-
-  padding:0 4vw;
 }
 
-.video-box{
-  width:320px;
-  height:560px;
-
-  overflow:hidden;
-  border-radius:18px;
-
-  background:#050505;
-
-  position:relative;
-
-  flex-shrink:0;
+.description img{
+  object-fit:contain;
 }
 
-.video-box video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.center-info{
-  width:520px;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-
-  margin-top:150px;
-}
-
-.description-img{
-  width:100%;
-}
+/* =========================
+BUTTONS
+========================= */
 
 .buttons{
   display:flex;
-  gap:22px;
+}
 
-  margin-top:45px;
+.buttons a{
+  text-decoration:none;
+  color:white;
 }
 
 .btn{
@@ -184,49 +185,94 @@ VIDEOS + CENTER
 
   border:
   1px solid
-  rgba(255,255,255,0.2);
+  rgba(255,255,255,0.18);
 
-  color:#fff;
-
-  letter-spacing:2px;
-  font-size:11px;
+  cursor:pointer;
 
   transition:0.35s ease;
 
-  background:
-  rgba(255,255,255,0.03);
+  letter-spacing:3px;
+  font-size:11px;
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(8px);
+
+  background:
+  rgba(255,255,255,0.02);
 }
 
 .btn:hover{
   background:
-  rgba(255,255,255,0.09);
+  rgba(255,255,255,0.08);
+
+  border-color:
+  rgba(255,255,255,0.4);
 
   transform:translateY(-3px);
+
+  box-shadow:
+  0 10px 30px
+  rgba(255,255,255,0.08);
+}
+
+/* =========================
+VIDEOS
+========================= */
+
+.video-box{
+  border-radius:24px;
+  overflow:hidden;
+
+  position:relative;
+
+  transition:0.4s ease;
+
+  cursor:pointer;
+
+  background:#050505;
+}
+
+.video-box:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+  0 20px 60px
+  rgba(0,0,0,0.5);
+}
+
+video{
+  width:100%;
+  display:block;
+
+  object-fit:cover;
+
+  transition:0.6s ease;
+}
+
+.video-box:hover video{
+  transform:scale(1.02);
+}
+
+.video-text{
+  position:absolute;
+
+  bottom:20px;
+  left:20px;
+
+  font-size:10px;
+  letter-spacing:3px;
+
+  opacity:0.7;
+
+  text-shadow:
+  0 0 20px
+  rgba(0,0,0,0.8);
+
+  pointer-events:none;
 }
 
 /* =========================
 GALLERY
 ========================= */
-
-.gallery{
-  width:92%;
-
-  margin:
-  140px auto 120px auto;
-
-  display:grid;
-
-  grid-template-columns:
-  1fr
-  0.95fr
-  1fr;
-
-  gap:26px;
-
-  align-items:start;
-}
 
 .gallery img{
   width:100%;
@@ -235,29 +281,158 @@ GALLERY
 
   border-radius:18px;
 
-  transition:0.4s ease;
+  transition:0.5s ease;
+
+  cursor:pointer;
 }
 
 .gallery img:hover{
-  transform:scale(1.015);
+  transform:scale(1.02);
 }
 
-.gallery-left,
-.gallery-right{
-  height:1120px;
+/* =========================
+FADE
+========================= */
+
+.fade-in{
+  opacity:0;
+
+  transform:translateY(20px);
+
+  animation:
+  fadeUp 1.2s ease forwards;
 }
 
-.middle-stack{
-  display:flex;
-  flex-direction:column;
+@keyframes fadeUp{
 
-  gap:26px;
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 
-  height:1120px;
 }
 
-.middle-stack img{
-  flex:1;
+/* =========================
+GRAIN
+========================= */
+
+.grain{
+  position:fixed;
+  inset:0;
+
+  pointer-events:none;
+
+  z-index:9999;
+
+  opacity:0.03;
+
+  background-image:url("grain.png");
+  background-size:cover;
+
+  mix-blend-mode:soft-light;
+}
+
+/* =========================
+DESKTOP
+========================= */
+
+@media (min-width:901px){
+
+  .content{
+    margin-top:120px;
+  }
+
+  .description{
+    justify-content:center;
+    align-items:center;
+
+    width:100%;
+
+    margin-top:165px;
+  }
+
+  .description img{
+    width:auto;
+    max-width:none;
+    height:auto;
+  }
+
+  .buttons{
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+
+    width:100%;
+
+    margin-top:110px;
+  }
+
+  .video-section{
+    display:flex;
+
+    justify-content:center;
+    align-items:flex-start;
+
+    gap:740px;
+
+    padding:0 4vw;
+
+    margin-top:-332px;
+  }
+
+  .video-box{
+    width:420px;
+    height:700px;
+
+    flex-shrink:0;
+  }
+
+  .video-box video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+  }
+
+  .gallery{
+    width:92%;
+
+    margin:
+    20px auto 0 auto;
+
+    display:grid;
+
+    grid-template-columns:
+    1fr
+    0.8fr
+    1fr;
+
+    gap:28px;
+
+    align-items:start;
+  }
+
+  .gallery img:nth-child(1){
+    height:1100px;
+  }
+
+  .gallery img:nth-child(3){
+    height:1100px;
+  }
+
+  .middle-stack{
+    display:flex;
+    flex-direction:column;
+
+    gap:28px;
+
+    height:1100px;
+  }
+
+  .middle-stack img{
+    flex:1;
+  }
+
 }
 
 /* =========================
@@ -268,78 +443,87 @@ MOBILE
 
   .header img{
     content:url("bannerMOBILE.jpg");
+    object-fit:contain;
   }
 
   .banner-logo{
-    width:120px;
+    position:fixed;
 
+    top:30px;
     left:20px;
-    bottom:20px;
+    bottom:auto;
+
+    width:100px;
   }
 
-  .hero{
-    margin-top:24px;
+  .bg-layer{
+    margin-top:60px;
   }
 
   .title-img{
-    width:92vw;
+    width:80vw;
   }
 
   .logo-img{
-    width:72vw;
-
-    margin-top:40px;
+    width:60vw;
+    margin-top:30px;
   }
 
   .content{
-    margin-top:70px;
+    margin-top:110px;
   }
 
-  .top-section{
-    flex-direction:column;
-    align-items:center;
-
-    gap:40px;
+  .description{
+    justify-content:center;
   }
 
-  .video-box{
-    width:92%;
-    height:auto;
-  }
-
-  .center-info{
-    width:90%;
-    margin-top:0;
-  }
-
-  .description-img{
-    width:100%;
+  .description img{
+    width:85vw;
   }
 
   .buttons{
+    justify-content:center;
+
     flex-direction:column;
-    width:100%;
+    align-items:center;
+
+    margin-top:35px;
+
+    gap:20px;
   }
 
   .btn{
+    width:220px;
     text-align:center;
   }
 
-  .gallery{
-    width:95%;
+  .video-section{
+    margin-top:100px;
 
     display:flex;
     flex-direction:column;
 
-    gap:18px;
+    align-items:center;
 
-    margin-top:90px;
+    gap:30px;
   }
 
-  .gallery-left,
-  .gallery-right,
-  .middle-stack{
-    height:auto;
+  .video-box{
+    width:90%;
+  }
+
+  .gallery{
+    margin-top:90px;
+
+    width:95%;
+
+    margin-left:auto;
+    margin-right:auto;
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
   }
 
 }
@@ -358,7 +542,7 @@ SCROLLBAR
 
 ::-webkit-scrollbar-thumb{
   background:#222;
-  border-radius:20px;
+  border-radius:10px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -368,13 +552,16 @@ SCROLLBAR
 </style>
 </head>
 
-<body>
+<body oncontextmenu="return false">
+
+<audio id="clickSound" src="click.mp3"></audio>
 
 <!-- HEADER -->
 <div class="header">
 
   <img src="banner.png">
 
+  <!-- LOGO -->
   <a href="index.html" class="banner-logo">
     <img src="bannerlogo.png">
   </a>
@@ -382,7 +569,7 @@ SCROLLBAR
 </div>
 
 <!-- HERO -->
-<div class="hero">
+<div class="bg-layer">
 
   <img src="title.png" class="title-img">
   <img src="logo.png" class="logo-img">
@@ -392,91 +579,93 @@ SCROLLBAR
 <!-- CONTENT -->
 <div class="content">
 
-  <!-- TOP SECTION -->
-  <div class="top-section">
+  <!-- DESCRIPTION -->
+  <div class="description fade-in">
 
-    <!-- LEFT VIDEO -->
+    <img src="description.png">
+
+  </div>
+
+  <!-- BUTTONS -->
+  <div class="buttons fade-in">
+
+    <a href="work.html">
+      <div class="btn">MY WORK</div>
+    </a>
+
+    <a href="contact.html">
+      <div class="btn">CONTACT</div>
+    </a>
+
+  </div>
+
+  <!-- VIDEOS -->
+  <div class="video-section fade-in">
+
     <div class="video-box">
 
       <video
       src="reel.mp4"
       autoplay
-      muted
       loop
+      muted
       playsinline
-      webkit-playsinline></video>
+      webkit-playsinline
+      preload="metadata"></video>
 
-    </div>
-
-    <!-- CENTER -->
-    <div class="center-info">
-
-      <img
-      src="description.png"
-      class="description-img">
-
-      <div class="buttons">
-
-        <a href="work.html">
-          <div class="btn">
-            MY WORK
-          </div>
-        </a>
-
-        <a href="contact.html">
-          <div class="btn">
-            CONTACT
-          </div>
-        </a>
-
+      <div class="video-text">
+        TAP FOR SOUND
       </div>
 
     </div>
 
-    <!-- RIGHT VIDEO -->
     <div class="video-box">
 
       <video
       src="video2.mp4"
       autoplay
-      muted
       loop
+      muted
       playsinline
-      webkit-playsinline></video>
+      webkit-playsinline
+      preload="metadata"></video>
+
+      <div class="video-text">
+        TAP FOR SOUND
+      </div>
 
     </div>
 
   </div>
 
   <!-- GALLERY -->
-  <div class="gallery">
+  <div class="gallery fade-in">
 
     <!-- LEFT -->
-    <img
-    src="image1.jpg"
-    class="gallery-left">
+    <img src="image1.jpg" loading="lazy">
 
     <!-- CENTER -->
     <div class="middle-stack">
 
-      <img src="image5.jpg">
-      <img src="image2.jpg">
-      <img src="image3.jpg">
+      <img src="image5.jpg" loading="lazy">
+      <img src="image2.jpg" loading="lazy">
+      <img src="image3.jpg" loading="lazy">
 
     </div>
 
     <!-- RIGHT -->
-    <img
-    src="image4.jpg"
-    class="gallery-right">
+    <img src="image4.jpg" loading="lazy">
 
   </div>
 
 </div>
 
+<!-- GRAIN -->
+<div class="grain"></div>
+
 <script>
 
-/* AUTOPLAY */
+/* AUTOPLAY FIX */
 
 window.addEventListener("load",()=>{
 
@@ -484,12 +673,52 @@ window.addEventListener("load",()=>{
 
     video.muted = true;
 
-    const playPromise =
-    video.play();
+    video.setAttribute(
+      "playsinline",
+      ""
+    );
 
-    if(playPromise !== undefined){
+    const promise = video.play();
 
-      playPromise.catch(()=>{});
+    if(promise !== undefined){
+
+      promise.catch(()=>{
+
+        video.play();
+
+      });
+
+    }
+
+  });
+
+});
+
+/* SOUND TOGGLE */
+
+document.querySelectorAll(".video-box").forEach(box=>{
+
+  const video =
+  box.querySelector("video");
+
+  const text =
+  box.querySelector(".video-text");
+
+  box.addEventListener("click",()=>{
+
+    if(video.muted){
+
+      video.muted = false;
+
+      text.innerText =
+      "TAP TO MUTE";
+
+    }else{
+
+      video.muted = true;
+
+      text.innerText =
+      "TAP FOR SOUND";
 
     }
 
