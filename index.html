@@ -31,26 +31,24 @@ GLOBAL
 
 html,body{
   width:100%;
-  min-height:100%;
+  background:#000;
+  overflow-x:hidden;
+  scroll-behavior:smooth;
 }
 
 body{
-  background:
-  radial-gradient(circle at top,#111 0%,#000 60%);
   color:#fff;
-  overflow-x:hidden;
-  user-select:none;
-  scroll-behavior:smooth;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  background:#000;
 }
 
 img,video{
+  display:block;
+  max-width:100%;
   -webkit-user-drag:none;
 }
 
-audio{
-  display:none;
+a{
+  text-decoration:none;
 }
 
 /* =========================
@@ -60,25 +58,10 @@ HEADER
 .header{
   width:100%;
   position:relative;
-  overflow:hidden;
 }
 
 .header img{
   width:100%;
-  display:block;
-}
-
-.header::after{
-  content:"";
-  position:absolute;
-  inset:0;
-
-  background:
-  linear-gradient(
-    to bottom,
-    rgba(0,0,0,0.08),
-    rgba(0,0,0,0.55)
-  );
 }
 
 /* =========================
@@ -91,59 +74,43 @@ BANNER LOGO
   left:45px;
   bottom:45px;
 
-  width:130px;
+  width:290px;
 
-  z-index:1000;
+  z-index:20;
 
-  transition:0.4s ease;
+  transition:0.35s ease;
 }
 
 .banner-logo:hover{
-  opacity:0.7;
-}
-
-.banner-logo img{
-  width:100%;
-  display:block;
+  opacity:0.75;
 }
 
 /* =========================
-HERO
+TITLE + LOGO
 ========================= */
 
-.bg-layer{
-  position:relative;
-
+.hero{
   width:100%;
 
   display:flex;
   flex-direction:column;
   align-items:center;
 
-  margin-top:20px;
-
-  z-index:2;
-
-  pointer-events:none;
-
-  text-align:center;
-
-  filter:
-  drop-shadow(
-    0 0 40px
-    rgba(255,255,255,0.05)
-  );
+  margin-top:26px;
 }
 
 .title-img{
-  width:52vw;
-  opacity:0.92;
+  width:78vw;
+  max-width:1600px;
 }
 
 .logo-img{
-  width:18vw;
+  width:33vw;
+  max-width:760px;
+
   margin-top:80px;
-  opacity:0.18;
+
+  opacity:0.95;
 }
 
 /* =========================
@@ -151,33 +118,65 @@ CONTENT
 ========================= */
 
 .content{
-  position:relative;
-  z-index:3;
+  width:100%;
+  margin-top:120px;
 }
 
 /* =========================
-DESCRIPTION
+VIDEOS + CENTER
 ========================= */
 
-.description{
+.top-section{
+  width:100%;
+
   display:flex;
+  justify-content:center;
+  align-items:flex-start;
+
+  gap:120px;
+
+  padding:0 4vw;
 }
 
-.description img{
-  object-fit:contain;
+.video-box{
+  width:320px;
+  height:560px;
+
+  overflow:hidden;
+  border-radius:18px;
+
+  background:#050505;
+
+  position:relative;
+
+  flex-shrink:0;
 }
 
-/* =========================
-BUTTONS
-========================= */
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.center-info{
+  width:520px;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+
+  margin-top:150px;
+}
+
+.description-img{
+  width:100%;
+}
 
 .buttons{
   display:flex;
-}
+  gap:22px;
 
-.buttons a{
-  text-decoration:none;
-  color:white;
+  margin-top:45px;
 }
 
 .btn{
@@ -185,94 +184,49 @@ BUTTONS
 
   border:
   1px solid
-  rgba(255,255,255,0.18);
+  rgba(255,255,255,0.2);
 
-  cursor:pointer;
+  color:#fff;
+
+  letter-spacing:2px;
+  font-size:11px;
 
   transition:0.35s ease;
 
-  letter-spacing:3px;
-  font-size:11px;
-
-  backdrop-filter:blur(8px);
-
   background:
-  rgba(255,255,255,0.02);
+  rgba(255,255,255,0.03);
+
+  backdrop-filter:blur(10px);
 }
 
 .btn:hover{
   background:
-  rgba(255,255,255,0.08);
-
-  border-color:
-  rgba(255,255,255,0.4);
+  rgba(255,255,255,0.09);
 
   transform:translateY(-3px);
-
-  box-shadow:
-  0 10px 30px
-  rgba(255,255,255,0.08);
-}
-
-/* =========================
-VIDEOS
-========================= */
-
-.video-box{
-  border-radius:24px;
-  overflow:hidden;
-
-  position:relative;
-
-  transition:0.4s ease;
-
-  cursor:pointer;
-
-  background:#050505;
-}
-
-.video-box:hover{
-  transform:translateY(-6px);
-
-  box-shadow:
-  0 20px 60px
-  rgba(0,0,0,0.5);
-}
-
-video{
-  width:100%;
-  display:block;
-
-  object-fit:cover;
-
-  transition:0.6s ease;
-}
-
-.video-box:hover video{
-  transform:scale(1.02);
-}
-
-.video-text{
-  position:absolute;
-
-  bottom:20px;
-  left:20px;
-
-  font-size:10px;
-  letter-spacing:3px;
-
-  opacity:0.7;
-
-  text-shadow:
-  0 0 20px
-  rgba(0,0,0,0.8);
-
-  pointer-events:none;
 }
 
 /* =========================
 GALLERY
 ========================= */
+
+.gallery{
+  width:92%;
+
+  margin:
+  140px auto 120px auto;
+
+  display:grid;
+
+  grid-template-columns:
+  1fr
+  0.95fr
+  1fr;
+
+  gap:26px;
+
+  align-items:start;
+}
 
 .gallery img{
   width:100%;
@@ -281,158 +235,29 @@ GALLERY
 
   border-radius:18px;
 
-  transition:0.5s ease;
-
-  cursor:pointer;
+  transition:0.4s ease;
 }
 
 .gallery img:hover{
-  transform:scale(1.02);
+  transform:scale(1.015);
 }
 
-/* =========================
-FADE
-========================= */
-
-.fade-in{
-  opacity:0;
-
-  transform:translateY(20px);
-
-  animation:
-  fadeUp 1.2s ease forwards;
+.gallery-left,
+.gallery-right{
+  height:1120px;
 }
 
-@keyframes fadeUp{
+.middle-stack{
+  display:flex;
+  flex-direction:column;
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+  gap:26px;
 
+  height:1120px;
 }
 
-/* =========================
-GRAIN
-========================= */
-
-.grain{
-  position:fixed;
-  inset:0;
-
-  pointer-events:none;
-
-  z-index:9999;
-
-  opacity:0.03;
-
-  background-image:url("grain.png");
-  background-size:cover;
-
-  mix-blend-mode:soft-light;
-}
-
-/* =========================
-DESKTOP
-========================= */
-
-@media (min-width:901px){
-
-  .content{
-    margin-top:120px;
-  }
-
-  .description{
-    justify-content:center;
-    align-items:center;
-
-    width:100%;
-
-    margin-top:165px;
-  }
-
-  .description img{
-    width:auto;
-    max-width:none;
-    height:auto;
-  }
-
-  .buttons{
-    justify-content:center;
-    align-items:center;
-
-    gap:20px;
-
-    width:100%;
-
-    margin-top:110px;
-  }
-
-  .video-section{
-    display:flex;
-
-    justify-content:center;
-    align-items:flex-start;
-
-    gap:740px;
-
-    padding:0 4vw;
-
-    margin-top:-332px;
-  }
-
-  .video-box{
-    width:420px;
-    height:700px;
-
-    flex-shrink:0;
-  }
-
-  .video-box video{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-  }
-
-  .gallery{
-    width:92%;
-
-    margin:
-    20px auto 0 auto;
-
-    display:grid;
-
-    grid-template-columns:
-    1fr
-    0.8fr
-    1fr;
-
-    gap:28px;
-
-    align-items:start;
-  }
-
-  .gallery img:nth-child(1){
-    height:1100px;
-  }
-
-  .gallery img:nth-child(3){
-    height:1100px;
-  }
-
-  .middle-stack{
-    display:flex;
-    flex-direction:column;
-
-    gap:28px;
-
-    height:1100px;
-  }
-
-  .middle-stack img{
-    flex:1;
-  }
-
+.middle-stack img{
+  flex:1;
 }
 
 /* =========================
@@ -443,87 +268,78 @@ MOBILE
 
   .header img{
     content:url("bannerMOBILE.jpg");
-    object-fit:contain;
   }
 
   .banner-logo{
-    position:fixed;
+    width:120px;
 
-    top:30px;
     left:20px;
-    bottom:auto;
-
-    width:100px;
+    bottom:20px;
   }
 
-  .bg-layer{
-    margin-top:60px;
+  .hero{
+    margin-top:24px;
   }
 
   .title-img{
-    width:80vw;
+    width:92vw;
   }
 
   .logo-img{
-    width:60vw;
-    margin-top:30px;
+    width:72vw;
+
+    margin-top:40px;
   }
 
   .content{
-    margin-top:110px;
+    margin-top:70px;
   }
 
-  .description{
-    justify-content:center;
-  }
-
-  .description img{
-    width:85vw;
-  }
-
-  .buttons{
-    justify-content:center;
-
+  .top-section{
     flex-direction:column;
     align-items:center;
 
-    margin-top:35px;
-
-    gap:20px;
-  }
-
-  .btn{
-    width:220px;
-    text-align:center;
-  }
-
-  .video-section{
-    margin-top:100px;
-
-    display:flex;
-    flex-direction:column;
-
-    align-items:center;
-
-    gap:30px;
+    gap:40px;
   }
 
   .video-box{
+    width:92%;
+    height:auto;
+  }
+
+  .center-info{
     width:90%;
+    margin-top:0;
+  }
+
+  .description-img{
+    width:100%;
+  }
+
+  .buttons{
+    flex-direction:column;
+    width:100%;
+  }
+
+  .btn{
+    text-align:center;
   }
 
   .gallery{
-    margin-top:90px;
-
     width:95%;
-
-    margin-left:auto;
-    margin-right:auto;
 
     display:flex;
     flex-direction:column;
 
-    gap:20px;
+    gap:18px;
+
+    margin-top:90px;
+  }
+
+  .gallery-left,
+  .gallery-right,
+  .middle-stack{
+    height:auto;
   }
 
 }
@@ -542,7 +358,7 @@ SCROLLBAR
 
 ::-webkit-scrollbar-thumb{
   background:#222;
-  border-radius:10px;
+  border-radius:20px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
@@ -552,16 +368,13 @@ SCROLLBAR
 </style>
 </head>
 
-<body oncontextmenu="return false">
-
-<audio id="clickSound" src="click.mp3"></audio>
+<body>
 
 <!-- HEADER -->
 <div class="header">
 
   <img src="banner.png">
 
-  <!-- LOGO -->
   <a href="index.html" class="banner-logo">
     <img src="bannerlogo.png">
   </a>
@@ -569,7 +382,7 @@ SCROLLBAR
 </div>
 
 <!-- HERO -->
-<div class="bg-layer">
+<div class="hero">
 
   <img src="title.png" class="title-img">
   <img src="logo.png" class="logo-img">
@@ -579,93 +392,91 @@ SCROLLBAR
 <!-- CONTENT -->
 <div class="content">
 
-  <!-- DESCRIPTION -->
-  <div class="description fade-in">
+  <!-- TOP SECTION -->
+  <div class="top-section">
 
-    <img src="description.png">
-
-  </div>
-
-  <!-- BUTTONS -->
-  <div class="buttons fade-in">
-
-    <a href="work.html">
-      <div class="btn">MY WORK</div>
-    </a>
-
-    <a href="contact.html">
-      <div class="btn">CONTACT</div>
-    </a>
-
-  </div>
-
-  <!-- VIDEOS -->
-  <div class="video-section fade-in">
-
+    <!-- LEFT VIDEO -->
     <div class="video-box">
 
       <video
       src="reel.mp4"
       autoplay
-      loop
       muted
+      loop
       playsinline
-      webkit-playsinline
-      preload="metadata"></video>
+      webkit-playsinline></video>
 
-      <div class="video-text">
-        TAP FOR SOUND
+    </div>
+
+    <!-- CENTER -->
+    <div class="center-info">
+
+      <img
+      src="description.png"
+      class="description-img">
+
+      <div class="buttons">
+
+        <a href="work.html">
+          <div class="btn">
+            MY WORK
+          </div>
+        </a>
+
+        <a href="contact.html">
+          <div class="btn">
+            CONTACT
+          </div>
+        </a>
+
       </div>
 
     </div>
 
+    <!-- RIGHT VIDEO -->
     <div class="video-box">
 
       <video
       src="video2.mp4"
       autoplay
-      loop
       muted
+      loop
       playsinline
-      webkit-playsinline
-      preload="metadata"></video>
-
-      <div class="video-text">
-        TAP FOR SOUND
-      </div>
+      webkit-playsinline></video>
 
     </div>
 
   </div>
 
   <!-- GALLERY -->
-  <div class="gallery fade-in">
+  <div class="gallery">
 
     <!-- LEFT -->
-    <img src="image1.jpg" loading="lazy">
+    <img
+    src="image1.jpg"
+    class="gallery-left">
 
     <!-- CENTER -->
     <div class="middle-stack">
 
-      <img src="image5.jpg" loading="lazy">
-      <img src="image2.jpg" loading="lazy">
-      <img src="image3.jpg" loading="lazy">
+      <img src="image5.jpg">
+      <img src="image2.jpg">
+      <img src="image3.jpg">
 
     </div>
 
     <!-- RIGHT -->
-    <img src="image4.jpg" loading="lazy">
+    <img
+    src="image4.jpg"
+    class="gallery-right">
 
   </div>
 
 </div>
 
-<!-- GRAIN -->
-<div class="grain"></div>
-
 <script>
 
-/* AUTOPLAY FIX */
+/* AUTOPLAY */
 
 window.addEventListener("load",()=>{
 
@@ -673,52 +484,12 @@ window.addEventListener("load",()=>{
 
     video.muted = true;
 
-    video.setAttribute(
-      "playsinline",
-      ""
-    );
+    const playPromise =
+    video.play();
 
-    const promise = video.play();
+    if(playPromise !== undefined){
 
-    if(promise !== undefined){
-
-      promise.catch(()=>{
-
-        video.play();
-
-      });
-
-    }
-
-  });
-
-});
-
-/* SOUND TOGGLE */
-
-document.querySelectorAll(".video-box").forEach(box=>{
-
-  const video =
-  box.querySelector("video");
-
-  const text =
-  box.querySelector(".video-text");
-
-  box.addEventListener("click",()=>{
-
-    if(video.muted){
-
-      video.muted = false;
-
-      text.innerText =
-      "TAP TO MUTE";
-
-    }else{
-
-      video.muted = true;
-
-      text.innerText =
-      "TAP FOR SOUND";
+      playPromise.catch(()=>{});
 
     }
 
