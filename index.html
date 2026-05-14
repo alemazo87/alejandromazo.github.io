@@ -29,14 +29,14 @@ GLOBAL
   font-family:Orbitron,sans-serif;
 }
 
-html, body{
+html,body{
   width:100%;
   min-height:100%;
 }
 
 body{
   background:
-  radial-gradient(circle at top, #111 0%, #000 60%);
+  radial-gradient(circle at top,#111 0%,#000 60%);
   color:#fff;
   overflow-x:hidden;
   user-select:none;
@@ -45,7 +45,7 @@ body{
   text-rendering:optimizeLegibility;
 }
 
-img, video{
+img,video{
   -webkit-user-drag:none;
 }
 
@@ -59,8 +59,8 @@ HEADER
 
 .header{
   width:100%;
-  overflow:hidden;
   position:relative;
+  overflow:hidden;
 }
 
 .header img{
@@ -72,25 +72,29 @@ HEADER
   content:"";
   position:absolute;
   inset:0;
+
   background:
   linear-gradient(
     to bottom,
-    rgba(0,0,0,0.1),
+    rgba(0,0,0,0.08),
     rgba(0,0,0,0.55)
   );
 }
 
 /* =========================
-LOGO
+BANNER LOGO
 ========================= */
 
 .banner-logo{
-  position:fixed;
+  position:absolute;
+
   left:45px;
-  top:calc(100vw * 0.5625 - 175px);
+  bottom:45px;
+
   width:130px;
+
   z-index:1000;
-  cursor:pointer;
+
   transition:0.4s ease;
 }
 
@@ -100,26 +104,35 @@ LOGO
 
 .banner-logo img{
   width:100%;
+  display:block;
 }
 
 /* =========================
-BACKGROUND
+HERO
 ========================= */
 
 .bg-layer{
-  position:fixed;
-  left:50%;
-  top:calc(100vw * 0.5625 + 20px);
-  transform:translateX(-50%);
-  z-index:1;
-  pointer-events:none;
-  text-align:center;
+  position:relative;
+
+  width:100%;
 
   display:flex;
   flex-direction:column;
   align-items:center;
 
-  filter:drop-shadow(0 0 40px rgba(255,255,255,0.05));
+  margin-top:20px;
+
+  z-index:2;
+
+  pointer-events:none;
+
+  text-align:center;
+
+  filter:
+  drop-shadow(
+    0 0 40px
+    rgba(255,255,255,0.05)
+  );
 }
 
 .title-img{
@@ -139,7 +152,7 @@ CONTENT
 
 .content{
   position:relative;
-  z-index:2;
+  z-index:3;
 }
 
 /* =========================
@@ -169,20 +182,36 @@ BUTTONS
 
 .btn{
   padding:16px 42px;
-  border:1px solid rgba(255,255,255,0.18);
+
+  border:
+  1px solid
+  rgba(255,255,255,0.18);
+
   cursor:pointer;
+
   transition:0.35s ease;
+
   letter-spacing:3px;
   font-size:11px;
+
   backdrop-filter:blur(8px);
-  background:rgba(255,255,255,0.02);
+
+  background:
+  rgba(255,255,255,0.02);
 }
 
 .btn:hover{
-  background:rgba(255,255,255,0.08);
-  border-color:rgba(255,255,255,0.4);
+  background:
+  rgba(255,255,255,0.08);
+
+  border-color:
+  rgba(255,255,255,0.4);
+
   transform:translateY(-3px);
-  box-shadow:0 10px 30px rgba(255,255,255,0.08);
+
+  box-shadow:
+  0 10px 30px
+  rgba(255,255,255,0.08);
 }
 
 /* =========================
@@ -192,21 +221,30 @@ VIDEOS
 .video-box{
   border-radius:24px;
   overflow:hidden;
+
   position:relative;
+
   transition:0.4s ease;
+
   cursor:pointer;
+
   background:#050505;
 }
 
 .video-box:hover{
   transform:translateY(-6px);
-  box-shadow:0 20px 60px rgba(0,0,0,0.5);
+
+  box-shadow:
+  0 20px 60px
+  rgba(0,0,0,0.5);
 }
 
 video{
   width:100%;
   display:block;
+
   object-fit:cover;
+
   transition:0.6s ease;
 }
 
@@ -216,12 +254,19 @@ video{
 
 .video-text{
   position:absolute;
+
   bottom:20px;
   left:20px;
+
   font-size:10px;
   letter-spacing:3px;
+
   opacity:0.7;
-  text-shadow:0 0 20px rgba(0,0,0,0.8);
+
+  text-shadow:
+  0 0 20px
+  rgba(0,0,0,0.8);
+
   pointer-events:none;
 }
 
@@ -231,9 +276,13 @@ GALLERY
 
 .gallery img{
   width:100%;
+
   object-fit:cover;
+
   border-radius:18px;
+
   transition:0.5s ease;
+
   cursor:pointer;
 }
 
@@ -247,15 +296,20 @@ FADE
 
 .fade-in{
   opacity:0;
+
   transform:translateY(20px);
-  animation:fadeUp 1.2s ease forwards;
+
+  animation:
+  fadeUp 1.2s ease forwards;
 }
 
 @keyframes fadeUp{
+
   to{
     opacity:1;
     transform:translateY(0);
   }
+
 }
 
 /* =========================
@@ -265,11 +319,16 @@ GRAIN
 .grain{
   position:fixed;
   inset:0;
+
   pointer-events:none;
+
   z-index:9999;
+
   opacity:0.03;
+
   background-image:url("grain.png");
   background-size:cover;
+
   mix-blend-mode:soft-light;
 }
 
@@ -280,13 +339,15 @@ DESKTOP
 @media (min-width:901px){
 
   .content{
-    margin-top:1050px;
+    margin-top:120px;
   }
 
   .description{
     justify-content:center;
     align-items:center;
+
     width:100%;
+
     margin-top:165px;
   }
 
@@ -299,23 +360,31 @@ DESKTOP
   .buttons{
     justify-content:center;
     align-items:center;
+
     gap:20px;
+
     width:100%;
+
     margin-top:110px;
   }
 
   .video-section{
     display:flex;
+
     justify-content:center;
     align-items:flex-start;
+
     gap:740px;
+
     padding:0 4vw;
+
     margin-top:-332px;
   }
 
   .video-box{
     width:420px;
     height:700px;
+
     flex-shrink:0;
   }
 
@@ -327,7 +396,9 @@ DESKTOP
 
   .gallery{
     width:92%;
-    margin:20px auto 0 auto;
+
+    margin:
+    20px auto 0 auto;
 
     display:grid;
 
@@ -352,7 +423,9 @@ DESKTOP
   .middle-stack{
     display:flex;
     flex-direction:column;
+
     gap:28px;
+
     height:1100px;
   }
 
@@ -374,15 +447,17 @@ MOBILE
   }
 
   .banner-logo{
+    position:fixed;
+
     top:30px;
     left:20px;
+    bottom:auto;
+
     width:100px;
   }
 
   .bg-layer{
-    top:50%;
-    left:50%;
-    transform:translate(-50%, -50%);
+    margin-top:60px;
   }
 
   .title-img{
@@ -408,9 +483,12 @@ MOBILE
 
   .buttons{
     justify-content:center;
+
     flex-direction:column;
     align-items:center;
+
     margin-top:35px;
+
     gap:20px;
   }
 
@@ -421,9 +499,12 @@ MOBILE
 
   .video-section{
     margin-top:100px;
+
     display:flex;
     flex-direction:column;
+
     align-items:center;
+
     gap:30px;
   }
 
@@ -433,12 +514,15 @@ MOBILE
 
   .gallery{
     margin-top:90px;
+
     width:95%;
+
     margin-left:auto;
     margin-right:auto;
 
     display:flex;
     flex-direction:column;
+
     gap:20px;
   }
 
@@ -474,18 +558,22 @@ SCROLLBAR
 
 <!-- HEADER -->
 <div class="header">
+
   <img src="banner.png">
+
+  <!-- LOGO -->
+  <a href="index.html" class="banner-logo">
+    <img src="bannerlogo.png">
+  </a>
+
 </div>
 
-<!-- FIXED LOGO -->
-<a href="index.html" class="banner-logo">
-  <img src="bannerlogo.png">
-</a>
-
-<!-- FIXED HERO -->
+<!-- HERO -->
 <div class="bg-layer">
+
   <img src="title.png" class="title-img">
   <img src="logo.png" class="logo-img">
+
 </div>
 
 <!-- CONTENT -->
@@ -493,7 +581,9 @@ SCROLLBAR
 
   <!-- DESCRIPTION -->
   <div class="description fade-in">
+
     <img src="description.png">
+
   </div>
 
   <!-- BUTTONS -->
@@ -523,7 +613,9 @@ SCROLLBAR
       webkit-playsinline
       preload="metadata"></video>
 
-      <div class="video-text">TAP FOR SOUND</div>
+      <div class="video-text">
+        TAP FOR SOUND
+      </div>
 
     </div>
 
@@ -538,7 +630,9 @@ SCROLLBAR
       webkit-playsinline
       preload="metadata"></video>
 
-      <div class="video-text">TAP FOR SOUND</div>
+      <div class="video-text">
+        TAP FOR SOUND
+      </div>
 
     </div>
 
@@ -547,14 +641,19 @@ SCROLLBAR
   <!-- GALLERY -->
   <div class="gallery fade-in">
 
+    <!-- LEFT -->
     <img src="image1.jpg" loading="lazy">
 
+    <!-- CENTER -->
     <div class="middle-stack">
+
       <img src="image5.jpg" loading="lazy">
       <img src="image2.jpg" loading="lazy">
       <img src="image3.jpg" loading="lazy">
+
     </div>
 
+    <!-- RIGHT -->
     <img src="image4.jpg" loading="lazy">
 
   </div>
@@ -573,14 +672,20 @@ window.addEventListener("load",()=>{
   document.querySelectorAll("video").forEach(video=>{
 
     video.muted = true;
-    video.setAttribute("playsinline","");
+
+    video.setAttribute(
+      "playsinline",
+      ""
+    );
 
     const promise = video.play();
 
     if(promise !== undefined){
 
       promise.catch(()=>{
+
         video.play();
+
       });
 
     }
@@ -593,20 +698,27 @@ window.addEventListener("load",()=>{
 
 document.querySelectorAll(".video-box").forEach(box=>{
 
-  const video = box.querySelector("video");
-  const text = box.querySelector(".video-text");
+  const video =
+  box.querySelector("video");
+
+  const text =
+  box.querySelector(".video-text");
 
   box.addEventListener("click",()=>{
 
     if(video.muted){
 
       video.muted = false;
-      text.innerText = "TAP TO MUTE";
+
+      text.innerText =
+      "TAP TO MUTE";
 
     }else{
 
       video.muted = true;
-      text.innerText = "TAP FOR SOUND";
+
+      text.innerText =
+      "TAP FOR SOUND";
 
     }
 
