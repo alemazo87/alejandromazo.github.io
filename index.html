@@ -157,6 +157,11 @@ BUTTONS
   display:flex;
 }
 
+.buttons a{
+  text-decoration:none;
+  color:white;
+}
+
 .btn{
   padding:16px 42px;
   border:1px solid rgba(255,255,255,0.18);
@@ -302,14 +307,14 @@ DESKTOP
   .title-img{
     width:52vw;
     opacity:0.92;
-    transform:translateY(72px);
+    transform:translateY(122px);
   }
 
   .logo-img{
     width:18vw;
     margin-top:30px;
     opacity:0.18;
-    transform:translateY(72px);
+    transform:translateY(122px);
   }
 
   /* CONTENT */
@@ -324,7 +329,7 @@ DESKTOP
     justify-content:center;
     align-items:center;
     width:100%;
-    margin-top:90px;
+    margin-top:165px;
   }
 
   .description img{
@@ -541,8 +546,15 @@ SCROLLBAR
 
   <!-- BUTTONS -->
   <div class="buttons fade-in">
-    <div class="btn" onclick="navigate('work.html')">MY WORK</div>
-    <div class="btn" onclick="navigate('contact.html')">CONTACT</div>
+
+    <a href="work.html">
+      <div class="btn">MY WORK</div>
+    </a>
+
+    <a href="contact.html">
+      <div class="btn">CONTACT</div>
+    </a>
+
   </div>
 
   <!-- VIDEOS -->
@@ -614,15 +626,9 @@ function playClick(){
   clickSound.play();
 }
 
-function navigate(url){
-  playClick();
-  setTimeout(()=>{
-    window.location.href = url;
-  },150);
-}
-
 function goHome(){
   playClick();
+
   setTimeout(()=>{
     window.location.href = "index.html";
   },150);
