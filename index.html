@@ -1,3 +1,12 @@
+Create your Instagram widget first, then replace only this line in the code:
+
+```js
+const elfsightWidgetId = "YOUR_ELFSIGHT_WIDGET_ID";
+```
+
+with the ID Elfsight gives you. Everything else below is a complete `index.html` replacement.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -443,4 +452,242 @@
       }
 
       .gallery > img {
-        height: min(78
+        height: min(78vw, 1100px);
+        aspect-ratio: auto;
+      }
+
+      .middle-stack {
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        gap: clamp(14px, 2vw, 28px);
+        height: min(78vw, 1100px);
+      }
+
+      .middle-stack img {
+        height: 100%;
+        min-height: 0;
+        aspect-ratio: auto;
+      }
+    }
+
+    @media (min-width: 901px) {
+      .hero-branding {
+        top: clamp(55px, 8vw, 145px);
+        width: min(53vw, 860px);
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #262626;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #444;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body oncontextmenu="return false">
+  <audio id="clickSound" src="click.mp3" preload="auto"></audio>
+
+  <!-- HEADER -->
+  <header class="header">
+    <picture>
+      <source media="(max-width: 600px)" srcset="bannerMOBILE.jpg">
+      <img src="banner.png" alt="Alejandro Mazo">
+    </picture>
+
+    <a href="index.html" class="banner-logo" aria-label="Back to homepage">
+      <img src="bannerlogo.png" alt="Alejandro Mazo logo">
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Alejandro Mazo hero photograph">
+    <img
+      class="hero-photo"
+      src="Hero-2.jpg"
+      alt="Freestyle motocross photograph by Alejandro Mazo"
+    >
+
+    <div class="hero-branding">
+      <img class="title-img" src="title.png" alt="Alejandro Mazo">
+      <img class="logo-img" src="logo.png" alt="">
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <section class="description fade-in">
+      <img
+        src="description.png"
+        alt="Alejandro Mazo photographer and filmmaker"
+      >
+    </section>
+
+    <nav class="buttons fade-in" aria-label="Portfolio navigation">
+      <a href="work.html">
+        <div class="btn">MY WORK</div>
+      </a>
+
+      <a href="contact.html">
+        <div class="btn">CONTACT</div>
+      </a>
+    </nav>
+
+    <!-- FEATURED REELS -->
+    <section class="video-section fade-in" aria-label="Featured video reels">
+      <div class="video-box" role="button" tabindex="0" aria-label="Toggle sound for first reel">
+        <video
+          src="reel.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+        ></video>
+
+        <div class="video-text">TAP FOR SOUND</div>
+      </div>
+
+      <div class="video-box" role="button" tabindex="0" aria-label="Toggle sound for second reel">
+        <video
+          src="video2.mp4"
+          autoplay
+          loop
+          muted
+          playsinline
+          webkit-playsinline
+          preload="metadata"
+        ></video>
+
+        <div class="video-text">TAP FOR SOUND</div>
+      </div>
+    </section>
+
+    <!-- LIVE INSTAGRAM FEED -->
+    <section class="instagram-section fade-in" aria-label="Latest from Instagram">
+      <p class="section-kicker">LIVE FROM INSTAGRAM</p>
+      <h2 class="section-title">LATEST WORK</h2>
+
+      <div id="instagramFeed" class="instagram-feed"></div>
+
+      <a
+        class="instagram-link"
+        href="https://www.instagram.com/ale_mazo/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        FOLLOW @ALE_MAZO
+      </a>
+    </section>
+
+    <!-- GALLERY
+         LEFT: image4.jpg
+         CENTER: image5.jpg, image2.jpg, image3.jpg
+         RIGHT: image1.jpg -->
+    <section class="gallery fade-in" aria-label="Photography gallery">
+      <img src="image4.jpg" loading="lazy" alt="Alejandro Mazo photography">
+
+      <div class="middle-stack">
+        <img src="image5.jpg" loading="lazy" alt="Alejandro Mazo photography">
+        <img src="image2.jpg" loading="lazy" alt="Alejandro Mazo photography">
+        <img src="image3.jpg" loading="lazy" alt="Alejandro Mazo photography">
+      </div>
+
+      <img src="image1.jpg" loading="lazy" alt="Alejandro Mazo photography">
+    </section>
+  </main>
+
+  <div class="grain" aria-hidden="true"></div>
+
+  <script>
+    /* Replace this with the widget ID provided by Elfsight.
+       Example: "12345678-abcd-1234-abcd-123456789abc" */
+    const elfsightWidgetId = "YOUR_ELFSIGHT_WIDGET_ID";
+
+    if (elfsightWidgetId !== "YOUR_ELFSIGHT_WIDGET_ID") {
+      const widgetScript = document.createElement("script");
+      widgetScript.src = "https://static.elfsight.com/platform/platform.js";
+      widgetScript.async = true;
+      document.head.appendChild(widgetScript);
+
+      const widget = document.createElement("div");
+      widget.className = "elfsight-app-" + elfsightWidgetId;
+      widget.setAttribute("data-elfsight-app-lazy", "");
+      document.getElementById("instagramFeed").appendChild(widget);
+    }
+
+    const clickSound = document.getElementById("clickSound");
+
+    function playClickSound() {
+      clickSound.currentTime = 0;
+      clickSound.play().catch(() => {});
+    }
+
+    document.querySelectorAll(".buttons a").forEach((link) => {
+      link.addEventListener("click", playClickSound);
+    });
+
+    function startVideos() {
+      document.querySelectorAll("video").forEach((video) => {
+        video.muted = true;
+        video.defaultMuted = true;
+        video.setAttribute("playsinline", "");
+        video.setAttribute("webkit-playsinline", "");
+        video.play().catch(() => {});
+      });
+    }
+
+    window.addEventListener("load", startVideos);
+
+    document.querySelectorAll(".video-box").forEach((box) => {
+      const video = box.querySelector("video");
+      const label = box.querySelector(".video-text");
+
+      function toggleSound() {
+        video.muted = !video.muted;
+        label.textContent = video.muted ? "TAP FOR SOUND" : "TAP TO MUTE";
+
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+      }
+
+      box.addEventListener("click", toggleSound);
+
+      box.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          toggleSound();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+```
