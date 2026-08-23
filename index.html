@@ -112,18 +112,160 @@
       flex-direction: column;
       align-items: center;
       pointer-events: none;
-      filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.16));
     }
 
-    .title-img {
+    /* GLITCH */
+
+    .glitch-layer {
+      position: relative;
+      isolation: isolate;
+      display: block;
+    }
+
+    .glitch-layer::before,
+    .glitch-layer::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background-image: var(--glitch-image);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      will-change: transform, clip-path, opacity;
+    }
+
+    .glitch-layer::before {
+      filter: drop-shadow(-4px 0 rgba(0, 233, 255, 0.9));
+      animation: glitchCyan 9s steps(1, end) infinite;
+    }
+
+    .glitch-layer::after {
+      filter: drop-shadow(4px 0 rgba(255, 28, 104, 0.82));
+      animation: glitchRed 9s steps(1, end) infinite;
+    }
+
+    .title-glitch {
+      width: 100%;
+    }
+
+    .title-glitch .title-img {
       width: 100%;
       opacity: 0.94;
+      animation: glitchBase 9s steps(1, end) infinite;
     }
 
-    .logo-img {
+    .logo-glitch {
       width: min(40%, 230px);
       margin-top: clamp(16px, 4vw, 70px);
+      animation-delay: 1.2s;
+    }
+
+    .logo-glitch::before {
+      animation-delay: 1.2s;
+    }
+
+    .logo-glitch::after {
+      animation-delay: 1.2s;
+    }
+
+    .logo-glitch .logo-img {
+      width: 100%;
       opacity: 0.4;
+      animation: glitchBase 9s steps(1, end) infinite 1.2s;
+    }
+
+    @keyframes glitchBase {
+      0%,
+      77%,
+      100% {
+        transform: translate(0);
+        filter: none;
+      }
+
+      79% {
+        transform: translateX(2px);
+        filter: contrast(1.35);
+      }
+
+      80% {
+        transform: translateX(-2px);
+      }
+
+      81% {
+        transform: translate(0);
+        filter: none;
+      }
+    }
+
+    @keyframes glitchCyan {
+      0%,
+      77%,
+      100% {
+        opacity: 0;
+        transform: translate(0);
+        clip-path: inset(0 0 100% 0);
+      }
+
+      78% {
+        opacity: 0.7;
+        transform: translateX(-5px);
+        clip-path: inset(16% 0 67% 0);
+      }
+
+      79% {
+        opacity: 0.45;
+        transform: translateX(4px);
+        clip-path: inset(62% 0 14% 0);
+      }
+
+      80% {
+        opacity: 0.65;
+        transform: translateX(-2px);
+        clip-path: inset(39% 0 42% 0);
+      }
+
+      81% {
+        opacity: 0;
+        transform: translate(0);
+        clip-path: inset(0 0 100% 0);
+      }
+    }
+
+    @keyframes glitchRed {
+      0%,
+      77%,
+      100% {
+        opacity: 0;
+        transform: translate(0);
+        clip-path: inset(100% 0 0 0);
+      }
+
+      78% {
+        opacity: 0.52;
+        transform: translateX(5px);
+        clip-path: inset(57% 0 23% 0);
+      }
+
+      79% {
+        opacity: 0.72;
+        transform: translateX(-3px);
+        clip-path: inset(8% 0 74% 0);
+      }
+
+      80% {
+        opacity: 0.4;
+        transform: translateX(3px);
+        clip-path: inset(76% 0 6% 0);
+      }
+
+      81% {
+        opacity: 0;
+        transform: translate(0);
+        clip-path: inset(100% 0 0 0);
+      }
     }
 
     /* CONTENT */
@@ -367,7 +509,7 @@
         width: min(57vw, 860px);
       }
 
-      .logo-img {
+      .logo-glitch {
         width: min(33%, 230px);
       }
 
@@ -455,8 +597,19 @@
     >
 
     <div class="hero-branding">
-      <img class="title-img" src="title.png" alt="Alejandro Mazo">
-      <img class="logo-img" src="logo.png" alt="">
+      <div
+        class="glitch-layer title-glitch"
+        style="--glitch-image: url('title.png');"
+      >
+        <img class="title-img" src="title.png" alt="Alejandro Mazo">
+      </div>
+
+      <div
+        class="glitch-layer logo-glitch"
+        style="--glitch-image: url('logo.png');"
+      >
+        <img class="logo-img" src="logo.png" alt="">
+      </div>
     </div>
   </section>
 
@@ -529,10 +682,7 @@
       </a>
     </section>
 
-    <!-- GALLERY
-         LEFT: image4.jpg
-         CENTER: image5.jpg, image2.jpg, image3.jpg
-         RIGHT: image1.jpg -->
+    <!-- GALLERY -->
     <section class="gallery fade-in" aria-label="Photography gallery">
       <img src="image4.jpg" loading="lazy" alt="Alejandro Mazo photography">
 
