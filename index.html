@@ -309,7 +309,6 @@
 
     .instagram-feed {
       width: 100%;
-      min-height: 120px;
       margin: clamp(34px, 5vw, 62px) auto 0;
     }
 
@@ -364,7 +363,7 @@
       gap: 18px;
     }
 
-    /* ANIMATION / GRAIN */
+    /* ANIMATIONS */
 
     .fade-in {
       opacity: 0;
@@ -585,7 +584,13 @@
       <p class="section-kicker">LIVE FROM INSTAGRAM</p>
       <h2 class="section-title">LATEST WORK</h2>
 
-      <div id="instagramFeed" class="instagram-feed"></div>
+      <div class="instagram-feed">
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+        <div
+          class="elfsight-app-eb70c165-4370-452c-b268-90bafd9a5307"
+          data-elfsight-app-lazy
+        ></div>
+      </div>
 
       <a
         class="instagram-link"
@@ -617,22 +622,6 @@
   <div class="grain" aria-hidden="true"></div>
 
   <script>
-    /* Replace this with the widget ID provided by Elfsight.
-       Example: "12345678-abcd-1234-abcd-123456789abc" */
-    const elfsightWidgetId = "YOUR_ELFSIGHT_WIDGET_ID";
-
-    if (elfsightWidgetId !== "YOUR_ELFSIGHT_WIDGET_ID") {
-      const widgetScript = document.createElement("script");
-      widgetScript.src = "https://static.elfsight.com/platform/platform.js";
-      widgetScript.async = true;
-      document.head.appendChild(widgetScript);
-
-      const widget = document.createElement("div");
-      widget.className = "elfsight-app-" + elfsightWidgetId;
-      widget.setAttribute("data-elfsight-app-lazy", "");
-      document.getElementById("instagramFeed").appendChild(widget);
-    }
-
     const clickSound = document.getElementById("clickSound");
 
     function playClickSound() {
