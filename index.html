@@ -6,8 +6,6 @@
 
   <title>Alejandro Mazo | Le†'$ MAK€ $ΩME┬HING ÐØPE</title>
 
-  <link rel="preload" as="image" href="banner.png">
-  <link rel="preload" as="image" href="bannerMOBILE.jpg">
   <link rel="preload" as="image" href="Hero-2.jpg">
   <link rel="preload" as="image" href="title.png">
   <link rel="preload" as="image" href="logo.png">
@@ -65,47 +63,6 @@
 
     audio {
       display: none;
-    }
-
-    /* HEADER */
-
-    .header {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .header picture,
-    .header picture img {
-      display: block;
-      width: 100%;
-    }
-
-    .header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.02),
-        rgba(0, 0, 0, 0.48)
-      );
-    }
-
-    .banner-logo {
-      position: absolute;
-      z-index: 2;
-      left: clamp(18px, 3vw, 48px);
-      bottom: clamp(16px, 3vw, 44px);
-      width: clamp(78px, 9vw, 132px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .banner-logo:hover {
-      opacity: 0.72;
-      transform: translateY(-2px);
     }
 
     /* HERO */
@@ -191,15 +148,13 @@
 
     .buttons {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
+      justify-content: center;
       margin-top: clamp(38px, 6vw, 78px);
     }
 
     .btn {
-      width: min(100%, 260px);
-      padding: 17px 24px;
+      min-width: 205px;
+      padding: 17px 28px;
       border: 1px solid var(--line);
       background: rgba(255, 255, 255, 0.03);
       color: #fff;
@@ -416,18 +371,6 @@
         width: min(33%, 230px);
       }
 
-      .buttons {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 18px;
-      }
-
-      .btn {
-        width: auto;
-        min-width: 205px;
-      }
-
       .video-section {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: clamp(20px, 4vw, 64px);
@@ -503,18 +446,6 @@
 <body oncontextmenu="return false">
   <audio id="clickSound" src="click.mp3" preload="auto"></audio>
 
-  <!-- HEADER -->
-  <header class="header">
-    <picture>
-      <source media="(max-width: 600px)" srcset="bannerMOBILE.jpg">
-      <img src="banner.png" alt="Alejandro Mazo">
-    </picture>
-
-    <a href="index.html" class="banner-logo" aria-label="Back to homepage">
-      <img src="bannerlogo.png" alt="Alejandro Mazo logo">
-    </a>
-  </header>
-
   <!-- HERO -->
   <section class="hero" aria-label="Alejandro Mazo hero photograph">
     <img
@@ -539,10 +470,6 @@
     </section>
 
     <nav class="buttons fade-in" aria-label="Portfolio navigation">
-      <a href="work.html">
-        <div class="btn">MY WORK</div>
-      </a>
-
       <a href="contact.html">
         <div class="btn">CONTACT</div>
       </a>
